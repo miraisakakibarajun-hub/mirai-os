@@ -85,7 +85,14 @@ export default function UsersPage() {
                     key={user.id}
                     className="border-t border-slate-200 hover:bg-slate-50"
                   >
-                    <td className="px-5 py-4 font-semibold">{user.name}</td>
+                    <td className="px-5 py-4 font-semibold">
+                      <Link
+                        href={`/users/${user.id}`}
+                        className="text-[#16233F] underline-offset-2 hover:underline"
+                      >
+                        {user.name}
+                      </Link>
+                    </td>
                     <td className="px-5 py-4 text-slate-600">{user.kana}</td>
                     <td className="px-5 py-4 text-slate-600">
                       {user.birthDate}

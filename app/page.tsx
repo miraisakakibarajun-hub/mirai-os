@@ -1,33 +1,41 @@
+import Link from "next/link";
+
 const menuItems = [
   {
     number: "01",
     title: "利用者管理",
     description: "利用者の基本情報・支援情報を一元管理",
+    href: "/users",
   },
   {
     number: "02",
     title: "サービス等利用計画",
     description: "計画案・本計画の作成と管理",
+    href: null,
   },
   {
     number: "03",
     title: "モニタリング",
     description: "実施時期の確認と記録作成",
+    href: null,
   },
   {
     number: "04",
     title: "支援記録",
     description: "日々の相談・支援内容を記録",
+    href: null,
   },
   {
     number: "05",
     title: "AI作成支援",
     description: "記録を基に文書作成をサポート",
+    href: null,
   },
   {
     number: "06",
     title: "ダッシュボード",
     description: "期限・進捗・未対応事項を確認",
+    href: null,
   },
 ];
 
@@ -89,28 +97,53 @@ export default function Home() {
           </div>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {menuItems.map((item) => (
-              <button
-                key={item.number}
-                type="button"
-                className="group min-h-44 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-[#A9824F] hover:shadow-md"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[#A9824F]">
-                    {item.number}
-                  </span>
-                  <span className="text-xs text-slate-400">準備中</span>
-                </div>
+            {menuItems.map((item) =>
+              item.href ? (
+                <Link
+                  key={item.number}
+                  href={item.href}
+                  className="group min-h-44 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-[#A9824F] hover:shadow-md"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-[#A9824F]">
+                      {item.number}
+                    </span>
+                    <span className="text-xs font-semibold text-[#A9824F]">
+                      利用可能
+                    </span>
+                  </div>
 
-                <h4 className="mt-6 text-xl font-semibold group-hover:text-[#A9824F]">
-                  {item.title}
-                </h4>
+                  <h4 className="mt-6 text-xl font-semibold group-hover:text-[#A9824F]">
+                    {item.title}
+                  </h4>
 
-                <p className="mt-3 text-sm leading-6 text-slate-500">
-                  {item.description}
-                </p>
-              </button>
-            ))}
+                  <p className="mt-3 text-sm leading-6 text-slate-500">
+                    {item.description}
+                  </p>
+                </Link>
+              ) : (
+                <button
+                  key={item.number}
+                  type="button"
+                  className="group min-h-44 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-[#A9824F] hover:shadow-md"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-[#A9824F]">
+                      {item.number}
+                    </span>
+                    <span className="text-xs text-slate-400">準備中</span>
+                  </div>
+
+                  <h4 className="mt-6 text-xl font-semibold group-hover:text-[#A9824F]">
+                    {item.title}
+                  </h4>
+
+                  <p className="mt-3 text-sm leading-6 text-slate-500">
+                    {item.description}
+                  </p>
+                </button>
+              )
+            )}
           </div>
         </div>
       </section>
