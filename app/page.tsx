@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LogoutButton from "./components/LogoutButton";
+import { createClient } from "@/lib/supabase/server";
 
 const menuItems = [
   {
@@ -39,7 +41,11 @@ const menuItems = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <main className="min-h-screen bg-[#F4F5F7] text-[#16233F]">
       <header className="border-b border-[#A9824F]/40 bg-[#16233F] text-white">
@@ -55,7 +61,20 @@ export default function Home() {
 
           <div className="text-right">
             <p className="text-sm text-[#D8C4A5]">相談支援AIシステム</p>
-            <p className="mt-1 text-xs text-white/60">Development Ver.0.1</p>
+
+            {user ? (
+              <div className="mt-1 flex items-center justify-end gap-3">
+                <p className="text-xs text-white/60">{user.email}</p>
+                <LogoutButton />
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="mt-1 inline-block text-xs text-white/60 underline"
+              >
+                ログイン
+              </Link>
+            )}
           </div>
         </div>
       </header>
