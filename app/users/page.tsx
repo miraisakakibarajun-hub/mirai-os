@@ -2,34 +2,85 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
-type SavedUser = {
+type PlanConsistency = "ok" | "missing" | "duplicate";
+
+type UserListItem = {
   id: string;
   name: string;
   kana: string;
   birthDate: string;
-  renewalDate: string;
   status: string;
+  renewalDate: string | null;
+  planConsistency: PlanConsistency;
 };
 
+type FetchState = "loading" | "error" | "loaded";
+
 export default function UsersPage() {
-  const [users, setUsers] = useState<SavedUser[]>([]);
+  const [users, setUsers] = useState<UserListItem[]>([]);
+  const [fetchState, setFetchState] = useState<FetchState>("loading");
 
   useEffect(() => {
-    // localStorageはサーバー側で参照できないため、マウント後に読み込んで
-    // Reactの状態と同期する（外部システムとの同期はEffectの正しい用途）。
-    /* eslint-disable react-hooks/set-state-in-effect */
-    try {
-      const savedData = localStorage.getItem("mirai-users");
-      const savedUsers = savedData
-        ? (JSON.parse(savedData) as SavedUser[])
-        : [];
+    let isMounted = true;
 
-      setUsers(savedUsers);
-    } catch {
-      setUsers([]);
+    async function fetchUsers() {
+      const supabase = createClient();
+
+      const { data, error } = await supabase
+        .from("users")
+        .select(
+          `
+          id,
+          name,
+          kana,
+          birth_date,
+          status,
+          plans ( renewal_date, status )
+        `
+        )
+        .eq("plans.status", "active")
+        .order("name");
+
+      if (!isMounted) return;
+
+      if (error) {
+        setFetchState("error");
+        return;
+      }
+
+      const items: UserListItem[] = (data ?? []).map((row) => {
+        const activePlans = row.plans ?? [];
+
+        const planConsistency: PlanConsistency =
+          activePlans.length === 1
+            ? "ok"
+            : activePlans.length === 0
+              ? "missing"
+              : "duplicate";
+
+        return {
+          id: row.id,
+          name: row.name,
+          kana: row.kana,
+          birthDate: row.birth_date,
+          status: row.status,
+          renewalDate:
+            planConsistency === "ok" ? activePlans[0].renewal_date : null,
+          planConsistency,
+        };
+      });
+
+      setUsers(items);
+      setFetchState("loaded");
     }
-    /* eslint-enable react-hooks/set-state-in-effect */
+
+    fetchUsers();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -57,7 +108,20 @@ export default function UsersPage() {
         </div>
 
         <div className="mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-          {users.length === 0 ? (
+          {fetchState === "loading" ? (
+            <div className="p-10 text-center">
+              <p className="text-slate-500">読み込み中...</p>
+            </div>
+          ) : fetchState === "error" ? (
+            <div className="p-10 text-center">
+              <p className="font-semibold text-red-700">
+                データの取得に失敗しました。
+              </p>
+              <p className="mt-2 text-sm text-slate-500">
+                時間をおいて再度お試しください。
+              </p>
+            </div>
+          ) : users.length === 0 ? (
             <div className="p-10 text-center">
               <p className="font-semibold text-slate-700">
                 登録された利用者はいません。
@@ -98,7 +162,15 @@ export default function UsersPage() {
                       {user.birthDate}
                     </td>
                     <td className="px-5 py-4 text-slate-600">
-                      {user.renewalDate}
+                      {user.planConsistency === "ok" ? (
+                        user.renewalDate
+                      ) : (
+                        <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
+                          {user.planConsistency === "missing"
+                            ? "計画未設定（要確認）"
+                            : "計画重複（要確認）"}
+                        </span>
+                      )}
                     </td>
                     <td className="px-5 py-4">
                       <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800">

@@ -3,15 +3,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
-type SavedUser = {
+type PlanConsistency = "ok" | "missing" | "duplicate";
+
+type UserDetail = {
   id: string;
   name: string;
   kana: string;
   birthDate: string;
-  renewalDate: string;
   status: string;
+  renewalDate: string | null;
+  planConsistency: PlanConsistency;
 };
+
+type FetchState = "loading" | "not-found" | "error" | "loaded";
 
 function calculateAge(birthDate: string): number | null {
   if (!birthDate) return null;
@@ -33,33 +39,116 @@ function calculateAge(birthDate: string): number | null {
 
 export default function UserDetailPage() {
   const params = useParams<{ id: string }>();
-  const [user, setUser] = useState<SavedUser | null>(null);
-  const [notFound, setNotFound] = useState(false);
+  const [user, setUser] = useState<UserDetail | null>(null);
+  const [fetchState, setFetchState] = useState<FetchState>("loading");
 
   useEffect(() => {
-    // localStorageはサーバー側で参照できないため、マウント後に読み込んで
-    // Reactの状態と同期する（外部システムとの同期はEffectの正しい用途）。
-    /* eslint-disable react-hooks/set-state-in-effect */
-    try {
-      const savedData = localStorage.getItem("mirai-users");
-      const savedUsers = savedData
-        ? (JSON.parse(savedData) as SavedUser[])
-        : [];
+    let isMounted = true;
 
-      const found = savedUsers.find((savedUser) => savedUser.id === params.id);
+    async function fetchUser() {
+      const supabase = createClient();
 
-      if (found) {
-        setUser(found);
-      } else {
-        setNotFound(true);
+      const { data, error } = await supabase
+        .from("users")
+        .select(
+          `
+          id,
+          name,
+          kana,
+          birth_date,
+          status,
+          plans ( renewal_date, status )
+        `
+        )
+        .eq("plans.status", "active")
+        .eq("id", params.id)
+        .maybeSingle();
+
+      if (!isMounted) return;
+
+      if (error) {
+        if (error.code === "22P02") {
+          setFetchState("not-found");
+        } else {
+          setFetchState("error");
+        }
+        return;
       }
-    } catch {
-      setNotFound(true);
+
+      if (!data) {
+        setFetchState("not-found");
+        return;
+      }
+
+      const activePlans = data.plans ?? [];
+
+      const planConsistency: PlanConsistency =
+        activePlans.length === 1
+          ? "ok"
+          : activePlans.length === 0
+            ? "missing"
+            : "duplicate";
+
+      setUser({
+        id: data.id,
+        name: data.name,
+        kana: data.kana,
+        birthDate: data.birth_date,
+        status: data.status,
+        renewalDate:
+          planConsistency === "ok" ? activePlans[0].renewal_date : null,
+        planConsistency,
+      });
+      setFetchState("loaded");
     }
-    /* eslint-enable react-hooks/set-state-in-effect */
+
+    fetchUser();
+
+    return () => {
+      isMounted = false;
+    };
   }, [params.id]);
 
-  if (notFound) {
+  if (fetchState === "loading") {
+    return (
+      <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-xl bg-white p-10 text-center shadow">
+            <p className="text-slate-500">読み込み中...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (fetchState === "error") {
+    return (
+      <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-xl bg-white p-10 text-center shadow">
+            <p className="font-semibold text-red-700">
+              データの取得に失敗しました。
+            </p>
+
+            <p className="mt-2 text-sm text-slate-500">
+              時間をおいて再度お試しください。
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href="/users"
+              className="text-sm font-semibold text-[#16233F] underline"
+            >
+              一覧へ戻る
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (fetchState === "not-found") {
     return (
       <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
         <div className="mx-auto max-w-2xl">
@@ -134,7 +223,17 @@ export default function UserDetailPage() {
             <p className="text-sm font-semibold text-slate-500">
               計画更新期限
             </p>
-            <p className="mt-1 text-lg">{user.renewalDate}</p>
+            <p className="mt-1 text-lg">
+              {user.planConsistency === "ok" ? (
+                user.renewalDate
+              ) : (
+                <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
+                  {user.planConsistency === "missing"
+                    ? "計画が未設定です（要確認）"
+                    : "計画が重複しています（要確認）"}
+                </span>
+              )}
+            </p>
           </div>
 
           <div>
