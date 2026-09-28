@@ -1,5 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
+import {randomUUID} from 'node:crypto';
 import {createRequire} from 'node:module';
 const loadPg=createRequire(process.cwd()+'/package.json');
 const {Client}=loadPg('pg');
@@ -108,4 +109,65 @@ test('dual-role self approval is hidden and rejected; anonymous and forged IDs r
  expect((await api(page,'user.read',user,{organization_id:fixture.facility})).status).toBe(403);
  expect((await api(page,'user.read','60000000-0000-4000-8000-999999999999')).status).toBe(403);
  const r=await page.request.post('/api/authorized',{headers:{Origin:'http://evil.invalid'},data:{operation:'user.list'}});expect(r.status()).toBe(403);
+});
+
+test('3D staff roles, suspension and membership scope through UI',async({page,browser})=>{
+ await login(page,'admin');await page.getByRole('link',{name:'職員・ロール管理'}).click();
+ await expect(page.getByRole('heading',{name:'職員・ロール管理'})).toBeVisible();
+ const card=page.getByRole('region',{name:'架空職員specialist',exact:true});
+ await expect(card.getByText('職員状態：有効')).toBeVisible();
+ await expect(page.getByRole('region',{name:'架空職員outside',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('region',{name:'架空職員admin',exact:true}).getByRole('button')).toHaveCount(0);
+ const specialist=await browser.newPage();await login(specialist,'specialist');
+ await card.getByRole('button',{name:'職員を停止'}).click();await expect(card.getByText('職員状態：停止')).toBeVisible();
+ await specialist.goto(`/users/${user}`);await expect(specialist.getByRole('main').getByRole('alert')).toContainText('許可されていません');
+ await card.getByRole('button',{name:'職員を再開'}).click();await expect(card.getByText('職員状態：有効')).toBeVisible();
+ await card.getByLabel('業務ロール').selectOption('specialist');await card.getByLabel('所属開始日').fill('2020-01-01');await card.getByLabel('所属終了日',{exact:true}).fill('2020-01-02');await card.getByRole('button',{name:'ロール・期間を保存'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ expect((await api(specialist,'user.read',user)).status).toBe(403);
+ await card.getByLabel('所属終了日',{exact:true}).fill('');await card.getByRole('button',{name:'ロール・期間を保存'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ expect((await api(specialist,'user.read',user)).status).toBe(200);
+ await page.screenshot({path:'test-results/evidence/staff-management.png',fullPage:true});
+ const system=await browser.newPage();await login(system,'system');await system.goto('/staff');await expect(system.getByText('管理できる事業所はありません。')).toBeVisible();
+ expect((await api(system,'staff.role',fixture.facility,{staff_id:fixture.actors.worker.id,role_code:'business_admin',starts_at:'2020-01-01T00:00:00Z'})).status).toBe(403);
+ await specialist.close();await system.close();
+});
+
+test('3D assignment handover, newly assigned access and former assignee revocation',async({page,browser})=>{
+ await login(page,'admin');const old=await browser.newPage(),next=await browser.newPage();await login(old,'specialist');await login(next,'replacement');
+ expect((await api(next,'user.read',user)).status).toBe(403);
+ await page.goto(`/users/${user}/assignments`);await page.getByLabel('担当職員',{exact:true}).selectOption(fixture.actors.replacement.id);await page.getByLabel('引継ぎ元',{exact:true}).selectOption(fixture.actors.specialist.id);
+ await page.getByRole('button',{name:'選択した職員へ引継ぎ'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ await old.goto(`/users/${user}`);await expect(old.getByRole('main').getByRole('alert')).toContainText('許可されていません');
+ await next.goto(`/users/${user}`);await expect(next.getByRole('link',{name:'アセスメント',exact:true})).toBeVisible();
+ await page.getByLabel('担当職員',{exact:true}).selectOption(fixture.actors.specialist.id);await page.getByLabel('引継ぎ元',{exact:true}).selectOption(fixture.actors.replacement.id);await page.getByRole('button',{name:'選択した職員へ引継ぎ'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ expect((await api(next,'user.read',user)).status).toBe(403);
+ // Exercise scheduled assignment creation as well as atomic handover.
+ await page.getByLabel('担当職員',{exact:true}).selectOption(fixture.actors.replacement.id);await page.getByLabel('担当開始日').fill('2020-01-01');await page.getByRole('button',{name:'担当を保存'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ expect((await api(next,'user.read',user)).status).toBe(200);
+ const item=page.getByRole('listitem').filter({hasText:'架空職員replacement'});await item.getByRole('button',{name:'担当解除'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');expect((await api(next,'user.read',user)).status).toBe(403);
+ await old.close();await next.close();
+});
+
+test('3D basic information, scoped meeting directory, deadlines and waiting approvals',async({page,browser})=>{
+ await login(page,'specialist');await page.goto(`/users/${user}/edit`);await expect(page.getByLabel('氏名',{exact:true})).toHaveValue('架空利用者ブラウザー');
+ await page.getByLabel('利用状態').selectOption('利用中');await page.getByLabel('利用者更新期限').fill('2026-12-31');await page.getByLabel('生年月日',{exact:true}).fill('2000-01-01');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByText('状態：利用中')).toBeVisible();
+ await page.goto(`/users/${user}/meetings`);await page.getByLabel('実施日',{exact:true}).fill('2026-09-29');await page.getByLabel('議題（必須）',{exact:true}).fill('架空運用会議');await page.getByLabel('決定事項（必須）',{exact:true}).fill('架空の対応確認');await page.getByLabel('自分を参加職員として記録').check();await page.getByLabel('架空職員worker',{exact:true}).check();
+ await expect(page.getByLabel('架空職員outside',{exact:true})).toHaveCount(0);await expect(page.getByLabel('架空職員system',{exact:true})).toHaveCount(0);
+ await page.getByLabel('対応担当者',{exact:true}).selectOption(fixture.actors.worker.id);await page.getByLabel('対応期限',{exact:true}).fill('2026-12-01');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ const content={participantIds:[fixture.actors.outside.id],responsibleId:'',deadline:'',actionStatus:'unconfirmed',actionNote:'',agenda:'架空',decisions:'架空',role:'',discussion:'',userFamilyWishes:''};
+ expect((await api(page,'record.save',randomUUID(),{kind:'meeting',user_id:user,date:'2026-09-29',content},0)).status).toBe(403);
+ await page.goto(`/users/${user}/monitoring`);await page.getByLabel('実施日',{exact:true}).fill('2026-09-29');await page.getByLabel('本人の生活状況',{exact:true}).fill('架空期限検証');await page.getByLabel('次回予定日',{exact:true}).fill('2026-11-30');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
+ await page.goto('/dashboard');await expect(page.getByText(/利用者更新期限：2026-12-31/)).toBeVisible();await expect(page.getByText(/次回モニタリング：2026-11-30/)).toBeVisible();await expect(page.getByText(/対応期限：2026-12-01/)).toBeVisible();
+ const admin=await browser.newPage();await login(admin,'admin');await admin.goto('/dashboard');await expect(admin.getByText('計画状態：承認待ち',{exact:true})).toBeVisible();await admin.screenshot({path:'test-results/evidence/deadlines.png',fullPage:true});
+ const worker=await browser.newPage();await login(worker,'worker');await worker.goto('/dashboard');await expect(worker.getByRole('link',{name:'架空利用者ブラウザー',exact:true})).toBeVisible();await expect(worker.getByText(/次回モニタリング：/)).toHaveCount(0);expect((await api(worker,'staff.directory',user)).status).toBe(403);
+ await admin.close();await worker.close();
+});
+
+test('3D audit scope and redacted technical view',async({page,browser})=>{
+ await login(page,'admin');await page.goto('/audit');await expect(page.getByRole('table')).toBeVisible();const adminAudit=(await api(page,'audit.list',null)).body.data;expect(adminAudit.some((e:{operation:string})=>e.operation==='assignment.handover')).toBe(true);expect(adminAudit.every((e:{facility_id:string;actor_staff_id:string})=>e.facility_id===fixture.facility||e.actor_staff_id===fixture.actors.admin.id)).toBe(true);
+ await page.screenshot({path:'test-results/evidence/audit.png',fullPage:true});
+ const worker=await browser.newPage();await login(worker,'worker');await worker.goto('/audit');const own=(await api(worker,'audit.list',null)).body.data;expect(own.every((e:{actor_staff_id:string})=>e.actor_staff_id===fixture.actors.worker.id)).toBe(true);
+ const system=await browser.newPage();await login(system,'system');await system.goto('/audit');await system.getByLabel('個人識別情報を含まない技術監査').check();await expect(system.getByRole('columnheader',{name:'職員ID'})).toHaveCount(0);
+ const tech=(await api(system,'audit.technical',null)).body.data;expect(tech.length).toBeGreaterThan(0);expect(tech.every((e:object)=>Object.keys(e).sort().join(',')==='code,happened_at,operation,outcome')).toBe(true);
+ await system.goto('/dashboard');await expect(system.getByText('閲覧できる業務はありません。')).toBeVisible();await worker.close();await system.close();
 });

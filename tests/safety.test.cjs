@@ -22,7 +22,7 @@ function loader(client){
    }
    return require(name);
   };
-  vm.runInNewContext(code,{module,exports:module.exports,require:req,Response,Request,URL,fetch:network,AbortSignal,console});
+  vm.runInNewContext(code,{module,exports:module.exports,require:req,Response,Request,URL,fetch:network,AbortSignal,console,crypto:require('node:crypto').webcrypto});
   return module.exports;
  }
  return {load,network};

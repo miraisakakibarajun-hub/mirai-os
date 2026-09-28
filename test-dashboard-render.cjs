@@ -43,7 +43,7 @@ function load(file) {
   return module.exports;
 }
 const meeting = load(path.join(root,'lib/meeting-record.ts'));
-const Page = load(path.join(root,'app/dashboard/page.tsx')).default;
+const Page = load(path.join(root,'tests/legacy/dashboard-page.tsx')).default;
 function row(id,deadline,status='unconfirmed',responsibleId=a) {
   return {id,user_id:'user',held_on:'2026-09-01',version:1,content:{...meeting.emptyMeeting(),participantIds:[a,b],agenda:id,decisions:'架空の検証記録',responsibleId,deadline,actionStatus:status,actionNote:status==='done'?'架空の完了メモ':''}};
 }

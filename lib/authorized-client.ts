@@ -18,8 +18,8 @@ export async function listAll<T>(operation: string, target: string | null = null
     rows.push(...page); if(page.length<100)return rows;
   }
 }
-export type BusinessUser = {id:string;name:string;status:string;kana?:string;birth_date?:string};
+export type BusinessUser = {id:string;name:string;status:string;kana?:string;birth_date?:string;facility_id?:string;renewal_due_on?:string|null;basic_version?:number};
 export type Workspace = {user:BusinessUser;staffId:string;permissions:{professionalRead:boolean;professionalEdit:boolean;manage:boolean;supportCreate:boolean;userEdit:boolean}};
-export type SessionContext = {staffId:string;technical:boolean;facilities:{id:string;name:string;canRegister:boolean}[]};
+export type SessionContext = {staffId:string;technical:boolean;facilities:{id:string;name:string;canRegister:boolean;canManage:boolean}[]};
 export type BusinessRecord = {id:string;user_id:string;content:unknown;version:number;created_by:string;created_at:string;record_state:string;occurred_at?:string;performed_on?:string;held_on?:string};
 export type BusinessPlan = {id:string;user_id:string;content:unknown;content_version:number;created_by:string;updated_by:string;renewal_date:string;review:{state:'draft'|'submitted'|'approved'|'rejected';epoch:number;approved_revision:number|null}};

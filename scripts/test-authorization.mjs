@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {operationalCases} from './test-operational-cases.mjs';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {PGlite} from '@electric-sql/pglite';
@@ -104,7 +105,7 @@ try{
  await allow('system technical configuration only',actors.system,'technical.configure',null,{diagnostic_enabled:true});
  await deny('specialist technical configuration',actors.specialist,'technical.configure',null,{diagnostic_enabled:true});
  for(const kind of ['support','assessment','monitoring','meeting']){
-  const id=randomUUID();const payload={kind,user_id:user,date:'2026-09-28',content:{note:'架空本文'}};
+  const id=randomUUID();const payload={kind,user_id:user,date:'2026-09-28',content:{note:'架空本文',...(kind==='meeting'?{participantIds:[actors.specialist],responsibleId:''}:{})}};
   await allow(kind+' create specialist',actors.specialist,'record.save',id,payload,0);
   await allow(kind+' read administrator',actors.admin,'record.read',id,{kind});
   await allow(kind+' edit specialist',actors.specialist,'record.save',id,payload,1);
@@ -186,6 +187,7 @@ try{
  const audits=await db.query('select outcome,count(*)::int n from mirai_private.audit_events group by outcome');
  assert.ok(audits.rows.some(x=>x.outcome==='success'&&x.n>0));assert.ok(audits.rows.some(x=>x.outcome==='denied'&&x.n>0));
  const ownAudit=await allow('own audit access',actors.specialist,'audit.mine');assert.ok(ownAudit.every(x=>x.actor_auth_id===actors.specialist));
+ await operationalCases({db,actors,facility,facility2,user,user2,plan,call,allow,deny,passed});
  const apiFunctions=await db.query("select p.proname from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and has_function_privilege('authenticated',p.oid,'EXECUTE')");
  assert.deepEqual(apiFunctions.rows.map(x=>x.proname),['mirai_command']);
  const role=await db.query("select rolbypassrls,rolsuper,rolcanlogin from pg_roles where rolname='mirai_executor'");assert.ok(Object.values(role.rows[0]).every(x=>x===false));

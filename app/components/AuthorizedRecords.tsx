@@ -10,6 +10,7 @@ import {emptyMeeting,meetingFields,meetingActionLabels,parseMeeting} from '@/lib
 import {validateCommand} from '@/lib/authorized-validation';
 import {Shell,Notice,useBusinessAccess,useUnsaved,buttonClass,inputClass} from './BusinessShell';
 
+import type {DirectoryMember} from './OperationalManagement';
 type Kind='support'|'assessment'|'monitoring'|'meeting';
 type Content=Record<string,unknown>;
 const titles={support:'支援記録',assessment:'アセスメント',monitoring:'モニタリング',meeting:'担当者会議記録'};
@@ -23,6 +24,7 @@ function Editor({userId,kind}:{userId:string;kind:Kind}){
  const [records,setRecords]=useState<BusinessRecord[]>([]),[selected,setSelected]=useState<BusinessRecord|null>(null);
  const [content,setContent]=useState<Content>(()=>({...empty[kind]()})),[date,setDate]=useState('');
  const [busy,setBusy]=useState(false),[dirty,setDirty]=useState(false);
+ const [members,setMembers]=useState<DirectoryMember[]>([]);
  const lock=useRef(false),newId=useRef<string|null>(null);
  useUnsaved(dirty);
  const permitted=workspace&&(kind==='support'||workspace.permissions.professionalRead);
@@ -31,6 +33,7 @@ function Editor({userId,kind}:{userId:string;kind:Kind}){
  useEffect(()=>{
   if(!permitted)return;
   let active=true;
+  if(kind==='meeting')command<DirectoryMember[]>('staff.directory',userId).then(rows=>{if(active)setMembers(rows);}).catch(e=>{if(active)fail(e);});
   listAll<BusinessRecord>('record.list',userId,{kind}).then(rows=>{if(active)setRecords(rows);}).catch(e=>{if(active)fail(e);});
   return()=>{active=false;};
   // A change in current permissions rechecks the server. No role is stored in browser storage.
@@ -79,7 +82,9 @@ function Editor({userId,kind}:{userId:string;kind:Kind}){
  {kind==='monitoring'&&text('nextDate','次回予定日','date')}
  {kind==='meeting'&&<>
  <label className="block"><input type="checkbox" checked={(content.participantIds as string[]).includes(workspace.staffId)} onChange={e=>set('participantIds',e.target.checked?[...new Set([...(content.participantIds as string[]),workspace.staffId])]:(content.participantIds as string[]).filter(id=>id!==workspace.staffId))}/> 自分を参加職員として記録</label>
- <p className="text-sm">他職員の選択には職員名簿の共有範囲の確定が必要です。既存記録の参加者情報は保持します。</p>
+ {members.filter(m=>m.id!==workspace.staffId).map(m=><label key={m.id} className="block"><input type="checkbox" checked={(content.participantIds as string[]).includes(m.id)} onChange={e=>set('participantIds',e.target.checked?[...new Set([...(content.participantIds as string[]),m.id])]:(content.participantIds as string[]).filter(id=>id!==m.id))}/> {m.name}</label>)}
+ <label className="block">対応担当者<select aria-label="対応担当者" className={inputClass} value={String(content.responsibleId??'')} onChange={e=>set('responsibleId',e.target.value)}><option value="">未設定</option>{(content.participantIds as string[]).map(id=><option key={id} value={id}>{members.find(m=>m.id===id)?.name??'過去の参加職員（保持）'}</option>)}</select></label>
+ <p className="text-sm">候補は同じ事業所の有効な業務職員です。過去の参加者は履歴として保持します。</p>
  {text('deadline','対応期限','date')}<label className="block">対応状況<select className={inputClass} value={String(content.actionStatus)} onChange={e=>set('actionStatus',e.target.value)}>{Object.entries(meetingActionLabels).map(([v,l])=><option value={v} key={v}>{l}</option>)}</select></label>{text('actionNote','対応メモ')}
  </>}
  </fieldset>
