@@ -60,6 +60,9 @@ test('Authorized server route requires session, checks origin and maps DB decisi
  assert.equal((await loader().load('app/api/authorized/route.ts').POST(request('http://evil.invalid'))).status,403);
  const noSession={auth:{getUser:async()=>({data:{user:null},error:null})},rpc:()=>{throw Error('RPC FORBIDDEN');}};
  assert.equal((await loader(noSession).load('app/api/authorized/route.ts').POST(request())).status,401);
+ const aliasRequest=origin=>new Request(url,{method:'POST',headers:{origin,host:'127.0.0.1:3100','x-forwarded-host':'evil.invalid'},body:JSON.stringify({operation:'user.list'})});
+ assert.equal((await loader(noSession).load('app/api/authorized/route.ts').POST(aliasRequest('http://127.0.0.1:3100'))).status,401);
+ for(const origin of ['http://evil.invalid','http://localhost','null','https://127.0.0.1:3100'])assert.equal((await loader(noSession).load('app/api/authorized/route.ts').POST(aliasRequest(origin))).status,403);
  for(const [decision,status] of [[{ok:true,data:{id:'synthetic'}},200],[{ok:false,code:'42501'},403],[{ok:false,code:'40001'},409]]){
   const client={auth:{getUser:async()=>({data:{user:{id:'synthetic'}},error:null})},rpc:async(name,args)=>{
    assert.equal(name,'mirai_command');assert.equal(args.p_operation,'user.read');assert.equal('actor_id' in args,false);

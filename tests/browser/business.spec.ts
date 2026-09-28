@@ -9,6 +9,7 @@ async function login(page:Page,role:string){
  await page.route('**/*',route=>{const u=new URL(route.request().url());return ['127.0.0.1','localhost'].includes(u.hostname)?route.continue():route.abort();});
  await page.goto('/login');await page.getByLabel('メールアドレス').fill(fixture.actors[role].email);await page.getByLabel('パスワード').fill(fixture.actors[role].password);
  await page.getByRole('button',{name:'ログイン',exact:true}).click();await page.waitForURL('**/users');
+ const context=await api(page,'session.context',null);expect(context.status,JSON.stringify(context.body)).toBe(200);
 }
 async function api(page:Page,operation:string,target:string|null,payload:object={},version:number|null=null){
  return page.evaluate(async input=>{const r=await fetch('/api/authorized',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input)});return {status:r.status,body:await r.json()};},{operation,target,payload,version});
@@ -57,6 +58,9 @@ test('manual plan -> submit -> reject -> resubmit -> separate approval -> immuta
  await page.getByRole('button',{name:'改訂を開始'}).click();await expect(page.getByRole('status')).toContainText('下書き');await expect(page.getByLabel('短期目標',{exact:true})).toBeEnabled();
  await page.screenshot({path:'test-results/evidence/plan-revision.png',fullPage:true});
  await page.getByText(/承認済み第.*版を確認/).click();await expect(page.getByText('短期目標：架空修正目標',{exact:true})).toBeVisible();
+ await page.getByLabel('短期目標',{exact:true}).fill('架空改訂後の目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');
+ await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
+ await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
  await admin.close();
 });
 test('same signed session immediately loses access after assignment, membership, role removal and staff stop',async({page})=>{
@@ -72,7 +76,8 @@ test('same signed session immediately loses access after assignment, membership,
   try{await database(change,[id]);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
   finally{await database(restore,[id]);}
  }
- expect((await page.context().cookies()).filter(c=>c.name.includes('auth-token'))).toEqual(before);
+ // Never put session tokens into assertion diffs or CI artifacts.
+ expect(JSON.stringify((await page.context().cookies()).filter(c=>c.name.includes('auth-token')))===JSON.stringify(before)).toBe(true);
 });
 test('anonymous rejected and stale record editor gets business conflict without overwriting',async({page})=>{
  await page.goto('/login');expect((await api(page,'user.list',null)).status).toBe(401);

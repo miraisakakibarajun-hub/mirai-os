@@ -4,7 +4,12 @@ import {validateCommand} from '@/lib/authorized-validation';
 export const runtime='nodejs';
 const reply=(body:unknown,status:number)=>Response.json(body,{status,headers:{'Cache-Control':'no-store'}});
 export async function POST(request:Request){
- if(request.headers.get('origin')!==new URL(request.url).origin)return reply({error:'操作元を確認できません。'},403);
+ // Next's internal request URL can use localhost while the browser uses 127.0.0.1.
+ // Compare the browser Origin with the actual HTTP Host, never forwarded headers.
+ const url=new URL(request.url);
+ const origin=request.headers.get('origin');
+ const host=request.headers.get('host')??url.host;
+ if(!origin||origin!==`${url.protocol}//${host}`)return reply({error:'操作元を確認できません。'},403);
  const text=await request.text();
  if(text.length>64000)return reply({error:'入力が長すぎます。'},413);
  let input;
