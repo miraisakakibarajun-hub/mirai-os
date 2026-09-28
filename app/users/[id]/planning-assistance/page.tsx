@@ -28,8 +28,8 @@ function Assistant({id}:{id:string}){
  useEffect(()=>{if(!understanding||applied)return;const protect=(e:BeforeUnloadEvent)=>{e.preventDefault();e.returnValue='';};window.addEventListener('beforeunload',protect);return()=>window.removeEventListener('beforeunload',protect);},[understanding,applied]);
  async function task(label:string,work:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(label);setError('');setNotice('');try{await work();}catch(e){setError(e instanceof Error?e.message:'操作結果を確認できません。再読み込み前に内容を控えてください。');}finally{lock.current=false;setBusy('');}}
  async function generate(action:'understand'|'propose'|'retry',field?:ProposalKey){await task('AIが提案を作成しています',async()=>{
-  const response=await fetch('/api/planning-assistance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:id,consent,action,understanding,field,feedback:field?feedback[field]:''})});
-  const data=await response.json();if(!response.ok)throw new Error(data.error);
+  const response=await fetch('/api/planning-assistance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:id,consent,sourceVersion:context?.sourceVersion,action,understanding,field,feedback:field?feedback[field]:''})});
+  const data=await response.json();if(!response.ok){if(response.status===409){setConsent(false);setContext(await load());}throw new Error(data.error);}
   if(action==='understand'){setUnderstanding(parseFields(data.values,understandingFields));setUnderstandingReasons(data.reasons??{});setConfirmed(false);setProposal(null);setAccepted({});setReasons({});}
   else if(action==='propose'){setProposal(parseFields(data.values,proposalFields));setReasons(data.reasons??{});setAccepted({});}
   else if(field){const values=parseFields(data.values,proposalFields.filter(([k])=>k===field));setProposal(p=>p?{...p,[field]:values[field]}:p);setAccepted(a=>({...a,[field]:false}));setReasons(r=>({...r,[field]:data.reasons?.[field]}));}
@@ -85,6 +85,7 @@ function Assistant({id}:{id:string}){
     <p className="text-sm text-slate-600">{context.scope}</p>
     <p>参照件数：アセスメント {context.counts.assessments} ／ モニタリング {context.counts.monitoring} ／ 担当者会議 {context.counts.meetings} ／ 支援記録 {context.counts.support}。0件は未記録または閲覧可能な記録なしです。</p>
     <details><summary className="cursor-pointer font-semibold">参照する保存済み情報を確認</summary>{context.materials.map((m,i)=><div key={i} className="my-3 rounded border p-3"><h3 className="font-bold">{m.label}・{m.date}</h3><pre className="whitespace-pre-wrap break-words text-sm">{JSON.stringify(m.content,null,2)}</pre></div>)}</details>
+    <p className="text-sm">記録本文と、この画面で確認・修正した内容をOpenAIに送信します。基本情報の氏名は自動添付しませんが、本文に含まれる氏名・連絡先などの個人情報は送信対象です。自動匿名化は行いません。</p>
     <label className="block"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)}/> 上記の記録と、この画面で確認・修正した内容をAIへ送信して提案を作成することを確認しました</label>
     {!context.available&&<p role="alert">AI接続が未設定です。管理者に設定を確認してください。</p>}
     {!understanding&&<button className={button} disabled={!consent||!context.available} onClick={()=>void generate('understand')}>保存済み情報・本人の変化をAIで整理</button>}

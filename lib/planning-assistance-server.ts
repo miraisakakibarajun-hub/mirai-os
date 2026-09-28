@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from './supabase/database.types';
 import { GenerationError } from './ai-generate';
@@ -46,7 +47,8 @@ export async function loadPlanningContext(client:SupabaseClient<Database>,userId
 
  for(const r of meetings.data??[]){const content=r.content as Record<string,unknown>;const {participantIds,responsibleId,...text}=content;void participantIds;void responsibleId;add('担当者会議',r.held_on,text);}
  for(const r of support.data??[]){add('支援記録',r.occurred_at,r.content);refs.push({kind:'support',id:r.id,version:r.version});}
- return {user:user.data,plan:active[0],review,materials,refs,
+ const sourceVersion=createHash('sha256').update(JSON.stringify({userId,materials,refs,epoch:review.epoch})).digest('hex');
+ return {user:user.data,plan:active[0],review,materials,refs,sourceVersion,
   scope:'計画は有効な計画を含む最大5件、過去の版は直近の承認版を優先して最大3件、アセスメント・モニタリング・担当者会議・支援記録は各直近3件。閲覧権限のある記録のみ。全支援記録の分析ではありません。',
   counts:{assessments:assessments.data?.length??0,monitoring:monitoring.data?.length??0,meetings:meetings.data?.length??0,support:support.data?.length??0}};
 }
@@ -55,6 +57,7 @@ export async function generatePlanning(client:SupabaseClient<Database>,input:Rec
  if(input.consent!==true||!isUuid(input.userId)||!['understand','propose','retry'].includes(String(input.action)))throw new GenerationError('対象利用者とAI送信の確認が必要です。');
  if(!config.key||!config.model)throw new GenerationError('AI接続が未設定です。設定を確認してください。',503);
  const context=await loadPlanningContext(client,input.userId);
+ if(input.sourceVersion!==context.sourceVersion)throw new GenerationError('参照記録が変更されています。最新の本文を確認し、送信にもう一度同意してください。',409);
  const understanding=input.action==='understand'?undefined:parseFields(input.understanding,understandingFields);
  const keys=input.action==='understand'?understandingFields:input.action==='retry'?proposalFields.filter(([key])=>key===input.field):proposalFields;
  if(!keys.length)throw new GenerationError('再提案する項目が不正です。');

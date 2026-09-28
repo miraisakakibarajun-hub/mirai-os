@@ -81,12 +81,22 @@ const db = {from(table) {
   duplicate=true;await assert.rejects(server.loadPlanningContext(db,uuid),/一つに特定/);duplicate=false;
   failed='support_records';await assert.rejects(server.loadPlanningContext(db,uuid),/一部だけで進めず/);failed='';
   const config={key:'synthetic-key',model:'synthetic-model'};
-  const request={userId:uuid,consent:true,action:'retry',field:'shortTermGoal',understanding};
+  const request={userId:uuid,consent:true,sourceVersion:context.sourceVersion,action:'retry',field:'shortTermGoal',understanding};
+  let unexpectedCalls=0;
+  const forbiddenFetch=async()=>{unexpectedCalls++;throw new Error('must not send');};
+  await assert.rejects(server.generatePlanning(db,{...request,sourceVersion:undefined},config,forbiddenFetch),e=>e.status===409);
+  const oldWish=base.userWish;base.userWish='変更された架空の希望';
+  await assert.rejects(server.generatePlanning(db,request,config,forbiddenFetch),e=>e.status===409);
+  base.userWish=oldWish;
+  review.epoch++;
+  await assert.rejects(server.generatePlanning(db,request,config,forbiddenFetch),e=>e.status===409);
+  review.epoch--;
+  assert.equal(unexpectedCalls,0);
   const result=await server.generatePlanning(db,request,config,async(url,options)=>{
     sent=JSON.parse(options.body);
     return {ok:true,json:async()=>({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({shortTermGoal:'資料1：再提案・要確認',shortTermGoalReason:'資料1の本人の希望を根拠に、同行して検討する案です。'})}]}]})};
   });
-  const separated=await server.generatePlanning(db,{userId:uuid,consent:true,action:'understand'},config,async(url,options)=>{
+  const separated=await server.generatePlanning(db,{userId:uuid,consent:true,sourceVersion:context.sourceVersion,action:'understand'},config,async(url,options)=>{
     const body=JSON.parse(options.body);
     assert.equal(JSON.parse(body.input).outputKeys.length,assistance.understandingFields.length*2);
     const values=Object.fromEntries(assistance.understandingFields.flatMap(([key])=>[[key,'本人が花の話をしたい'],[key+'Reason','資料1の希望に基づく整理']]));
