@@ -14,7 +14,7 @@ const actors={admin:uid(1),specialist:uid(2),worker:uid(3),system:uid(4),otherOr
 const org=uid(100),org2=uid(101),facility=uid(200),facility2=uid(201),facility3=uid(202);
 const user=uid(300),user2=uid(301),user3=uid(302),plan=uid(400);
 let raw,db,local,service,anon;
-const sessions=new Map(),passed=[];
+const sessions=new Map(),originalTokens=new Map(),passed=[];
 if(mode==='memory'){
  raw=new PGlite({extensions:{pgcrypto}});db={exec:s=>raw.exec(s),query:(s,p)=>raw.query(s,p),close:()=>raw.close()};
 }else{
@@ -43,6 +43,7 @@ try{
    const client=createClient(local.API_URL,local.ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
    const signed=await client.auth.signInWithPassword({email,password});assert.ifError(signed.error);assert.equal(signed.data.user.id,id);
    sessions.set(id,client);
+   originalTokens.set(id,signed.data.session.access_token);
   }else await db.query('insert into auth.users(id) values($1)',[id]);
  }
  await db.query('insert into public.organizations(id,name) values($1,$2),($3,$4)',[org,'架空法人A',org2,'架空法人B']);
@@ -58,7 +59,7 @@ try{
  const call=async(id,op,target=null,payload={},version=null)=>{
   if(mode==='supabase'){
    const r=await (id?sessions.get(id):anon).rpc('mirai_command',{p_operation:op,p_target:target,p_payload:payload,p_version:version});
-   if(r.error)return {ok:false,code:r.error.code};return r.data;
+   if(r.error)return {ok:false,code:r.error.code,message:r.error.message};return r.data;
   }
   await db.exec(id?'set role authenticated':'set role anon');
   await db.query("select set_config('request.jwt.claim.sub',$1,false)",[id??'']);
@@ -108,6 +109,7 @@ try{
  await db.query("update public.support_records set record_state='finalized' where id=$1",[support]);
  await deny('finalized support immutable',actors.worker,'record.save',support,supportPayload,2);
  await allow('specialist creates plan',actors.specialist,'plan.create',plan,{user_id:user,renewal_date:'2027-01-01'});
+ await deny('empty plan cannot be submitted',actors.specialist,'plan.submit',plan,{},0);
  let p=await allow('specialist saves draft',actors.specialist,'plan.save',plan,{content:{userWish:'架空希望',overallPolicy:'架空方針',longTermGoal:'架空目標',shortTermGoal:'架空目標'}},0);
  await allow('specialist submits plan',actors.specialist,'plan.submit',plan,{},p.content_version);
  await deny('specialist cannot approve',actors.specialist,'plan.approve',plan,{},p.content_version);
@@ -168,6 +170,8 @@ try{
  assert.deepEqual(apiFunctions.rows.map(x=>x.proname),['mirai_command']);
  const role=await db.query("select rolbypassrls,rolsuper,rolcanlogin from pg_roles where rolname='mirai_executor'");assert.ok(Object.values(role.rows[0]).every(x=>x===false));
  if(mode==='supabase'){
+  const current=await sessions.get(actors.specialist).auth.getSession();
+  assert.equal(current.data.session.access_token,originalTokens.get(actors.specialist));passed.push('VERIFY revocation used unchanged signed JWT');
   const direct=await sessions.get(actors.specialist).from('users').select('*');assert.ok(direct.error);passed.push('DENY real PostgREST direct table');
   const update=await sessions.get(actors.system).auth.updateUser({data:{role:'business_admin',organization_id:org}});assert.ifError(update.error);
   await deny('user-editable JWT metadata cannot elevate',actors.system,'user.read',user);
