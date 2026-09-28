@@ -1,7 +1,7 @@
-name: Phase 3-A isolated checks
+name: Phase 3 isolated checks
 on:
   push:
-    branches: [phase3a/safe-development-foundation]
+    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -40,7 +40,7 @@ jobs:
     timeout-minutes: 15
     services:
       postgres:
-        image: postgres:17.6
+        image: postgres:17.11
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: synthetic-ci-only
@@ -60,3 +60,27 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Rebuild preserved migrations and deny unsafe operations
         run: npm run test:db:postgres
+  auth:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Start disposable local Supabase only
+        run: |
+          mkdir -p test-results
+          npx --no-install supabase start -x realtime,storage-api,imgproxy,mailpit,postgres-meta,studio,edge-runtime,logflare,vector,supavisor > test-results/startup.log
+          npx --no-install supabase status -o json > test-results/local-supabase.json
+      - name: Real Auth and PostgREST allow and deny tests
+        run: npm run test:auth
+      - name: Isolated database security advisors
+        run: npx --no-install supabase db advisors --local --type security --fail-on error
+      - name: Stop disposable stack
+        if: always()
+        run: npx --no-install supabase stop --no-backup

@@ -420,6 +420,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      mirai_command: { Args: { p_operation: string; p_target?: string | null; p_payload?: Json; p_version?: number | null }; Returns: Json }
       save_plan_with_imports: { Args: { p_plan_id: string; p_user_id: string; p_expected_version: number; p_content: Json; p_imports: Json }; Returns: { content_version: number }[] }
       get_plan_review: { Args: { p_plan_id: string }; Returns: Json }
       act_plan_review: { Args: { p_plan_id: string; p_revision: number; p_epoch: number; p_action: string; p_reason?: string }; Returns: Json }

@@ -12,7 +12,9 @@
     "test:safety": "node --test tests/safety.test.cjs",
     "test:db": "node scripts/test-db.mjs",
     "test:db:postgres": "node scripts/test-db.mjs --postgres",
-    "test": "npm run test:existing && npm run test:safety && npm run test:db",
+    "test:authorization": "node scripts/test-authorization.mjs",
+    "test:auth": "node scripts/test-authorization.mjs supabase",
+    "test": "npm run test:existing && npm run test:safety && npm run test:db && npm run test:authorization",
     "check:secrets": "node scripts/check-secrets.mjs",
     "check": "npm run check:secrets && npm run typecheck && npm run lint && npm test && npm run build"
   },
@@ -32,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
     "pg": "8.16.3",
+    "supabase": "2.118.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
