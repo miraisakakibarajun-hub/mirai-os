@@ -4,8 +4,7 @@ create schema mirai_private;
 revoke all on schema mirai_private from public,anon,authenticated;
 create role mirai_executor nologin noinherit nobypassrls;
 grant mirai_executor to postgres;
-grant usage on schema public,auth,mirai_private to mirai_executor;
-grant execute on function auth.uid() to mirai_executor;
+grant usage on schema public,mirai_private to mirai_executor;
 
 create table public.organizations(id uuid primary key default gen_random_uuid(),name text not null);
 alter table public.organizations enable row level security;
@@ -38,6 +37,10 @@ insert into mirai_private.technical_settings default values;
 alter table mirai_private.technical_settings enable row level security;
 
 -- Metadata-only lookups: no business text, fixed search_path, caller comes from Auth.
+-- Auth schema is platform-owned: the application role must not depend on grants there.
+create function mirai_private.auth_identity() returns uuid language sql stable security definer set search_path='' as $$
+ select auth.uid()
+$$;
 create function mirai_private.actor() returns uuid language sql stable security definer set search_path='' as $$
  select id from public.staff where auth_user_id=auth.uid() and is_active and organization_id is not null
 $$;
@@ -111,8 +114,8 @@ do $$ declare t text; begin
  case when t='support_records' then 'read' else 'edit' end,case when t='support_records' then 'created_by=mirai_private.actor()' else 'true' end,case when t='support_records' then 'read' else 'edit' end);
  end loop;
 end $$;
-create policy audit_append on mirai_private.audit_events for insert to mirai_executor with check(actor_auth_id is not distinct from auth.uid());
-create policy audit_self on mirai_private.audit_events for select to mirai_executor using(actor_auth_id=auth.uid());
+create policy audit_append on mirai_private.audit_events for insert to mirai_executor with check(actor_auth_id is not distinct from mirai_private.auth_identity());
+create policy audit_self on mirai_private.audit_events for select to mirai_executor using(actor_auth_id=mirai_private.auth_identity());
 create policy technical_read on mirai_private.technical_settings for select to mirai_executor using(mirai_private.technical());
 create policy technical_update on mirai_private.technical_settings for update to mirai_executor using(mirai_private.technical()) with check(mirai_private.technical());
 
@@ -233,7 +236,7 @@ begin
  exception when others then code:=sqlstate; result:=null;
  end;
  insert into mirai_private.audit_events(actor_auth_id,actor_staff_id,operation,target_id,outcome,code)
- values(auth.uid(),a,case when op=any(array['user.read','user.create','user.update','assignment.set','assignment.end','record.read','record.save','plan.read','plan.create','plan.save','plan.submit','plan.approve','plan.reject','plan.revise','facility.rename','audit.mine','technical.read','technical.configure']) then op else 'unknown' end,target,case when ok then 'success' else 'denied' end,code);
+ values(mirai_private.auth_identity(),a,case when op=any(array['user.read','user.create','user.update','assignment.set','assignment.end','record.read','record.save','plan.read','plan.create','plan.save','plan.submit','plan.approve','plan.reject','plan.revise','facility.rename','audit.mine','technical.read','technical.configure']) then op else 'unknown' end,target,case when ok then 'success' else 'denied' end,code);
  return jsonb_build_object('ok',ok,'code',code,'data',result);
 end $$;
 
