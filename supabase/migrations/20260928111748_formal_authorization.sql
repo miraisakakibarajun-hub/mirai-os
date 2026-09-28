@@ -229,7 +229,7 @@ begin
    select coalesce(jsonb_agg(to_jsonb(e)),'[]'::jsonb) into result from (select * from mirai_private.audit_events order by happened_at desc limit 100) e;
   elsif op in ('technical.read','technical.configure') then
    if not mirai_private.technical() then raise exception using errcode='42501'; end if;
-   if op='technical.configure' then update mirai_private.technical_settings set diagnostic_enabled=(payload->>'diagnostic_enabled')::boolean; end if;
+   if op='technical.configure' then update mirai_private.technical_settings set diagnostic_enabled=(payload->>'diagnostic_enabled')::boolean where id=true; end if;
    select jsonb_build_object('diagnostic_enabled',diagnostic_enabled,'ai_enabled',false,'temporary_access_enabled',false) into result from mirai_private.technical_settings;
   else raise exception using errcode='42501'; end if;
   ok:=true;
