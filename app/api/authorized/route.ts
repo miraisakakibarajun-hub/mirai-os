@@ -1,5 +1,6 @@
 import {createClient} from '@/lib/supabase/server';
 import {isUuid} from '@/lib/ai-document';
+import {validateCommand} from '@/lib/authorized-validation';
 export const runtime='nodejs';
 const reply=(body:unknown,status:number)=>Response.json(body,{status,headers:{'Cache-Control':'no-store'}});
 export async function POST(request:Request){
@@ -9,7 +10,11 @@ export async function POST(request:Request){
  let input;
  try{input=JSON.parse(text);}catch{return reply({error:'入力形式が不正です。'},400);}
  if(!input||typeof input.operation!=='string'||input.operation.length>50||
+  (input.payload!=null&&(typeof input.payload!=='object'||Array.isArray(input.payload)))||
   (input.target!=null&&!isUuid(input.target))||(input.version!=null&&(!Number.isInteger(input.version)||input.version<0)))return reply({error:'入力形式が不正です。'},400);
+ const validation=validateCommand(input.operation,input.payload??{});
+ if(validation)return reply({error:validation},400);
+ try {
  const client=await createClient();
  const {data:auth,error:authError}=await client.auth.getUser();
  if(authError||!auth.user)return reply({error:'ログインしてください。'},401);
@@ -18,7 +23,8 @@ export async function POST(request:Request){
  if(error)return reply({error:'操作できません。'},403);
  if(!data||typeof data!=='object'||Array.isArray(data)||data.ok!==true){
   const code=data&&typeof data==='object'&&!Array.isArray(data)?data.code:null;
-  return reply({error:code==='40001'?'内容が更新されています。再取得してください。':'操作できません。'},code==='40001'?409:403);
+  return reply({error:code==='40001'?'内容が更新されています。再読込してから操作してください。':code==='22023'?'入力内容や必須項目を確認してください。':'この操作は許可されていません。担当・所属・職員の有効状態、または計画の状態を確認してください。'},code==='40001'?409:code==='22023'?400:403);
  }
  return reply(data,200);
+ } catch { return reply({error:'接続できませんでした。時間をおいて再読込してください。'},503); }
 }

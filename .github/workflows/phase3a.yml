@@ -1,7 +1,7 @@
 name: Phase 3 isolated checks
 on:
   push:
-    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model]
+    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model, phase3c/authorized-business-ui]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -62,7 +62,7 @@ jobs:
         run: npm run test:db:postgres
   auth:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -79,6 +79,12 @@ jobs:
           npx --no-install supabase status -o json > test-results/local-supabase.json
       - name: Real Auth and PostgREST allow and deny tests
         run: npm run test:auth
+      - name: Synthetic browser fixture
+        run: npm run seed:browser
+      - name: Install browser
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Browser to API to Auth to database
+        run: npm run test:browser
       - name: Isolated database security advisors
         run: npx --no-install supabase db advisors --local --type security --fail-on error
       - name: Stop disposable stack

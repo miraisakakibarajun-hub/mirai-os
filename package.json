@@ -16,7 +16,9 @@
     "test:auth": "node scripts/test-authorization.mjs supabase",
     "test": "npm run test:existing && npm run test:safety && npm run test:db && npm run test:authorization",
     "check:secrets": "node scripts/check-secrets.mjs",
-    "check": "npm run check:secrets && npm run typecheck && npm run lint && npm test && npm run build"
+    "check": "npm run check:secrets && npm run typecheck && npm run lint && npm test && npm run build",
+    "test:browser": "playwright test",
+    "seed:browser": "node scripts/seed-browser.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.8",
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

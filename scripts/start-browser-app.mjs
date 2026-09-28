@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+const local=JSON.parse(fs.readFileSync('test-results/local-supabase.json','utf8'));
+assert.equal(local.API_URL,'http://127.0.0.1:54321');
+const env={...process.env,NEXT_PUBLIC_SUPABASE_URL:local.API_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY:local.ANON_KEY,NEXT_TELEMETRY_DISABLED:'1'};
+delete env.OPENAI_API_KEY;delete env.SUPABASE_SERVICE_ROLE_KEY;
+const build=spawn(process.execPath,['node_modules/next/dist/bin/next','build'],{stdio:'inherit',env});
+const code=await new Promise(resolve=>build.on('exit',resolve));if(code!==0)process.exit(code??1);
+const app=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port','3100'],{stdio:'inherit',env});
+process.on('SIGTERM',()=>app.kill());process.on('SIGINT',()=>app.kill());
+app.on('exit',code=>process.exit(code??1));

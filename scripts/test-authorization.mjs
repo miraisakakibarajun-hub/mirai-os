@@ -57,6 +57,10 @@ try{
  for(const [id,f] of [[user,facility],[user2,facility2],[user3,facility3]])await db.query("insert into public.users(id,facility_id,name,kana,birth_date,created_by,updated_by) values($1,$2,'架空利用者','カクウ','2000-01-01',$3,$3)",[id,f,actors.specialist]);
  for(const name of ['specialist','worker','system','stopped','dual'])await db.query("insert into public.plan_assignments(user_id,staff_id,starts_on) values($1,$2,current_date-1)",[user,actors[name]]);
  const call=async(id,op,target=null,payload={},version=null)=>{
+  if(['plan.submit','plan.approve','plan.reject','plan.revise'].includes(op)&&!Object.hasOwn(payload,'epoch')) {
+   const review=(await db.query('select epoch from public.plan_reviews where plan_id=$1',[target])).rows[0];
+   payload={...payload,epoch:review?.epoch??0};
+  }
   if(mode==='supabase'){
    const r=await (id?sessions.get(id):anon).rpc('mirai_command',{p_operation:op,p_target:target,p_payload:payload,p_version:version});
    if(r.error)return {ok:false,code:r.error.code,message:r.error.message};return r.data;
@@ -70,6 +74,15 @@ try{
  const allow=async(label,...args)=>{const r=await call(...args);assert.equal(r.ok,true,`${label}: ${JSON.stringify(r)}`);passed.push('ALLOW '+label);return r.data;};
  const deny=async(label,...args)=>{const r=await call(...args);assert.equal(r.ok,false,label);assert.equal(r.code,'42501',`${label}: unexpected ${r.code}`);passed.push('DENY '+label);};
  await allow('administrator own facility',actors.admin,'user.read',user);
+ const workerList=await allow('worker list only limited columns',actors.worker,'user.list');
+ assert.deepEqual(Object.keys(workerList[0]).sort(),['id','name','status']);assert.equal(workerList.length,1);
+ assert.equal((await allow('system list no business rows',actors.system,'user.list')).length,0);
+ const workspace=await allow('worker workspace restricted capabilities',actors.worker,'user.workspace',user);
+ assert.equal(workspace.permissions.professionalRead,false);assert.equal(workspace.permissions.professionalEdit,false);
+ await deny('forged list identity',actors.worker,'user.list',null,{staff_id:actors.admin});
+ await deny('worker plan list',actors.worker,'plan.list',user);
+ await deny('worker assessment list',actors.worker,'record.list',user,{kind:'assessment'});
+ await deny('unassigned workspace',actors.unassigned,'user.workspace',user);
  await allow('specialist assigned user',actors.specialist,'user.read',user);
  const limited=await allow('worker limited information',actors.worker,'user.read',user);assert.deepEqual(Object.keys(limited).sort(),['id','name','status']);
  for(const name of ['otherOrg','otherFacility','unassigned','stopped','system'])await deny(name,actors[name],'user.read',user);
