@@ -9,7 +9,8 @@ const roles={business_admin:'管理者',specialist:'相談支援専門員',worke
 type Staff={id:string;name:string;active:boolean;roles:{code:string;starts_at:string;ends_at:string|null}[]};
 type Assignment={staff_id:string;starts_on:string;ends_on:string|null};
 export type DirectoryMember={id:string;name:string;canAssign:boolean};
-const today=()=>new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Tokyo'});
+const japanDate=(value:string)=>new Date(value).toLocaleDateString('sv-SE',{timeZone:'Asia/Tokyo'});
+const today=()=>japanDate(new Date().toISOString());
 // Refreshing reauthorizes at the server and clears sensitive data on failure.
 function useRemote<T>(load:()=>Promise<T>){
  const [data,setData]=useState<T|null>(null),[message,setMessage]=useState(''),[busy,setBusy]=useState(false);
@@ -34,9 +35,9 @@ export function StaffManagement(){
  </>}</Shell>;
 }
 function StaffCard({staff:s,self,busy,action}:{staff:Staff;self:boolean;busy:boolean;action:(op:string,p:object)=>Promise<void>}){
- const [role,setRole]=useState('specialist'),[start,setStart]=useState(today()),[end,setEnd]=useState('');
+ const [role,setRole]=useState(s.roles.find(r=>!r.ends_at)?.code??'worker'),[start,setStart]=useState(today()),[end,setEnd]=useState('');
  return <section className="my-4 rounded-xl border bg-white p-5" aria-label={s.name}><h2 className="text-lg font-bold">{s.name}{self?'（自分）':''}</h2><p>職員状態：{s.active?'有効':'停止'}</p>
- <ul>{s.roles.map(r=><li key={r.code}>{roles[r.code as keyof typeof roles]??'旧ロール'}：{r.starts_at.slice(0,10)} 〜 {r.ends_at?.slice(0,10)??'終了なし'}</li>)}</ul>
+ <ul>{s.roles.map(r=><li key={r.code}>{roles[r.code as keyof typeof roles]??'旧ロール'}：{japanDate(r.starts_at)} 〜 {r.ends_at?japanDate(r.ends_at):'終了なし'}</li>)}</ul>
  {!self&&<fieldset disabled={busy} className="mt-4 space-y-3"><button className={buttonClass} onClick={()=>void action('staff.active',{active:!s.active})}>{s.active?'職員を停止':'職員を再開'}</button>
  <label className="block">業務ロール<select aria-label="業務ロール" className={inputClass} value={role} onChange={e=>setRole(e.target.value)}>{Object.entries(roles).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></label>
  <label className="block">所属開始日<input aria-label="所属開始日" className={inputClass} type="date" value={start} onChange={e=>setStart(e.target.value)}/></label>
@@ -81,6 +82,6 @@ export function AuditManagement(){
  return <Shell title="操作・監査履歴"><Notice message={message}/><button className={buttonClass} onClick={()=>void refresh()}>再読込</button>
  {data?.context.technical&&<label className="block my-4"><input type="checkbox" checked={technical} onChange={e=>{setTechnical(e.target.checked);setOffset(0);}}/> 個人識別情報を含まない技術監査</label>}
  <p className="my-4">業務監査は自分の操作と、現在の管理・担当範囲に限ります。本文や認証情報は記録しません。認証前・不正な操作元の拒否はサーバー運用ログで確認します。</p>
- <div className="overflow-x-auto"><table className="w-full bg-white text-left"><thead><tr><th>日時</th><th>操作</th><th>結果</th>{!technical&&<><th>職員ID</th><th>対象ID</th></>}</tr></thead><tbody>{data?.rows.map((e,i)=><tr className="border-t" key={e.id??i}><td className="p-2">{new Date(e.happened_at).toLocaleString('ja-JP')}</td><td>{e.operation}</td><td>{e.outcome==='success'?'成功':'拒否'} ({e.code})</td>{!technical&&<><td>{e.actor_staff_id}</td><td>{e.subject_staff_id??e.target_id}</td></>}</tr>)}</tbody></table></div>
+ {!data&&!message&&<p role="status">履歴を読み込み中...</p>}<div className="overflow-x-auto"><table className="w-full bg-white text-left"><thead><tr><th>日時</th><th>操作</th><th>結果</th>{!technical&&<><th>職員ID</th><th>対象ID</th></>}</tr></thead><tbody>{data?.rows.map((e,i)=><tr className="border-t" key={e.id??i}><td className="p-2">{new Date(e.happened_at).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'})}</td><td>{e.operation}</td><td>{e.outcome==='success'?'成功':'拒否'} ({e.code})</td>{!technical&&<><td>{e.actor_staff_id}</td><td>{e.subject_staff_id??e.target_id}</td></>}</tr>)}</tbody></table></div>
  <div className="my-4 flex gap-4"><button className={buttonClass} disabled={offset===0} onClick={()=>setOffset(Math.max(0,offset-100))}>前へ</button><button className={buttonClass} disabled={data?.rows.length!==100} onClick={()=>setOffset(offset+100)}>次へ</button></div></Shell>;
 }

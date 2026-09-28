@@ -125,7 +125,7 @@ test('3D staff roles, suspension and membership scope through UI',async({page,br
  await card.getByLabel('業務ロール').selectOption('specialist');await card.getByLabel('所属開始日').fill('2020-01-01');await card.getByLabel('所属終了日',{exact:true}).fill('2020-01-02');await card.getByRole('button',{name:'ロール・期間を保存'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
  expect((await api(specialist,'user.read',user)).status).toBe(403);
  await card.getByLabel('所属終了日',{exact:true}).fill('');await card.getByRole('button',{name:'ロール・期間を保存'}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
- expect((await api(specialist,'user.read',user)).status).toBe(200);
+ expect((await api(specialist,'user.read',user)).status).toBe(200);await expect(card.getByText('相談支援専門員：2020-01-01 〜 終了なし',{exact:true})).toBeVisible();
  await page.screenshot({path:'test-results/evidence/staff-management.png',fullPage:true});
  const system=await browser.newPage();await login(system,'system');await system.goto('/staff');await expect(system.getByText('管理できる事業所はありません。')).toBeVisible();
  expect((await api(system,'staff.role',fixture.facility,{staff_id:fixture.actors.worker.id,role_code:'business_admin',starts_at:'2020-01-01T00:00:00Z'})).status).toBe(403);
@@ -165,7 +165,7 @@ test('3D basic information, scoped meeting directory, deadlines and waiting appr
 
 test('3D audit scope and redacted technical view',async({page,browser})=>{
  await login(page,'admin');await page.goto('/audit');await expect(page.getByRole('table')).toBeVisible();const adminAudit=(await api(page,'audit.list',null)).body.data;expect(adminAudit.some((e:{operation:string})=>e.operation==='assignment.handover')).toBe(true);expect(adminAudit.every((e:{facility_id:string;actor_staff_id:string})=>e.facility_id===fixture.facility||e.actor_staff_id===fixture.actors.admin.id)).toBe(true);
- await page.screenshot({path:'test-results/evidence/audit.png',fullPage:true});
+ await expect(page.getByRole('cell',{name:'assignment.handover',exact:true}).first()).toBeVisible();await page.screenshot({path:'test-results/evidence/audit.png',fullPage:true});
  const worker=await browser.newPage();await login(worker,'worker');await worker.goto('/audit');const own=(await api(worker,'audit.list',null)).body.data;expect(own.every((e:{actor_staff_id:string})=>e.actor_staff_id===fixture.actors.worker.id)).toBe(true);
  const system=await browser.newPage();await login(system,'system');await system.goto('/audit');await system.getByLabel('個人識別情報を含まない技術監査').check();await expect(system.getByRole('columnheader',{name:'職員ID'})).toHaveCount(0);
  const tech=(await api(system,'audit.technical',null)).body.data;expect(tech.length).toBeGreaterThan(0);expect(tech.every((e:object)=>Object.keys(e).sort().join(',')==='code,happened_at,operation,outcome')).toBe(true);
