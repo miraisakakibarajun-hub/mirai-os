@@ -5,7 +5,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const ts=require('typescript');
 const root=path.resolve(__dirname,'..');
-function loader(){
+function loader(client){
  const cache=new Map();
  const network=()=>{throw new Error('NETWORK FORBIDDEN');};
  function load(file){
@@ -14,7 +14,7 @@ function loader(){
   const module={exports:{}};cache.set(file,module);
   const code=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
   const req=name=>{
-   if(name==='@/lib/supabase/server')return {createClient:()=>{throw new Error('DB FORBIDDEN');}};
+   if(name==='@/lib/supabase/server')return {createClient:()=>{if(client)return client;throw new Error('DB FORBIDDEN');}};
    if(name.startsWith('@/')||name.startsWith('.')){
     let target=name.startsWith('@/')?path.join(root,name.slice(2)):path.resolve(path.dirname(file),name);
     if(!path.extname(target))target+='.ts';
@@ -52,6 +52,21 @@ test('Hosted DB addresses cannot enter the application client',()=>{
  const check=loader().load('lib/supabase/local-boundary.ts').requireLocalSupabase;
  for(const url of ['https://example.supabase.co','http://localhost.evil.test','http://u:p@localhost:54321','https://127.0.0.1',undefined])assert.throws(()=>check(url));
  assert.equal(check('http://127.0.0.1:54321'),'http://127.0.0.1:54321');
+});
+
+test('Authorized server route requires session, checks origin and maps DB decisions',async()=>{
+ const url='http://localhost/api/authorized';
+ const request=(origin='http://localhost')=>new Request(url,{method:'POST',headers:{origin},body:JSON.stringify({operation:'user.read',target:'00000300-0000-4000-8000-000000000000'})});
+ assert.equal((await loader().load('app/api/authorized/route.ts').POST(request('http://evil.invalid'))).status,403);
+ const noSession={auth:{getUser:async()=>({data:{user:null},error:null})},rpc:()=>{throw Error('RPC FORBIDDEN');}};
+ assert.equal((await loader(noSession).load('app/api/authorized/route.ts').POST(request())).status,401);
+ for(const [decision,status] of [[{ok:true,data:{id:'synthetic'}},200],[{ok:false,code:'42501'},403],[{ok:false,code:'40001'},409]]){
+  const client={auth:{getUser:async()=>({data:{user:{id:'synthetic'}},error:null})},rpc:async(name,args)=>{
+   assert.equal(name,'mirai_command');assert.equal(args.p_operation,'user.read');assert.equal('actor_id' in args,false);
+   return {data:decision,error:null};
+  }};
+  assert.equal((await loader(client).load('app/api/authorized/route.ts').POST(request())).status,status);
+ }
 });
 test('Secret scanner rejects representative secrets without storing them',async()=>{
  const {findings}=await import('../scripts/check-secrets.mjs');

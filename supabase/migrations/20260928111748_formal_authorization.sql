@@ -68,6 +68,7 @@ $$;
 revoke all on all tables in schema public from public,anon,authenticated;
 revoke all on all sequences in schema public from public,anon,authenticated;
 revoke execute on all functions in schema public from public,anon,authenticated;
+revoke create on schema public from public,anon,authenticated;
 alter default privileges in schema public revoke all on tables from anon,authenticated;
 alter default privileges in schema public revoke execute on functions from public,anon,authenticated;
 do $$ declare p record; begin
@@ -132,7 +133,9 @@ begin
  -- Return an error envelope so denied calls are committed to audit, not rolled back with an exception.
  begin
   if a is null or payload is null or jsonb_typeof(payload)<>'object' or octet_length(payload::text)>64000
-   or payload ?| array['actor_id','created_by','updated_by','organization_id','role','auth_user_id'] then
+   or payload ?| array['actor_id','created_by','updated_by','organization_id','role','auth_user_id','facility_id']
+   or (payload ? 'staff_id' and op not in ('assignment.set','assignment.end'))
+   or (payload ? 'user_id' and op not in ('record.save','plan.create')) then
    raise exception using errcode='42501',message='denied'; end if;
   if op='user.read' then
    if not mirai_private.allowed(target,'read') then raise exception using errcode='42501'; end if;
@@ -236,7 +239,10 @@ begin
  and mirai_private.facility_role(x.facility_id,array['business_admin','specialist'])) then raise exception using errcode='42501'; end if;
  insert into public.plan_assignments(user_id,staff_id) values(u,mirai_private.actor()) on conflict do nothing;
 end $$;
+-- PostgreSQL requires CREATE during ownership transfer; remove it immediately afterwards.
+grant create on schema mirai_private to mirai_executor;
 alter function mirai_private.command(text,uuid,jsonb,integer) owner to mirai_executor;
+revoke create on schema mirai_private from mirai_executor;
 revoke execute on all functions in schema mirai_private from public,anon,authenticated;
 grant execute on all functions in schema mirai_private to mirai_executor;
 grant usage on schema mirai_private to authenticated;

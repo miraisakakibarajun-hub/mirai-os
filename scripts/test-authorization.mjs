@@ -77,6 +77,8 @@ try{
  await deny('administrator other organization',actors.admin,'user.read',user3);
  await deny('forged organization',actors.specialist,'user.read',user,{organization_id:org2});
  await deny('forged actor',actors.specialist,'user.update',user,{created_by:actors.admin});
+ await deny('forged staff identifier',actors.specialist,'user.read',user,{staff_id:actors.admin});
+ await deny('forged facility identifier',actors.specialist,'user.read',user,{facility_id:facility2});
  await deny('worker edit user',actors.worker,'user.update',user,{name:'forbidden'});
  await allow('specialist edit user',actors.specialist,'user.update',user,{name:'架空利用者更新'});
  const newUser=await allow('specialist registers and assigns self',actors.specialist,'user.create',facility,{name:'架空新規',kana:'カクウ',birth_date:'2000-01-01'});
@@ -131,6 +133,10 @@ try{
  await allow('new assignment effective',actors.unassigned,'user.read',user);
  await allow('administrator ends assignment',actors.admin,'assignment.end',user,{staff_id:actors.unassigned});
  await deny('assignment ended same JWT',actors.unassigned,'user.read',user);
+ await allow('membership deletion positive control',actors.specialist,'user.read',user);
+ const removedMembership=(await db.query('delete from public.staff_facility_roles where staff_id=$1 returning *',[actors.specialist])).rows[0];
+ await deny('deleted membership same JWT',actors.specialist,'user.read',user);
+ await db.query('insert into public.staff_facility_roles(id,staff_id,facility_id,role_id,starts_at) values($1,$2,$3,$4,$5)',[removedMembership.id,removedMembership.staff_id,removedMembership.facility_id,removedMembership.role_id,removedMembership.starts_at]);
  for(const [label,change,restore] of [
   ['staff stopped',"update public.staff set is_active=false where id=$1","update public.staff set is_active=true where id=$1"],
   ['facility membership ended',"update public.staff_facility_roles set ends_at=now() where staff_id=$1","update public.staff_facility_roles set ends_at=null where staff_id=$1"],
