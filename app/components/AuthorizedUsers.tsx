@@ -2,7 +2,7 @@
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
 import {useParams,useRouter} from 'next/navigation';
-import {command,listAll,type BusinessUser,type SessionContext} from '@/lib/authorized-client';
+import {BusinessError,command,listAll,type BusinessUser,type SessionContext} from '@/lib/authorized-client';
 import {Shell,Notice,useBusinessAccess,buttonClass,inputClass} from './BusinessShell';
 
 export function UserList(){
@@ -45,7 +45,7 @@ function UserForm({id}:{id?:string}){
  }catch(e){if(active)setMessage(e instanceof Error?e.message:'読み込めませんでした。');}})();return()=>{active=false;};},[id]);
  async function save(){if(lock.current)return;lock.current=true;setBusy(true);try{
   const row=await command<{id:string}>(id?'user.update':'user.create',id??facility,id?{name,kana}:{name,kana,birth_date:birth});router.push(`/users/${row.id}`);
- }catch(e){setMessage(e instanceof Error?e.message:'保存できませんでした。');}finally{lock.current=false;setBusy(false);}}
+ }catch(e){setMessage(e instanceof Error?e.message:'保存できませんでした。');if(e instanceof BusinessError&&(e.status===401||e.status===403))setAllowed(false);}finally{lock.current=false;setBusy(false);}}
  return <Shell title={id?'利用者基本情報の編集':'利用者登録'}><Notice message={message}/>{allowed&&<form onSubmit={e=>{e.preventDefault();void save();}} className="space-y-4 rounded-xl border bg-white p-5"><fieldset disabled={busy} className="space-y-4">
  {!id&&<label className="block">事業所<select className={inputClass} value={facility} onChange={e=>setFacility(e.target.value)}>{context?.facilities.filter(f=>f.canRegister).map(f=><option value={f.id} key={f.id}>{f.name}</option>)}</select></label>}
  <label className="block">氏名<input className={inputClass} maxLength={100} required value={name} onChange={e=>setName(e.target.value)}/></label><label className="block">フリガナ<input className={inputClass} required value={kana} onChange={e=>setKana(e.target.value)}/></label>

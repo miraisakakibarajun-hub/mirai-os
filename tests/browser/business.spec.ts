@@ -5,6 +5,9 @@ const loadPg=createRequire(process.cwd()+'/package.json');
 const {Client}=loadPg('pg');
 const fixture=JSON.parse(fs.readFileSync('test-results/browser-fixture.json','utf8'));
 const user=fixture.user;
+test.afterEach(async({page},info)=>{
+ if(info.status!==info.expectedStatus&&!new URL(page.url()).pathname.startsWith('/login'))console.log('Synthetic page diagnostic:',await page.locator('main').innerText().catch(()=>''));
+});
 async function login(page:Page,role:string){
  await page.route('**/*',route=>{const u=new URL(route.request().url());return ['127.0.0.1','localhost'].includes(u.hostname)?route.continue():route.abort();});
  await page.goto('/login');await page.getByLabel('メールアドレス').fill(fixture.actors[role].email);await page.getByLabel('パスワード').fill(fixture.actors[role].password);
@@ -27,7 +30,7 @@ test('specialist saves and reloads all four record types; worker and system boun
   if(path==='records')await page.getByLabel('対応方法').selectOption('訪問');
   await page.getByLabel(field,{exact:true}).fill('架空テスト本文-'+path);
   if(path==='meetings'){await page.getByLabel('決定事項（必須）',{exact:true}).fill('架空決定');await page.getByLabel('自分を参加職員として記録').check();}
-  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');
+  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
   await page.reload();await page.getByRole('button',{name:/の記録（第1版）/}).click();await expect(page.getByLabel(field,{exact:true})).toHaveValue('架空テスト本文-'+path);
   if(path==='assessments')await page.screenshot({path:'test-results/evidence/assessment.png',fullPage:true});
  }
@@ -35,7 +38,7 @@ test('specialist saves and reloads all four record types; worker and system boun
  const list=await api(worker,'user.list',null);expect(Object.keys(list.body.data[0]).sort()).toEqual(['id','name','status']);
  await worker.goto(`/users/${user}`);await expect(worker.getByRole('link',{name:'支援記録',exact:true})).toBeVisible();await expect(worker.getByRole('link',{name:'アセスメント',exact:true})).toHaveCount(0);await expect(worker.getByText('生年月日：2000-01-01')).toHaveCount(0);
  await worker.goto(`/users/${user}/records`);await expect(worker.getByText('記録はまだありません。')).toBeVisible();
- await worker.getByLabel('日時（日本時間）').fill('2026-09-28T11:00');await worker.getByLabel('対応方法').selectOption('電話');await worker.getByLabel('相談内容',{exact:true}).fill('架空一般職員記録');await worker.getByRole('button',{name:'保存',exact:true}).click();await expect(worker.getByRole('alert')).toHaveText('保存しました。');
+ await worker.getByLabel('日時（日本時間）').fill('2026-09-28T11:00');await worker.getByLabel('対応方法').selectOption('電話');await worker.getByLabel('相談内容',{exact:true}).fill('架空一般職員記録');await worker.getByRole('button',{name:'保存',exact:true}).click();await expect(worker.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
  await worker.reload();await worker.getByRole('button',{name:/の記録（第1版）/}).click();await expect(worker.getByLabel('相談内容',{exact:true})).toHaveValue('架空一般職員記録');
  await worker.goto(`/users/${user}/plans`);await expect(worker.getByText('計画本文を閲覧する権限がありません。')).toBeVisible();expect((await api(worker,'plan.list',user)).status).toBe(403);
  await worker.screenshot({path:'test-results/evidence/worker-denied.png'});
@@ -45,12 +48,12 @@ test('specialist saves and reloads all four record types; worker and system boun
 test('manual plan -> submit -> reject -> resubmit -> separate approval -> immutable -> revise',async({browser,page})=>{
  await login(page,'specialist');await page.goto(`/users/${user}/plans`);await page.getByLabel('計画更新期限').fill('2027-01-01');await page.getByRole('button',{name:'新しい計画を作成'}).click();
  for(const field of ['本人の希望','総合的援助方針','長期目標','短期目標'])await page.getByLabel(field,{exact:true}).fill('架空'+field);
- await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');
+ await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
  await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
  const admin=await browser.newPage();await login(admin,'admin');await admin.goto(`/users/${user}/plans`);
  await expect(admin.getByRole('button',{name:'理由を付けて差戻し'})).toBeDisabled();await admin.getByLabel('差戻し理由',{exact:true}).fill('架空の差戻し理由');await admin.getByRole('button',{name:'理由を付けて差戻し'}).click();await expect(admin.getByRole('status')).toContainText('差戻し');
  await page.getByRole('button',{name:'最新の計画を再読込'}).click();await expect(page.getByText('差戻し理由：架空の差戻し理由')).toBeVisible();
- await page.getByLabel('短期目標',{exact:true}).fill('架空修正目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
+ await page.getByLabel('短期目標',{exact:true}).fill('架空修正目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
  await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
  await page.getByRole('button',{name:'最新の計画を再読込'}).click();await expect(page.getByLabel('短期目標',{exact:true})).toBeDisabled();
  const current=(await api(page,'plan.list',user)).body.data[0];expect((await api(page,'plan.save',current.id,{content:current.content},current.content_version)).status).toBe(403);
@@ -58,7 +61,7 @@ test('manual plan -> submit -> reject -> resubmit -> separate approval -> immuta
  await page.getByRole('button',{name:'改訂を開始'}).click();await expect(page.getByRole('status')).toContainText('下書き');await expect(page.getByLabel('短期目標',{exact:true})).toBeEnabled();
  await page.screenshot({path:'test-results/evidence/plan-revision.png',fullPage:true});
  await page.getByText(/承認済み第.*版を確認/).click();await expect(page.getByText('短期目標：架空修正目標',{exact:true})).toBeVisible();
- await page.getByLabel('短期目標',{exact:true}).fill('架空改訂後の目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');
+ await page.getByLabel('短期目標',{exact:true}).fill('架空改訂後の目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
  await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
  await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
  await admin.close();
@@ -72,8 +75,8 @@ test('same signed session immediately loses access after assignment, membership,
   ["update public.staff_facility_roles set role_id=(select id from public.roles where code='system_admin') where staff_id=$1","update public.staff_facility_roles set role_id=(select id from public.roles where code='specialist') where staff_id=$1"],
   ["update public.staff set is_active=false where id=$1","update public.staff set is_active=true where id=$1"]
  ]){
-  await page.goto(`/users/${user}/records`);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByLabel('相談内容',{exact:true})).toBeVisible();
-  try{await database(change,[id]);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
+  await page.goto(`/users/${user}/records`);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('架空テスト本文-records');await expect(page.getByRole('button',{name:/の記録（第1版）/}).first()).toBeEnabled();
+  try{await database(change,[id]);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByRole('main').getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
   finally{await database(restore,[id]);}
  }
  // Never put session tokens into assertion diffs or CI artifacts.
@@ -83,20 +86,25 @@ test('anonymous rejected and stale record editor gets business conflict without 
  await page.goto('/login');expect((await api(page,'user.list',null)).status).toBe(401);
  await login(page,'specialist');await page.goto(`/users/${user}/records`);
  await page.getByRole('button',{name:/の記録（第1版）/}).first().click();
+ await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('架空テスト本文-records');
  const records=(await api(page,'record.list',user,{kind:'support'})).body.data;
  const r=records.find((x:{created_by:string})=>x.created_by===fixture.actors.specialist.id);
  expect((await api(page,'record.save',r.id,{kind:'support',user_id:user,date:r.occurred_at,content:{...r.content,consultation:'別画面の架空更新'}},r.version)).status).toBe(200);
- await page.getByLabel('相談内容',{exact:true}).fill('古い画面の架空更新');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('alert')).toContainText('内容が更新されています');
+ await page.getByLabel('相談内容',{exact:true}).fill('古い画面の架空更新');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toContainText('内容が更新されています');
  expect((await api(page,'record.read',r.id,{kind:'support'})).body.data.content.consultation).toBe('別画面の架空更新');
  await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('古い画面の架空更新');
 });
 test('dual-role self approval is hidden and rejected; anonymous and forged IDs rejected',async({page})=>{
  await login(page,'dual');
- const created=await api(page,'user.create',fixture.facility,{name:'架空自己承認試験',kana:'カクウ',birth_date:'2000-01-01'});expect(created.status).toBe(200);
- await page.goto(`/users/${created.body.data.id}/plans`);await page.getByLabel('計画更新期限').fill('2027-01-01');await page.getByRole('button',{name:'新しい計画を作成'}).click();
+ await page.getByRole('link',{name:'新規登録',exact:true}).click();
+ await page.getByLabel('氏名',{exact:true}).fill('架空自己承認試験');await page.getByLabel('フリガナ',{exact:true}).fill('カクウ');await page.getByLabel('生年月日',{exact:true}).fill('2000-01-01');await page.getByRole('button',{name:'保存',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'架空自己承認試験',exact:true})).toBeVisible();
+ const createdId=new URL(page.url()).pathname.split('/').at(-1)!;
+ await page.getByRole('link',{name:'基本情報を編集'}).click();await page.getByLabel('フリガナ',{exact:true}).fill('カクウヘンコウ');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByText('フリガナ：カクウヘンコウ',{exact:true})).toBeVisible();
+ await page.getByRole('link',{name:'サービス等利用計画',exact:true}).click();await page.getByLabel('計画更新期限').fill('2027-01-01');await page.getByRole('button',{name:'新しい計画を作成'}).click();
  for(const field of ['本人の希望','総合的援助方針','長期目標','短期目標'])await page.getByLabel(field,{exact:true}).fill('架空自己承認試験');
- await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');await expect(page.getByRole('button',{name:'計画を承認',exact:true})).toHaveCount(0);
- const p=(await api(page,'plan.list',created.body.data.id)).body.data[0];expect((await api(page,'plan.approve',p.id,{epoch:p.review.epoch},p.content_version)).status).toBe(403);
+ await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');await expect(page.getByRole('button',{name:'計画を承認',exact:true})).toHaveCount(0);
+ const p=(await api(page,'plan.list',createdId)).body.data[0];expect((await api(page,'plan.approve',p.id,{epoch:p.review.epoch},p.content_version)).status).toBe(403);
  expect((await api(page,'user.read',user,{organization_id:fixture.facility})).status).toBe(403);
  expect((await api(page,'user.read','60000000-0000-4000-8000-999999999999')).status).toBe(403);
  const r=await page.request.post('/api/authorized',{headers:{Origin:'http://evil.invalid'},data:{operation:'user.list'}});expect(r.status()).toBe(403);
