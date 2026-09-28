@@ -211,7 +211,7 @@ begin
    elsif op in ('plan.approve','plan.reject') then
     if not mirai_private.allowed(p.user_id,'admin') or review.state<>'submitted' or review.submitted_revision is distinct from p.content_version
       or p.created_by is null or p.created_by=a or p.updated_by=a then raise exception using errcode='42501'; end if;
-    if op='plan.reject' and length(btrim(coalesce(payload->>'reason','')))=0 then raise exception using errcode='22023'; end if;
+    if op='plan.reject' and (length(btrim(coalesce(payload->>'reason','')))=0 or length(payload->>'reason')>500) then raise exception using errcode='22023'; end if;
     update public.plan_reviews set state=case op when 'plan.approve' then 'approved' else 'rejected' end,
      approved_revision=case op when 'plan.approve' then p.content_version else approved_revision end,epoch=epoch+1 where plan_id=p.id;
    elsif op='plan.revise' then
@@ -219,7 +219,7 @@ begin
     update public.plans set content_version=content_version+1,updated_by=a where id=p.id;
    end if;
    if op not in ('plan.read','plan.create','plan.save') then
-    insert into public.plan_review_events(plan_id,revision,action,actor) values(p.id,p.content_version,op,a);
+    insert into public.plan_review_events(plan_id,revision,action,actor,reason) values(p.id,p.content_version,op,a,case when op='plan.reject' then payload->>'reason' else '' end);
    end if;
    select to_jsonb(q)||jsonb_build_object('review',(select to_jsonb(r) from public.plan_reviews r where plan_id=q.id)) into result from public.plans q where id=p.id;
   elsif op='facility.rename' then

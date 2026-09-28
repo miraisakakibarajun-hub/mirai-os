@@ -120,6 +120,7 @@ try{
  p=await allow('specialist revises',actors.specialist,'plan.revise',plan,{},p.content_version);
  await allow('revision resubmitted',actors.specialist,'plan.submit',plan,{},p.content_version);
  await allow('administrator rejects',actors.admin,'plan.reject',plan,{reason:'架空差戻し'},p.content_version);
+ assert.equal((await db.query("select reason from public.plan_review_events where plan_id=$1 and action='plan.reject'",[plan])).rows[0].reason,'架空差戻し');
  // A genuinely dual-role actor: self approval must still fail.
  const ownPlan=randomUUID();
  await deny('admin without specialist assignment cannot create plan',actors.dual,'plan.create',ownPlan,{user_id:newUser.id,renewal_date:'2027-01-01'});
