@@ -75,8 +75,8 @@ test('same signed session immediately loses access after assignment, membership,
   ["update public.staff_facility_roles set role_id=(select id from public.roles where code='system_admin') where staff_id=$1","update public.staff_facility_roles set role_id=(select id from public.roles where code='specialist') where staff_id=$1"],
   ["update public.staff set is_active=false where id=$1","update public.staff set is_active=true where id=$1"]
  ]){
-  await page.goto(`/users/${user}/records`);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('架空テスト本文-records');await expect(page.getByRole('button',{name:/の記録（第1版）/}).first()).toBeEnabled();
-  try{await database(change,[id]);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByRole('main').getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
+  await page.goto(`/users/${user}/records`);await page.getByRole('button',{name:'2026-09-28 10:00 の記録（第1版）',exact:true}).click();await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('架空テスト本文-records');await expect(page.getByRole('button',{name:'2026-09-28 10:00 の記録（第1版）',exact:true})).toBeEnabled();
+  try{await database(change,[id]);await page.getByRole('button',{name:'2026-09-28 10:00 の記録（第1版）',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
   finally{await database(restore,[id]);}
  }
  // Never put session tokens into assertion diffs or CI artifacts.
@@ -85,7 +85,7 @@ test('same signed session immediately loses access after assignment, membership,
 test('anonymous rejected and stale record editor gets business conflict without overwriting',async({page})=>{
  await page.goto('/login');expect((await api(page,'user.list',null)).status).toBe(401);
  await login(page,'specialist');await page.goto(`/users/${user}/records`);
- await page.getByRole('button',{name:/の記録（第1版）/}).first().click();
+ await page.getByRole('button',{name:'2026-09-28 10:00 の記録（第1版）',exact:true}).click();
  await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('架空テスト本文-records');
  const records=(await api(page,'record.list',user,{kind:'support'})).body.data;
  const r=records.find((x:{created_by:string})=>x.created_by===fixture.actors.specialist.id);
