@@ -58,14 +58,14 @@ function Editor({userId}:{userId:string}){
  <form className="my-5 space-y-4 rounded-xl border bg-white p-5" onSubmit={e=>{e.preventDefault();void act('plan.save');}}>
  <fieldset disabled={busy||!editable} className="space-y-4">
  {([['planPeriodStart','計画期間開始'],['planPeriodEnd','計画期間終了'],['createdDate','作成日'],['monitoringDate','モニタリング予定日']] as const).map(([key,label])=><label key={key} className="block">{label}<input className={inputClass} type="date" value={plan[key]} onChange={e=>set(key,e.target.value)}/></label>)}
- {fields.map(([key,label])=><label className="block" key={key}>{label}<textarea className={inputClass} rows={3} value={plan[key]??''} onChange={e=>set(key,e.target.value)}/></label>)}
+ {fields.map(([key,label])=><label className="block" key={key}>{label}<textarea aria-label={label} className={inputClass} rows={3} value={plan[key]??''} onChange={e=>set(key,e.target.value)}/></label>)}
  <h2 className="font-bold">サービス内容</h2>{plan.services.map((s,i)=><section key={s.id} className="space-y-3 rounded border p-3">{([['serviceName','サービス名'],['content','支援内容'],['frequency','頻度']] as const).map(([key,label])=><label className="block" key={key}>{label} {i+1}<input className={inputClass} value={s[key]} onChange={e=>set('services',plan.services.map(x=>x.id===s.id?{...x,[key]:e.target.value}:x))}/></label>)}<button type="button" className={buttonClass} onClick={()=>set('services',plan.services.filter(x=>x.id!==s.id))}>このサービスを入力から外す</button></section>)}
  {editable&&<button type="button" className={buttonClass} onClick={()=>set('services',[...plan.services,{id:crypto.randomUUID(),serviceName:'',content:'',frequency:''}])}>サービスを追加</button>}
  </fieldset>{editable&&<button type="submit" className={buttonClass} disabled={busy}>計画を保存</button>}{dirty&&<p>未保存の変更があります。保存後に提出してください。</p>}
  </form>
  <section className="flex flex-wrap gap-3 rounded-xl border bg-white p-5" aria-label="計画の手続き">
  {editable&&<button className={buttonClass} disabled={busy||dirty} onClick={()=>void act('plan.submit')}>計画を提出</button>}
- {canApprove&&<><button className={buttonClass} disabled={busy} onClick={()=>void act('plan.approve')}>計画を承認</button><label className="w-full">差戻し理由<textarea className={inputClass} maxLength={500} value={reason} onChange={e=>setReason(e.target.value)}/></label><button className={buttonClass} disabled={busy||!reason.trim()} onClick={()=>void act('plan.reject')}>理由を付けて差戻し</button></>}
+ {canApprove&&<><button className={buttonClass} disabled={busy} onClick={()=>void act('plan.approve')}>計画を承認</button><label className="w-full">差戻し理由<textarea aria-label="差戻し理由" className={inputClass} maxLength={500} value={reason} onChange={e=>setReason(e.target.value)}/></label><button className={buttonClass} disabled={busy||!reason.trim()} onClick={()=>void act('plan.reject')}>理由を付けて差戻し</button></>}
  {row.review.state==='submitted'&&!canApprove&&<p>別の管理者による確認を待っています。作成者・最終編集者は承認できません。</p>}
  {row.review.state==='approved'&&<><p>承認済み版は直接変更できません。</p>{edit&&<button className={buttonClass} disabled={busy} onClick={()=>void act('plan.revise')}>改訂を開始</button>}</>}
  </section>

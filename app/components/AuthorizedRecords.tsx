@@ -73,7 +73,7 @@ function Editor({userId,kind}:{userId:string;kind:Kind}){
  <h2 className="font-bold">{selected?'記録の内容':'新しい記録'}</h2>
  <fieldset disabled={busy||!canWrite} className="space-y-4"><label className="block">{kind==='support'?'日時（日本時間）':'実施日'}<input aria-label={kind==='support'?'日時（日本時間）':'実施日'} className={inputClass} type={kind==='support'?'datetime-local':'date'} value={date} required onChange={e=>{setDate(e.target.value);setDirty(true);}}/></label>
  {kind==='support'&&<label className="block">対応方法<select className={inputClass} value={String(content.method)} onChange={e=>set('method',e.target.value)}><option value="">選択してください</option>{supportMethods.map(m=><option key={m}>{m}</option>)}</select></label>}
- {fields.map(([key,label])=><label key={key} className="block">{label}<textarea className={inputClass} rows={3} value={String(content[key]??'')} onChange={e=>set(key,e.target.value)}/></label>)}
+ {fields.map(([key,label])=><label key={key} className="block">{label}<textarea aria-label={label} className={inputClass} rows={3} value={String(content[key]??'')} onChange={e=>set(key,e.target.value)}/></label>)}
  {kind==='assessment'&&[...dailyFields,...communicationFields].map(([key,label])=><label className="block" key={key}>{label}<select className={inputClass} value={String(content[key]??'')} onChange={e=>set(key,e.target.value)}><option value="">選択してください</option>{(dailyFields.some(([k])=>k===key)?dailyOptions:communicationOptions).map(v=><option key={v}>{v}</option>)}</select></label>)}
  {kind==='assessment'&&<p className="text-sm">未確認の項目は「未確認」と記録してください。</p>}
  {kind==='monitoring'&&text('nextDate','次回予定日','date')}
