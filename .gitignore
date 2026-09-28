@@ -40,3 +40,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local database exports, historical reconstruction artifacts, and drafts
+/db-export-*/
+/history-alignment-*/
+/migration-rehearsal-*/
+/reconstruction-*/
+/pending/
+# Instance-specific role assignment: not a schema migration
+/supabase/development-plan-admin.sql

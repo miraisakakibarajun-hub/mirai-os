@@ -260,6 +260,16 @@ export default function UserDetailPage() {
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {[
               {
+                label: "AI計画作成支援",
+                description: "本人の希望と強みから、専門員と計画案を考えます。",
+                href: `/users/${user.id}/planning-assistance`,
+              },
+              {
+                label: "アセスメント",
+                description: "本人の希望や生活状況を記録します。",
+                href: `/users/${user.id}/assessments`,
+              },
+              {
                 label: "サービス等利用計画",
                 description: "計画の作成・確認を行います",
                 href: `/users/${user.id}/plans`,
@@ -268,6 +278,11 @@ export default function UserDetailPage() {
                 label: "モニタリング",
                 description: "モニタリング記録を管理します",
                 href: `/users/${user.id}/monitoring`,
+              },
+              {
+                label: "担当者会議",
+                description: "参加者・決定事項・担当者と期限を記録します。",
+                href: `/users/${user.id}/meetings`,
               },
               {
                 label: "支援記録",

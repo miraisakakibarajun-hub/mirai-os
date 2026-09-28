@@ -4,85 +4,191 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { FormEvent } from "react";
+import { createClient } from "@/lib/supabase/client";
 
-type SavedUser = {
+type PlanConsistency = "ok" | "missing" | "duplicate";
+
+type UserEditData = {
   id: string;
   name: string;
   kana: string;
   birthDate: string;
-  renewalDate: string;
   status: string;
+  renewalDate: string | null;
+  planConsistency: PlanConsistency;
 };
+
+type FetchState = "loading" | "not-found" | "error" | "loaded";
+type SubmitState = "idle" | "saving" | "update-error";
 
 const STATUS_OPTIONS = ["準備中", "利用中", "保留", "終了"];
 
 export default function UserEditPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
-  const [user, setUser] = useState<SavedUser | null>(null);
-  const [notFound, setNotFound] = useState(false);
-  const [saveError, setSaveError] = useState<string | null>(null);
+  const [user, setUser] = useState<UserEditData | null>(null);
+  const [fetchState, setFetchState] = useState<FetchState>("loading");
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [submitErrorMessage, setSubmitErrorMessage] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
-    // localStorageはサーバー側で参照できないため、マウント後に読み込んで
-    // Reactの状態と同期する（外部システムとの同期はEffectの正しい用途）。
-    /* eslint-disable react-hooks/set-state-in-effect */
-    try {
-      const savedData = localStorage.getItem("mirai-users");
-      const savedUsers = savedData
-        ? (JSON.parse(savedData) as SavedUser[])
-        : [];
+    let isMounted = true;
 
-      const found = savedUsers.find((savedUser) => savedUser.id === params.id);
+    async function fetchUser() {
+      const supabase = createClient();
 
-      if (found) {
-        setUser(found);
-      } else {
-        setNotFound(true);
+      const { data, error } = await supabase
+        .from("users")
+        .select(
+          `
+          id,
+          name,
+          kana,
+          birth_date,
+          status,
+          plans ( renewal_date, status )
+        `
+        )
+        .eq("plans.status", "active")
+        .eq("id", params.id)
+        .maybeSingle();
+
+      if (!isMounted) return;
+
+      if (error) {
+        if (error.code === "22P02") {
+          setFetchState("not-found");
+        } else {
+          setFetchState("error");
+        }
+        return;
       }
-    } catch {
-      setNotFound(true);
+
+      if (!data) {
+        setFetchState("not-found");
+        return;
+      }
+
+      const activePlans = data.plans ?? [];
+
+      const planConsistency: PlanConsistency =
+        activePlans.length === 1
+          ? "ok"
+          : activePlans.length === 0
+            ? "missing"
+            : "duplicate";
+
+      setUser({
+        id: data.id,
+        name: data.name,
+        kana: data.kana,
+        birthDate: data.birth_date,
+        status: data.status,
+        renewalDate:
+          planConsistency === "ok" ? activePlans[0].renewal_date : null,
+        planConsistency,
+      });
+      setFetchState("loaded");
     }
-    /* eslint-enable react-hooks/set-state-in-effect */
+
+    fetchUser();
+
+    return () => {
+      isMounted = false;
+    };
   }, [params.id]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function toDisplayMessage(error: { code?: string; message: string }): string {
+    switch (error.code) {
+      case "M1001":
+        return "ログイン中のアカウントに職員情報が紐づいていません。管理者にご連絡ください。";
+      case "M1002":
+        return "この利用者は既に削除されている可能性があります。一覧からご確認ください。";
+      case "M1003":
+        return "この利用者の計画データに不整合があるため更新できません。管理者にご確認ください。";
+      default:
+        return "更新に失敗しました。時間をおいて再度お試しください。";
+    }
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!user) return;
 
+    setSubmitErrorMessage(null);
+    setSubmitState("saving");
+
     const formData = new FormData(event.currentTarget);
+    const supabase = createClient();
 
-    const updatedUser: SavedUser = {
-      ...user,
-      name: String(formData.get("name") ?? user.name),
-      kana: String(formData.get("kana") ?? user.kana),
-      birthDate: String(formData.get("birthDate") ?? user.birthDate),
-      renewalDate: String(formData.get("renewalDate") ?? user.renewalDate),
-      status: String(formData.get("status") ?? user.status),
-    };
+    const { data, error } = await supabase.rpc("update_user_with_plan", {
+      p_user_id: user.id,
+      p_name: String(formData.get("name") ?? ""),
+      p_kana: String(formData.get("kana") ?? ""),
+      p_birth_date: String(formData.get("birthDate") ?? ""),
+      p_status: String(formData.get("status") ?? ""),
+      p_renewal_date: String(formData.get("renewalDate") ?? ""),
+    });
 
-    try {
-      const savedData = localStorage.getItem("mirai-users");
-      const savedUsers = savedData
-        ? (JSON.parse(savedData) as SavedUser[])
-        : [];
-
-      const updatedUsers = savedUsers.map((savedUser) =>
-        savedUser.id === updatedUser.id ? updatedUser : savedUser
-      );
-
-      localStorage.setItem("mirai-users", JSON.stringify(updatedUsers));
-    } catch {
-      setSaveError(
-        "保存に失敗しました。時間をおいて再度お試しください。既存のデータは変更されていません。"
-      );
+    if (error) {
+      setSubmitErrorMessage(toDisplayMessage(error));
+      setSubmitState("update-error");
       return;
     }
 
-    router.push(`/users/${updatedUser.id}`);
+    if (!data || data.length === 0 || !data[0]?.user_id) {
+      setSubmitErrorMessage(
+        "更新処理は完了しましたが、結果を確認できませんでした。お手数ですが詳細画面から更新内容をご確認ください。"
+      );
+      setSubmitState("update-error");
+      return;
+    }
+
+    router.push(`/users/${data[0].user_id}`);
   }
 
-  if (notFound) {
+  if (fetchState === "loading") {
+    return (
+      <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-xl bg-white p-10 text-center shadow">
+            <p className="text-slate-500">読み込み中...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (fetchState === "error") {
+    return (
+      <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-xl bg-white p-10 text-center shadow">
+            <p className="font-semibold text-red-700">
+              データの取得に失敗しました。
+            </p>
+
+            <p className="mt-2 text-sm text-slate-500">
+              時間をおいて再度お試しください。
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href="/users"
+              className="text-sm font-semibold text-[#16233F] underline"
+            >
+              一覧へ戻る
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (fetchState === "not-found") {
     return (
       <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
         <div className="mx-auto max-w-2xl">
@@ -111,6 +217,33 @@ export default function UserEditPage() {
 
   if (!user) {
     return null;
+  }
+
+  if (user.planConsistency !== "ok") {
+    return (
+      <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-xl bg-white p-10 text-center shadow">
+            <p className="font-semibold text-red-700">
+              この利用者は計画データに不整合があるため編集できません（要確認）。
+            </p>
+
+            <p className="mt-2 text-sm text-slate-500">
+              管理者にご確認のうえ、データを修正してから編集してください。
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href={`/users/${user.id}`}
+              className="text-sm font-semibold text-[#16233F] underline"
+            >
+              利用者詳細へ戻る
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -168,7 +301,7 @@ export default function UserEditPage() {
             <input
               type="date"
               name="renewalDate"
-              defaultValue={user.renewalDate}
+              defaultValue={user.renewalDate ?? ""}
               required
               className="mt-2 w-full rounded-lg border p-3"
             />
@@ -190,8 +323,10 @@ export default function UserEditPage() {
             </select>
           </label>
 
-          {saveError && (
-            <p className="text-sm font-semibold text-red-600">{saveError}</p>
+          {submitState === "update-error" && submitErrorMessage && (
+            <p className="text-sm font-semibold text-red-600">
+              {submitErrorMessage}
+            </p>
           )}
 
           <div className="flex justify-end gap-3 pt-2">
@@ -204,9 +339,10 @@ export default function UserEditPage() {
 
             <button
               type="submit"
-              className="rounded-lg bg-[#16233F] px-6 py-3 font-semibold text-white"
+              disabled={submitState === "saving"}
+              className="rounded-lg bg-[#16233F] px-6 py-3 font-semibold text-white disabled:opacity-60"
             >
-              保存
+              {submitState === "saving" ? "保存中..." : "保存"}
             </button>
           </div>
         </form>
