@@ -87,6 +87,16 @@ jobs:
         run: npm run test:browser
       - name: Isolated database security advisors
         run: npx --no-install supabase db advisors --local --type security --fail-on error
+      - name: Save synthetic test evidence only (never Auth keys or fixture credentials)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: phase3c-test-evidence
+          path: |
+            test-results/browser-results.json
+            test-results/authorization-supabase.json
+            test-results/evidence/*.png
+          retention-days: 7
       - name: Stop disposable stack
         if: always()
         run: npx --no-install supabase stop --no-backup

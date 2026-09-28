@@ -119,14 +119,20 @@ try{
  await allow('worker creates own support',actors.worker,'record.save',support,supportPayload,0);
  await allow('worker reads own support',actors.worker,'record.read',support,{kind:'support'});
  await allow('worker edits own support',actors.worker,'record.save',support,supportPayload,1);
+ assert.equal((await call(actors.worker,'record.save',support,supportPayload,1)).code,'40001');passed.push('CONFLICT stale record version');
+ const ownRecords=await allow('worker support list excludes other authors',actors.worker,'record.list',user,{kind:'support'});
+ assert.equal(ownRecords.length,1);assert.equal(ownRecords[0].created_by,actors.worker);
  await db.query("update public.support_records set record_state='finalized' where id=$1",[support]);
  await deny('finalized support immutable',actors.worker,'record.save',support,supportPayload,2);
  await allow('specialist creates plan',actors.specialist,'plan.create',plan,{user_id:user,renewal_date:'2027-01-01'});
  await deny('empty plan cannot be submitted',actors.specialist,'plan.submit',plan,{},0);
  let p=await allow('specialist saves draft',actors.specialist,'plan.save',plan,{content:{userWish:'架空希望',overallPolicy:'架空方針',longTermGoal:'架空目標',shortTermGoal:'架空目標'}},0);
  await allow('specialist submits plan',actors.specialist,'plan.submit',plan,{},p.content_version);
+ assert.equal((await call(actors.admin,'plan.approve',plan,{epoch:-1},p.content_version)).code,'40001');passed.push('CONFLICT stale approval epoch');
  await deny('specialist cannot approve',actors.specialist,'plan.approve',plan,{},p.content_version);
  await allow('different administrator approves',actors.admin,'plan.approve',plan,{},p.content_version);
+ assert.equal((await allow('approved revision history',actors.specialist,'plan.history',plan)).revisions.length,1);
+ await deny('worker cannot read plan history',actors.worker,'plan.history',plan);
  await deny('approved content immutable',actors.specialist,'plan.save',plan,{content:{}},p.content_version);
  await deny('worker plan access',actors.worker,'plan.read',plan);
  await deny('system plan access',actors.system,'plan.read',plan);
@@ -169,7 +175,7 @@ try{
  await deny('record author loses access after assignment ends',actors.worker,'record.read',support,{kind:'support'});
  // Direct table and old RPC cannot bypass the new command boundary.
  await db.exec('set role authenticated');await db.query("select set_config('request.jwt.claim.sub',$1,false)",[actors.specialist]);
- for(const sql of ['select * from public.users','select * from public.plans',"update public.staff set is_active=true",'select public.can_manage_plan(null)','select mirai_private.initial_assignment(null)','select * from mirai_private.audit_events']){
+ for(const sql of ['select * from public.users','select * from public.plans',"update public.staff set is_active=true",'select public.can_manage_plan(null)','select mirai_private.initial_assignment(null)',"select mirai_private.command_phase3b('user.list',null,'{}',null)",'select * from mirai_private.audit_events']){
   await assert.rejects(db.query(sql),e=>e.code==='42501',sql);passed.push('DENY direct '+sql.split(' ').slice(0,3).join(' '));
  }
  await db.exec('reset role');

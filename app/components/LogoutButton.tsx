@@ -23,7 +23,7 @@ export default function LogoutButton() {
       type="button"
       onClick={handleLogout}
       disabled={isLoggingOut}
-      className="text-xs font-semibold text-[#D8C4A5] underline disabled:opacity-60"
+      className="text-sm font-semibold text-slate-700 underline disabled:opacity-60"
     >
       {isLoggingOut ? "ログアウト中..." : "ログアウト"}
     </button>

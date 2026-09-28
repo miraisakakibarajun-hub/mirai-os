@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import LogoutButton from './LogoutButton';
 import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {BusinessError,command,type Workspace} from '@/lib/authorized-client';
 
@@ -7,7 +8,7 @@ export const buttonClass='rounded-lg border border-slate-300 bg-white px-4 py-2 
 export const inputClass='mt-2 w-full rounded-lg border border-slate-400 bg-white p-3 disabled:bg-slate-100';
 export function Shell({title,children}:{title:string;children:ReactNode}) {
  return <main className="min-h-screen bg-slate-50 p-6 text-slate-900"><div className="mx-auto max-w-4xl">
-  <nav className="mb-6 flex gap-5"><Link href="/users">利用者一覧</Link><Link href="/">ホーム</Link><Link href="/login">ログイン</Link></nav>
+  <nav className="mb-6 flex gap-5"><Link href="/users">利用者一覧</Link><Link href="/">ホーム</Link><Link href="/login">ログイン</Link><LogoutButton/></nav>
   <p className="text-sm text-amber-800">MIRAI OS・架空データ検証環境</p><h1 className="my-4 text-2xl font-bold">{title}</h1>{children}</div></main>;
 }
 export function useBusinessAccess(userId:string) {

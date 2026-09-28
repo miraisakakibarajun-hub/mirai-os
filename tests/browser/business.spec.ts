@@ -28,6 +28,7 @@ test('specialist saves and reloads all four record types; worker and system boun
   if(path==='meetings'){await page.getByLabel('決定事項（必須）',{exact:true}).fill('架空決定');await page.getByLabel('自分を参加職員として記録').check();}
   await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('alert')).toHaveText('保存しました。');
   await page.reload();await page.getByRole('button',{name:/の記録（第1版）/}).click();await expect(page.getByLabel(field,{exact:true})).toHaveValue('架空テスト本文-'+path);
+  if(path==='assessments')await page.screenshot({path:'test-results/evidence/assessment.png',fullPage:true});
  }
  const worker=await browser.newPage();await login(worker,'worker');
  const list=await api(worker,'user.list',null);expect(Object.keys(list.body.data[0]).sort()).toEqual(['id','name','status']);
@@ -36,6 +37,7 @@ test('specialist saves and reloads all four record types; worker and system boun
  await worker.getByLabel('日時（日本時間）').fill('2026-09-28T11:00');await worker.getByLabel('対応方法').selectOption('電話');await worker.getByLabel('相談内容',{exact:true}).fill('架空一般職員記録');await worker.getByRole('button',{name:'保存',exact:true}).click();await expect(worker.getByRole('alert')).toHaveText('保存しました。');
  await worker.reload();await worker.getByRole('button',{name:/の記録（第1版）/}).click();await expect(worker.getByLabel('相談内容',{exact:true})).toHaveValue('架空一般職員記録');
  await worker.goto(`/users/${user}/plans`);await expect(worker.getByText('計画本文を閲覧する権限がありません。')).toBeVisible();expect((await api(worker,'plan.list',user)).status).toBe(403);
+ await worker.screenshot({path:'test-results/evidence/worker-denied.png'});
  const system=await browser.newPage();await login(system,'system');await expect(system.getByText('閲覧できる利用者はいません。')).toBeVisible();expect((await api(system,'user.read',user)).status).toBe(403);expect((await api(system,'technical.read',null)).status).toBe(200);
  await worker.close();await system.close();
 });
@@ -53,11 +55,13 @@ test('manual plan -> submit -> reject -> resubmit -> separate approval -> immuta
  const current=(await api(page,'plan.list',user)).body.data[0];expect((await api(page,'plan.save',current.id,{content:current.content},current.content_version)).status).toBe(403);
  // Reopen after refusal (the page itself has not received this external test request).
  await page.getByRole('button',{name:'改訂を開始'}).click();await expect(page.getByRole('status')).toContainText('下書き');await expect(page.getByLabel('短期目標',{exact:true})).toBeEnabled();
+ await page.screenshot({path:'test-results/evidence/plan-revision.png',fullPage:true});
  await page.getByText(/承認済み第.*版を確認/).click();await expect(page.getByText('短期目標：架空修正目標',{exact:true})).toBeVisible();
  await admin.close();
 });
 test('same signed session immediately loses access after assignment, membership, role removal and staff stop',async({page})=>{
  await login(page,'specialist');const id=fixture.actors.specialist.id;
+ const before=(await page.context().cookies()).filter(c=>c.name.includes('auth-token'));
  for(const [change,restore] of [
   ["update public.plan_assignments set ends_on=current_date where staff_id=$1","update public.plan_assignments set ends_on=null where staff_id=$1"],
   ["update public.staff_facility_roles set ends_at=now() where staff_id=$1","update public.staff_facility_roles set ends_at=null where staff_id=$1"],
@@ -68,6 +72,18 @@ test('same signed session immediately loses access after assignment, membership,
   try{await database(change,[id]);await page.getByRole('button',{name:/の記録（第1版）/}).first().click();await expect(page.getByRole('alert')).toContainText('許可されていません');await expect(page.getByLabel('相談内容',{exact:true})).toHaveCount(0);expect((await api(page,'user.read',user)).status).toBe(403);}
   finally{await database(restore,[id]);}
  }
+ expect((await page.context().cookies()).filter(c=>c.name.includes('auth-token'))).toEqual(before);
+});
+test('anonymous rejected and stale record editor gets business conflict without overwriting',async({page})=>{
+ await page.goto('/login');expect((await api(page,'user.list',null)).status).toBe(401);
+ await login(page,'specialist');await page.goto(`/users/${user}/records`);
+ await page.getByRole('button',{name:/の記録（第1版）/}).first().click();
+ const records=(await api(page,'record.list',user,{kind:'support'})).body.data;
+ const r=records.find((x:{created_by:string})=>x.created_by===fixture.actors.specialist.id);
+ expect((await api(page,'record.save',r.id,{kind:'support',user_id:user,date:r.occurred_at,content:{...r.content,consultation:'別画面の架空更新'}},r.version)).status).toBe(200);
+ await page.getByLabel('相談内容',{exact:true}).fill('古い画面の架空更新');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('alert')).toContainText('内容が更新されています');
+ expect((await api(page,'record.read',r.id,{kind:'support'})).body.data.content.consultation).toBe('別画面の架空更新');
+ await expect(page.getByLabel('相談内容',{exact:true})).toHaveValue('古い画面の架空更新');
 });
 test('dual-role self approval is hidden and rejected; anonymous and forged IDs rejected',async({page})=>{
  await login(page,'dual');
