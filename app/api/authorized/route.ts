@@ -29,7 +29,8 @@ export async function POST(request:Request){
  if(error){entryDenied('rpc_gateway',403);return reply({error:'操作できません。'},403);}
  if(!data||typeof data!=='object'||Array.isArray(data)||data.ok!==true){
   const code=data&&typeof data==='object'&&!Array.isArray(data)?data.code:null;
-  return reply({error:code==='40001'?'内容が更新されています。再読込してから操作してください。':code==='22023'?'入力内容や必須項目を確認してください。':'この操作は許可されていません。担当・所属・職員の有効状態、または計画の状態を確認してください。'},code==='40001'?409:code==='22023'?400:403);
+  const invalid=typeof code==='string'&&(code.startsWith('22')||code==='23514'||code==='23502');
+  return reply({error:code==='40001'?'内容が更新されています。再読込してから操作してください。':invalid?'入力内容や必須項目を確認してください。':'この操作は許可されていません。担当・所属・職員の有効状態、または計画の状態を確認してください。'},code==='40001'?409:invalid?400:403);
  }
  return reply(data,200);
  } catch { return reply({error:'接続できませんでした。時間をおいて再読込してください。'},503); }

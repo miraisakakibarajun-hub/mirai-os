@@ -12,7 +12,7 @@ test.afterEach(async({page},info)=>{
 async function login(page:Page,role:string){
  await page.route('**/*',route=>{const u=new URL(route.request().url());return ['127.0.0.1','localhost'].includes(u.hostname)?route.continue():route.abort();});
  await page.goto('/login');await page.getByLabel('メールアドレス').fill(fixture.actors[role].email);await page.getByLabel('パスワード').fill(fixture.actors[role].password);
- await page.getByRole('button',{name:'ログイン',exact:true}).click();await page.waitForURL('**/users');
+ await page.getByRole('button',{name:'ログイン',exact:true}).click();await page.waitForURL('**/dashboard');await expect(page.getByRole('heading',{name:'業務・期限一覧'})).toBeVisible();await page.getByRole('link',{name:'利用者一覧',exact:true}).click();await page.waitForURL('**/users');
  const context=await api(page,'session.context',null);expect(context.status,JSON.stringify(context.body)).toBe(200);
 }
 async function api(page:Page,operation:string,target:string|null,payload:object={},version:number|null=null){

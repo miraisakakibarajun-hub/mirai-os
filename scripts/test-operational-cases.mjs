@@ -25,6 +25,10 @@ export async function operationalCases({db,actors:a,facility,facility2,user,user
  await deny('3D future membership cannot access',a.specialist,'user.read',user);
  await allow('3D restore membership',a.admin,'staff.role',facility,{staff_id:a.specialist,role_code:'specialist',starts_at:'2020-01-01T00:00:00Z'});
  await allow('3D membership active again',a.specialist,'user.read',user);
+ await allow('3D grant new administrator role to another employee',a.admin,'staff.role',facility,{staff_id:a.worker,role_code:'business_admin',starts_at:'2020-01-01T00:00:00Z'});
+ await allow('3D granted administrator has scoped management',a.worker,'staff.list',facility);
+ await allow('3D revoke only additional role',a.admin,'staff.role',facility,{staff_id:a.worker,role_code:'business_admin',starts_at:'2020-01-01T00:00:00Z',ends_at:'2020-01-02T00:00:00Z'});
+ await deny('3D role revoke immediate with same login',a.worker,'staff.list',facility);
  const directory=await allow('3D directory scoped and minimal',a.specialist,'staff.directory',user);
  assert.ok(directory.some(s=>s.id===a.worker));assert.ok(directory.every(s=>Object.keys(s).sort().join(',')==='canAssign,id,name'));
  assert.ok(!directory.some(s=>[a.system,a.stopped,a.otherOrg,a.otherFacility].includes(s.id)));

@@ -5,7 +5,7 @@ const path=require('node:path');
 const vm=require('node:vm');
 const ts=require('typescript');
 const root=path.resolve(__dirname,'..');
-function loader(client){
+function loader(client,log=console){
  const cache=new Map();
  const network=()=>{throw new Error('NETWORK FORBIDDEN');};
  function load(file){
@@ -22,7 +22,7 @@ function loader(client){
    }
    return require(name);
   };
-  vm.runInNewContext(code,{module,exports:module.exports,require:req,Response,Request,URL,fetch:network,AbortSignal,console,crypto:require('node:crypto').webcrypto});
+  vm.runInNewContext(code,{module,exports:module.exports,require:req,Response,Request,URL,fetch:network,AbortSignal,console:log,crypto:require('node:crypto').webcrypto});
   return module.exports;
  }
  return {load,network};
@@ -80,3 +80,11 @@ test('Secret scanner rejects representative secrets without storing them',async(
  assert.equal(findings('.env.example','NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321').length,0);
 });
 
+
+test('API refusal telemetry contains classifications only, never supplied secrets or body',async()=>{
+ const lines=[];const log={...console,warn:value=>lines.push(value)};
+ const route=loader(undefined,log).load('app/api/authorized/route.ts');
+ const result=await route.POST(new Request('http://localhost/api/authorized',{method:'POST',headers:{origin:'http://evil.invalid',cookie:'private-session-sentinel'},body:JSON.stringify({password:'private-password-sentinel',name:'private-person-sentinel'})}));
+ assert.equal(result.status,403);assert.equal(lines.length,1);
+ const event=JSON.parse(lines[0]);assert.deepEqual(Object.keys(event).sort(),['at','event','reason','requestId','status']);assert.equal(event.reason,'origin');assert.ok(!lines.join('').includes('sentinel'));
+});
