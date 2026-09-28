@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LogoutButton from "./components/LogoutButton";
+import { createClient } from "@/lib/supabase/server";
 
 const menuItems = [
   {
@@ -11,35 +13,40 @@ const menuItems = [
     number: "02",
     title: "サービス等利用計画",
     description: "計画案・本計画の作成と管理",
-    href: null,
+    href: "/users?task=plans",
   },
   {
     number: "03",
     title: "モニタリング",
-    description: "実施時期の確認と記録作成",
-    href: null,
+    description: "次回予定日の一覧と記録作成",
+    href: "/monitoring",
   },
   {
     number: "04",
     title: "支援記録",
     description: "日々の相談・支援内容を記録",
-    href: null,
+    href: "/users?task=records",
   },
   {
     number: "05",
     title: "AI作成支援",
     description: "記録を基に文書作成をサポート",
-    href: null,
+    href: "/users?task=ai-documents",
   },
   {
     number: "06",
     title: "ダッシュボード",
     description: "期限・進捗・未対応事項を確認",
-    href: null,
+    href: "/dashboard",
   },
+  { number: "07", title: "会議の対応一覧", description: "会議下書きの決定事項・担当者・期限を確認", href: "/meetings" },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <main className="min-h-screen bg-[#F4F5F7] text-[#16233F]">
       <header className="border-b border-[#A9824F]/40 bg-[#16233F] text-white">
@@ -55,7 +62,20 @@ export default function Home() {
 
           <div className="text-right">
             <p className="text-sm text-[#D8C4A5]">相談支援AIシステム</p>
-            <p className="mt-1 text-xs text-white/60">Development Ver.0.1</p>
+
+            {user ? (
+              <div className="mt-1 flex items-center justify-end gap-3">
+                <p className="text-xs text-white/60">{user.email}</p>
+                <LogoutButton />
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="mt-1 inline-block text-xs text-white/60 underline"
+              >
+                ログイン
+              </Link>
+            )}
           </div>
         </div>
       </header>
