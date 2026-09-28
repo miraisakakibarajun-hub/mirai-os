@@ -157,11 +157,15 @@ begin
    update public.users set name=coalesce(payload->>'name',name),kana=coalesce(payload->>'kana',kana),updated_by=a where id=target;
    result:=jsonb_build_object('id',target);
   elsif op in ('assignment.set','assignment.end') then
-   if not mirai_private.allowed(target,'admin') or not mirai_private.assignable(target,(payload->>'staff_id')::uuid) then raise exception using errcode='42501'; end if;
+   if not mirai_private.allowed(target,'admin') then raise exception using errcode='42501'; end if;
    if op='assignment.set' then
+    if not mirai_private.assignable(target,(payload->>'staff_id')::uuid) then raise exception using errcode='42501'; end if;
     insert into public.plan_assignments(user_id,staff_id,starts_on,ends_on) values(target,(payload->>'staff_id')::uuid,(payload->>'starts_on')::date,(payload->>'ends_on')::date)
     on conflict(user_id,staff_id) do update set starts_on=excluded.starts_on,ends_on=excluded.ends_on;
-   else update public.plan_assignments set ends_on=(statement_timestamp() at time zone 'Asia/Tokyo')::date where user_id=target and staff_id=(payload->>'staff_id')::uuid; end if;
+   else
+    update public.plan_assignments set ends_on=greatest(starts_on,(statement_timestamp() at time zone 'Asia/Tokyo')::date) where user_id=target and staff_id=(payload->>'staff_id')::uuid;
+    if not found then raise exception using errcode='42501'; end if;
+   end if;
    result:=jsonb_build_object('id',target);
   elsif op in ('record.read','record.save') then
    t:=case payload->>'kind' when 'support' then 'support_records' when 'assessment' then 'assessment_records' when 'monitoring' then 'monitoring_records' when 'meeting' then 'meeting_records' end;
@@ -199,6 +203,7 @@ begin
     update public.plans set content=payload->'content',content_version=content_version+1,updated_by=a where id=p.id;
    elsif op='plan.submit' then
     if not mirai_private.allowed(p.user_id,'edit') or review.state not in ('draft','rejected') or p.content is null then raise exception using errcode='42501'; end if;
+    if exists(select 1 from unnest(array['userWish','overallPolicy','longTermGoal','shortTermGoal']) k where btrim(coalesce(p.content->>k,''))='') then raise exception using errcode='22023'; end if;
     update public.plan_reviews set state='submitted',submitted_revision=p.content_version,epoch=epoch+1 where plan_id=p.id;
    elsif op in ('plan.approve','plan.reject') then
     if not mirai_private.allowed(p.user_id,'admin') or review.state<>'submitted' or review.submitted_revision is distinct from p.content_version

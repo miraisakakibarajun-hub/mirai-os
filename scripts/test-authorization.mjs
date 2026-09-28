@@ -123,7 +123,7 @@ try{
  await deny('admin without specialist assignment cannot create plan',actors.dual,'plan.create',ownPlan,{user_id:newUser.id,renewal_date:'2027-01-01'});
  await allow('administrator assigns dual-role',actors.admin,'assignment.set',newUser.id,{staff_id:actors.dual,starts_on:'2020-01-01'});
  await allow('dual-role create after assignment',actors.dual,'plan.create',ownPlan,{user_id:newUser.id,renewal_date:'2027-01-01'});
- p=await allow('dual-role save',actors.dual,'plan.save',ownPlan,{content:{userWish:'架空'}},0);
+ p=await allow('dual-role save',actors.dual,'plan.save',ownPlan,{content:{userWish:'架空',overallPolicy:'架空',longTermGoal:'架空',shortTermGoal:'架空'}},0);
  await allow('dual-role submit',actors.dual,'plan.submit',ownPlan,{},p.content_version);
  await deny('self approval even with admin role',actors.dual,'plan.approve',ownPlan,{},p.content_version);
  await allow('separate administrator approval of dual-role plan',actors.admin,'plan.approve',ownPlan,{},p.content_version);
@@ -133,6 +133,7 @@ try{
  await allow('new assignment effective',actors.unassigned,'user.read',user);
  await allow('administrator ends assignment',actors.admin,'assignment.end',user,{staff_id:actors.unassigned});
  await deny('assignment ended same JWT',actors.unassigned,'user.read',user);
+ await allow('administrator ends stopped staff assignment',actors.admin,'assignment.end',user,{staff_id:actors.stopped});
  await allow('membership deletion positive control',actors.specialist,'user.read',user);
  const removedMembership=(await db.query('delete from public.staff_facility_roles where staff_id=$1 returning *',[actors.specialist])).rows[0];
  await deny('deleted membership same JWT',actors.specialist,'user.read',user);
