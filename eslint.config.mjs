@@ -7,6 +7,7 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     files: [
+      "tests/**/*.cjs",
       "test-dashboard-render.cjs",
       "test-meeting-list-render.cjs",
       "test-planning-assistance.cjs",

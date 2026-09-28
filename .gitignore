@@ -49,3 +49,6 @@ next-env.d.ts
 /pending/
 # Instance-specific role assignment: not a schema migration
 /supabase/development-plan-admin.sql
+
+# Synthetic test reports
+/test-results/

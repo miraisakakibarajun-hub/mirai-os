@@ -7,12 +7,13 @@ import { parseAssessment } from '@/lib/assessment';
 import { parseSupport } from '@/lib/support-record';
 
 export class GenerationError extends Error { constructor(message: string, public status = 400) { super(message); } }
-export async function generateDocument(client: SupabaseClient<Database>, request: unknown, config: {key?:string;model?:string}, fetcher: typeof fetch = fetch) {
+export async function generateDocument(client: SupabaseClient<Database>, request: unknown, config: {key?:string;model?:string;mode?:'mock'|'disabled'}, fetcher: typeof fetch = fetch) {
   const input = request as Record<string,unknown> | null;
   if (!input || !isUuid(input.userId) || !documentKinds.some(kind=>kind===input.kind) || input.consent !== true) throw new GenerationError('利用者・文書種類・送信確認を確認してください。');
   let refs;
   try {refs = parseRefs(input.sources);} catch {throw new GenerationError('参照記録が不正です。');}
   if (!refs.length) throw new GenerationError('参照する記録を選択してください。');
+  if (config.mode !== 'mock' || fetcher === fetch) throw new GenerationError('Phase 3-AではAI送信は無効です。',503);
   if (!config.key || !config.model) throw new GenerationError('AI接続が未設定です。手入力での文書保存は利用できます。',503);
   const user = await client.from('users').select('id').eq('id',input.userId).maybeSingle();
   if (user.error || !user.data) throw new GenerationError('利用者を確認できません。',403);

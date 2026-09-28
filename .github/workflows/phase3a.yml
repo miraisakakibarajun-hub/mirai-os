@@ -1,0 +1,62 @@
+name: Phase 3-A isolated checks
+on:
+  push:
+    branches: [phase3a/safe-development-foundation]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: phase3a-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      NEXT_PUBLIC_SUPABASE_URL: http://127.0.0.1:54321
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: synthetic-public-test-key
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Secret patterns and environment file policy
+        run: npm run check:secrets
+      - name: Dependency security
+        run: npm audit --audit-level=high
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+  postgres:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: synthetic-ci-only
+          POSTGRES_DB: mirai_phase3a
+        ports: ['54329:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres -d mirai_phase3a"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Rebuild preserved migrations and deny unsafe operations
+        run: npm run test:db:postgres

@@ -53,8 +53,9 @@ export async function loadPlanningContext(client:SupabaseClient<Database>,userId
   counts:{assessments:assessments.data?.length??0,monitoring:monitoring.data?.length??0,meetings:meetings.data?.length??0,support:support.data?.length??0}};
 }
 
-export async function generatePlanning(client:SupabaseClient<Database>,input:Record<string,unknown>,config:{key?:string;model?:string},fetcher:typeof fetch=fetch){
+export async function generatePlanning(client:SupabaseClient<Database>,input:Record<string,unknown>,config:{key?:string;model?:string;mode?:'mock'|'disabled'},fetcher:typeof fetch=fetch){
  if(input.consent!==true||!isUuid(input.userId)||!['understand','propose','retry'].includes(String(input.action)))throw new GenerationError('対象利用者とAI送信の確認が必要です。');
+ if(config.mode!=='mock'||fetcher===fetch)throw new GenerationError('Phase 3-AではAI送信は無効です。',503);
  if(!config.key||!config.model)throw new GenerationError('AI接続が未設定です。設定を確認してください。',503);
  const context=await loadPlanningContext(client,input.userId);
  if(input.sourceVersion!==context.sourceVersion)throw new GenerationError('参照記録が変更されています。最新の本文を確認し、送信にもう一度同意してください。',409);

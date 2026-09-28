@@ -1,0 +1,64 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+const ts=require('typescript');
+const root=path.resolve(__dirname,'..');
+function loader(){
+ const cache=new Map();
+ const network=()=>{throw new Error('NETWORK FORBIDDEN');};
+ function load(file){
+  file=path.resolve(root,file);
+  if(cache.has(file))return cache.get(file).exports;
+  const module={exports:{}};cache.set(file,module);
+  const code=ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+  const req=name=>{
+   if(name==='@/lib/supabase/server')return {createClient:()=>{throw new Error('DB FORBIDDEN');}};
+   if(name.startsWith('@/')||name.startsWith('.')){
+    let target=name.startsWith('@/')?path.join(root,name.slice(2)):path.resolve(path.dirname(file),name);
+    if(!path.extname(target))target+='.ts';
+    return load(target);
+   }
+   return require(name);
+  };
+  vm.runInNewContext(code,{module,exports:module.exports,require:req,Response,Request,URL,fetch:network,AbortSignal,console});
+  return module.exports;
+ }
+ return {load,network};
+}
+test('Both AI endpoints deny POST without touching DB or network',async()=>{
+ for(const p of ['app/api/planning-assistance/route.ts','app/api/ai-documents/generate/route.ts']){
+  const r=await loader().load(p).POST(new Request('http://localhost/api',{method:'POST'}));
+  assert.equal(r.status,503);
+  assert.match((await r.json()).error,/無効/);
+ }
+ assert.equal((await (await loader().load('app/api/ai-documents/generate/route.ts').GET()).json()).available,false);
+});
+test('Provider calls fail closed even with a key, unless an explicit offline mock is injected',async()=>{
+ const {load}=loader();
+ const client=new Proxy({}, {get(){throw new Error('DB FORBIDDEN');}});
+ const id='11111111-1111-4111-8111-111111111111';
+ const config={key:'synthetic',model:'synthetic'};
+ const planning=load('lib/planning-assistance-server.ts');
+ await assert.rejects(planning.generatePlanning(client,{userId:id,consent:true,action:'understand'},config),e=>e.status===503);
+ await assert.rejects(planning.generatePlanning(client,{userId:id,consent:true,action:'understand'},{...config,mode:'mock'}),e=>e.status===503);
+ const document=load('lib/ai-generate.ts');
+ const request={userId:id,kind:'サービス等利用計画の下書き',consent:true,sources:[{kind:'plan',id,version:1}]};
+ await assert.rejects(document.generateDocument(client,request,config),e=>e.status===503);
+ await assert.rejects(document.generateDocument(client,request,{...config,mode:'mock'}),e=>e.status===503);
+});
+test('Hosted DB addresses cannot enter the application client',()=>{
+ const check=loader().load('lib/supabase/local-boundary.ts').requireLocalSupabase;
+ for(const url of ['https://example.supabase.co','http://localhost.evil.test','http://u:p@localhost:54321','https://127.0.0.1',undefined])assert.throws(()=>check(url));
+ assert.equal(check('http://127.0.0.1:54321'),'http://127.0.0.1:54321');
+});
+test('Secret scanner rejects representative secrets without storing them',async()=>{
+ const {findings}=await import('../scripts/check-secrets.mjs');
+ assert.ok(findings('.env.local','x').length);
+ assert.ok(findings('a','sk-'+'x'.repeat(40)).length);
+ assert.ok(findings('a','ghp_'+'x'.repeat(40)).length);
+ assert.ok(findings('a','-----BEGIN '+'PRIVATE KEY-----').length);
+ assert.equal(findings('.env.example','NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321').length,0);
+});
+

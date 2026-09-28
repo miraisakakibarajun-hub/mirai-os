@@ -80,7 +80,7 @@ const db = {from(table) {
   monitorRows=[];
   duplicate=true;await assert.rejects(server.loadPlanningContext(db,uuid),/一つに特定/);duplicate=false;
   failed='support_records';await assert.rejects(server.loadPlanningContext(db,uuid),/一部だけで進めず/);failed='';
-  const config={key:'synthetic-key',model:'synthetic-model'};
+  const config={key:'synthetic-key',model:'synthetic-model',mode:'mock'};
   const request={userId:uuid,consent:true,sourceVersion:context.sourceVersion,action:'retry',field:'shortTermGoal',understanding};
   let unexpectedCalls=0;
   const forbiddenFetch=async()=>{unexpectedCalls++;throw new Error('must not send');};
@@ -125,7 +125,7 @@ const db = {from(table) {
 
   assert.ok(!sent.input.includes('架空利用者'));
   await assert.rejects(server.generatePlanning(db,{...request,consent:false},config),/確認が必要/);
-  await assert.rejects(server.generatePlanning(db,request,{}),/未設定/);
+  await assert.rejects(server.generatePlanning(db,request,{}),/無効/);
   const React=require('react');
   const {renderToStaticMarkup}=require('react-dom/server');
   const Print=load(path.join(root,'app/users/[id]/plans/print/PlanPrintDocument.tsx')).default;
