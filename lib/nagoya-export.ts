@@ -31,7 +31,12 @@ export async function nagoyaWorkbook(snapshot:ExportSnapshot){
  for(const c of ['X16','X17','AG17'])sheet.getCell(c).alignment={wrapText:true,vertical:'middle',horizontal:'center'};
  sheet.getRow(17).height=32;
  const week=book.getWorksheet('週間計画')!;week.getCell('I4').value=snapshot.user.name;week.getCell('AY4').value=snapshot.facility.name;
+ for(const range of ['E11:K11','L11:R11','S11:Y11','Z11:AF11','AG11:AM11','AN11:AT11','AU11:BA11','BB11:BK11','BB35:BK35','A62:D62'])week.mergeCells(range);
+ for(const address of ['E11','L11','S11','Z11','AG11','AN11','AU11','BB11','BB35','A62'])week.getCell(address).alignment={wrapText:true,vertical:'middle',horizontal:'center'};
+ week.getRow(11).height=32;week.getRow(35).height=32;week.getRow(62).height=80;week.getRow(6).height=32;
+ [6,8,10,12,14,16,18,20,22,24,2,4].forEach((hour,i)=>{week.getCell(`A${14+i*4}`).value=`${hour}:00`;});
  for(const s of book.worksheets){
+  s.getCell('A2').value=`【検証用・提出不可】${s.getCell('A2').text}`;
   s.pageSetup={paperSize:9,orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:1,printArea:`A1:BK${s.rowCount}`};
   s.headerFooter={oddHeader:'&C検証用・未入力項目あり・提出不可',oddFooter:`&L${NAGOYA_TEMPLATE}&R第${snapshot.revision}版 &P/&N`};
  }

@@ -9,6 +9,6 @@ test('restored Auth login and business records through the browser',async({page}
  for(const [route,label] of [['records','支援記録'],['assessments','アセスメント'],['monitoring','モニタリング'],['meetings','担当者会議記録']]){
   await page.goto(`/users/${f.user}/${route}`);await expect(page.getByRole('heading',{name:label,exact:true})).toBeVisible();await expect(page.getByRole('button',{name:/の記録（第/}).first()).toBeVisible();
  }
- await page.goto(`/users/${f.user}/plans`);await expect(page.getByRole('status')).toContainText('承認済み');
+ await page.goto(`/users/${f.user}/plans`);await expect(page.getByText(/承認済み第.*版を確認/)).toBeVisible();
  await page.screenshot({path:'test-results/evidence/recovery.png',fullPage:true});
 });
