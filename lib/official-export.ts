@@ -25,7 +25,7 @@ export async function officialWorkbook(s:ExportSnapshot,kind:FormKind,outputId:s
  function merge(sheet:ExcelJS.Worksheet,range:string){if(!sheet.model.merges.includes(range))sheet.mergeCells(range);sheet.getCell(range.split(':')[0]).alignment={wrapText:true,vertical:'middle'};}
  function header(sheet:ExcelJS.Worksheet){
   for(const range of ['A4:H4','V4:AC4','AQ4:AX4','A5:H5','I5:U5','V5:AC5','AD5:AP5','V6:AC6','AQ6:AX6','A7:H7','V7:AC7','A9:H9'])merge(sheet,range);
-  for(const [cell,text] of [['I4',s.user.name],['AY4',s.facility.name],['AD4',f.supportLevel],['I5',f.guardian],['AD5',f.relationship],['I6',f.recipientNumber],['AD6',f.copayLimit],['AY6',f.authorName],['I7',f.regionalNumber],['AD7',f.childNumber]])put(sheet,cell,text,60);
+  for(const [cell,text] of [['I4',s.user.name],['AY4',s.facility.name],['AD4',f.supportLevel],['I5',f.guardian],['AD5',f.relationship],['I6',f.recipientNumber],['AD6',f.copayLimit],['AY6',f.authorName],['I7',f.regionalNumber],['AD7',f.childNumber]])put(sheet,cell,text,20);
   for(const row of [4,5,6,7,9])sheet.getRow(row).height=32;
  }
  const originals=structuredClone(first.model);
@@ -42,7 +42,7 @@ export async function officialWorkbook(s:ExportSnapshot,kind:FormKind,outputId:s
   }else{
    for(const range of ['A12:H12','B13:H13','B14:H14','V9:AC9','AQ9:AX9',...(kind==='proposal'?['X16:AL17']:['X16:AL16','X17:AF17','AG17:AL17'])])merge(sheet,range);
    sheet.getRow(17).height=38;
-   put(sheet,'I11',`本人：${s.content.userWish}\n家族：${s.content.familyWish}`,350);put(sheet,'I12',s.content.overallPolicy,350);put(sheet,'I13',s.content.longTermGoal,350);put(sheet,'I14',s.content.shortTermGoal,350);
+   put(sheet,'I11',`本人：${s.content.userWish}\n家族：${s.content.familyWish}`,80);put(sheet,'I12',s.content.overallPolicy,80);put(sheet,'I13',s.content.longTermGoal,80);put(sheet,'I14',s.content.shortTermGoal,80);
    for(const r of [11,12,13,14])sheet.getRow(r).height=44;
   }
   for(let i=0;i<6;i++){
@@ -51,7 +51,7 @@ export async function officialWorkbook(s:ExportSnapshot,kind:FormKind,outputId:s
    const d=f.services.find(x=>x.serviceId===service.id)??emptyServiceForm(service.id);
    const cells=kind==='monitoring'?{A:String(page*6+i+1),B:d.goal,I:d.achievementDate,L:d.provided,T:d.satisfaction,AB:d.achievement,AJ:d.nextIssue,AR:d.typeChange,AV:d.amountChange,AZ:d.weekChange,BD:d.notes}:
     {A:String(page*6+i+1),B:d.issue,K:d.goal,T:d.achievementDate,X:`${service.serviceName}\n${service.content}\n${service.frequency}`,AM:d.personRole,AV:d.evaluationDate,AZ:d.notes,...(kind==='proposal'?{}:{AG:d.provider})};
-   for(const [col,text] of Object.entries(cells))put(sheet,`${col}${row}`,text,90);
+   for(const [col,text] of Object.entries(cells))put(sheet,`${col}${row}`,text,40);
    sheet.getRow(row).height=90;
   }
   sheet.pageSetup={paperSize:9,orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:1,printArea:`A1:BK${kind==='monitoring'?21:23}`};
@@ -59,7 +59,7 @@ export async function officialWorkbook(s:ExportSnapshot,kind:FormKind,outputId:s
  header(week);for(const range of ['E11:K11','L11:R11','S11:Y11','Z11:AF11','AG11:AM11','AN11:AT11','AU11:BA11','BB11:BK11','BB35:BK35','A62:D62'])merge(week,range);
  for(let r=12;r<=59;r++)for(const [left,right] of [['E','K'],['L','R'],['S','Y'],['Z','AF'],['AG','AM'],['AN','AT'],['AU','BA']])merge(week,`${left}${r}:${right}${r}`);
  week.getRow(11).height=30;week.getRow(35).height=30;
- put(week,'I9',s.content.planPeriodStart.slice(0,7));put(week,'BB12',f.dailyActivities,250);put(week,'BB36',f.nonWeeklyServices,250);put(week,'E62',f.lifeVision,300);week.getRow(62).height=90;
+ put(week,'I9',s.content.planPeriodStart.slice(0,7));put(week,'BB12',f.dailyActivities,80);put(week,'BB36',f.nonWeeklyServices,80);put(week,'E62',f.lifeVision,100);week.getRow(62).height=90;
  [6,8,10,12,14,16,18,20,22,24,2,4].forEach((hour,i)=>{week.getCell(`A${14+i*4}`).value=`${hour}:00`;});
  const cols=['E','L','S','Z','AG','AN','AU'];
  f.weekly.forEach((event,i)=>{
