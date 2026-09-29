@@ -38,9 +38,12 @@ try{
  const tables=(await db.query("select schemaname,tablename from pg_tables where schemaname in ('public','mirai_private','auth') and not(schemaname='auth' and tablename='schema_migrations') order by 1,2")).rows;
  assert.ok(tables.every(x=>/^[a-z_]+$/.test(x.schemaname+x.tablename)));
  const truncate='truncate '+tables.map(x=>`"${x.schemaname}"."${x.tablename}"`).join(',')+' restart identity cascade;\n';
+ // Local Supabase owns Auth sequences with its platform administrator, not the
+ // application postgres login. Use that existing local role; do not alter GRANTs.
+ assert.equal(execFileSync('docker',['exec',container,'psql','-U','supabase_admin','-d','postgres','-X','-Atc',"select rolsuper from pg_roles where rolname=current_user"],{encoding:'utf8'}).trim(),'t');
  // pg_dump may contain psql meta-commands (including \\restrict). Restore with
  // its matching client, with one transaction and fail-fast error handling.
- execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','--single-transaction','--set=ON_ERROR_STOP=on'],{input:Buffer.concat([Buffer.from(truncate),dump]),maxBuffer:30*1024*1024,timeout:180000});
+ execFileSync('docker',['exec','-i',container,'psql','-U','supabase_admin','-d','postgres','-X','--single-transaction','--set=ON_ERROR_STOP=on'],{input:Buffer.concat([Buffer.from(truncate),dump]),maxBuffer:30*1024*1024,timeout:180000});
  const after=await manifest();assert.deepEqual(after,before,'Every business/private table must be restored byte-equivalently');
  const fixture=JSON.parse(fs.readFileSync('test-results/browser-fixture.json','utf8'));
  const client=createClient(local.API_URL,local.ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
