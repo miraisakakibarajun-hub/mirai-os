@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
-import { selectApprovedPlan } from '@/lib/approved-plan';
+import {parseExport} from '@/lib/export-snapshot';
+import {parsePlan} from '@/lib/plan-content';
 import PlanPrintDocument, { type PrintPlan } from './PlanPrintDocument';
 import PrintButton from './PrintButton';
 import styles from './print.module.css';
@@ -23,16 +24,12 @@ export default async function PlanPrintPage({ params, searchParams }: {
     const db = await createClient();
     const { data: auth, error: authError } = await db.auth.getUser();
     if (authError || !auth.user) return fail('ログインしてから、計画画面の印刷ボタンを押してください。');
-    const { data: plan, error: planError } = await db.from('plans').select('id,user_id').eq('id',query.plan).eq('user_id',id).maybeSingle();
-    if (planError || !plan) return fail('この計画を取得できません。');
-    const { data: review, error: reviewError } = await db.rpc('get_plan_review',{p_plan_id:plan.id});
-    if (reviewError) return fail('この計画の出力権限がないか、承認情報を取得できません。');
-    const approved = selectApprovedPlan(review,Number(query.revision));
-    if (!approved) return fail('承認された版が見つかりません。下書きはこの画面から出力できません。');
-    const { data: user, error: userError } = await db.from('users').select('name').eq('id',id).single();
-    const { data: staff, error: staffError } = await db.from('staff').select('name').eq('id',approved.approval.actor!).single();
-    if (userError || staffError || !user || !staff) return fail('氏名・承認者を取得できません。時間をおいて再度開いてください。');
-    printable = { name: user.name, revision: approved.snapshot.revision, content: approved.snapshot.content, approvedAt: approved.approval.happened_at, approver: staff.name };
+    const {data,error}=await db.rpc('mirai_command',{p_operation:'plan.export',p_target:query.plan,p_payload:{revision:Number(query.revision)}});
+    if(error)return fail('出力できません。');
+    const snapshot=parseExport(data);
+    if(snapshot.user.id!==id)return fail('出力できません。');
+    printable={name:snapshot.user.name,revision:snapshot.revision,content:parsePlan(snapshot.content),approvedAt:snapshot.approvedAt,approver:snapshot.approverId,
+      planId:snapshot.planId,userId:snapshot.user.id,outputAt:snapshot.outputAt,templateVersion:snapshot.templateVersion};
   } catch { return fail('出力データを読み込めませんでした。計画画面から開き直してください。'); }
   return <main className={styles.shell}>
       <div className={styles.toolbar}>

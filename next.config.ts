@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  outputFileTracingIncludes: {'/api/forms/nagoya': ['./templates/nagoya/keikaku.xlsx']},
 };
 
 export default nextConfig;

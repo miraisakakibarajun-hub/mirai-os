@@ -1,0 +1,30 @@
+{
+  "sourcePage": "https://www.kaigo-wel.city.nagoya.jp/view/wel/docs_jigyosya/2013092500080/",
+  "sourcePublished": "2012-04-02",
+  "retrieved": "2026-09-29",
+  "currentUseApprovedByUser": "Nagoya first",
+  "submissionReady": false,
+  "conversion": "XLS cell/layout extraction -> artifact-tool XLSX -> equivalent default XML namespace for ExcelJS compatibility; print/output verification remains isolated.",
+  "files": [
+    {
+      "file": "keikaku.xls",
+      "sha256": "058f21c2a3c828b8ed0e4533f12a033eb3233a42d2bd42dada7c991381551f06",
+      "url": "https://www.kaigo-wel.city.nagoya.jp/file_contents/keikaku.xls"
+    },
+    {
+      "file": "keikaku.xlsx",
+      "sha256": "0fc0eb126976a90124c68a43b7e28d3c7055596c4b8307030ad41c0e098c75f3",
+      "url": null
+    },
+    {
+      "file": "keikakuan.xls",
+      "sha256": "056a8ca5bd65973543514b6836821a17f739746e17aa936478ce7a100900ea87",
+      "url": "https://www.kaigo-wel.city.nagoya.jp/file_contents/keikakuan.xls"
+    },
+    {
+      "file": "kensyou.xls",
+      "sha256": "8ee39e8eb764481d7c103681f133a6fb9e5ee1f9e5dfa1af5f6d2ec40218830a",
+      "url": "https://www.kaigo-wel.city.nagoya.jp/file_contents/kensyou.xls"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 name: Phase 3 isolated checks
 on:
   push:
-    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model, phase3c/authorized-business-ui, phase3d/operational-management]
+    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model, phase3c/authorized-business-ui, phase3d/operational-management, phase3e/staging-recovery-preparation]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -85,16 +85,22 @@ jobs:
         run: npx --no-install playwright install --with-deps chromium
       - name: Browser to API to Auth to database
         run: npm run test:browser
+      - name: Restore synthetic backup into rebuilt local stack
+        run: npm run test:recovery
+      - name: Login and business UI after recovery
+        run: npx --no-install playwright test --config playwright.recovery.config.ts
       - name: Isolated database security advisors
         run: npx --no-install supabase db advisors --local --type security --fail-on error
       - name: Save synthetic test evidence only (never Auth keys or fixture credentials)
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: phase3d-test-evidence
+          name: phase3e-test-evidence
           path: |
             test-results/browser-results.json
             test-results/authorization-supabase.json
+            test-results/recovery-rehearsal.json
+            test-results/recovery-browser-results.json
             test-results/evidence/*.png
           retention-days: 7
       - name: Stop disposable stack

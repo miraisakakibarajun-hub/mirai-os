@@ -137,6 +137,17 @@ try{
  await deny('approved content immutable',actors.specialist,'plan.save',plan,{content:{}},p.content_version);
  await deny('worker plan access',actors.worker,'plan.read',plan);
  await deny('system plan access',actors.system,'plan.read',plan);
+ const exported=await allow('approved export snapshot',actors.specialist,'plan.export',plan,{revision:p.content_version});
+ const originalName=exported.user.name;
+ await allow('rename after approval',actors.specialist,'user.update',user,{name:'架空改名後'});
+ const reexport=await allow('reprint immutable identity',actors.specialist,'plan.export',plan,{revision:p.content_version});
+ assert.equal(reexport.user.name,originalName);assert.equal(reexport.content.userWish,'架空希望');
+ for(const name of ['worker','system','otherOrg','otherFacility','unassigned','stopped'])await deny('export '+name,actors[name],'plan.export',plan,{revision:p.content_version});
+ await deny('export forged identity',actors.specialist,'plan.export',plan,{revision:p.content_version,staff_id:actors.admin});
+ await deny('export absent revision',actors.specialist,'plan.export',plan,{revision:999});
+ await db.query('update public.plan_assignments set ends_on=current_date where user_id=$1 and staff_id=$2',[user,actors.specialist]);
+ await deny('export after assignment revoked',actors.specialist,'plan.export',plan,{revision:p.content_version});
+ await db.query('update public.plan_assignments set ends_on=null where user_id=$1 and staff_id=$2',[user,actors.specialist]);
  p=await allow('specialist revises',actors.specialist,'plan.revise',plan,{},p.content_version);
  await allow('revision resubmitted',actors.specialist,'plan.submit',plan,{},p.content_version);
  await allow('administrator rejects',actors.admin,'plan.reject',plan,{reason:'架空差戻し'},p.content_version);

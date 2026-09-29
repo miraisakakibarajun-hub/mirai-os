@@ -70,7 +70,7 @@ function Editor({userId}:{userId:string}){
  {row.review.state==='approved'&&<><p>承認済み版は直接変更できません。</p>{edit&&<button className={buttonClass} disabled={busy} onClick={()=>void act('plan.revise')}>改訂を開始</button>}</>}
  </section>
  <section className="my-5 rounded-xl border bg-white p-5"><h2 className="font-bold">手続き履歴</h2><ul>{history.events.filter(e=>e.reason).map(e=><li key={e.id}>差戻し理由：{e.reason}</li>)}</ul>
- {history.revisions.filter(v=>v.revision===row.review.approved_revision).map(v=><details key={v.revision}><summary>承認済み第{v.revision}版を確認</summary>{fields.map(([key,label])=><p key={key}>{label}：{v.content[key]}</p>)}</details>)}</section>
+ {history.revisions.filter(v=>v.revision===row.review.approved_revision).map(v=><details key={v.revision}><summary>承認済み第{v.revision}版を確認</summary><Link className="underline" href={`/users/${userId}/plans/print?plan=${row.id}&revision=${v.revision}`}>承認時の保存情報から印刷</Link><p><a className="underline" href={`/api/forms/nagoya?plan=${row.id}&revision=${v.revision}`}>名古屋市様式の検証用Excel（提出不可）</a></p>{fields.map(([key,label])=><p key={key}>{label}：{v.content[key]}</p>)}</details>)}</section>
  </>}
  </>}
  <Link href={`/users/${userId}`} className="block underline">利用者詳細へ戻る</Link></Shell>;

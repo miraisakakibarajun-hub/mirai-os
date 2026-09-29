@@ -14,15 +14,19 @@
     "test:db:postgres": "node scripts/test-db.mjs --postgres",
     "test:authorization": "node scripts/test-authorization.mjs",
     "test:auth": "node scripts/test-authorization.mjs supabase",
-    "test": "npm run test:existing && npm run test:safety && npm run test:db && npm run test:authorization",
+    "test": "npm run test:existing && npm run test:safety && npm run test:db && npm run test:authorization && npm run test:migration && npm run test:forms",
     "check:secrets": "node scripts/check-secrets.mjs",
     "check": "npm run check:secrets && npm run typecheck && npm run lint && npm test && npm run build",
     "test:browser": "playwright test",
-    "seed:browser": "node scripts/seed-browser.mjs"
+    "seed:browser": "node scripts/seed-browser.mjs",
+    "test:migration": "node scripts/test-migration-rehearsal.mjs",
+    "test:recovery": "node scripts/rehearse-recovery.mjs",
+    "test:forms": "node scripts/test-forms.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.112.3",
+    "exceljs": "4.4.0",
     "next": "16.3.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -43,5 +47,10 @@
   },
   "engines": {
     "node": ">=24.18 <25"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "11.1.1"
+    }
   }
 }

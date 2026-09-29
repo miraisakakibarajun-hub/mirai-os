@@ -65,6 +65,11 @@ test('manual plan -> submit -> reject -> resubmit -> separate approval -> immuta
  await page.getByLabel('短期目標',{exact:true}).fill('架空改訂後の目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
  await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
  await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
+ const exported=await page.request.get(`/api/forms/nagoya?plan=${current.id}&revision=1`);
+ expect(exported.status()).toBe(200);expect(exported.headers()['content-type']).toContain('spreadsheetml');expect((await exported.body()).subarray(0,2).toString()).toBe('PK');
+ await page.goto(`/users/${user}/plans/print?plan=${current.id}&revision=1`);await expect(page.getByText('承認済みの第1版を表示しています。')).toBeVisible();
+ const worker=await browser.newPage();await login(worker,'worker');expect((await worker.request.get(`/api/forms/nagoya?plan=${current.id}&revision=1`)).status()).toBe(403);await worker.close();
+ const unauth=await browser.newContext();expect((await unauth.request.get(`http://127.0.0.1:3100/api/forms/nagoya?plan=${current.id}&revision=1`)).status()).toBe(401);await unauth.close();
  await admin.close();
 });
 test('same signed session immediately loses access after assignment, membership, role removal and staff stop',async({page})=>{

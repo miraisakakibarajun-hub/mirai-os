@@ -5,7 +5,8 @@
       "phase3a/safe-development-foundation": false,
       "phase3b/formal-authorization-model": false,
       "phase3c/authorized-business-ui": false,
-      "phase3d/operational-management": false
+      "phase3d/operational-management": false,
+      "phase3e/staging-recovery-preparation": false
     }
   }
 }
