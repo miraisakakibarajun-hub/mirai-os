@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
-import {randomUUID} from 'node:crypto';
+import {randomUUID,createHash} from 'node:crypto';
+import ExcelJS from 'exceljs';
 import {createRequire} from 'node:module';
 const loadPg=createRequire(process.cwd()+'/package.json');
 const {Client}=loadPg('pg');
@@ -49,28 +50,42 @@ test('specialist saves and reloads all four record types; worker and system boun
 test('manual plan -> submit -> reject -> resubmit -> separate approval -> immutable -> revise',async({browser,page})=>{
  await login(page,'specialist');await page.goto(`/users/${user}/plans`);await page.getByLabel('計画更新期限').fill('2027-01-01');await page.getByRole('button',{name:'新しい計画を作成'}).click();
  for(const field of ['本人の希望','総合的援助方針','長期目標','短期目標'])await page.getByLabel(field,{exact:true}).fill('架空'+field);
+ await page.getByText('名古屋市帳票の追加情報',{exact:true}).click();await page.getByLabel('計画作成担当者（承認者とは別）',{exact:true}).fill('架空帳票担当');await page.getByLabel('保護者氏名（該当時）',{exact:true}).fill('該当なし');await page.getByLabel('モニタリング実施日',{exact:true}).fill('2026-09-29');await page.getByText('名古屋市帳票の追加情報',{exact:true}).click();
  await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
- await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
+ await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認待ち');
  const admin=await browser.newPage();await login(admin,'admin');await admin.goto(`/users/${user}/plans`);
- await expect(admin.getByRole('button',{name:'理由を付けて差戻し'})).toBeDisabled();await admin.getByLabel('差戻し理由',{exact:true}).fill('架空の差戻し理由');await admin.getByRole('button',{name:'理由を付けて差戻し'}).click();await expect(admin.getByRole('status')).toContainText('差戻し');
+ await expect(admin.getByRole('button',{name:'理由を付けて差戻し'})).toBeDisabled();await admin.getByLabel('差戻し理由',{exact:true}).fill('架空の差戻し理由');await admin.getByRole('button',{name:'理由を付けて差戻し'}).click();await expect(admin.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('差戻し');
  await page.getByRole('button',{name:'最新の計画を再読込'}).click();await expect(page.getByText('差戻し理由：架空の差戻し理由')).toBeVisible();
- await page.getByLabel('短期目標',{exact:true}).fill('架空修正目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
- await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
+ await page.getByLabel('短期目標',{exact:true}).fill('架空修正目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認待ち');
+ await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認済み');
  await page.getByRole('button',{name:'最新の計画を再読込'}).click();await expect(page.getByLabel('短期目標',{exact:true})).toBeDisabled();
  const current=(await api(page,'plan.list',user)).body.data[0];expect((await api(page,'plan.save',current.id,{content:current.content},current.content_version)).status).toBe(403);
  // Reopen after refusal (the page itself has not received this external test request).
- await page.getByRole('button',{name:'改訂を開始'}).click();await expect(page.getByRole('status')).toContainText('下書き');await expect(page.getByLabel('短期目標',{exact:true})).toBeEnabled();
+ await page.getByRole('button',{name:'改訂を開始'}).click();await expect(page.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('下書き');await expect(page.getByLabel('短期目標',{exact:true})).toBeEnabled();
  await page.screenshot({path:'test-results/evidence/plan-revision.png',fullPage:true});
  await page.getByText(/承認済み第.*版を確認/).click();await expect(page.getByText('短期目標：架空修正目標',{exact:true})).toBeVisible();
  await page.getByLabel('短期目標',{exact:true}).fill('架空改訂後の目標');await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');
- await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');
- await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.getByRole('status')).toContainText('承認済み');
+ await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認待ち');
+ await admin.getByRole('button',{name:'最新の計画を再読込'}).click();await admin.getByRole('button',{name:'計画を承認',exact:true}).click();await expect(admin.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認済み');
  const approvedRevision=current.review.approved_revision;expect(approvedRevision).toBeGreaterThan(0);
- const exported=await page.request.get(`/api/forms/nagoya?plan=${current.id}&revision=${approvedRevision}`);
- expect(exported.status()).toBe(200);expect(exported.headers()['content-type']).toContain('spreadsheetml');expect((await exported.body()).subarray(0,2).toString()).toBe('PK');
- await page.goto(`/users/${user}/plans/print?plan=${current.id}&revision=${approvedRevision}`);await expect(page.getByText(`承認済みの第${approvedRevision}版を表示しています。`)).toBeVisible();
- const worker=await browser.newPage();await login(worker,'worker');expect((await worker.request.get(`/api/forms/nagoya?plan=${current.id}&revision=${approvedRevision}`)).status()).toBe(403);await worker.close();
- const unauth=await browser.newContext();expect((await unauth.request.get(`http://127.0.0.1:3100/api/forms/nagoya?plan=${current.id}&revision=${approvedRevision}`)).status()).toBe(401);await unauth.close();
+ const responses=[];
+ for(const kind of ['plan','proposal','weekly','monitoring']){
+  const exported=await page.request.post('/api/forms/nagoya',{headers:{Origin:'http://127.0.0.1:3100'},data:{plan:current.id,revision:approvedRevision,kind}});
+  expect(exported.status(),await exported.text().then(t=>exported.ok()?'':t)).toBe(200);
+  const bytes=await exported.body(),outputId=exported.headers()['x-mirai-output-id'];expect(bytes.subarray(0,2).toString()).toBe('PK');
+  expect(createHash('sha256').update(bytes).digest('hex')).toBe(exported.headers()['x-mirai-file-sha256']);
+  const book=new ExcelJS.Workbook();await book.xlsx.load(bytes as unknown as Parameters<typeof book.xlsx.load>[0]);expect(book.worksheets[0].getCell('AY6').text).toBe('架空帳票担当');
+  responses.push({outputId,bytes});
+ }
+ const saved=responses[0];expect((await api(page,'form.list',current.id)).body.data).toHaveLength(4);
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'計画を出力',exact:true}).click();const download=await downloadPromise;expect(download.suggestedFilename()).toContain('.xlsx');await expect(page.getByText('台帳に保存しました。行政への提出可否は別途確認してください。')).toBeVisible();
+ fs.writeFileSync('test-results/form-recovery-reference.json',JSON.stringify({id:saved.outputId,hash:createHash('sha256').update(saved.bytes).digest('hex')}));
+ await database("update public.users set name='架空変更後氏名' where id=$1",[user]);
+ const again=await page.request.get('/api/forms/nagoya?output='+saved.outputId);expect(await again.body()).toEqual(saved.bytes);
+ await page.goto('/users/'+user+'/plans/print?plan='+current.id+'&revision='+approvedRevision);await expect(page.getByText('承認済みの第'+approvedRevision+'版を表示しています。')).toBeVisible();
+ const worker=await browser.newPage();await login(worker,'worker');expect((await worker.request.get('/api/forms/nagoya?output='+saved.outputId)).status()).toBe(403);await worker.close();
+ const unauth=await browser.newContext();expect((await unauth.request.get('http://127.0.0.1:3100/api/forms/nagoya?output='+saved.outputId)).status()).toBe(401);await unauth.close();
+ expect((await page.request.post('/api/forms/nagoya',{headers:{Origin:'https://example.invalid'},data:{plan:current.id,revision:approvedRevision,kind:'plan'}})).status()).toBe(403);
  await admin.close();
 });
 test('same signed session immediately loses access after assignment, membership, role removal and staff stop',async({page})=>{
@@ -110,7 +125,7 @@ test('dual-role self approval is hidden and rejected; anonymous and forged IDs r
  await page.getByRole('link',{name:'基本情報を編集'}).click();await page.getByLabel('フリガナ',{exact:true}).fill('カクウヘンコウ');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByText('フリガナ：カクウヘンコウ',{exact:true})).toBeVisible();
  await page.getByRole('link',{name:'サービス等利用計画',exact:true}).click();await page.getByLabel('計画更新期限').fill('2027-01-01');await page.getByRole('button',{name:'新しい計画を作成'}).click();
  for(const field of ['本人の希望','総合的援助方針','長期目標','短期目標'])await page.getByLabel(field,{exact:true}).fill('架空自己承認試験');
- await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.getByRole('status')).toContainText('承認待ち');await expect(page.getByRole('button',{name:'計画を承認',exact:true})).toHaveCount(0);
+ await page.getByRole('button',{name:'計画を保存',exact:true}).click();await expect(page.getByRole('main').getByRole('alert')).toHaveText('保存しました。');await page.getByRole('button',{name:'計画を提出',exact:true}).click();await expect(page.locator('[role=status]').filter({hasText:/承認待ち|差戻し|承認済み|下書き/})).toContainText('承認待ち');await expect(page.getByRole('button',{name:'計画を承認',exact:true})).toHaveCount(0);
  const p=(await api(page,'plan.list',createdId)).body.data[0];expect((await api(page,'plan.approve',p.id,{epoch:p.review.epoch},p.content_version)).status).toBe(403);
  expect((await api(page,'user.read',user,{organization_id:fixture.facility})).status).toBe(403);
  expect((await api(page,'user.read','60000000-0000-4000-8000-999999999999')).status).toBe(403);

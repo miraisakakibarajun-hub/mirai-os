@@ -6,7 +6,7 @@ import { reviewLabels, type PlanReview } from '@/lib/plan-review';
 import type { PlanData } from '@/lib/plan-content';
 import ApprovedAiNote from '@/app/components/ApprovedAiNote';
 
-const labels: Record<keyof Omit<PlanData,'services'>, string> = {
+const labels: Record<keyof Omit<PlanData,'services'|'nagoya'>, string> = {
   planPeriodStart:'計画期間（開始）', planPeriodEnd:'計画期間（終了）', createdDate:'作成日', monitoringDate:'モニタリング予定日',
   userWish:'本人の希望', familyWish:'家族の希望', overallPolicy:'総合的援助方針', longTermGoal:'長期目標', shortTermGoal:'短期目標', monitoringChecks:'次回モニタリングで確認する項目',
 };

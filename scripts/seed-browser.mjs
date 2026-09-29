@@ -26,6 +26,8 @@ try{
  }
  await db.query("insert into public.users(id,name,kana,birth_date,facility_id,created_by,updated_by) values($1,'架空利用者ブラウザー','カクウ','2000-01-01',$2,$3,$3)",[user,facility,actors.specialist.id]);
  for(const name of ['specialist','worker','dual'])await db.query('insert into public.plan_assignments(user_id,staff_id) values($1,$2)',[user,actors[name].id]);
- fs.writeFileSync('test-results/browser-fixture.json',JSON.stringify({user,facility,facility2,actors}));
+ const formSecret=randomUUID()+randomUUID();
+ await db.query('insert into mirai_private.form_signer(singleton,secret) values(true,$1) on conflict(singleton) do update set secret=excluded.secret',[formSecret]);
+ fs.writeFileSync('test-results/browser-fixture.json',JSON.stringify({user,facility,facility2,actors,formSecret}));
  console.log('Synthetic browser fixture prepared (7 accounts, no real data).');
 }finally{await db.end();}

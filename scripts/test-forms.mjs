@@ -18,3 +18,21 @@ await assert.rejects(nagoyaWorkbook({...snapshot,content:{...snapshot.content,us
 fs.mkdirSync('test-results',{recursive:true});await workbook.xlsx.writeFile('test-results/nagoya-synthetic.xlsx');
 fs.writeFileSync('test-results/forms.json',JSON.stringify({templateVersion:NAGOYA_TEMPLATE,syntheticOnly:true,literalStrings:true,metadata:true,unapprovedDenied:true,overflowDenied:true,missingFieldsExplicit:true,formalSubmissionReady:false},null,2));
 console.log('PASS: Nagoya mapping, literal text, approval guard, overflow rejection and trace metadata');
+import {officialWorkbook,FORM_TEMPLATE,formKinds} from '../lib/official-export.ts';
+import {emptyForm,emptyServiceForm,parseForm} from '../lib/form-content.ts';
+const f={...emptyForm(),recipientNumber:'0000000001',guardian:'該当なし',relationship:'該当なし',copayLimit:'0',authorName:'架空作成専門員',monitoringStart:'2026-10',monitoringDate:'2026-12-01',monitoringOverview:'架空：目標に向けて継続',dailyActivities:'架空：本人が選んだ活動',nonWeeklyServices:'該当なし',lifeVision:'架空：地域で暮らす',weekly:[{day:0,start:'09:15',end:'10:45',activity:'架空：地域活動'}],services:[{...emptyServiceForm('1'),issue:'架空課題',goal:'架空目標',achievementDate:'2027年3月',provider:'架空事業者',personRole:'架空：選ぶ',evaluationDate:'2026年12月',provided:'架空：月1回',satisfaction:'架空：継続希望',achievement:'架空：進行中',nextIssue:'架空：振り返る',typeChange:'無',amountChange:'無',weekChange:'無'}]};
+assert.deepEqual(parseForm(f),f);assert.throws(()=>parseForm({...f,weekly:[{...f.weekly[0],end:'08:00'}]}));
+const scenarios={standard:snapshot,long:{...snapshot,content:{...snapshot.content,userWish:'架空長文。'.repeat(200)}},multiple:{...snapshot,content:{...snapshot.content,services:Array.from({length:8},(_,i)=>({...snapshot.content.services[0],id:String(i+1)}))}},notApplicable:{...snapshot,content:{...snapshot.content,familyWish:'該当なし'}},reapproved:{...snapshot,revision:2},revised:{...snapshot,revision:4,content:{...snapshot.content,shortTermGoal:'架空改訂目標'}}};
+for(const [scenario,base] of Object.entries(scenarios))for(const kind of formKinds){
+ const input={...base,content:{...base.content,nagoya:{...f,services:base.content.services.map(s=>({...f.services[0],serviceId:s.id}))}}};
+ const book=await officialWorkbook(input,kind,'synthetic-output-id');const bytes=await book.xlsx.writeBuffer();const read=new ExcelJS.Workbook();await read.xlsx.load(bytes);
+ assert.equal(read.getWorksheet('出力情報').getCell('B2').text,FORM_TEMPLATE);assert.equal(read.getWorksheet('出力情報').getCell('B6').text,String(base.revision));
+ for(const sheet of read.worksheets.filter(s=>s.name!=='出力情報'&&s.name!=='長文・週間予定別紙')){assert.equal(sheet.getCell('I4').text,input.user.name);assert.ok(sheet.pageSetup.printArea);assert.ok(sheet.getCell('I6').text==='0000000001');}
+ if(kind==='plan'){assert.equal(read.getWorksheet('計画').getCell('K18').text,'架空目標');assert.equal(read.getWorksheet('計画').getCell('X18').type,ExcelJS.ValueType.String);if(scenario==='multiple')assert.ok(read.getWorksheet('計画2'));}
+ if(kind==='monitoring'){assert.equal(read.getWorksheet('モニタ').getCell('L16').text,'架空：月1回');assert.equal(read.getWorksheet('モニタ').getCell('AR16').text,'無');}
+ assert.ok(read.getWorksheet('長文・週間予定別紙').getColumn(2).values.includes('架空：地域活動'));
+ if(scenario==='long'&&kind!=='weekly'&&kind!=='monitoring'){assert.match(read.worksheets[0].getCell('I11').text,/別紙/);const detail=read.getWorksheet('長文・週間予定別紙').getColumn(2).values.join('');assert.ok(detail.includes(base.content.userWish));}
+ if(scenario==='standard'||scenario==='long'||scenario==='multiple')await book.xlsx.writeFile(`test-results/3f-${scenario}-${kind}.xlsx`);
+}
+fs.writeFileSync('test-results/forms-3f.json',JSON.stringify({cases:24,kinds:formKinds,template:FORM_TEMPLATE,scenarios:Object.keys(scenarios),sourceAndOutputMapped:true,submissionApproved:false},null,2));
+console.log('PASS: 24 formal-form scenarios with preserved revisions, literal values, pagination and long-text appendix');

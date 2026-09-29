@@ -1,3 +1,4 @@
+import {formCases} from './test-form-ledger.mjs';
 import fs from 'node:fs';
 import {operationalCases} from './test-operational-cases.mjs';
 import assert from 'node:assert/strict';
@@ -138,6 +139,7 @@ try{
  await deny('worker plan access',actors.worker,'plan.read',plan);
  await deny('system plan access',actors.system,'plan.read',plan);
  const exported=await allow('approved export snapshot',actors.specialist,'plan.export',plan,{revision:p.content_version});
+ await formCases({db,actors,plan,user,revision:p.content_version,allow,deny,call,passed});
  const originalName=exported.user.name;
  await allow('rename after approval',actors.specialist,'user.update',user,{name:'架空改名後'});
  const reexport=await allow('reprint immutable identity',actors.specialist,'plan.export',plan,{revision:p.content_version});

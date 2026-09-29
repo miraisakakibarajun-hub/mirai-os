@@ -1,8 +1,9 @@
+import {parseForm,type FormContent} from './form-content.ts';
 export type ServiceItem = { id: string; serviceName: string; content: string; frequency: string };
 export type PlanData = {
   planPeriodStart: string; planPeriodEnd: string; createdDate: string; monitoringDate: string;
   userWish: string; familyWish: string; overallPolicy: string; longTermGoal: string; shortTermGoal: string;
-  services: ServiceItem[]; monitoringChecks?: string;
+  services: ServiceItem[]; monitoringChecks?: string; nagoya?: FormContent;
 };
 export function emptyPlan(): PlanData {
   return { planPeriodStart: '', planPeriodEnd: '', createdDate: '', monitoringDate: '', userWish: '', familyWish: '', overallPolicy: '', longTermGoal: '', shortTermGoal: '', services: [] };
@@ -12,7 +13,7 @@ export function parsePlan(value: unknown): PlanData {
   const record = value as Record<string, unknown>;
   const result = emptyPlan();
   for (const key of Object.keys(result) as (keyof PlanData)[]) {
-    if (key === 'services') continue;
+    if (key === 'services' || key === 'nagoya') continue;
     if (typeof record[key] !== 'string') throw new Error('計画データの項目が不足しています。');
     result[key] = record[key];
   }
@@ -28,6 +29,7 @@ export function parsePlan(value: unknown): PlanData {
     if (typeof record.monitoringChecks !== 'string') throw new Error('次回確認項目の形式が不正です。');
     result.monitoringChecks = record.monitoringChecks;
   }
+  if(record.nagoya!==undefined){result.nagoya=parseForm(record.nagoya);if(result.nagoya.services.some(s=>!result.services.some(x=>x.id===s.serviceId)))throw new Error('帳票に削除済みサービスが残っています。');}
   return result;
 }
 export function validatePlan(plan: PlanData): string | null {

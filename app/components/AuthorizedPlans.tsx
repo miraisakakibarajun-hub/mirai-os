@@ -2,6 +2,8 @@
 import {useEffect,useRef,useState} from 'react';
 import {useParams} from 'next/navigation';
 import Link from 'next/link';
+import PlanForms from './PlanForms';
+import FormOutputs from './FormOutputs';
 import {command,type BusinessPlan} from '@/lib/authorized-client';
 import {emptyPlan,parsePlan,type PlanData} from '@/lib/plan-content';
 import {Shell,Notice,useBusinessAccess,useUnsaved,buttonClass,inputClass} from './BusinessShell';
@@ -59,9 +61,9 @@ function Editor({userId}:{userId:string}){
  <fieldset disabled={busy||!editable} className="space-y-4">
  {([['planPeriodStart','計画期間開始'],['planPeriodEnd','計画期間終了'],['createdDate','作成日'],['monitoringDate','モニタリング予定日']] as const).map(([key,label])=><label key={key} className="block">{label}<input className={inputClass} type="date" value={plan[key]} onChange={e=>set(key,e.target.value)}/></label>)}
  {fields.map(([key,label])=><label className="block" key={key}>{label}<textarea aria-label={label} className={inputClass} rows={3} value={plan[key]??''} onChange={e=>set(key,e.target.value)}/></label>)}
- <h2 className="font-bold">サービス内容</h2>{plan.services.map((s,i)=><section key={s.id} className="space-y-3 rounded border p-3">{([['serviceName','サービス名'],['content','支援内容'],['frequency','頻度']] as const).map(([key,label])=><label className="block" key={key}>{label} {i+1}<input className={inputClass} value={s[key]} onChange={e=>set('services',plan.services.map(x=>x.id===s.id?{...x,[key]:e.target.value}:x))}/></label>)}<button type="button" className={buttonClass} onClick={()=>set('services',plan.services.filter(x=>x.id!==s.id))}>このサービスを入力から外す</button></section>)}
+ <h2 className="font-bold">サービス内容</h2>{plan.services.map((s,i)=><section key={s.id} className="space-y-3 rounded border p-3">{([['serviceName','サービス名'],['content','支援内容'],['frequency','頻度']] as const).map(([key,label])=><label className="block" key={key}>{label} {i+1}<input className={inputClass} value={s[key]} onChange={e=>set('services',plan.services.map(x=>x.id===s.id?{...x,[key]:e.target.value}:x))}/></label>)}<button type="button" className={buttonClass} onClick={()=>{setPlan(p=>({...p,services:p.services.filter(x=>x.id!==s.id),...(p.nagoya?{nagoya:{...p.nagoya,services:p.nagoya.services.filter(x=>x.serviceId!==s.id)}}:{})}));setDirty(true);setMessage('');}}>このサービスを入力から外す</button></section>)}
  {editable&&<button type="button" className={buttonClass} onClick={()=>set('services',[...plan.services,{id:crypto.randomUUID(),serviceName:'',content:'',frequency:''}])}>サービスを追加</button>}
- </fieldset>{editable&&<button type="submit" className={buttonClass} disabled={busy}>計画を保存</button>}{dirty&&<p>未保存の変更があります。保存後に提出してください。</p>}
+ <PlanForms value={plan.nagoya} services={plan.services} onChange={v=>set('nagoya',v)}/></fieldset>{editable&&<button type="submit" className={buttonClass} disabled={busy}>計画を保存</button>}{dirty&&<p>未保存の変更があります。保存後に提出してください。</p>}
  </form>
  <section className="flex flex-wrap gap-3 rounded-xl border bg-white p-5" aria-label="計画の手続き">
  {editable&&<button className={buttonClass} disabled={busy||dirty} onClick={()=>void act('plan.submit')}>計画を提出</button>}
@@ -70,7 +72,7 @@ function Editor({userId}:{userId:string}){
  {row.review.state==='approved'&&<><p>承認済み版は直接変更できません。</p>{edit&&<button className={buttonClass} disabled={busy} onClick={()=>void act('plan.revise')}>改訂を開始</button>}</>}
  </section>
  <section className="my-5 rounded-xl border bg-white p-5"><h2 className="font-bold">手続き履歴</h2><ul>{history.events.filter(e=>e.reason).map(e=><li key={e.id}>差戻し理由：{e.reason}</li>)}</ul>
- {history.revisions.filter(v=>v.revision===row.review.approved_revision).map(v=><details key={v.revision}><summary>承認済み第{v.revision}版を確認</summary><Link className="underline" href={`/users/${userId}/plans/print?plan=${row.id}&revision=${v.revision}`}>承認時の保存情報から印刷</Link><p><a className="underline" href={`/api/forms/nagoya?plan=${row.id}&revision=${v.revision}`}>名古屋市様式の検証用Excel（提出不可）</a></p>{fields.map(([key,label])=><p key={key}>{label}：{v.content[key]}</p>)}</details>)}</section>
+ {history.revisions.filter(v=>v.revision===row.review.approved_revision).map(v=><details key={v.revision}><summary>承認済み第{v.revision}版を確認</summary><Link className="underline" href={`/users/${userId}/plans/print?plan=${row.id}&revision=${v.revision}`}>承認時の保存情報から印刷</Link><FormOutputs plan={row.id} revision={v.revision}/>{fields.map(([key,label])=><p key={key}>{label}：{v.content[key]}</p>)}</details>)}</section>
  </>}
  </>}
  <Link href={`/users/${userId}`} className="block underline">利用者詳細へ戻る</Link></Shell>;
