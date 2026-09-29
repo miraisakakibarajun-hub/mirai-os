@@ -33,7 +33,7 @@ export async function officialWorkbook(s:ExportSnapshot,kind:FormKind,outputId:s
  if(s.content.services.length>30)throw new Error('サービスは30件以内にしてください。');
  for(let page=0;page<count;page++){
   const sheet=page===0?first:book.addWorksheet(`${first.name}${page+1}`);
-  if(page>0){sheet.model={...structuredClone(originals),name:`${first.name}${page+1}`,id:sheet.id};}
+  if(page>0){sheet.model={...structuredClone(originals),name:`${first.name}${page+1}`,id:sheet.id};for(const range of originals.merges)sheet.mergeCellsWithoutStyle(range);first.eachRow({includeEmpty:true},r=>r.eachCell({includeEmpty:true},c=>{sheet.getCell(c.address).style=structuredClone(c.style);}));}
   header(sheet);put(sheet,'I9',s.content.createdDate);put(sheet,'AD9',kind==='monitoring'?f.monitoringDate:f.monitoringStart);
   if(kind==='monitoring'){
    for(const range of ['V9:AC9','AQ9:AX9','A11:AE11','AF11:BK11','AR14:BC14','AR15:AU15','AV15:AY15','AZ15:BC15'])merge(sheet,range);

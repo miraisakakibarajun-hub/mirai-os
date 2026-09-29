@@ -28,7 +28,7 @@ for(const [scenario,base] of Object.entries(scenarios))for(const kind of formKin
  const book=await officialWorkbook(input,kind,'synthetic-output-id');const bytes=await book.xlsx.writeBuffer();const read=new ExcelJS.Workbook();await read.xlsx.load(bytes);
  assert.equal(read.getWorksheet('出力情報').getCell('B2').text,FORM_TEMPLATE);assert.equal(read.getWorksheet('出力情報').getCell('B6').text,String(base.revision));
  for(const sheet of read.worksheets.filter(s=>s.name!=='出力情報'&&s.name!=='長文・週間予定別紙')){assert.equal(sheet.getCell('I4').text,input.user.name);assert.ok(sheet.pageSetup.printArea);assert.ok(sheet.getCell('I6').text==='0000000001');}
- if(kind==='plan'){assert.equal(read.getWorksheet('計画').getCell('K18').text,'架空目標');assert.equal(read.getWorksheet('計画').getCell('X18').type,ExcelJS.ValueType.String);if(scenario==='multiple')assert.ok(read.getWorksheet('計画2'));}
+ if(kind==='plan'){assert.equal(read.getWorksheet('計画').getCell('K18').text,'架空目標');assert.equal(read.getWorksheet('計画').getCell('X18').type,ExcelJS.ValueType.String);if(scenario==='multiple'){assert.ok(read.getWorksheet('計画2'));assert.equal(read.getWorksheet('計画2').getCell('J4').master.address,'I4');assert.equal(read.getWorksheet('計画2').getCell('K18').text,'架空目標');}}
  if(kind==='monitoring'){assert.equal(read.getWorksheet('モニタ').getCell('L16').text,'架空：月1回');assert.equal(read.getWorksheet('モニタ').getCell('AR16').text,'無');}
  assert.ok(read.getWorksheet('長文・週間予定別紙').getColumn(2).values.includes('架空：地域活動'));
  if(scenario==='long'&&kind!=='weekly'&&kind!=='monitoring'){assert.match(read.worksheets[0].getCell('I11').text,/別紙/);const detail=read.getWorksheet('長文・週間予定別紙').getColumn(2).values.join('');assert.ok(detail.includes(base.content.userWish));}

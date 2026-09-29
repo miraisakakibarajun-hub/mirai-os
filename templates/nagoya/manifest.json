@@ -25,6 +25,16 @@
       "file": "kensyou.xls",
       "sha256": "8ee39e8eb764481d7c103681f133a6fb9e5ee1f9e5dfa1af5f6d2ec40218830a",
       "url": "https://www.kaigo-wel.city.nagoya.jp/view/wel/docs_jigyosya/2013092500080/file_contents/kensyou.xls"
+    },
+    {
+      "sha256": "02b2c6b3ab7ab0bc17fa19d62af933c65074432881278640c77673153a53e983",
+      "url": null,
+      "file": "keikakuan.xlsx"
+    },
+    {
+      "sha256": "6da9e163084f996c03bc6c85218a4d3cfd3ea8442d4ad1d494602188c4c795cb",
+      "url": null,
+      "file": "kensyou.xlsx"
     }
   ],
   "reverified": "2026-09-29: all 3 official XLS SHA256 unchanged; source URLs corrected"

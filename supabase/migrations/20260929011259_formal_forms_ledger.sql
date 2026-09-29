@@ -66,8 +66,9 @@ begin
   ok:=true;
  exception when others then code:=sqlstate;result:=null;
  end;
- insert into mirai_private.audit_events(actor_auth_id,actor_staff_id,operation,target_id,outcome,code)
- values(mirai_private.auth_identity(),a,op,target,case when ok then 'success' else 'denied' end,code);
+ insert into mirai_private.audit_events(actor_auth_id,actor_staff_id,operation,target_id,outcome,code,user_id)
+ values(mirai_private.auth_identity(),a,op,target,case when ok then 'success' else 'denied' end,code,
+ case when ok then case when op='form.read' then f.user_id else (select user_id from public.plans where id=target) end else null end);
  return jsonb_build_object('ok',ok,'code',code,'data',result);
 end $$;
 grant create on schema mirai_private to mirai_executor;

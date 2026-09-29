@@ -82,6 +82,7 @@ test('manual plan -> submit -> reject -> resubmit -> separate approval -> immuta
  fs.writeFileSync('test-results/form-recovery-reference.json',JSON.stringify({id:saved.outputId,hash:createHash('sha256').update(saved.bytes).digest('hex')}));
  await database("update public.users set name='架空変更後氏名' where id=$1",[user]);
  const again=await page.request.get('/api/forms/nagoya?output='+saved.outputId);expect(await again.body()).toEqual(saved.bytes);
+ await database("update public.users set name='架空利用者ブラウザー' where id=$1",[user]);
  await page.goto('/users/'+user+'/plans/print?plan='+current.id+'&revision='+approvedRevision);await expect(page.getByText('承認済みの第'+approvedRevision+'版を表示しています。')).toBeVisible();
  const worker=await browser.newPage();await login(worker,'worker');expect((await worker.request.get('/api/forms/nagoya?output='+saved.outputId)).status()).toBe(403);await worker.close();
  const unauth=await browser.newContext();expect((await unauth.request.get('http://127.0.0.1:3100/api/forms/nagoya?output='+saved.outputId)).status()).toBe(401);await unauth.close();
