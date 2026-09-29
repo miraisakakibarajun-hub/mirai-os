@@ -13,7 +13,7 @@ export async function createClient() {
   const cookieStore = await cookies();
 
   return createServerClient<Database>(
-    requireLocalSupabase(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    requireLocalSupabase(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_MIRAI_ENVIRONMENT),
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {

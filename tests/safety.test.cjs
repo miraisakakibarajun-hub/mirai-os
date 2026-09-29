@@ -54,6 +54,15 @@ test('Hosted DB addresses cannot enter the application client',()=>{
  assert.equal(check('http://127.0.0.1:54321'),'http://127.0.0.1:54321');
 });
 
+test('Staging requires explicit mode and the approved isolated project; old dev always fails',()=>{
+ const check=loader().load('lib/supabase/local-boundary.ts').requireLocalSupabase;
+ const staging='https://jtjbjzlfmfuuecpxfsgd.supabase.co';
+ assert.equal(check(staging,'staging'),staging);
+ assert.throws(()=>check(staging));
+ for(const url of ['https://eyonhshyxfvqpazwmksm.supabase.co','http://127.0.0.1:54321',staging+'.evil.invalid',staging+'/rest/v1',staging+'?x=1','http://jtjbjzlfmfuuecpxfsgd.supabase.co','https://u:p@jtjbjzlfmfuuecpxfsgd.supabase.co'])assert.throws(()=>check(url,'staging'));
+ for(const mode of ['production','unknown',''])assert.throws(()=>check(staging,mode));
+});
+
 test('Authorized server route requires session, checks origin and maps DB decisions',async()=>{
  const url='http://localhost/api/authorized';
  const request=(origin='http://localhost')=>new Request(url,{method:'POST',headers:{origin},body:JSON.stringify({operation:'user.read',target:'00000300-0000-4000-8000-000000000000'})});

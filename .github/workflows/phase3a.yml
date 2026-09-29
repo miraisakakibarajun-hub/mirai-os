@@ -1,7 +1,7 @@
 name: Phase 3 isolated checks
 on:
   push:
-    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model, phase3c/authorized-business-ui, phase3d/operational-management, phase3e/staging-recovery-preparation, phase3f/forms-staging-acceptance]
+    branches: [phase3a/safe-development-foundation, phase3b/formal-authorization-model, phase3c/authorized-business-ui, phase3d/operational-management, phase3e/staging-recovery-preparation, phase3f/forms-staging-acceptance, phase4a/staging-acceptance]
   pull_request:
   workflow_dispatch:
 permissions:
