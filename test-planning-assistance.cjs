@@ -117,6 +117,24 @@ const db = {from(table) {
   assert.equal(Object.keys(result.values).join(','),'shortTermGoal');
   assert.equal(JSON.parse(sent.input).outputKeys.length,2);
   assert.equal(sent.store,false);
+  assert.equal(sent.text.format.type,'json_schema');
+  assert.equal(sent.text.format.strict,true);
+  assert.deepEqual(sent.text.format.schema.required,['shortTermGoal','shortTermGoalReason']);
+  assert.equal(sent.text.format.schema.additionalProperties,false);
+  assert.equal(Object.keys(sent.text.format.schema.properties).length,2);
+  for(const action of ['understand','propose']) {
+    const fields=action==='understand'?assistance.understandingFields:assistance.proposalFields;
+    await server.generatePlanning(db,{...request,action},config,async(url,options)=>{
+      const body=JSON.parse(options.body);
+      const expected=Array.from(fields,([key])=>key).concat(Array.from(fields,([key])=>key+'Reason'));
+      assert.deepEqual(body.text.format.schema.required,expected);
+      assert.deepEqual(Object.keys(body.text.format.schema.properties),expected);
+      const values=Object.fromEntries(expected.map(key=>[key,'架空シナリオ上の想定。実際は要確認。']));
+      return {ok:true,json:async()=>({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify(values)}]}]})};
+    });
+  }
+  await assert.rejects(server.generatePlanning(db,request,config,async()=>({ok:true,json:async()=>({status:'completed',output:[{type:'message',content:[{type:'output_text',text:'not JSON'}]}]})})),/形式が不正/);
+  assert.ok(sent.instructions.includes('本文とReasonの両方'));
   assert.ok(result.reasons.shortTermGoal.includes('本人の希望'));
   assert.throws(()=>assistance.parseReasons({shortTermGoalReason:''},assistance.proposalFields.filter(([k])=>k==='shortTermGoal')));
   assert.ok(sent.instructions.includes('同行希望を単独参加の目標へ変えない'));
