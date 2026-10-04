@@ -150,5 +150,30 @@ const db = {from(table) {
   const props={name:'架空利用者',revision:10,approvedAt:'2026-09-08',approver:'架空職員'};
   assert.ok(!renderToStaticMarkup(React.createElement(Print,{...props,content:base})).includes('7. 次回'));
   assert.ok(renderToStaticMarkup(React.createElement(Print,{...props,content:next})).includes(proposal.monitoringChecks));
+  const {loadMonitoringAiContext}=load(path.join(root,'lib/monitoring-ai-server.ts'));
+  const {emptyMonitoring}=load(path.join(root,'lib/monitoring.ts'));
+  const {changeFields}=load(path.join(root,'lib/monitoring-ai.ts'));
+  const {parseHandoff}=load(path.join(root,'lib/monitoring-handoff.ts'));
+  const source=await loadMonitoringAiContext(db,{userId:uuid,date:'2026-10-04'});
+  const monitoringHandoff={userId:uuid,planId:uuid,revision:10,date:'2026-10-04',sourceVersion:source.sourceVersion,createdAt:Date.now(),
+   content:{...emptyMonitoring(),userSituation:'【架空】園芸で花の話を楽しんだ。少し疲れた。次回も職員と参加したい。'},
+   changes:Object.fromEntries(changeFields.map(([key])=>[key,'架空事例上の整理：同行希望を尊重。家族は要確認。']))};
+  const handoffRequest={...request,monitoringHandoff,handoffConfirmed:true};
+  await assert.rejects(server.generatePlanning(db,{...handoffRequest,handoffConfirmed:false},config,forbiddenFetch),/専門員/);
+  await assert.rejects(server.generatePlanning(db,{...handoffRequest,monitoringHandoff:{...monitoringHandoff,revision:15}},config,forbiddenFetch),/承認計画/);
+  assert.throws(()=>parseHandoff({...monitoringHandoff,createdAt:Date.now()-3600001},uuid),/有効期限/);
+  assert.throws(()=>parseHandoff({...monitoringHandoff,userId:'wrong'},uuid),/一致/);
+  assert.throws(()=>parseHandoff({...monitoringHandoff,changes:{}},uuid));
+  await server.generatePlanning(db,handoffRequest,config,async(url,options)=>{
+   const body=JSON.parse(options.body),payload=JSON.parse(body.input);
+   assert.equal(payload.monitoringReference.approvedPlan.revision,10);
+   assert.equal(payload.monitoringReference.currentMonitoringInput.userSituation,monitoringHandoff.content.userSituation);
+   assert.equal(Object.keys(payload.monitoringReference.aiSummaryReviewedAsReference).length,6);
+   assert.ok(payload.materials.length>0);
+   for(const rule of ['本人の事実や発言とみなさない','難しい目標へ進めない','やめたい','同行希望を単独参加の目標へ変えない'])assert.ok(body.instructions.includes(rule));
+   return {ok:true,json:async()=>({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({shortTermGoal:'架空シナリオ上の想定：職員同行を本人と相談する',shortTermGoalReason:'本人の同行希望を尊重するため'})}]}]})};
+  });
+  assert.equal(unexpectedCalls,0);
+  console.log('PASS: reviewed monitoring reference forwarded separately, approved source revalidated, wrong user/expired/unapproved/missing review rejected; no writes.');
   console.log('PASS: draft/date preservation, legacy revision 10, approval selection, active-plan lookup, approved source retention, read failure, item retry, consent/config guards, print compatibility. Offline fixtures only; no database writes.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

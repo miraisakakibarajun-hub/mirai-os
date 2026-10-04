@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { MonitoringContent } from '@/lib/monitoring';
 import { monitoringFields } from '@/lib/monitoring';
 import { changeFields, type MonitoringAiContext, type MonitoringChanges } from '@/lib/monitoring-ai';
+import { handoffKey,parseHandoff } from '@/lib/monitoring-handoff';
 import { parseFields } from '@/lib/planning-assistance';
 
 export default function MonitoringAi({userId,date,content,recordId,disabled,children}:{userId:string;date:string;content:MonitoringContent;recordId:string|null;disabled:boolean;children:ReactNode}){
@@ -46,6 +47,20 @@ export default function MonitoringAi({userId,date,content,recordId,disabled,chil
   finally{lock.current=false;setBusy(false);}
  }
  const displayed=result?.signature===signature?result:null;
+ function continuePlanning(){
+  if(!displayed||!context?.plan||busy||disabled)return;
+  try{
+   const transfer=parseHandoff({userId,date,content,changes:displayed.values,planId:context.plan.id,revision:displayed.revision,sourceVersion:context.sourceVersion,createdAt:Date.now()},userId);
+   for(const key of Object.keys(sessionStorage)){
+    if(key.startsWith('mirai-monitoring-handoff:')){
+     try{const old=JSON.parse(sessionStorage.getItem(key)||'null');if(!old||Date.now()-old.createdAt>3600000)sessionStorage.removeItem(key);}catch{sessionStorage.removeItem(key);}
+    }
+   }
+   const token=crypto.randomUUID();
+   sessionStorage.setItem(handoffKey(token),JSON.stringify(transfer));
+   window.location.assign('/users/'+userId+'/planning-assistance?monitoringHandoff='+token);
+  }catch(e){setError(e instanceof Error?e.message:'引継ぎ情報を保持できませんでした。');}
+ }
  return <section aria-label="モニタリングAI" className="mt-6 space-y-4 rounded-xl bg-white p-6 shadow">
   <h2 className="text-lg font-bold">前回計画の確認項目・本人の変化の整理</h2>
   {!context&&<p role="status">{loaded?.query===query&&loaded.error?loaded.error:'承認済み計画を確認中…'}</p>}
@@ -74,6 +89,7 @@ export default function MonitoringAi({userId,date,content,recordId,disabled,chil
    <p>{`比較元：承認済み第${displayed.revision}版／今回画面に入力されたモニタリング内容`}</p>
    {changeFields.map(([key,label])=><section key={key} className="rounded border p-3"><h3 className="font-semibold">{label}</h3><p className="mt-2 whitespace-pre-wrap">{displayed.values[key]}</p></section>)}
   </section>}
-  <p className="text-sm text-slate-600">AI整理結果はこの画面での確認用です。記録への保存や次回計画への自動反映は行いません。</p>
+  <p className="text-sm text-slate-600">今回の入力とAI整理結果を次の画面へ参考情報として引き継ぎます。記録の保存や計画への反映は行いません。同じタブで1時間利用できます。</p>
+  <button type="button" disabled={!displayed||busy||disabled} onClick={continuePlanning} className="rounded border px-4 py-3 disabled:opacity-40">本人の変化を整理して次の計画を考える</button>
  </section>;
 }

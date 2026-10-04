@@ -192,7 +192,6 @@ function MonitoringEditor({ userId }: { userId: string }) {
       </MonitoringAi>
       <MonitoringComparison records={records} userId={userId} date={date} recordId={recordId} content={content} dirty={dirty} />
     </>}
-    <section className="mt-6 rounded-xl bg-white p-6 shadow"><h2 className="font-bold">本人の変化を次の計画へ</h2><p className="mt-2 text-sm">記録を保存してから、AI計画作成支援で本人の希望・強み・変化を整理します。計画への反映は専門員が確認した後の改訂下書きです。</p><Link href={`/users/${userId}/planning-assistance`} onClick={event=>{if(saving||dirty){event.preventDefault();setMessage('先にモニタリングを保存してください。未保存の入力はAIへ引き継がれません。');}}} className="mt-3 inline-block underline">本人の変化を整理して次の計画を考える</Link></section>
     <div className="mt-6"><Link href="/monitoring" className="underline" onClick={event => {if (saving || (dirty && !window.confirm("保存していない入力を破棄して移動しますか？"))) event.preventDefault();}}>モニタリング期限一覧へ</Link></div>
     <div className="mt-6"><Link href={user ? `/users/${user.id}` : "/users"}
       onClick={event => {if (saving || (dirty && !window.confirm("保存していない入力を破棄して戻りますか？"))) event.preventDefault();}}

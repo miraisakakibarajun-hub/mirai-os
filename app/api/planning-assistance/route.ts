@@ -18,7 +18,7 @@ export async function POST(request:Request){
  if(staff.error||!staff.data)return reply({error:'職員情報を確認できません。'},403);
  if(busy.has(auth.data.user.id))return reply({error:'生成中です。しばらくお待ちください。'},429);
  busy.add(auth.data.user.id);
- try{const text=await request.text();if(text.length>30000)return reply({error:'入力が長すぎます。'},413);
+ try{const text=await request.text();if(text.length>60000)return reply({error:'入力が長すぎます。'},413);
   const input=JSON.parse(text);if(!input||typeof input!=='object')return reply({error:'入力が不正です。'},400);
   return reply(await generatePlanning(client,input,{key:process.env.OPENAI_API_KEY,model:process.env.OPENAI_MODEL}));
  }catch(e){return reply({error:e instanceof GenerationError?e.message:'生成できませんでした。入力は保持しています。'},e instanceof GenerationError?e.status:502);}

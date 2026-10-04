@@ -8,6 +8,9 @@ import {parseReview} from '@/lib/plan-review';
 import {understandingFields,proposalFields,parseFields,draftPlan,proposalBody,type Understanding,type Proposal,type ProposalKey,type ProposalReasons,type UnderstandingReasons} from '@/lib/planning-assistance';
 import type {loadPlanningContext} from '@/lib/planning-assistance-server';
 import type {SourceRef} from '@/lib/ai-document';
+import { handoffKey,parseHandoff,type MonitoringHandoff } from '@/lib/monitoring-handoff';
+import { changeFields } from '@/lib/monitoring-ai';
+import { monitoringFields } from '@/lib/monitoring';
 import type {Json} from '@/lib/supabase/database.types';
 type Context=Awaited<ReturnType<typeof loadPlanningContext>>&{available:boolean};
 const button='rounded-lg bg-[#16233F] px-4 py-3 font-semibold text-white disabled:opacity-40';
@@ -22,14 +25,37 @@ function Assistant({id}:{id:string}){
  const [reasons,setReasons]=useState<Partial<ProposalReasons>>({});
  const [understandingReasons,setUnderstandingReasons]=useState<UnderstandingReasons>({});
  const understandingReason=(key:keyof Understanding)=><p className="mt-2 rounded bg-slate-50 p-3 text-sm font-normal"><strong>整理の理由（AI生成時・本文とは別）</strong><br/>{understandingReasons[key]??'理由は未取得です。'}<br/><span className="text-slate-600">本文を修正した場合も理由は生成時のものです。</span></p>;
+ const [handoff,setHandoff]=useState<MonitoringHandoff|null>(null);
+ const [handoffConfirmed,setHandoffConfirmed]=useState(false);
+ const [handoffError,setHandoffError]=useState('');
+ const [handoffPending,setHandoffPending]=useState(true);
+ useEffect(()=>{
+  let active=true;
+  const token=new URLSearchParams(window.location.search).get('monitoringHandoff');
+  void (async()=>{
+   try{
+    if(!token)return;
+    const value=parseHandoff(JSON.parse(sessionStorage.getItem(handoffKey(token))||'null'),id);
+    const ref=value.content.planReference;
+    const query=new URLSearchParams({userId:id,date:value.date,...(ref?{planId:ref.planId,revision:String(ref.revision)}:{})});
+    const response=await fetch('/api/monitoring-ai?'+query,{cache:'no-store'});
+    const source=await response.json();
+    if(!response.ok||source.sourceVersion!==value.sourceVersion||source.plan?.id!==value.planId||source.plan?.revision!==value.revision)throw new Error('比較元の承認計画を確認できません。モニタリングからやり直してください。');
+    if(active)setHandoff(value);
+   }catch(e){if(token)sessionStorage.removeItem(handoffKey(token));if(active)setHandoffError(e instanceof Error?e.message:'引継ぎ情報を確認できません。');}
+   finally{if(active)setHandoffPending(false);}
+  })();
+  return()=>{active=false;};
+ },[id]);
+ const handoffBlocked=handoffPending||!!handoffError||!!handoff&&!handoffConfirmed;
  const lock=useRef(false);
  async function load(){const response=await fetch(`/api/planning-assistance?userId=${encodeURIComponent(id)}`,{cache:'no-store'});const data=await response.json();if(!response.ok)throw new Error(data.error);return data as Context;}
  useEffect(()=>{let active=true;void load().then(c=>{if(active)setContext(c);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[id]); // eslint-disable-line react-hooks/exhaustive-deps
  useEffect(()=>{if(!understanding||applied)return;const protect=(e:BeforeUnloadEvent)=>{e.preventDefault();e.returnValue='';};window.addEventListener('beforeunload',protect);return()=>window.removeEventListener('beforeunload',protect);},[understanding,applied]);
  async function task(label:string,work:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(label);setError('');setNotice('');try{await work();}catch(e){setError(e instanceof Error?e.message:'操作結果を確認できません。再読み込み前に内容を控えてください。');}finally{lock.current=false;setBusy('');}}
- async function generate(action:'understand'|'propose'|'retry',field?:ProposalKey){await task('AIが提案を作成しています',async()=>{
-  const response=await fetch('/api/planning-assistance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:id,consent,sourceVersion:context?.sourceVersion,action,understanding,field,feedback:field?feedback[field]:''})});
-  const data=await response.json();if(!response.ok){if(response.status===409){setConsent(false);setContext(await load());}throw new Error(data.error);}
+ async function generate(action:'understand'|'propose'|'retry',field?:ProposalKey){if(handoffBlocked)return;await task('AIが提案を作成しています',async()=>{
+  const response=await fetch('/api/planning-assistance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:id,consent,...(handoff?{monitoringHandoff:handoff,handoffConfirmed}:{}),sourceVersion:context?.sourceVersion,action,understanding,field,feedback:field?feedback[field]:''})});
+  const data=await response.json();if(!response.ok){if(response.status===409){setHandoffConfirmed(false);setConsent(false);setContext(await load());}throw new Error(data.error);}
   if(action==='understand'){setUnderstanding(parseFields(data.values,understandingFields));setUnderstandingReasons(data.reasons??{});setConfirmed(false);setProposal(null);setAccepted({});setReasons({});}
   else if(action==='propose'){setProposal(parseFields(data.values,proposalFields));setReasons(data.reasons??{});setAccepted({});}
   else if(field){const values=parseFields(data.values,proposalFields.filter(([k])=>k===field));setProposal(p=>p?{...p,[field]:values[field]}:p);setAccepted(a=>({...a,[field]:false}));setReasons(r=>({...r,[field]:data.reasons?.[field]}));}
@@ -80,7 +106,20 @@ function Assistant({id}:{id:string}){
   {error&&<p role="alert" className="mt-4 rounded border border-red-300 bg-red-50 p-4">{error}</p>}
   {busy&&<p role="status" className="mt-4">{busy}…</p>}{notice&&<p role="status" className="mt-4 rounded bg-emerald-50 p-4 font-semibold">{notice}</p>}
   {!context&&error&&<button className={button} onClick={()=>void task('再読み込み中',async()=>setContext(await load()))}>再読み込み</button>}
-  {context&&<fieldset disabled={!!busy||applied}>
+  {context&&(handoff||handoffError||handoffPending)&&<section className={section} aria-label="前回計画から今回までの変化">
+   <h2 className="text-xl font-bold">前回計画から今回までの変化</h2>
+   {handoffPending&&<p>引継ぎ情報を確認中…</p>}
+   {handoffError&&<><p role="alert">{handoffError}</p><Link className="underline" href={`/users/${id}/monitoring`}>モニタリングへ戻る</Link></>}
+   {handoff&&<>
+    <p>{'比較元：承認済み第'+handoff.revision+'版 ／ 今回のモニタリング：'+handoff.date}</p>
+    <p className="font-bold text-amber-800">AIによる整理・未承認の参考情報です。本人の事実・発言そのものではありません。</p>
+    {changeFields.map(([key,label])=><section key={key} className="rounded border p-3"><h3 className="font-semibold">{label}</h3><p className="whitespace-pre-wrap">{handoff.changes[key]}</p></section>)}
+    <details><summary>引き継いだ今回のモニタリング入力を確認</summary><p>画面入力の写しです。保存済みとは限りません。</p>{monitoringFields.map(([key,label])=><p key={key} className="whitespace-pre-wrap">{label+'：'+(handoff.content[key]||'未記入')}</p>)}</details>
+    <label className="block"><input type="checkbox" checked={handoffConfirmed} disabled={!!busy||!!understanding} onChange={e=>{setHandoffConfirmed(e.target.checked);setConsent(false);}}/> 6区分と今回の入力を確認し、次回計画の参考情報として使用します</label>
+    <p className="text-sm">保存済みの本人・家族の希望とアセスメント等は、下のSTEP1で併せて確認できます。AI送信には別途チェックが必要です。</p>
+   </>}
+  </section>}
+  {context&&<fieldset disabled={!!busy||applied||handoffBlocked}>
    <section className={section}><h2 className="text-xl font-bold">STEP1：この人について把握していること</h2>
     <p className="text-sm text-slate-600">{context.scope}</p>
     <p>参照件数：アセスメント {context.counts.assessments} ／ モニタリング {context.counts.monitoring} ／ 担当者会議 {context.counts.meetings} ／ 支援記録 {context.counts.support}。0件は未記録または閲覧可能な記録なしです。</p>
@@ -90,7 +129,7 @@ function Assistant({id}:{id:string}){
     {!context.available&&<p role="alert">AI接続が未設定です。管理者に設定を確認してください。</p>}
     {!understanding&&<button className={button} disabled={!consent||!context.available} onClick={()=>void generate('understand')}>保存済み情報・本人の変化をAIで整理</button>}
     {understanding&&<><p className="font-bold text-amber-800">AI提案・未承認</p><label className="block font-semibold">本人理解の内容を確認・修正<textarea aria-label="本人理解の内容を確認・修正" className="mt-2 w-full rounded border p-3 font-normal" rows={6} maxLength={2500} value={understanding.summary} onChange={e=>editUnderstanding('summary',e.target.value)}/></label>{understandingReason('summary')}<p className="text-sm">修正はこの計画案の検討内容に反映します。元の記録自体を直す場合は利用者詳細の各記録画面を使ってください。</p>
-    <label className="block font-semibold">モニタリングから整理した本人の変化・次の計画への検討事項<textarea className="mt-2 w-full rounded border p-3 font-normal" rows={6} maxLength={2500} value={understanding.changes} onChange={e=>editUnderstanding('changes',e.target.value)}/></label>{understandingReason('changes')}<p className="text-sm">保存済みの直近3件が対象です。未保存の記録は含みません。希望の変化を一律に未達成とせず、本人の気持ちを確認して次の計画へつなぎます。</p></>}
+    <label className="block font-semibold">モニタリングから整理した本人の変化・次の計画への検討事項<textarea className="mt-2 w-full rounded border p-3 font-normal" rows={6} maxLength={2500} value={understanding.changes} onChange={e=>editUnderstanding('changes',e.target.value)}/></label>{understandingReason('changes')}<p className="text-sm">保存済みの直近3件が対象です。通常は未保存の記録を含みません。モニタリングから引き継いで確認した今回の入力と6区分は、別の参考情報として使用します。希望の変化を一律に未達成とせず、本人の気持ちを確認して次の計画へつなぎます。</p></>}
    </section>
    {understanding&&<section className={section}><h2 className="text-xl font-bold">STEP2：希望と強みを確認</h2><p>本人・家族の希望 → 強み → 目標 → 着地点 → 一緒に考えること</p>
     {understandingFields.filter(([k])=>k!=='summary'&&k!=='changes').map(([k,l])=><div key={k}><label className="block font-semibold">{l}<textarea className="mt-2 w-full rounded border p-3 font-normal" rows={3} maxLength={2500} value={understanding[k]} onChange={e=>editUnderstanding(k,e.target.value)}/></label>{understandingReason(k)}</div>)}
