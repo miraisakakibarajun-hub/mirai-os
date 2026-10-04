@@ -103,7 +103,7 @@ function Assistant({id}:{id:string}){
      <label className="block text-sm">{l}の再提案への要望<input className="mt-1 w-full rounded border p-2" maxLength={1000} value={feedback[k]??''} onChange={e=>setFeedback({...feedback,[k]:e.target.value})}/></label>
      <div className="flex flex-wrap items-center gap-4"><button type="button" className="rounded border px-3 py-2 disabled:opacity-40" disabled={!consent||!context.available} onClick={()=>void generate('retry',k)}>{l}だけ再提案</button><label><input type="checkbox" checked={!!accepted[k]} onChange={e=>{setAccepted({...accepted,[k]:e.target.checked});setSaved(null);setReplaceConfirmed(false);}}/> {l}を確認して採用</label></div>
     </div>)}
-    <p role="status" className="font-semibold">採用済み {proposalFields.filter(([k])=>accepted[k]).length} / {proposalFields.length} 項目{saved?' · AI案を保存済み':' · 全項目を採用すると保存できます'}</p>
+    <p role="status" className="font-semibold">{`採用済み ${proposalFields.filter(([k])=>accepted[k]).length} / ${proposalFields.length} 項目${saved?' · AI案を保存済み':' · 全項目を採用すると保存できます'}`}</p>
     <button className={button} disabled={!allAccepted||!!saved} onClick={()=>void saveReview()}>専門員確認済みのAI案を保存</button>
    </section>}
    {saved&&allAccepted&&confirmed&&<section className={section}><h2 className="text-xl font-bold">STEP5：計画の下書きへ反映</h2>
