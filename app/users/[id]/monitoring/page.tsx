@@ -9,6 +9,7 @@ import { emptyMonitoring, monitoringFields, parseMonitoring, validateMonitoring,
 import type { Tables } from "@/lib/supabase/database.types";
 
 import MonitoringComparison from './MonitoringComparison';
+import MonitoringAi from './MonitoringAi';
 
 type RecordRow = Tables<"monitoring_records">;
 export default function UserMonitoringPage() {
@@ -148,6 +149,7 @@ function MonitoringEditor({ userId }: { userId: string }) {
               {row.performed_on} の記録{recordId === row.id ? "（編集中）" : ""}
             </button></li>)}</ul>}
       </section>
+      <MonitoringAi userId={userId} date={date} recordId={recordId} content={content} disabled={saving}>
       <form className="mt-6 rounded-xl bg-white p-6 shadow" onSubmit={event => { event.preventDefault(); void save(); }}>
         <fieldset disabled={saving} className="min-w-0 space-y-5">
           <legend className="mb-4 text-lg font-bold">{recordId ? "記録の編集" : "新しい記録の作成"}</legend>
@@ -187,6 +189,7 @@ function MonitoringEditor({ userId }: { userId: string }) {
         </fieldset>
         {message && <p role="status" className="mt-4 text-sm font-semibold">{message}</p>}
       </form>
+      </MonitoringAi>
       <MonitoringComparison records={records} userId={userId} date={date} recordId={recordId} content={content} dirty={dirty} />
     </>}
     <section className="mt-6 rounded-xl bg-white p-6 shadow"><h2 className="font-bold">本人の変化を次の計画へ</h2><p className="mt-2 text-sm">記録を保存してから、AI計画作成支援で本人の希望・強み・変化を整理します。計画への反映は専門員が確認した後の改訂下書きです。</p><Link href={`/users/${userId}/planning-assistance`} onClick={event=>{if(saving||dirty){event.preventDefault();setMessage('先にモニタリングを保存してください。未保存の入力はAIへ引き継がれません。');}}} className="mt-3 inline-block underline">本人の変化を整理して次の計画を考える</Link></section>
