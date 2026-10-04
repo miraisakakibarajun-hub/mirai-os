@@ -63,6 +63,12 @@ const db={from(table){const filters={};return {select(){return this},eq(k,v){fil
  assert.equal(calls,1);
  await assert.rejects(generateMonitoringChanges(db,input,config,async()=>({ok:false,status:429})),/利用制限/);
  await assert.rejects(generateMonitoringChanges(db,input,config,async()=>({ok:true,json:async()=>({status:'completed',output:[]})})),/形式/);
+ const reply=values=>async()=>({ok:true,json:async()=>({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify(values)}]}]})});
+ for(const bad of ['これは架空シナリオではなく、今回の記録に基づく実績です。','架空事例上の整理：本人の認識が深まったと解釈できる。','本人が実際に見学した。']) {
+  await assert.rejects(generateMonitoringChanges(db,input,config,reply({...expected,progress:bad})),/一致しない/);
+ }
+ const good={...expected,progress:'架空事例上の整理：見学し花の話を楽しんだという設定。',wishChanges:'架空事例上の整理：参加希望は継続し、職員同行の希望が確認された。'};
+ assert.equal((await generateMonitoringChanges(db,input,config,reply(good))).values.progress,good.progress);
  assert.equal(JSON.stringify(review),initial);
  console.log('PASS: approved 19 instead of draft 21, pinned approval, date cutoff, empty checks, denied/missing/ambiguous sources, six fields, consent/stale/empty/config guards, API failures, no writes.');
 })().catch(e=>{console.error(e);process.exitCode=1});
