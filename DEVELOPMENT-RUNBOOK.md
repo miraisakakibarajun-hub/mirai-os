@@ -174,3 +174,12 @@ Verification: PostgreSQL pglast parser accepted all 25 statements; existing 88 u
 `lib/staff/session-postgres.mjs` implements parameterized session insert/audit, issuer/org-qualified reads and local revoke/outbox hooks, plus a gated lease worker (claim/loadClaim/finish). Login and revoke hooks must run inside their existing repository transactions. Current binding/Auth session checks and worker authorization are required, unconfigured dependencies. Worker uses session-before-outbox locks except claim, which locks only outbox. Stale/expired lease cannot complete or obtain credentials. No provider adapter, scheduler, privileges or actual schema were initialized.
 
 `design/staff-auth-operations-60.md` records an organization authentication fence proposal and remaining constraints. The proposed fence is NOT wired into invalidating changes. SQL templates13 parse with pglast; 101 unit tests (13 new) plus ESLint and TypeScript pass. Unit DB stubs do not verify PostgreSQL/RLS/concurrency. Next: trusted current-binding/stop checks and constrained DB execution prerequisites.
+
+
+## AUTH-CHECK-61 — prepared current-state and suspension checks (2026-10-11)
+
+`lib/staff/current-session.mjs` evaluates complete server projections of existing identity/control/suspension/release models and checks managed/provider session validity. PASSWORD_CHANGE permits no business actor/relation and only initial/reset credentials, but ACCOUNT_GLOBAL still denies. BUSINESS_AUTH needs READY, active actor/relation and org stops; OS-specific checks require an explicit configured OS and do not grant actions. Final-check repository acquires the proposed shared org fence, loads current state and rechecks time before confirmed COMMIT. Snapshot SQL/row locks and participating invalidating writes remain unimplemented.
+
+`design/staff-auth-check-61.md` and `staff-auth-privileges-61.sql` contain the access matrix and closed NOLOGIN/NOBYPASSRLS role shells; no role, grant or connection was applied. Read-only staging verification confirms current public/executor roles cannot SELECT auth.sessions and staff_core/staff_auth_private schemas do not exist. Function-only runtime adapters are still required; direct table SQL from task60 is not yet a privilege-approved runtime.
+
+111 unit tests (10 new), TypeScript and ESLint pass. Role SQL parses as 9 statements. No live Auth/current-state loader/RLS/concurrency test. Next: dedicated DB function contracts/update restrictions and an aggregated preconnection checklist.
