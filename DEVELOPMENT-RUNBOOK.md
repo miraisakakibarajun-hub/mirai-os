@@ -106,3 +106,21 @@ HTTPは8KiB上限、厳密入力、JSON限定、origin確認、試行制限、�
 処理中はfieldset無効化＋refによる多重送信抑制。変更の成否不明・通信断・応答不正は入力再送を止め、同じ操作の確認番号を表示。結果不明時は管理者へ相談し、画面離脱警告を要求する。IDはメモリ内のみで、ページ再読込／閉鎖後の復旧やサーバーでの操作照会は未実装。結果不明時に新しい操作番号で自動再送しない。未接続503は処理未開始として再試行可能。確認用不一致は送信しない。
 
 React Best Practices確認：イベント中のfetch、秘密をstateへ置かない、refによる多重操作防止、適切なeffect listener cleanup、Client boundary限定、リンクされたlabel・password autocomplete・status live region・keyboard focus・日本語main・単一h1。Tailwindで画面幅に応じた余白と単列フォーム、操作高さ48px。ブラウザー描画／タッチ操作の実証は別に記録し、コード検査から合格としない。
+
+## AUTH-CONNECT-56 — ID対応とSupabaseパスワード検証部（2026-10-11）
+
+`login-identity.mjs`は既存account_links/account_auth_controlsのサーバー専用projectionからログインticketを作る。新しい人物／所属／許可マスターを作らない。設定issuer・法人、完全一致のlogin_nameで検索し、一件・本人確認済み・account利用期間内・LINKED・認証版・停止評価を検査する。INITIAL_CHANGE_REQUIRED／RESET_CHANGE_REQUIREDも認証準備用ticketに限り許容し、業務用binding resolverのREADY条件は変更しない。org relation／actor／grantは後続の業務認可で必要、認証ticketから生成しない。
+
+追加の物理項目案はaccount_links.provider_login_identifier（サーバー専用、内部Authメール形式）。login_nameは既存候補。内部識別子は自動連結で作らず、法人が管理する名前空間で確認した値を読む。専用IDと旧001〜020／GH001等を別管理。実ドメイン・形式・値の発行なし。単一の整合したsnapshot照会、現在と履歴のID再使用防止・競合制約・専用DBロールは未実装。
+
+`supabase-password-provider.mjs`は明示HTTPS URLとpublishable keyだけを受け取る。各試行で独立したSupabase Clientを生成しpersistSession/autoRefreshToken/detectSessionInUrl=false。既存NEXT_PUBLIC_URLや開発環境へ自動fallbackしない。管理秘密キーを受け付けない。既存anonキーからの移行や新key作成は本工程で行わない。
+
+signInWithPassword→getUser(access token)→getClaims(access token)で対応subject・issuer・aud/role・非匿名・session ID・iat/expを検査する。user_metadataやメール一致で人物を決めない。署名検証後もAuthのセッション失効／account epoch／停止を確認したことにはならず、completeLoginの現在セッション・対応再検査が必須。検証済みreceiptのaccess/refresh tokenは非列挙private propertyに保持し、公開HTTP応答・ログへ出さない。Cookie発行はこのモジュールでは行わない。失敗時の新セッションはlocal signOutを要求し、JWT即時失効の保証とは扱わない。
+
+実行結果：職員モジュール68件成功（今回8件）。ID対応3、provider4、実SDKのES256署名検証1。最後はローカル生成鍵とmock Auth/JWKS HTTPで、インストール済みSupabase SDKが正しい署名を受理し、改ざんpayloadを拒否することを確認。実Supabaseユーザー・実キー・外部Auth通信は使用しない。最初は2クライアント双方のJWKS fetchを期待するテストが失敗したため、SDKの共有JWKSキャッシュに合わせ検査を訂正し再実行した。型チェック・eslint成功。実認証／実DB、失効確認、停止競合、Cookie／継続更新、初回変更・再設定providerは未接続。
+
+初期設定の手順案：001城戸裕子／016榊原純の候補と本人照合→確認済み人物→account準備→内部識別子・subject対応→本人の初回変更→業務許可bootstrap。共通IDやAuth subjectを架空生成して対応済みにしない。人物属性の適用開始根拠を未確認のまま正式化しない。契約区分／開始の不足をログイン準備で推測しない。権限管理担当の既決条件は継続、榊原純自身の付与／拡大／停止解除は城戸裕子承認。初期導入実行資格、城戸裕子の最初の審査許可の根拠と初期許可一覧は未決。実発行／付与未実施。
+
+次はcompleteLoginのセッションと認証版の記録／再検査、およびCookie発行を一つの接続契約へ具体化する。runtimeの未設定503を維持し、実接続可と報告しない。新プロジェクト／有料設定／既存DB／024・043原本変更なし。
+
+公式参照（2026-10-11）：Supabase changelog.md、auth-signinwithpassword、auth-getclaims、auth-signout。SDKソースgetClaims(jwt)の期限検査、JWKS、対称署名時getUser fallbackを確認。Next／Supabaseの一般チュートリアルにある新projectやpublicプロフィール権限は本案件の採用指示として扱わない。
