@@ -211,3 +211,9 @@ Validation: 124 unit tests; isolated PostgreSQL/PGlite checks increased from 35 
 `design/staff-core-history-65.sql` is an unapplied design candidate for persons, account links, immutable dedicated revisions, sealed typed history sets/members, and invoker current-segment views. Requires reviewed actor/operation prerequisites; it creates no bootstrap actor or authentication account. Do not apply over test fixture 63.
 
 Isolated validation: `PGLITE_MODULE=... node test/staff/core-history-65.mjs` (28 checks). Formal request/decision/application evidence, login-name history reservation, subject initial-link evidence, scope/control/current account projections and authorized write/audit operations remain pending. D02 Japanese business-day/exclusive-end proposal is retained; this corrects overly broad task64 wording about date boundaries. See the paired design note for approval-evidence mappings and adoption differences.
+
+## SUSPENSION-EVIDENCE-66 — approval/application proof for stops/releases
+
+Unapplied `design/staff-suspension-evidence-66.sql` adds typed request detail and the existing logical stop/release tables, composite proof FKs, deferred final evidence checks, immutable used-evidence guards and invoker views. Existing request/decision/impact/application/attempt/operation tables must meet the documented contract; tests use minimal isolated prerequisites, not an authorization engine.
+
+Validation: 34 isolated checks with `PGLITE_MODULE=... node test/staff/suspension-evidence-66.mjs`; lint passes. Current requested version, active attempt and confirmation-within-lease are checked, but a real worker's presented token and live authorization/fence/audit require a future apply function. No actual role, employee, staging or production changes.
