@@ -261,3 +261,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 ## APPROVAL-AUTHORITY-74（接続契約案・未実装）
 
 `design/staff-approval-authority-74.md`に、判断時grant／依存集合／主体／方針版と適用時現在認可の専用参照、AND評価、同人物・法人、自己操作、bootstrap起点と循環付与の拒否を整理。D02/D05/D12へ反映。新規DDL・検証器・bootstrap・自動試験は作成していない。16受入ケース群は未実行。73の164項目を回帰確認するが、74の真正な承認権限検証として計上しない。次はgrant恒久行・専用履歴・封印依存集合の未適用候補。実環境変更なし。
+
+## GRANT-HISTORY-75（未適用構造候補）
+
+`design/staff-grant-history-75.sql`／`.md`は恒久grant、追記版、封印依存集合、履歴set／区間の5表と構造照会view。`authorization_verified=false`固定で認可入口へ未接続。65/68/72に加え正式な業務scope／所属／契約／役割親が必要で、現状そのまま適用しない。
+
+`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/grant-history-75.mjs`：208項目成功（73回帰164＋75追加44）、PG18.3単一接続。将来親5領域と実Auth／真正な承認資格はfixture。74の16受入ケース群・実PG17競合・現在依存認可・bootstrap・成功監査は未検証。次は正式業務scope親の具体化。実職員・実Auth・実DB変更なし。
