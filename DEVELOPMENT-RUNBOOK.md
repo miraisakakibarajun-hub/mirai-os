@@ -205,3 +205,9 @@ Fixed task59 CHECK: PostgreSQL rejects regex repetition bound50000 at INSERT tim
 `lib/staff/auth-function-repository.mjs` exposes separate RUNTIME/WORKER interfaces for the eight AUTH-DB-63 functions. Fixed parameterized SQL; one checked-out client per transaction; decoded result and outer COMMIT required before success. No table fallback or public RPC. Stored ISO expiry is preserved for AES-GCM AAD.
 
 Validation: 124 unit tests; isolated PostgreSQL/PGlite checks increased from 35 to 43, exercising all eight entries through the app adapter and real credential sealer. Provider verification is a stub, formal parent projections remain fixtures, single connection only. See `design/staff-auth-adapter-64.md` for source mappings and pending history/approval contracts. Runtime routes remain unconfigured, actual credentials and deployment unchanged.
+
+## CORE-HISTORY-65 — parent/history DDL proposal (2026-10-11)
+
+`design/staff-core-history-65.sql` is an unapplied design candidate for persons, account links, immutable dedicated revisions, sealed typed history sets/members, and invoker current-segment views. Requires reviewed actor/operation prerequisites; it creates no bootstrap actor or authentication account. Do not apply over test fixture 63.
+
+Isolated validation: `PGLITE_MODULE=... node test/staff/core-history-65.mjs` (28 checks). Formal request/decision/application evidence, login-name history reservation, subject initial-link evidence, scope/control/current account projections and authorized write/audit operations remain pending. D02 Japanese business-day/exclusive-end proposal is retained; this corrects overly broad task64 wording about date boundaries. See the paired design note for approval-evidence mappings and adoption differences.
