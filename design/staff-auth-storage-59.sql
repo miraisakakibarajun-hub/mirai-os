@@ -39,7 +39,7 @@ CREATE TABLE staff_auth_private.managed_sessions (
       AND credential_version = 'AES256GCM_V1'
       AND credential_key_id IS NOT NULL AND credential_key_id ~ '^[A-Za-z0-9_-]{1,64}$'
       AND credential_nonce IS NOT NULL AND credential_nonce ~ '^[A-Za-z0-9_-]{16}$'
-      AND credential_ciphertext IS NOT NULL AND credential_ciphertext ~ '^[A-Za-z0-9_-]{1,50000}$'
+      AND credential_ciphertext IS NOT NULL AND length(credential_ciphertext) BETWEEN 1 AND 50000 AND credential_ciphertext ~ '^[A-Za-z0-9_-]+$'
       AND credential_tag IS NOT NULL AND credential_tag ~ '^[A-Za-z0-9_-]{22}$')
     OR (state <> 'ACTIVE' AND credentials_purged_at IS NOT NULL
       AND credential_version IS NULL AND credential_key_id IS NULL
