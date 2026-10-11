@@ -217,3 +217,9 @@ Isolated validation: `PGLITE_MODULE=... node test/staff/core-history-65.mjs` (28
 Unapplied `design/staff-suspension-evidence-66.sql` adds typed request detail and the existing logical stop/release tables, composite proof FKs, deferred final evidence checks, immutable used-evidence guards and invoker views. Existing request/decision/impact/application/attempt/operation tables must meet the documented contract; tests use minimal isolated prerequisites, not an authorization engine.
 
 Validation: 34 isolated checks with `PGLITE_MODULE=... node test/staff/suspension-evidence-66.mjs`; lint passes. Current requested version, active attempt and confirmation-within-lease are checked, but a real worker's presented token and live authorization/fence/audit require a future apply function. No actual role, employee, staging or production changes.
+
+## CURRENT-PROJECTION-67 — combined history/effect/session read validation
+
+`design/staff-current-projections-67.sql` derives the three auth-private views from history65 and effects66, with a single fresh materialized clock per evaluation. Integration script loads 65/66/59/67/63 and exercises adapter64 + real encryption on the same isolated database: 25 checks passed. Future revision pointers preserve currently effective values; missing controls/unknown state/stops fail closed.
+
+Supporting organization/relation/actor/control/approval/Auth tables remain minimal fixtures. The candidate currently requires a confirmed active person/org relation even for initial password change; relation-free provisioning scope is still pending and is not silently widened. Isolated owner read policies are NOT deployment policies. No runtime connection or production data changed. See the design note for exact scope and next prerequisites.
