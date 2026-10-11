@@ -279,3 +279,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-organization-history-77.sql`／`.md`は事業・拠点・部署の専用版／封印set／区間9表と事業拠点対応4表、76のidentity現在set／期待版を追加。既存行がある77導入は拒否、実根拠のbackfill別設計が必要。稼働参照は日本業務日で組織状態・対応をAND照合する構造結果だけで、grant発行なし。
 
 `PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/organization-history-77.mjs`：345項目成功（76回帰268＋77追加77）、PG18.3単一接続。実Auth／承認資格・所属／契約／役割親はfixture。実PG17競合・監査原子性・現在業務認可・部署階層は未検証／未完成。実組織・職員・DB・Auth変更なし。次は部署親子／事業拠点関連の履歴と循環制約。
+
+## DEPARTMENT-STRUCTURE-78（未適用階層候補）
+
+`design/staff-department-structure-78.sql`／`.md`は部署階層版／封印set／区間の3表と独立現在ポインター。NULLは未設定、法人直属ROOTは明示確認。現在・未来の共通業務期間を持つ循環と親子文脈矛盾をコミット時に拒否する。READ COMMITTED＋法人排他の候補で、正式更新器の法人先行ロック・全経路参加・実PG17複数接続は未完成／未検証。
+
+`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/department-structure-78.mjs`：393項目成功（77回帰345＋78追加48）、PG18.3単一接続。階層準備はSTRUCTURE_READY／NOT_READYの参照結果だけ、grant発行なし。実Auth／承認資格・所属／契約／役割親はfixture。実職員／組織／DB／Auth変更なし。次は複数所属assignmentsの履歴候補。
