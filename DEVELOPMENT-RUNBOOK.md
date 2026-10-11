@@ -160,3 +160,10 @@ loadForUpdate／revokeAndEnqueue／provider失効／finishProviderCleanupは実�
 検証：職員テスト88件成功（今回13）。Cookie／本人・業務分離／HTTP10、失効transaction2、providerの保存session再検証1。欠落／重複／不正、最小identity、停止／期限／別環境／最終版拒否、初回変更の業務拒否、文脈の主体保持、status非公開、origin／他対象拒否、失効と外部処理順、外部失敗pending、DB不明時cookie保持、同一接続・監査／queue・COMMIT、不明commitと解放、保存session ID一致・新規signinなしを確認。暗号とSDK署名検証の既存試験も継続。実DB・Auth・ブラウザーcookie／ログアウトは未実証。
 
 方式は設計案のまま、初期実行資格／許可一覧やprovider発行権限を追加採用しない。新Supabase project／有料設定／既存DB／024・043原本変更なし。044候補、本番切替なし。
+
+
+## AUTH-STORAGE-59 — review-only persistence schema (2026-10-11)
+
+`design/staff-auth-storage-59.md` and `.sql` define managed sessions, session audit events and a LOCAL revocation outbox. This is NOT an automatic migration. Parent staff_core physical DDL, constrained runtime roles, lock/recheck operations and provider cleanup worker remain unimplemented. No schema, accounts, keys or grants were applied. Exact expires_at_iso preserves AES-GCM AAD through database round trips. Audit attribution distinguishes verified Auth sessions, cookie possession and a real technical actor; no business actor is fabricated.
+
+Verification: PostgreSQL pglast parser accepted all 25 statements; existing 88 unit tests passed. These checks do not verify actual PostgreSQL constraints, RLS or concurrent worker behavior. Next: trusted binding/control locking and dedicated session/outbox DB operations plus verification cases.
