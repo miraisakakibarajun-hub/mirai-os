@@ -229,3 +229,9 @@ Supporting organization/relation/actor/control/approval/Auth tables remain minim
 Unapplied base68 -> history65 -> controls68 separates typed actors/org identities from immutable organization/relation history and audited monotonic auth/authz controls. Projection68 derives org/relation state from sealed sets. Earlier fixture67 remains independently reproducible.
 
 `PGLITE_MODULE=... node test/staff/parent-controls-68.mjs`: 44 integration checks. Supporting approval/operation/control-scope/Auth tables remain fixtures. Actor/bootstrap evidence, provider readiness, live permission/fence/audit/outbox and relation-free initial provisioning are still pending; no actual credentials or rows issued. A completed operation referenced by control evidence cannot be rewritten. Do not treat the isolated all-core-read owner policy as a deployment policy.
+
+## LOGIN-RESERVATION-69（未適用）
+
+`design/staff-login-reservations-69.sql`をhistory65/parent68後の候補として追加。完全一致の発行元＋ログインIDを人物へ恒久予約する。詳細と初回認証例外の未実装条件は`design/staff-login-reservations-69.md`。
+
+隔離試験：`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/login-reservations-69.mjs`と同じコマンドの`--backfill`付き。各70項目（68回帰44＋69追加26）、単一接続PG18.3。承認/Authはfixture。実PG17・競合・本番適用は未確認。初回許可の承認証跡検証と投影変更が完成するまで68の法人関係未確認時の拒否を維持する。
