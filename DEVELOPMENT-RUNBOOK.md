@@ -124,3 +124,21 @@ signInWithPassword→getUser(access token)→getClaims(access token)で対応sub
 次はcompleteLoginのセッションと認証版の記録／再検査、およびCookie発行を一つの接続契約へ具体化する。runtimeの未設定503を維持し、実接続可と報告しない。新プロジェクト／有料設定／既存DB／024・043原本変更なし。
 
 公式参照（2026-10-11）：Supabase changelog.md、auth-signinwithpassword、auth-getclaims、auth-signout。SDKソースgetClaims(jwt)の期限検査、JWKS、対称署名時getUser fallbackを確認。Next／Supabaseの一般チュートリアルにある新projectやpublicプロフィール権限は本案件の採用指示として扱わない。
+
+## AUTH-SESSION-57 — ログイン確定・管理セッション・Cookie（2026-10-11）
+
+`login-session.mjs`に同一DB接続でのBEGIN→現在対応再検査→Authセッション確認→管理セッション＋監査保存→COMMITを追加。recheckBinding・verifyProviderSession・saveSessionAndAuditは実依存未接続。実実装では現在account・人物・issuer／法人・認証版・credential状態・停止・期間を再検査し、既存の制御ロックを保存まで保護する。Authセッションはauth.users／auth.sessions等の現在状態・subject／session IDを最小権限で検査する。単にtrueを返す代替やサービス管理者一括権限を使わない。
+
+ログイン前ticketとトランザクション内の対応が一致しない、Authセッションが無効、保存失敗／COMMIT結果不明の場合は確定結果を返さず、Cookieを発行しない。接続を解放し、従来HTTP接続部は新しいAuthセッション破棄を要求する。COMMIT結果不明でDB行が残る可能性はあり、サーバー期限と清掃で扱う。ROLLBACK成功をCOMMIT失敗の未保存証拠にしない。
+
+`createLoginCompletion`は256bit乱数のopaque session tokenを生成し、DB側にSHA-256 hashのみを渡す。recordは変更不可。recordId・person/account/org・Auth subject/session・issuer・authEpoch・purpose・expiresAt・credentialEnvelopeを保持するサーバー専用実行時データ案。人物／account正本や業務grantとは別。BUSINESS_AUTHは認証の用途で、業務許可ではない。PASSWORD_CHANGEは初回／再設定の限定用途。DB実テーブル・DDL・保存ロールは未実装。
+
+provider access/refresh tokenは`credential-sealer.mjs`のAES-256-GCM envelopeで暗号化し、保存データに平文を渡さない。新しいnonce、128bit tag、明示したkey ID、record/account/person/org/issuer/Auth主体/session/認証版/purpose/期限/token hashをAADに結び付ける。改ざんや別状態への付替えは復号拒否。32byte keyはサーバー管理の明示入力のみ。実鍵の生成・環境保存は行わない。鍵保管・ローテーション・復旧／旧鍵・保持期限は導入前の未決条件。秘密は監査／ログへ出さない。
+
+Cookie案は`__Host-mirai_staff_session`、Path=/・HttpOnly・Secure・SameSite=Lax・Domainなし。トークンは43文字base64url、TTLは明示設定（1〜86400秒は技術上限案）。期限は設定TTLと検証済みprovider token期限の短い方。COMMIT後にも期限を確認し、期限切れなら発行しない。HTTPはcompletionのstate＋厳密Cookie形式を検査し、Set-Cookieヘッダーだけに秘密を入れる。公開JSONはcode/nextAction、no-storeのまま。従来テスト用の状態文字列だけのcompleteLogin結果は受け入れない。
+
+これはMIRAI専用のサーバーセッション案であり、既存Supabase SSR Cookieと同じものではない。既存createClient／getUserの読み取り経路は専用Cookieを解決できず、受信Cookie hash→private record→現在状態検査／復号／Auth確認への接続が次工程。Cookie単独を本人／許可の証拠にしない。更新／refresh、ログアウト／失効、共有端末交代、停止競合、期限を跨ぐCOMMIT保証は未完成。実接続前に全体を検証する。
+
+検証：職員テスト75件成功（今回7：session/暗号6＋HTTP1）。同一接続と保存順、hashと平文非保存、初回変更用途、版変更／失効／保存・COMMIT障害で確定拒否、期限切れ拒否、AAD／tag改ざん拒否とnonce差、鍵／TTL必須、Cookieのヘッダー限定・Domain注入拒否。AAD拘束を補強後に対象17件を再実行。DB操作は模擬。実COMMIT、Auth sessions、ブラウザーCookie受理は未検証。runtime未設定503は維持し、実アカウント発行／ログイン／権限付与／既存DB変更は行わない。
+
+参照：Next16.2.12同梱cookies.md（async API、Route Handlerの応答ヘッダーで設定）、Node.js crypto公式資料のGCM/AAD/tagを確認。今回は標準ResponseのSet-Cookieを使用し、未確認のcookies同期APIを追加しない。新Supabaseプロジェクト／有料設定／本番切替なし。044候補、024／043原本不変。
