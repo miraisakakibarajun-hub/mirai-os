@@ -251,3 +251,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-workflow-parents-72.sql`はparent-base68後／history65前に7親表を作成する候補。`staff-workflow-evidence-72.sql`は66/70後の現在版・取消・要求種別／境界整合の追加候補。詳細は`staff-workflow-parents-72.md`。66の一意制約と72の同一制約は正式migrationで統合する。fixture表／実表へ無条件実行しない。
 
 `PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/workflow-parents-72.mjs`は122項目成功（70回帰85＋72追加37）、PG18.3単一接続。7親表は候補DDLを使用し、TEST-ONLYの根拠・actor・範囲を明示投入。control_scopes／真正な承認権限／ライブ適用関数／成功監査／外部Auth／実PG17競合は未完成。必須値の試験補完アダプターを本番に転用しない。新規権限・職員・実Authを登録していない。
+
+## CONTROL-SCOPE-73（未適用候補）
+
+`design/staff-control-scopes-73.sql`はbase68後／workflow72前に5表を作成。後段`staff-control-scope-evidence-73.sql`と代替投影`staff-current-projections-73.sql`を利用する候補。範囲の現在採用版と明示法人／操作／OSを確認するがactorの承認権限を証明しない。`initial_policy_readiness_73`はSCOPE_DENIEDまたはPOLICY_UNDECIDEDだけを返す。実適用入口へは未接続。
+
+`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/control-scopes-73.mjs`は164項目成功（72回帰122＋73追加42）、PG18.3単一接続。試験のPLATFORM_CONTROLはTEST-ONLYであり実法人・職員に横断権限を発行していない。actor認可・grant／bootstrap・現在fence・ライブ適用・実Auth・PG17競合・成功監査は残件。詳細は`staff-control-scopes-73.md`。
