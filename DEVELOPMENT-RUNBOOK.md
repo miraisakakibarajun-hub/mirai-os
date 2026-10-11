@@ -257,3 +257,7 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-control-scopes-73.sql`はbase68後／workflow72前に5表を作成。後段`staff-control-scope-evidence-73.sql`と代替投影`staff-current-projections-73.sql`を利用する候補。範囲の現在採用版と明示法人／操作／OSを確認するがactorの承認権限を証明しない。`initial_policy_readiness_73`はSCOPE_DENIEDまたはPOLICY_UNDECIDEDだけを返す。実適用入口へは未接続。
 
 `PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/control-scopes-73.mjs`は164項目成功（72回帰122＋73追加42）、PG18.3単一接続。試験のPLATFORM_CONTROLはTEST-ONLYであり実法人・職員に横断権限を発行していない。actor認可・grant／bootstrap・現在fence・ライブ適用・実Auth・PG17競合・成功監査は残件。詳細は`staff-control-scopes-73.md`。
+
+## APPROVAL-AUTHORITY-74（接続契約案・未実装）
+
+`design/staff-approval-authority-74.md`に、判断時grant／依存集合／主体／方針版と適用時現在認可の専用参照、AND評価、同人物・法人、自己操作、bootstrap起点と循環付与の拒否を整理。D02/D05/D12へ反映。新規DDL・検証器・bootstrap・自動試験は作成していない。16受入ケース群は未実行。73の164項目を回帰確認するが、74の真正な承認権限検証として計上しない。次はgrant恒久行・専用履歴・封印依存集合の未適用候補。実環境変更なし。
