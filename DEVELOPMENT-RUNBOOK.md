@@ -245,3 +245,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 ## INITIAL-APPLY-CONTRACT-71（仕様候補・未実装）
 
 `design/staff-initial-apply-contract-71.md`に初回許可適用の固定入力／出力、承認根拠・未決方針の保留、現在リースtokenハッシュ照合、fenceと行ロック統合条件、監査原子性、再送／COMMIT不明の照合契約を記載。既存D02/D05/D12と仕様照合。今回はDB関数・role・新規自動試験を作成せず、実DBへ適用していない。70の85項目を71の承認権限・競合・監査検証として数えない。次は申請／判断／impact／application／attempt／operation親モデルの正式候補整理。
+
+## WORKFLOW-PARENTS-72（未適用候補）
+
+`design/staff-workflow-parents-72.sql`はparent-base68後／history65前に7親表を作成する候補。`staff-workflow-evidence-72.sql`は66/70後の現在版・取消・要求種別／境界整合の追加候補。詳細は`staff-workflow-parents-72.md`。66の一意制約と72の同一制約は正式migrationで統合する。fixture表／実表へ無条件実行しない。
+
+`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/workflow-parents-72.mjs`は122項目成功（70回帰85＋72追加37）、PG18.3単一接続。7親表は候補DDLを使用し、TEST-ONLYの根拠・actor・範囲を明示投入。control_scopes／真正な承認権限／ライブ適用関数／成功監査／外部Auth／実PG17競合は未完成。必須値の試験補完アダプターを本番に転用しない。新規権限・職員・実Authを登録していない。
