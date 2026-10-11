@@ -183,3 +183,10 @@ Verification: PostgreSQL pglast parser accepted all 25 statements; existing 88 u
 `design/staff-auth-check-61.md` and `staff-auth-privileges-61.sql` contain the access matrix and closed NOLOGIN/NOBYPASSRLS role shells; no role, grant or connection was applied. Read-only staging verification confirms current public/executor roles cannot SELECT auth.sessions and staff_core/staff_auth_private schemas do not exist. Function-only runtime adapters are still required; direct table SQL from task60 is not yet a privilege-approved runtime.
 
 111 unit tests (10 new), TypeScript and ESLint pass. Role SQL parses as 9 statements. No live Auth/current-state loader/RLS/concurrency test. Next: dedicated DB function contracts/update restrictions and an aggregated preconnection checklist.
+
+
+## AUTH-FUNCTION/READY-62 — function contracts and preconnection summary (2026-10-11)
+
+`design/staff-auth-function-contracts-62.md` specifies eight constrained runtime/worker functions: private login ticket/session reads, current verification, login commit, local revocation, and worker claim/read/finish. Defines input provenance, COMMIT boundaries, immutable AAD/state transitions, audit operation/record consistency and required implementation acceptance tests. These are contracts, NOT deployed SQL functions. No application code changed or new test run; latest verified code suite remains 111 tests.
+
+`design/staff-auth-readiness-62.md` summarizes technical gaps and grouped decisions before actual DB/Auth connection. D05 stores full contracts and D12 stores readiness summary. Task59 DDL still needs composite audit/outbox FK and immutable update guards; parent DDL, function bodies/RLS/adapters and reset/initial-change hooks remain incomplete. Next: implement prerequisites and constrained functions, verify in isolation before connection. No projects, user accounts, grants, paid upgrade or production changes.
