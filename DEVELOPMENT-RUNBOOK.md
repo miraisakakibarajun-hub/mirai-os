@@ -167,3 +167,10 @@ loadForUpdate／revokeAndEnqueue／provider失効／finishProviderCleanupは実�
 `design/staff-auth-storage-59.md` and `.sql` define managed sessions, session audit events and a LOCAL revocation outbox. This is NOT an automatic migration. Parent staff_core physical DDL, constrained runtime roles, lock/recheck operations and provider cleanup worker remain unimplemented. No schema, accounts, keys or grants were applied. Exact expires_at_iso preserves AES-GCM AAD through database round trips. Audit attribution distinguishes verified Auth sessions, cookie possession and a real technical actor; no business actor is fabricated.
 
 Verification: PostgreSQL pglast parser accepted all 25 statements; existing 88 unit tests passed. These checks do not verify actual PostgreSQL constraints, RLS or concurrent worker behavior. Next: trusted binding/control locking and dedicated session/outbox DB operations plus verification cases.
+
+
+## AUTH-DBOPS-60 — prepared PostgreSQL operations (2026-10-11)
+
+`lib/staff/session-postgres.mjs` implements parameterized session insert/audit, issuer/org-qualified reads and local revoke/outbox hooks, plus a gated lease worker (claim/loadClaim/finish). Login and revoke hooks must run inside their existing repository transactions. Current binding/Auth session checks and worker authorization are required, unconfigured dependencies. Worker uses session-before-outbox locks except claim, which locks only outbox. Stale/expired lease cannot complete or obtain credentials. No provider adapter, scheduler, privileges or actual schema were initialized.
+
+`design/staff-auth-operations-60.md` records an organization authentication fence proposal and remaining constraints. The proposed fence is NOT wired into invalidating changes. SQL templates13 parse with pglast; 101 unit tests (13 new) plus ESLint and TypeScript pass. Unit DB stubs do not verify PostgreSQL/RLS/concurrency. Next: trusted current-binding/stop checks and constrained DB execution prerequisites.
