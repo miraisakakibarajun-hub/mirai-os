@@ -70,3 +70,27 @@ DBエクスポート、履歴比較・再構築用フォルダー、pendingの�
 - Next.js 16.2.12同梱 `node_modules/next/dist/docs/01-app/01-getting-started/15-route-handlers.md` を読んでルート構成を確認した。
 
 次工程は、対象stagingで使う対応スナップショットとセッション検証の実接続条件を確認し、未決の初期登録資格を解消した上で個人IDログインと候補保存を接続する。依存未接続の503を保存完成と扱わない。
+
+## STAFF-LOGIN-54 — 職員IDログインのHTTP接続部（2026-10-11）
+
+追加ルート（すべてPOST）：
+- `/api/staff/auth/login`: 個人別ログインID・パスワード
+- `/api/staff/auth/password/change`: 本人の現在／新パスワード・operationId
+- `/api/staff/auth/password/reset`: 管理者による対象account・本人確認根拠参照・理由・operationId
+
+`login-routes.mjs`は信頼するサーバー依存を注入する接続部。`login-runtime.ts`は未接続であり、実配備でも3ルートは503＋no-store。既存メールログインは置換していない。新しいフォーム、Auth実発行、パスワード変更／再設定、DB状態管理、Cookie発行、実権限は未実装。LOGIN-PLAN-53は方式案のまま。ユーザーの続行指示は実装準備の指示として記録し、初期資格／権限の包括承認へ拡張しない。
+
+### 接続時の必須契約
+
+全フックはサーバー専用。ログインID対応・issuer・法人・本人・epochはサーバー管理。入力からの主体／権限注入、パスワードによる管理者代理認証、user_metadataによる認可をしない。
+
+- `checkOrigin`: サーバー設定のHTTPS origin照合。`limitAttempts`: 信頼できる要求元とID／対象双方を制限。パスワードは受け取らず記録しない。ログインID存在のタイミング漏えい対策は実Auth接続時に検証する。
+- `beginLogin`: 未知／停止対象はnull。有効なaccountとissuer/org/epochのスナップショットを保持。初回変更状態では制限セッションのみ準備。`authenticatePassword`: 内部Auth識別子に変換しSupabaseで検証。資格不一致はnull、技術障害はthrow。返却するsessionは署名検証済みのsubject/session IDを含む内部値。
+- `completeLogin`: 本人・session・account・epochと停止を再確認し、サーバー管理のセッション対応を確定した後だけCookieを発行。READYまたはCHANGE_REQUIREDを返す。READYは業務許可ではなく、ホームへ遷移後も各要求で認可。直接Authのセッションに現在epochを後付けしない。拒否時に業務利用可能なCookie／receiptを残さず、`discardSession`で新規Authセッションを失効させる。
+- `beginPasswordChange`: 現在の本人・制限セッション・対象account・現パスワード・認証状態・epoch・operation所有者を検査。操作ID／状態／監査を同一DB境界で記録し、外部変更前に業務拒否を永続化する。未認証／別人／停止／競合はnull。`changePassword`は検証した本人の新パスワードのみ変更。`completePasswordChange`は外部結果照合と旧セッション失効を終えて状態を進め、再ログインを要求。
+- `beginReset`: 現在の管理者本人、専用AUTH_RESET許可・法人範囲・停止・現在版、保存された本人確認根拠の妥当性を検査。入力されたverificationRef文字列だけで本人確認済みにしない。再送operationと対象・理由・根拠を照合し、内容違いを適用しない。対象を先に業務拒否・epoch更新して監査／操作を永続化。拒否はnull。`resetPassword`はランダムな仮秘密を生成し、旧セッション失効・外部Auth変更・確認済み伝達経路を扱う。レスポンスへ秘密を返さない。`completeReset`は結果を照合してRESET_CHANGE_REQUIREDへ進め、停止解除やgrant発行をしない。
+- `markReconcile`: 外部処理の失敗／結果不明を同じ操作IDで照合待ちとして保持。これが失敗しても、begin段階の業務拒否が持続する必要がある。部分完了時にREADYへ戻さず、管理者に同じ操作IDで確認を案内する。
+
+開始フックが外部処理前の永続化を完成できない場合はthrowし、外部Auth処理を行わない。フックの内部ロック・再送結果・監査・失効保証は本接続部だけでは実現されず、実アダプターの必須要件。業務保存側のAUTH-GATE-49／トランザクション内認可も継続する。
+
+HTTPは8KiB上限、厳密入力、JSON限定、origin確認、試行制限、秘密を含まない公開応答、no-store。ID形式・パスワード方針は未決のため文字数は入力資源上限であり正式な強度方針ではない。実キー・内部Authアドレス・個人パスワードをログへ出力しない。初期導入の実行者／代表審査権限の根拠／許可一覧、専用DBロールとセッション照合、特権追加確認方式は未決。新規Supabaseプロジェクト・費用変更・既存DB変更なし。
