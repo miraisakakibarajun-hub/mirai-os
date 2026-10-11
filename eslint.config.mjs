@@ -10,6 +10,10 @@ const eslintConfig = defineConfig([
       "test-dashboard-render.cjs",
       "test-meeting-list-render.cjs",
       "test-planning-assistance.cjs",
+      "test-monitoring-ai.cjs",
+      "test-monitoring-ai-browser.cjs",
+      "test-monitoring-handoff-browser.cjs",
+      "test-planning-adoption-browser.cjs",
     ],
     rules: {
       // Offline Node harnesses load CommonJS and provide a sandbox module object.

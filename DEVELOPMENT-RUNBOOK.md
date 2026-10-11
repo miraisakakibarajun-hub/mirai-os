@@ -55,3 +55,18 @@ ProductionのSupabase URL・公開キー変数の存在と、URLが開発DBを�
 コードとGit履歴は、秘密設定・DBデータ・Auth・Storageとは別に保全します。別PCや別媒体への保管と分離環境での復元確認が必要です。復旧は新しいフォルダーと分離したDBで行い、稼働中環境へ上書きしません。
 
 DBエクスポート、履歴比較・再構築用フォルダー、pendingの途中版、個別職員の権限付与SQL、生成物はGit反映から除外します。除外設定は補助であり、公開前に差分を確認します。
+
+## 職員共通基盤の候補API組込み NEXT-ROUTES-50（2026-10-11）
+
+相談支援の確認済み検証版commit `1814ab04783c7ce792ec82521a5da63407c620a3` を基に専用ブランチへ追加。
+
+- POST `/api/staff/candidates` と POST `/api/staff/candidates/result` は `lib/staff/candidate-runtime.ts` を通す。現在は依存未接続で必ず503 `DEPENDENCY_UNAVAILABLE` / `WAIT` / `Cache-Control: no-store`。職員の実登録・実Auth接続は行わない。
+- `lib/staff/candidate-routes.mjs` は管理された対応・セッション検証・現在認可・トランザクション内認可・DB poolが揃ったときだけ保存／照会接続口を組み立てる。環境変数一つで認証／認可を省略しない。
+- 共通基盤のDB・RLS・セッションepoch・初期登録資格・ログインIDと資格情報の対応は未決／未接続。既存開発DB、共有の管理者ID、旧staff権限を自動流用しない。
+- 準備コードからサーバー用8モジュールと対応試験を移植。画面・契約／所属有効化・共通ID発行はこの追加の対象外。準備コード側の変更をアプリ側へ反映するときは差分を確認する。
+- 自動テスト：`node --test lib/staff/*.test.mjs` 42件成功（既存準備のサーバー試験40件とルート構成の追加2件）。準備コード全体50件とは集計範囲が異なる。
+- 型検査・対象lint・全体lint・production build成功。既存会議一覧／dashboard／planningの3つのオフライン試験も成功。既存CJS試験4ファイルを既存の狭いlint例外一覧へ追加し、25件の設定由来エラーを解消した。アプリ全体のルールを無効化していない。
+- ローカルのビルド済みNextアプリへのHTTP検証：両POSTで503 WAIT/no-store、GETで405を確認。ビルド／起動はダミーのSupabase URL・公開キーで行い実DBを接続していない。実ログイン・実データ保存・公開切替の検証ではない。
+- Next.js 16.2.12同梱 `node_modules/next/dist/docs/01-app/01-getting-started/15-route-handlers.md` を読んでルート構成を確認した。
+
+次工程は、対象stagingで使う対応スナップショットとセッション検証の実接続条件を確認し、未決の初期登録資格を解消した上で個人IDログインと候補保存を接続する。依存未接続の503を保存完成と扱わない。
