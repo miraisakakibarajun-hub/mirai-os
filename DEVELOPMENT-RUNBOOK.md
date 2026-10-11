@@ -142,3 +142,21 @@ Cookie案は`__Host-mirai_staff_session`、Path=/・HttpOnly・Secure・SameSite
 検証：職員テスト75件成功（今回7：session/暗号6＋HTTP1）。同一接続と保存順、hashと平文非保存、初回変更用途、版変更／失効／保存・COMMIT障害で確定拒否、期限切れ拒否、AAD／tag改ざん拒否とnonce差、鍵／TTL必須、Cookieのヘッダー限定・Domain注入拒否。AAD拘束を補強後に対象17件を再実行。DB操作は模擬。実COMMIT、Auth sessions、ブラウザーCookie受理は未検証。runtime未設定503は維持し、実アカウント発行／ログイン／権限付与／既存DB変更は行わない。
 
 参照：Next16.2.12同梱cookies.md（async API、Route Handlerの応答ヘッダーで設定）、Node.js crypto公式資料のGCM/AAD/tagを確認。今回は標準ResponseのSet-Cookieを使用し、未確認のcookies同期APIを追加しない。新Supabaseプロジェクト／有料設定／本番切替なし。044候補、024／043原本不変。
+
+## AUTH-ACCESS-58 — 専用Cookieの本人確認・ログアウト・失効（2026-10-11）
+
+`session-access.mjs`に専用Cookie hash解決、本人確認、業務用認証文脈の接続部、status／logout HTTP、失効トランザクションを追加。`/api/staff/auth/session`（GET）、`/api/staff/auth/logout`（POST）を追加。runtimeは依存未接続503。既存Supabase SSR Cookieへ自動fallbackせず、既存candidate APIへの実接続はまだ行わない。
+
+Cookieの欠落・同名重複・形式不正は本人と認めない。loadByHashはconfigured issuer/orgのサーバー専用記録を検索する。ACTIVE、期限、token hash、識別子／認証版／purposeを照合し、AAD付き認証情報を復号。provider.verifyIdentityは保存されたaccess tokenについてgetUser/getClaimsで正しいsubject・issuer・同一session ID・期限等を検査し、新規ログイン／refreshを行わない。最後にconfirmCurrentSessionでrecord／account／人物／認証版／現在credential-purpose／停止／環境／期限、Auth主体とAuth sessionの現在状態を確認する契約。実SQL・専用ロール・競合保護は未接続。
+
+本人結果は必要な識別子とpurposeのみ。秘密・氏名・grantを返さない。PASSWORD_CHANGEは業務用authenticateで拒否する。BUSINESS_AUTHはresolveBusinessContextで現在のactor／法人関係等を確認し、同じ識別子・版を保持した場合だけ文脈を返す。各業務の現在action/scope認可と保存トランザクション内再確認は別に必要。status応答はSESSION_VERIFIED／PASSWORD_CHANGE_REQUIRED等のcodeのみで個人IDを返さずno-store。
+
+通常ログアウトは当該cookie hashのセッションだけを対象とし、bodyのaccount ID／他人対象は受け付けない。origin確認後、同じDB接続でBEGIN→token hashによる対象lock→REVOKED＋認証監査＋provider cleanup outbox→COMMIT。既に停止・期限切れでも自身の終了処理を依頼可能。通常logoutでaccount全体epochや他端末を変更しない。queue operationとrecordの一致を確認し、同じlogoutの再確認では同じpending operationを使う契約。
+
+commit確定後にcookieをMax-Age=0で消去し、Supabase側の当該sessionの後処理を要求。provider／後処理監査が失敗なら202 SIGNED_OUT_PROVIDER_CLEANUP_PENDING：専用側は失効済み、永続queueは残し、global／全OS logout完了と扱わない。DB失効の成否不明は503 SIGNOUT_UNCONFIRMEDとしてcookieを消去せず、同じcookieで再確認可能にする。再確認のため必要なcookieを先に消さない。cookieなしはorigin確認後に当該ブラウザーcookieを消去し終了案内できるが、他端末／他OS終了は意味しない。
+
+loadForUpdate／revokeAndEnqueue／provider失効／finishProviderCleanupは実未接続。outboxのDDL、対象検査、一意制約、実worker／再試行・監査、失効保証、cookie読込からcandidate factoryへの接続、画面logout操作は次工程。実失効の証拠はなく、mockで実行順と失敗分類だけを確認している。saveSession記録へstate=ACTIVEを明示して読込契約と合わせた。
+
+検証：職員テスト88件成功（今回13）。Cookie／本人・業務分離／HTTP10、失効transaction2、providerの保存session再検証1。欠落／重複／不正、最小identity、停止／期限／別環境／最終版拒否、初回変更の業務拒否、文脈の主体保持、status非公開、origin／他対象拒否、失効と外部処理順、外部失敗pending、DB不明時cookie保持、同一接続・監査／queue・COMMIT、不明commitと解放、保存session ID一致・新規signinなしを確認。暗号とSDK署名検証の既存試験も継続。実DB・Auth・ブラウザーcookie／ログアウトは未実証。
+
+方式は設計案のまま、初期実行資格／許可一覧やprovider発行権限を追加採用しない。新Supabase project／有料設定／既存DB／024・043原本変更なし。044候補、本番切替なし。
