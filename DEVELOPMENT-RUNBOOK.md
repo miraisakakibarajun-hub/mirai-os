@@ -267,3 +267,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-grant-history-75.sql`／`.md`は恒久grant、追記版、封印依存集合、履歴set／区間の5表と構造照会view。`authorization_verified=false`固定で認可入口へ未接続。65/68/72に加え正式な業務scope／所属／契約／役割親が必要で、現状そのまま適用しない。
 
 `PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/grant-history-75.mjs`：208項目成功（73回帰164＋75追加44）、PG18.3単一接続。将来親5領域と実Auth／真正な承認資格はfixture。74の16受入ケース群・実PG17競合・現在依存認可・bootstrap・成功監査は未検証。次は正式業務scope親の具体化。実職員・実Auth・実DB変更なし。
+
+## BUSINESS-SCOPE-76（未適用参照候補）
+
+`design/staff-business-scopes-76.sql`／`.md`は事業／拠点／部署の恒久identityと業務scope／専用版／履歴set／区間の7表。5種scope、同法人FK、NULLを含む正規組合せ一意、封印・現在期間参照。`STRUCTURE_MATCH`は完全一致の構造結果のみ、authorization_verified=false。事業／拠点／部署の属性履歴・business_sites・部署階層・操作別認可は未完成。
+
+`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/business-scopes-76.mjs`：268項目成功（75回帰208＋76追加60）、PG18.3単一接続。scope2領域のfixtureを候補DDLへ置換。所属／契約／役割親と実Auth／承認資格はfixture。実PG17競合、現在組織稼働・関係認可・bootstrap・監査原子性未検証。実職員／組織／DB／Auth変更なし。次は組織属性履歴と事業拠点対応。
