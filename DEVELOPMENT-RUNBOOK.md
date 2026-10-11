@@ -223,3 +223,9 @@ Validation: 34 isolated checks with `PGLITE_MODULE=... node test/staff/suspensio
 `design/staff-current-projections-67.sql` derives the three auth-private views from history65 and effects66, with a single fresh materialized clock per evaluation. Integration script loads 65/66/59/67/63 and exercises adapter64 + real encryption on the same isolated database: 25 checks passed. Future revision pointers preserve currently effective values; missing controls/unknown state/stops fail closed.
 
 Supporting organization/relation/actor/control/approval/Auth tables remain minimal fixtures. The candidate currently requires a confirmed active person/org relation even for initial password change; relation-free provisioning scope is still pending and is not silently widened. Isolated owner read policies are NOT deployment policies. No runtime connection or production data changed. See the design note for exact scope and next prerequisites.
+
+## PARENT-CONTROLS-68 — parent structures replace integration fixtures
+
+Unapplied base68 -> history65 -> controls68 separates typed actors/org identities from immutable organization/relation history and audited monotonic auth/authz controls. Projection68 derives org/relation state from sealed sets. Earlier fixture67 remains independently reproducible.
+
+`PGLITE_MODULE=... node test/staff/parent-controls-68.mjs`: 44 integration checks. Supporting approval/operation/control-scope/Auth tables remain fixtures. Actor/bootstrap evidence, provider readiness, live permission/fence/audit/outbox and relation-free initial provisioning are still pending; no actual credentials or rows issued. A completed operation referenced by control evidence cannot be rewritten. Do not treat the isolated all-core-read owner policy as a deployment policy.
