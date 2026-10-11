@@ -235,3 +235,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-login-reservations-69.sql`をhistory65/parent68後の候補として追加。完全一致の発行元＋ログインIDを人物へ恒久予約する。詳細と初回認証例外の未実装条件は`design/staff-login-reservations-69.md`。
 
 隔離試験：`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/login-reservations-69.mjs`と同じコマンドの`--backfill`付き。各70項目（68回帰44＋69追加26）、単一接続PG18.3。承認/Authはfixture。実PG17・競合・本番適用は未確認。初回許可の承認証跡検証と投影変更が完成するまで68の法人関係未確認時の拒否を維持する。
+
+## INITIAL-ADMISSION-70（未適用）
+
+`design/staff-initial-admissions-70.sql`は65/68/66後、`staff-current-projections-70.sql`は59後の代替投影候補。68投影と同時作成しない。初回許可と正常適用証跡を型付き申請へ固定し、法人関係のないアカウントは初回変更だけの法人候補に限定する。`staff-initial-admissions-70.md`参照。
+
+隔離検証：`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/initial-admissions-70.mjs`。85項目成功（68回帰44＋70追加41）。69予約もロード。PG18.3単一接続、承認判断／適用・外部Authはfixture。実DB未適用。承認権限・自己承認・初期技術操作主体・期限／取消運用、現在リース提示トークン・適用フェンスと監査を確認する正式更新関数は未完了。候補テーブルを直接書き込んで本番初回ログインを許可しない。
