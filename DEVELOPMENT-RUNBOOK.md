@@ -285,3 +285,9 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-department-structure-78.sql`／`.md`は部署階層版／封印set／区間の3表と独立現在ポインター。NULLは未設定、法人直属ROOTは明示確認。現在・未来の共通業務期間を持つ循環と親子文脈矛盾をコミット時に拒否する。READ COMMITTED＋法人排他の候補で、正式更新器の法人先行ロック・全経路参加・実PG17複数接続は未完成／未検証。
 
 `PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/department-structure-78.mjs`：393項目成功（77回帰345＋78追加48）、PG18.3単一接続。階層準備はSTRUCTURE_READY／NOT_READYの参照結果だけ、grant発行なし。実Auth／承認資格・所属／契約／役割親はfixture。実職員／組織／DB／Auth変更なし。次は複数所属assignmentsの履歴候補。
+
+### ASSIGNMENT-HISTORY-80 — unapplied candidate
+
+Contract79 now has `design/staff-assignment-history-80.sql` and the review in `design/staff-assignment-history-80.md`. Fresh candidate schema only:65/68/72/76/77/78 ->80 ->75; do not transform an existing assignments table or deploy fixtures. Four RLS/FORCE tables separate fixed person/org/scope identity from immutable revision/set/member histories. No contract, role or grant is generated. Fixed-time STABLE read helpers reuse77/78 semantics and report readiness only, never authorization. Unknown start/scope remains received candidate data; a NULL adopted set is not active.
+
+`PGLITE_MODULE=<external PGlite0.5.8 module> node test/staff/assignment-history-80.mjs`:462 assertions passed (393 regression +69 additional). PG18.3/single connection/synthetic data.75 now uses the actual80 assignment parent; contracts/roles/Auth/authority remain test fixtures. Concurrent primary reservations use a proposed prelocked organization mutex and READ COMMITTED; trigger locks alone do not establish writer order. Atomic transfer/rollback is exercised through TEST-ONLY SQL, not an authorized production writer. Actual PG17 concurrency, actor authority, live fence/outbox and successful audit atomicity remain pending. No actual DB/person/organization/Auth changes. Next: contract history/indefinite planned duration/actual termination candidate.
