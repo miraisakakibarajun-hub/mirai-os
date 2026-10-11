@@ -1,6 +1,10 @@
 // Run with PGLITE_MODULE pointing to an installed @electric-sql/pglite module.
 // No network or actual Supabase connections. Test fixtures are NOT migrations.
 import {readFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+import {createAuthFunctionRepository} from '../../lib/staff/auth-function-repository.mjs';
+import {createCredentialSealer} from '../../lib/staff/credential-sealer.mjs';
+import {createLoginCompletion} from '../../lib/staff/login-session.mjs';
+import {createStaffSessionAuthenticator,staffCookieHash} from '../../lib/staff/session-access.mjs';
 const {PGlite}=await import(process.env.PGLITE_MODULE||'@electric-sql/pglite');
 const db=new PGlite();let checks=0;const root=new URL('../../',import.meta.url);
 const execFile=async path=>db.exec(await readFile(new URL(path,root),'utf8'));
@@ -74,6 +78,23 @@ try{
  const failedId='52345678-1234-1234-1234-123456789012';await role('test_runtime');
  await denied('SELECT staff_auth_private.confirm_login_v1($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[failedId,'c'.repeat(64),id,id,id,sid,1,'PASSWORD_CHANGE',expiry,envelope]);
  await role('postgres');assert.equal(await value('SELECT count(*)::int v FROM staff_auth_private.managed_sessions WHERE record_id=$1',[failedId]),0);checks++;await db.exec('DROP TRIGGER test_skip ON staff_auth_private.session_audit_events');
+ // AUTH-ADAPTER-64: all eight private entry points through app adapter.
+ // One isolated connection, sequential only; never a production pool example.
+ const pool={async connect(){return {query:(sql,args)=>db.query(sql,args),release(){}};}};
+ const runtime=createAuthFunctionRepository({pool,issuer,orgId:id,useCase:'RUNTIME'});
+ const worker=createAuthFunctionRepository({pool,issuer,orgId:id,useCase:'WORKER'});
+ const sealer=createCredentialSealer({keyId:'isolated64',key:new Uint8Array(32).fill(64)});
+ await role('test_runtime');const ticket64=await runtime.loadLoginTicket({loginId:'TEST-LOGIN'});assert.equal(ticket64.credentialState,'INITIAL_CHANGE_REQUIRED');checks++;
+ const provider64={issuer,authUserId:id,sessionId:sid,validUntil:expiry,credentials:{accessToken:'isolated-token',refreshToken:'isolated-refresh'}};
+ const completed64=await createLoginCompletion({repository:runtime,sealer,ttlSeconds:300})({ticket:ticket64,session:provider64});assert.equal(completed64.state,'CHANGE_REQUIRED');checks++;
+ const request64=new Request('https://isolated.example/api/staff/session',{headers:{cookie:completed64.setCookie.split(';')[0]}});
+ const hash64=staffCookieHash(request64),record64=await runtime.loadByHash({tokenHash:hash64,issuer,orgId:id});assert.equal(sealer.open({envelope:record64.credentialEnvelope,context:record64}).accessToken,'isolated-token');checks++;
+ const authenticate64=createStaffSessionAuthenticator({issuer,orgId:id,repository:runtime,sealer,verifyProviderIdentity:async()=>provider64});assert.equal((await authenticate64(request64)).purpose,'PASSWORD_CHANGE');checks++;
+ const cleanup64=await runtime.revokeManagedSession({tokenHash:hash64});assert.equal(cleanup64.committed,true);checks++;
+ await role('test_worker');const claim64=await worker.claimRevocation({operationId:cleanup64.providerCleanup.operationId,leaseSeconds:30});assert.equal(claim64.recordId,record64.recordId);checks++;
+ const claimed64=await worker.readClaimCredentials(claim64);assert.equal(sealer.open({envelope:claimed64.credentialEnvelope,context:claimed64}).refreshToken,'isolated-refresh');checks++;
+ assert.equal(await worker.finishRevocation({claim:claim64,outcome:'COMPLETED'}),true);checks++;
+ await role('postgres');
  await db.exec("UPDATE staff_core.actor_registry SET actor_state='STOPPED'");await role('test_worker');await denied('SELECT staff_auth_private.claim_revocation_v1(NULL,30)');
  await role('postgres');await db.exec("CREATE ROLE test_other LOGIN; GRANT USAGE ON SCHEMA staff_auth_private TO test_other; GRANT EXECUTE ON FUNCTION staff_auth_private.read_session_v1(text),staff_auth_private.revoke_local_session_v1(text) TO test_other;");
  await db.query('INSERT INTO staff_core.organizations VALUES($1)',[other]);await db.query("INSERT INTO staff_auth_private.execution_bindings VALUES('test_other',$1,$2,'RUNTIME',NULL)",[issuer,other]);

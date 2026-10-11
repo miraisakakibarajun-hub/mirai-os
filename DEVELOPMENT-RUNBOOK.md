@@ -199,3 +199,9 @@ Verification: PostgreSQL pglast parser accepted all 25 statements; existing 88 u
 35 sequential isolated PostgreSQL18.3 checks passed, alongside existing 111 unit tests, TypeScript and ESLint. This is not a concurrent/multi-connection or actual Supabase/Auth/browser test; staging is PostgreSQL17. Production parent/history/approval projections, deployment privileges and adapters remain incomplete. No actual Supabase DDL, role/grant/user/staff changes.
 
 Fixed task59 CHECK: PostgreSQL rejects regex repetition bound50000 at INSERT time; use a separate length check and character regex. Ensured compact SQL fence key equals JSON.stringify. Audit insert0 aborts login transaction. Row lock permission requirements and post-lock lease expiry checks are documented in `design/staff-auth-isolated-result-63.md`. Next: reviewed parent/projection and function adapter integration, consolidate staging deployment candidates and pending decisions.
+
+## AUTH-ADAPTER-64 — private function application adapter (2026-10-11)
+
+`lib/staff/auth-function-repository.mjs` exposes separate RUNTIME/WORKER interfaces for the eight AUTH-DB-63 functions. Fixed parameterized SQL; one checked-out client per transaction; decoded result and outer COMMIT required before success. No table fallback or public RPC. Stored ISO expiry is preserved for AES-GCM AAD.
+
+Validation: 124 unit tests; isolated PostgreSQL/PGlite checks increased from 35 to 43, exercising all eight entries through the app adapter and real credential sealer. Provider verification is a stub, formal parent projections remain fixtures, single connection only. See `design/staff-auth-adapter-64.md` for source mappings and pending history/approval contracts. Runtime routes remain unconfigured, actual credentials and deployment unchanged.
