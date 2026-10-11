@@ -241,3 +241,7 @@ Unapplied base68 -> history65 -> controls68 separates typed actors/org identitie
 `design/staff-initial-admissions-70.sql`は65/68/66後、`staff-current-projections-70.sql`は59後の代替投影候補。68投影と同時作成しない。初回許可と正常適用証跡を型付き申請へ固定し、法人関係のないアカウントは初回変更だけの法人候補に限定する。`staff-initial-admissions-70.md`参照。
 
 隔離検証：`PGLITE_MODULE=/path/to/pglite/dist/index.js node test/staff/initial-admissions-70.mjs`。85項目成功（68回帰44＋70追加41）。69予約もロード。PG18.3単一接続、承認判断／適用・外部Authはfixture。実DB未適用。承認権限・自己承認・初期技術操作主体・期限／取消運用、現在リース提示トークン・適用フェンスと監査を確認する正式更新関数は未完了。候補テーブルを直接書き込んで本番初回ログインを許可しない。
+
+## INITIAL-APPLY-CONTRACT-71（仕様候補・未実装）
+
+`design/staff-initial-apply-contract-71.md`に初回許可適用の固定入力／出力、承認根拠・未決方針の保留、現在リースtokenハッシュ照合、fenceと行ロック統合条件、監査原子性、再送／COMMIT不明の照合契約を記載。既存D02/D05/D12と仕様照合。今回はDB関数・role・新規自動試験を作成せず、実DBへ適用していない。70の85項目を71の承認権限・競合・監査検証として数えない。次は申請／判断／impact／application／attempt／operation親モデルの正式候補整理。
