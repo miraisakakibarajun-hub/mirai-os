@@ -1,0 +1,4301 @@
+{
+  "stage": 100,
+  "source_commit": "b955353d7029e7b6c9dc0721bf781b33391118df",
+  "tree_sha": "2c59119e0cad4ae171b3e9d2184c940fa2aba208",
+  "mode": "STATIC_LEXICAL_PLUS_TARGETED_REVIEW_NOT_RUNTIME_PROOF",
+  "limitations": [
+    "regexでは全SQL構文/分岐/SQL文字列/動的triggerを解決しない",
+    "design SQLの並行variantを全部配備したものとしない",
+    "実catalog・role・外部batch/admin・実配備は未確認",
+    "helperの定義や文字列をfence適用証明にしない"
+  ],
+  "triggers": [
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_revision_insert_80",
+      "line": 29,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'assignment_id'",
+      "definition": "BEFORE INSERT ON staff_core.assignment_revisions_80 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_revision_append_80",
+      "line": 30,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.assignment_revisions_80 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_set_guard_80",
+      "line": 31,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'assignment_revisions_80','assignment_revision_set_members_80','assignment_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.assignment_revision_sets_80 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_member_guard_80",
+      "line": 32,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'assignment_revision_sets_80'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.assignment_revision_set_members_80 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_identity_guard_80",
+      "line": 43,
+      "function": "staff_core.assignment_identity_guard_80",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.assignments FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 39,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-assignment-history-80.sql",
+          "line": 33
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "name": "assignment_consistency_80",
+      "line": 58,
+      "function": "staff_core.assignment_consistency_80",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.assignments DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 53,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-assignment-history-80.sql",
+          "line": 47
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "name": "session_immutable_v1",
+      "line": 31,
+      "function": "staff_auth_private.guard_session_update_v1",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_auth_private.managed_sessions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-auth-functions-63.sql",
+          "line": 17
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "name": "audit_append_v1",
+      "line": 34,
+      "function": "staff_auth_private.guard_audit_v1",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_auth_private.session_audit_events FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-auth-functions-63.sql",
+          "line": 32
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "name": "cleanup_immutable_v1",
+      "line": 48,
+      "function": "staff_auth_private.guard_outbox_v1",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_auth_private.session_revocation_outbox FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-auth-functions-63.sql",
+          "line": 36
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_revision_insert_82",
+      "line": 27,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'role_id'",
+      "definition": "BEFORE INSERT ON staff_core.business_role_revisions_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_revision_append_82",
+      "line": 28,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.business_role_revisions_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_set_guard_82",
+      "line": 29,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'business_role_revisions_82','business_role_revision_set_members_82','role_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_role_revision_sets_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_member_guard_82",
+      "line": 30,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'business_role_revision_sets_82'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_role_revision_set_members_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_revision_insert_82",
+      "line": 70,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'role_assignment_id'",
+      "definition": "BEFORE INSERT ON staff_core.role_assignment_revisions_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_revision_append_82",
+      "line": 71,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.role_assignment_revisions_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_set_guard_82",
+      "line": 72,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'role_assignment_revisions_82','role_assignment_revision_set_members_82','role_assignment_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.role_assignment_revision_sets_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_member_guard_82",
+      "line": 73,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'role_assignment_revision_sets_82'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.role_assignment_revision_set_members_82 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_identity_82",
+      "line": 95,
+      "function": "staff_core.role_history_identity_82",
+      "arguments": "'role_id','business_role_revision_sets_82'",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.business_roles FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 87,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=NEW.role_id FOR UPDATE;"
+        },
+        {
+          "line": 88,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-role-history-82.sql",
+          "line": 79
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_identity_82",
+      "line": 96,
+      "function": "staff_core.role_history_identity_82",
+      "arguments": "'role_assignment_id','role_assignment_revision_sets_82'",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.role_assignments FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 87,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=NEW.role_id FOR UPDATE;"
+        },
+        {
+          "line": 88,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-role-history-82.sql",
+          "line": 79
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "business_role_consistency_82",
+      "line": 122,
+      "function": "staff_core.role_history_consistency_82",
+      "arguments": "'role_id','business_role_revision_sets_82'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.business_roles DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 114,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=a.role_id FOR UPDATE;"
+        },
+        {
+          "line": 115,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-role-history-82.sql",
+          "line": 103
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "name": "role_assignment_consistency_82",
+      "line": 123,
+      "function": "staff_core.role_history_consistency_82",
+      "arguments": "'role_assignment_id','role_assignment_revision_sets_82'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.role_assignments DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 114,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=a.role_id FOR UPDATE;"
+        },
+        {
+          "line": 115,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-role-history-82.sql",
+          "line": 103
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "business_identity_guard_76",
+      "line": 65,
+      "function": "staff_core.entity_identity_guard_76",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.businesses FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 63
+        },
+        {
+          "path": "design/staff-department-structure-78.sql",
+          "line": 32
+        },
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 128
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "site_identity_guard_76",
+      "line": 66,
+      "function": "staff_core.entity_identity_guard_76",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.sites FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 63
+        },
+        {
+          "path": "design/staff-department-structure-78.sql",
+          "line": 32
+        },
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 128
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "department_identity_guard_76",
+      "line": 67,
+      "function": "staff_core.entity_identity_guard_76",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.departments FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 63
+        },
+        {
+          "path": "design/staff-department-structure-78.sql",
+          "line": 32
+        },
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 128
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "scope_member_guard_76",
+      "line": 74,
+      "function": "staff_core.scope_member_guard_76",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.scope_revision_set_members_76 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 71,
+          "text": "PERFORM 1 FROM staff_core.scope_revision_sets_76 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 68
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "scope_revision_guard_76",
+      "line": 93,
+      "function": "staff_core.scope_seal_guard_76",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.scope_definition_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 75
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "scope_set_guard_76",
+      "line": 94,
+      "function": "staff_core.scope_seal_guard_76",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.scope_revision_sets_76 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 75
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "scope_identity_guard_76",
+      "line": 101,
+      "function": "staff_core.scope_identity_guard_76",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.scope_definitions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 95
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "name": "scope_history_required_76",
+      "line": 106,
+      "function": "staff_core.scope_history_required_76",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.scope_definitions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 102
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_revision_insert_81",
+      "line": 42,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'contract_id'",
+      "definition": "BEFORE INSERT ON staff_core.contract_revisions_81 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_revision_append_81",
+      "line": 43,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.contract_revisions_81 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_set_guard_81",
+      "line": 44,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'contract_revisions_81','contract_revision_set_members_81','contract_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.contract_revision_sets_81 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_member_guard_81",
+      "line": 45,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'contract_revision_sets_81'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.contract_revision_set_members_81 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_identity_guard_81",
+      "line": 56,
+      "function": "staff_core.contract_identity_guard_81",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.contracts FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 52,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-contract-history-81.sql",
+          "line": 46
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "name": "contract_consistency_81",
+      "line": 70,
+      "function": "staff_core.contract_consistency_81",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.contracts DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 66,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-contract-history-81.sql",
+          "line": 60
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "name": "initial_scope_73",
+      "line": 20,
+      "function": "staff_core.validate_effect_scope_73",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.initial_auth_admissions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scope-evidence-73.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "name": "stop_scope_73",
+      "line": 21,
+      "function": "staff_core.validate_effect_scope_73",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.access_suspensions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scope-evidence-73.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "name": "release_scope_73",
+      "line": 22,
+      "function": "staff_core.validate_effect_scope_73",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.suspension_releases DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scope-evidence-73.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_org_member_73",
+      "line": 47,
+      "function": "staff_core.guard_scope_member_73",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.control_scope_organizations_73 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 40
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_action_member_73",
+      "line": 48,
+      "function": "staff_core.guard_scope_member_73",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.control_scope_actions_73 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 40
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_system_member_73",
+      "line": 49,
+      "function": "staff_core.guard_scope_member_73",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.control_scope_systems_73 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 40
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_revision_guard_73",
+      "line": 67,
+      "function": "staff_core.guard_scope_revision_73",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.control_scope_revisions_73 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 50
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_identity_73",
+      "line": 79,
+      "function": "staff_core.guard_scope_identity_73",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.control_scopes FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 68
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "name": "scope_history_73",
+      "line": 85,
+      "function": "staff_core.require_scope_history_73",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.control_scopes DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-control-scopes-73.sql",
+          "line": 80
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "member_guard_65",
+      "line": 81,
+      "function": "staff_core.guard_person_member_65",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.person_revision_set_members FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 77,
+          "text": "SELECT sealed INTO closed FROM staff_core.person_revision_sets WHERE set_id=NEW.set_id AND person_id=NEW.person_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 73
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "set_guard_65",
+      "line": 106,
+      "function": "staff_core.seal_person_set_65",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.person_revision_sets FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 83
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "history_required_65",
+      "line": 117,
+      "function": "staff_core.require_person_history_65",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.persons DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 108
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "revision_append_65",
+      "line": 119,
+      "function": "staff_core.append_only_65",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.person_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 52
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "member_guard_65",
+      "line": 153,
+      "function": "staff_core.guard_account_member_65",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.account_revision_set_members FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 149,
+          "text": "SELECT sealed INTO closed FROM staff_core.account_revision_sets WHERE set_id=NEW.set_id AND account_id=NEW.account_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 145
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "set_guard_65",
+      "line": 178,
+      "function": "staff_core.seal_account_set_65",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.account_revision_sets FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 155
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "history_required_65",
+      "line": 189,
+      "function": "staff_core.require_account_history_65",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.account_links DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 180
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "revision_append_65",
+      "line": 191,
+      "function": "staff_core.append_only_65",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.account_link_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 52
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "person_guard_65",
+      "line": 212,
+      "function": "staff_core.guard_person_identity_65",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.persons FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 198
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "name": "account_guard_65",
+      "line": 228,
+      "function": "staff_core.guard_account_identity_65",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.account_links FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 213
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "name": "structure_revision_insert_78",
+      "line": 28,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'department_id'",
+      "definition": "BEFORE INSERT ON staff_core.department_structure_revisions_78 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "name": "structure_revision_append_78",
+      "line": 29,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.department_structure_revisions_78 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "name": "structure_member_guard_78",
+      "line": 30,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'department_structure_revision_sets_78'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.department_structure_revision_set_members_78 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "name": "structure_set_guard_78",
+      "line": 31,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'department_structure_revisions_78','department_structure_revision_set_members_78','department_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.department_structure_revision_sets_78 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "name": "department_structure_consistency_78",
+      "line": 81,
+      "function": "staff_core.department_structure_consistency_78",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.departments DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 66,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-department-structure-78.sql",
+          "line": 60
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "name": "binding_event_guard_87",
+      "line": 77,
+      "function": "staff_core.binding_event_guard_87",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_binding_events_87 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 70,
+          "text": "PERFORM 1 FROM staff_core.grant_evidence_bindings_87 WHERE binding_id=NEW.binding_id AND sealed FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-evidence-binding-87.sql",
+          "line": 67
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "name": "binding_child_guard_87",
+      "line": 93,
+      "function": "staff_core.binding_child_guard_87",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_dependency_snapshots_87 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 83,
+          "text": "SELECT * INTO b FROM staff_core.grant_evidence_bindings_87 WHERE binding_id=NEW.binding_id AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-evidence-binding-87.sql",
+          "line": 79
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "name": "binding_header_guard_87",
+      "line": 164,
+      "function": "staff_core.binding_header_guard_87",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_evidence_bindings_87 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-evidence-binding-87.sql",
+          "line": 123
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "name": "binding_seal_audit_87",
+      "line": 171,
+      "function": "staff_core.binding_seal_audit_87",
+      "arguments": "",
+      "definition": "AFTER UPDATE ON staff_core.grant_evidence_bindings_87 FOR EACH ROW WHEN (NOT OLD.sealed AND NEW.sealed)",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 167,
+          "text": "INSERT INTO staff_core.grant_binding_events_87(binding_id,event_kind,actor_id,operation_id,reason_code)"
+        }
+      ],
+      "audit_writes": [
+        {
+          "line": 167,
+          "text": "INSERT INTO staff_core.grant_binding_events_87(binding_id,event_kind,actor_id,operation_id,reason_code)"
+        }
+      ],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-evidence-binding-87.sql",
+          "line": 165
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_dep_guard_75",
+      "line": 79,
+      "function": "staff_core.grant_child_guard_75",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_dependencies_75 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 73,
+          "text": "PERFORM 1 FROM staff_core.access_grant_revisions_75 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        },
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.grant_revision_sets_75 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 69
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_member_guard_75",
+      "line": 80,
+      "function": "staff_core.grant_child_guard_75",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_revision_set_members_75 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 73,
+          "text": "PERFORM 1 FROM staff_core.access_grant_revisions_75 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        },
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.grant_revision_sets_75 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 69
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_revision_guard_75",
+      "line": 100,
+      "function": "staff_core.grant_seal_guard_75",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.access_grant_revisions_75 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 81
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_set_guard_75",
+      "line": 101,
+      "function": "staff_core.grant_seal_guard_75",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.grant_revision_sets_75 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 81
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_identity_guard_75",
+      "line": 108,
+      "function": "staff_core.grant_identity_guard_75",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.access_grants FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 102
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "name": "grant_history_required_75",
+      "line": 113,
+      "function": "staff_core.grant_history_required_75",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.access_grants DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-grant-history-75.sql",
+          "line": 109
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "typed_initial_70",
+      "line": 40,
+      "function": "staff_core.guard_typed_auth_request_70",
+      "arguments": "",
+      "definition": "BEFORE INSERT ON staff_core.initial_auth_request_details FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 30,
+          "text": "PERFORM 1 FROM staff_core.request_revisions WHERE request_revision_id=NEW.request_revision_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 27
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "typed_suspension_70",
+      "line": 42,
+      "function": "staff_core.guard_typed_auth_request_70",
+      "arguments": "",
+      "definition": "BEFORE INSERT ON staff_core.suspension_request_details FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 30,
+          "text": "PERFORM 1 FROM staff_core.request_revisions WHERE request_revision_id=NEW.request_revision_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 27
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_detail_append_70",
+      "line": 44,
+      "function": "staff_core.effect_append_only_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.initial_auth_request_details FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_admission_append_70",
+      "line": 46,
+      "function": "staff_core.effect_append_only_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.initial_auth_admissions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_evidence_70",
+      "line": 69,
+      "function": "staff_core.validate_initial_admission_70",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.initial_auth_admissions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 51,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 52,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 53,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 54,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 55,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        },
+        {
+          "line": 58,
+          "text": "SELECT * INTO a FROM staff_core.account_links WHERE account_id=detail.account_id FOR SHARE;"
+        },
+        {
+          "line": 61,
+          "text": "SELECT * INTO c FROM staff_core.account_auth_controls WHERE account_id=detail.account_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 48
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_application_source_70",
+      "line": 89,
+      "function": "staff_core.guard_initial_source_70",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.applications FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 71
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_attempt_source_70",
+      "line": 90,
+      "function": "staff_core.guard_initial_source_70",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.application_attempts FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 71
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_operation_source_70",
+      "line": 91,
+      "function": "staff_core.guard_initial_source_70",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.operation_requests FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 71
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "name": "initial_impact_source_70",
+      "line": 92,
+      "function": "staff_core.guard_initial_source_70",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.impact_checks FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-initial-admissions-70.sql",
+          "line": 71
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "name": "reservation_source_69",
+      "line": 25,
+      "function": "staff_core.validate_login_reservation_69",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.login_identifier_reservations DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-login-reservations-69.sql",
+          "line": 16
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "name": "reserve_login_69",
+      "line": 44,
+      "function": "staff_core.reserve_login_identifier_69",
+      "arguments": "",
+      "definition": "BEFORE INSERT ON staff_core.account_link_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.login_identifier_reservations(issuer,login_name,person_id,first_account_id,first_revision_id)"
+        }
+      ],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 31,
+          "text": "SELECT * INTO a FROM staff_core.account_links WHERE account_id=NEW.account_id FOR SHARE;"
+        },
+        {
+          "line": 38,
+          "text": "WHERE issuer=a.issuer COLLATE \"C\" AND login_name=NEW.login_name COLLATE \"C\" FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-login-reservations-69.sql",
+          "line": 27
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "name": "reservation_append_69",
+      "line": 46,
+      "function": "staff_core.append_only_65",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.login_identifier_reservations FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-core-history-65.sql",
+          "line": 52
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_identity_guard_77",
+      "line": 147,
+      "function": "staff_core.entity_identity_guard_76",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.business_sites FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-business-scopes-76.sql",
+          "line": 63
+        },
+        {
+          "path": "design/staff-department-structure-78.sql",
+          "line": 32
+        },
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 128
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_revision_insert_77",
+      "line": 148,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'business_id'",
+      "definition": "BEFORE INSERT ON staff_core.business_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_append_77",
+      "line": 149,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.business_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_member_guard_77",
+      "line": 150,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'business_revision_sets_77'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_revision_set_members_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_set_guard_77",
+      "line": 151,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'business_revisions_77','business_revision_set_members_77','business_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_revision_sets_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_history_required_77",
+      "line": 152,
+      "function": "staff_core.organization_history_required_77",
+      "arguments": "'business_revision_sets_77','business_id'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.businesses DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 140
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "site_revision_insert_77",
+      "line": 158,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'site_id'",
+      "definition": "BEFORE INSERT ON staff_core.site_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "site_append_77",
+      "line": 159,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.site_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "site_member_guard_77",
+      "line": 160,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'site_revision_sets_77'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.site_revision_set_members_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "site_set_guard_77",
+      "line": 161,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'site_revisions_77','site_revision_set_members_77','site_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.site_revision_sets_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "site_history_required_77",
+      "line": 162,
+      "function": "staff_core.organization_history_required_77",
+      "arguments": "'site_revision_sets_77','site_id'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.sites DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 140
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "department_revision_insert_77",
+      "line": 168,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'department_id'",
+      "definition": "BEFORE INSERT ON staff_core.department_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "department_append_77",
+      "line": 169,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.department_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "department_member_guard_77",
+      "line": 170,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'department_revision_sets_77'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.department_revision_set_members_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "department_set_guard_77",
+      "line": 171,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'department_revisions_77','department_revision_set_members_77','department_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.department_revision_sets_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "department_history_required_77",
+      "line": 172,
+      "function": "staff_core.organization_history_required_77",
+      "arguments": "'department_revision_sets_77','department_id'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.departments DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 140
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_revision_insert_77",
+      "line": 178,
+      "function": "staff_core.organization_revision_insert_77",
+      "arguments": "'relation_id'",
+      "definition": "BEFORE INSERT ON staff_core.business_site_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_append_77",
+      "line": 179,
+      "function": "staff_core.organization_revision_append_77",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.business_site_revisions_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 99
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_member_guard_77",
+      "line": 180,
+      "function": "staff_core.organization_member_guard_77",
+      "arguments": "'business_site_revision_sets_77'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_site_revision_set_members_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 100
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_set_guard_77",
+      "line": 181,
+      "function": "staff_core.organization_set_guard_77",
+      "arguments": "'business_site_revisions_77','business_site_revision_set_members_77','relation_id'",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.business_site_revision_sets_77 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "name": "business_site_history_required_77",
+      "line": 182,
+      "function": "staff_core.organization_history_required_77",
+      "arguments": "'business_site_revision_sets_77','relation_id'",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.business_sites DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-organization-history-77.sql",
+          "line": 140
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "name": "actor_guard_68",
+      "line": 31,
+      "function": "staff_core.guard_actor_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.actor_registry FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 24
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "name": "actor_record_68",
+      "line": 37,
+      "function": "staff_core.record_actor_68",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.actor_registry FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.actor_state_events VALUES(gen_random_uuid(),NEW.actor_id,NEW.actor_state,NEW.lock_version,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref);"
+        }
+      ],
+      "audit_writes": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.actor_state_events VALUES(gen_random_uuid(),NEW.actor_id,NEW.actor_state,NEW.lock_version,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref);"
+        }
+      ],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 32
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "name": "actor_event_append_68",
+      "line": 38,
+      "function": "staff_core.append_only_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.actor_state_events FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 16
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "member_guard_68",
+      "line": 40,
+      "function": "staff_core.guard_organization_member_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.organization_revision_set_members FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 36,
+          "text": "SELECT sealed INTO closed FROM staff_core.organization_revision_sets WHERE set_id=NEW.set_id AND org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 32
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "set_guard_68",
+      "line": 65,
+      "function": "staff_core.seal_organization_set_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.organization_revision_sets FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 42
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "history_required_68",
+      "line": 76,
+      "function": "staff_core.require_organization_history_68",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.organizations DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 67
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "revision_append_68",
+      "line": 78,
+      "function": "staff_core.append_only_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.organization_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 16
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "member_guard_68",
+      "line": 126,
+      "function": "staff_core.guard_relation_member_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.relation_revision_set_members FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 122,
+          "text": "SELECT sealed INTO closed FROM staff_core.relation_revision_sets WHERE set_id=NEW.set_id AND relation_id=NEW.relation_id FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 118
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "set_guard_68",
+      "line": 151,
+      "function": "staff_core.seal_relation_set_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.relation_revision_sets FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 128
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "history_required_68",
+      "line": 162,
+      "function": "staff_core.require_relation_history_68",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.person_organizations DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 153
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "revision_append_68",
+      "line": 164,
+      "function": "staff_core.append_only_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.person_organization_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 16
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "identity_guard_68",
+      "line": 179,
+      "function": "staff_core.guard_organization_identity_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.organizations FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 171
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "identity_guard_68",
+      "line": 188,
+      "function": "staff_core.guard_relation_identity_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.person_organizations FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 180
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "auth_control_guard_68",
+      "line": 232,
+      "function": "staff_core.guard_control_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.account_auth_controls FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "audit_writes": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 210
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "authz_control_guard_68",
+      "line": 233,
+      "function": "staff_core.guard_control_68",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.account_authz_controls FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "audit_writes": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 210
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "control_event_append_68",
+      "line": 234,
+      "function": "staff_core.append_only_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.auth_control_events FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-base-68.sql",
+          "line": 16
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "name": "control_operation_68",
+      "line": 244,
+      "function": "staff_core.guard_control_operation_68",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.operation_requests FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-parent-controls-68.sql",
+          "line": 238
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "name": "policy_condition_guard_85",
+      "line": 45,
+      "function": "staff_core.policy_condition_guard_85",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.policy_conditions_85 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 42,
+          "text": "PERFORM 1 FROM staff_core.policy_revisions_85 WHERE revision_id=NEW.revision_id AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-policy-evidence-candidates-85.sql",
+          "line": 39
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "name": "policy_revision_guard_85",
+      "line": 59,
+      "function": "staff_core.policy_revision_guard_85",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.policy_revisions_85 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-policy-evidence-candidates-85.sql",
+          "line": 46
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "name": "policy_identity_guard_85",
+      "line": 72,
+      "function": "staff_core.policy_identity_guard_85",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.policy_domains_85 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-policy-evidence-candidates-85.sql",
+          "line": 60
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "name": "evidence_apply_child_guard_85",
+      "line": 128,
+      "function": "staff_core.evidence_apply_child_guard_85",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.authorization_apply_contexts_85 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 123,
+          "text": "PERFORM 1 FROM staff_core.authorization_evidence_candidates_85 WHERE evidence_id=NEW.evidence_id AND phase='APPLY' AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-policy-evidence-candidates-85.sql",
+          "line": 120
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "name": "evidence_candidate_guard_85",
+      "line": 145,
+      "function": "staff_core.evidence_candidate_guard_85",
+      "arguments": "",
+      "definition": "BEFORE INSERT OR UPDATE OR DELETE ON staff_core.authorization_evidence_candidates_85 FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-policy-evidence-candidates-85.sql",
+          "line": 129
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "stop_evidence_66",
+      "line": 103,
+      "function": "staff_core.validate_effect_66",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.access_suspensions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 76,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 77,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 78,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 79,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 70
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "release_evidence_66",
+      "line": 105,
+      "function": "staff_core.validate_effect_66",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.suspension_releases DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 76,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 77,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 78,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 79,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 70
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "stop_append_66",
+      "line": 109,
+      "function": "staff_core.effect_append_only_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.access_suspensions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "release_append_66",
+      "line": 110,
+      "function": "staff_core.effect_append_only_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.suspension_releases FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "detail_append_66",
+      "line": 111,
+      "function": "staff_core.effect_append_only_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.suspension_request_details FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 107
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "request_evidence_66",
+      "line": 149,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.request_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "decision_evidence_66",
+      "line": 150,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.decision_records FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "application_evidence_66",
+      "line": 151,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.applications FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "attempt_evidence_66",
+      "line": 152,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.application_attempts FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "operation_evidence_66",
+      "line": 153,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.operation_requests FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "name": "impact_evidence_66",
+      "line": 154,
+      "function": "staff_core.guard_effect_source_66",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.impact_checks FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-suspension-evidence-66.sql",
+          "line": 114
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "name": "initial_workflow_72",
+      "line": 24,
+      "function": "staff_core.validate_workflow_effect_72",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.initial_auth_admissions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-evidence-72.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "name": "stop_workflow_72",
+      "line": 25,
+      "function": "staff_core.validate_workflow_effect_72",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.access_suspensions DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-evidence-72.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "name": "release_workflow_72",
+      "line": 26,
+      "function": "staff_core.validate_workflow_effect_72",
+      "arguments": "",
+      "definition": "AFTER INSERT ON staff_core.suspension_releases DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-evidence-72.sql",
+          "line": 3
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "request_revision_append_72",
+      "line": 88,
+      "function": "staff_core.workflow_append_only_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.request_revisions FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 86
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "decision_append_72",
+      "line": 89,
+      "function": "staff_core.workflow_append_only_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.decision_records FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 86
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "impact_append_72",
+      "line": 90,
+      "function": "staff_core.workflow_append_only_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.impact_checks FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 86
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "operation_guard_72",
+      "line": 132,
+      "function": "staff_core.guard_workflow_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.operation_requests FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "request_guard_72",
+      "line": 133,
+      "function": "staff_core.guard_workflow_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.change_requests FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "application_guard_72",
+      "line": 134,
+      "function": "staff_core.guard_workflow_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.applications FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "attempt_guard_72",
+      "line": 135,
+      "function": "staff_core.guard_workflow_72",
+      "arguments": "",
+      "definition": "BEFORE UPDATE OR DELETE ON staff_core.application_attempts FOR EACH ROW",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 91
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "application_consistency_72",
+      "line": 152,
+      "function": "staff_core.require_application_consistency_72",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.applications DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 139,
+          "text": "SELECT * INTO a FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 136
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "name": "attempt_consistency_72",
+      "line": 153,
+      "function": "staff_core.require_application_consistency_72",
+      "arguments": "",
+      "definition": "AFTER INSERT OR UPDATE ON staff_core.application_attempts DEFERRABLE INITIALLY DEFERRED FOR EACH ROW",
+      "deferred": true,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [
+        {
+          "line": 139,
+          "text": "SELECT * INTO a FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        }
+      ],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "caller対象行操作後に親/別行lockを取得する可能性。事前取得・遅延発火順の照合必須",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "design/staff-workflow-parents-72.sql",
+          "line": 136
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "name": "trg_users_set_updated_at",
+      "line": 286,
+      "function": "set_updated_at",
+      "arguments": "",
+      "definition": "before update on users for each row",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+          "line": 277
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "name": "trg_plans_set_updated_at",
+      "line": 58,
+      "function": "set_updated_at",
+      "arguments": "",
+      "definition": "before update on plans for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "CROSS_FILE_RESOLVED_DYNAMIC_OR_CALLER_ORDER_NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+          "line": 277
+        }
+      ],
+      "function_resolved_cross_file": true
+    },
+    {
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "name": "monitoring_records_updated_at",
+      "line": 15,
+      "function": "public.set_updated_at",
+      "arguments": "",
+      "definition": "before update on public.monitoring_records for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "name": "support_records_updated_at",
+      "line": 15,
+      "function": "public.set_updated_at",
+      "arguments": "",
+      "definition": "before update on public.support_records for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "name": "ai_documents_updated_at",
+      "line": 14,
+      "function": "public.set_updated_at",
+      "arguments": "",
+      "definition": "before update on public.ai_documents for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "name": "assessment_records_updated_at",
+      "line": 15,
+      "function": "public.set_updated_at",
+      "arguments": "",
+      "definition": "before update on public.assessment_records for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "name": "capture_plan_revision",
+      "line": 53,
+      "function": "public.capture_plan_revision",
+      "arguments": "",
+      "definition": "after insert or update on public.plans for each row",
+      "deferred": false,
+      "function_resolved_in_file": true,
+      "additional_writes": [
+        {
+          "line": 43,
+          "text": "if TG_OP='INSERT' then insert into public.plan_reviews(plan_id) values(new.id); end if;"
+        },
+        {
+          "line": 45,
+          "text": "insert into public.plan_revisions(plan_id,revision,content,saved_by,origin) values(new.id,new.content_version,new.content,actor_id,'save');"
+        },
+        {
+          "line": 46,
+          "text": "insert into public.plan_review_events(plan_id,revision,action,actor) values(new.id,new.content_version,'save',actor_id);"
+        },
+        {
+          "line": 47,
+          "text": "update public.plan_reviews set state='draft',epoch=epoch+1 where plan_id=new.id;"
+        }
+      ],
+      "audit_writes": [
+        {
+          "line": 46,
+          "text": "insert into public.plan_review_events(plan_id,revision,action,actor) values(new.id,new.content_version,'save',actor_id);"
+        }
+      ],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": false,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [
+        {
+          "path": "supabase/migrations/20260906070000_plan_approval.sql",
+          "line": 39
+        }
+      ],
+      "function_resolved_cross_file": false
+    },
+    {
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "name": "meeting_records_updated_at",
+      "line": 15,
+      "function": "public.set_updated_at",
+      "arguments": "",
+      "definition": "before update on public.meeting_records for each row",
+      "deferred": false,
+      "function_resolved_in_file": false,
+      "additional_writes": [],
+      "audit_writes": [],
+      "lock_sequence": [],
+      "cross_file_or_dynamic_unresolved": true,
+      "parent_child_order": "FK/参照先triggerを含む暗黙順序は未確定",
+      "recursive_cascade": "追加DML/FK/trigger連鎖を含む、実配備closure未確認",
+      "failure_transaction": "callerと同一TX。未捕捉例外ならstatement/TX失敗、catch/savepointは呼出側照合必要",
+      "comparison": "NOT_PROVEN",
+      "function_source_candidates": [],
+      "function_resolved_cross_file": false
+    }
+  ]
+}

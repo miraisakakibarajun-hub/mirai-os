@@ -1,0 +1,223 @@
+{
+  "stage": 100,
+  "confirmed_count": 0,
+  "total": 18,
+  "categories": [
+    {
+      "category": "技術条件",
+      "condition_ids": [
+        "PG98-07",
+        "PG98-08",
+        "PG98-09",
+        "PG98-10",
+        "PG98-11",
+        "PG98-12",
+        "PG98-13",
+        "PG98-16",
+        "PG98-17"
+      ]
+    },
+    {
+      "category": "セキュリティ条件",
+      "condition_ids": [
+        "PG98-03",
+        "PG98-04",
+        "PG98-05",
+        "PG98-06",
+        "PG98-09",
+        "PG98-10",
+        "PG98-14",
+        "PG98-15"
+      ]
+    },
+    {
+      "category": "費用条件",
+      "condition_ids": [
+        "PG98-01",
+        "PG98-02",
+        "PG98-11",
+        "PG98-12",
+        "PG98-14",
+        "PG98-15"
+      ]
+    },
+    {
+      "category": "管理承認条件",
+      "condition_ids": [
+        "PG98-18"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "PG98-01",
+      "item": "Actions利用枠",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "対象期間・runner種別・残枠・他job消費が固定予算を満たす。公開repo無料条件を無条件に全runnerへ拡張しない"
+    },
+    {
+      "id": "PG98-02",
+      "item": "追加課金条件",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "runner/OS/分数/storage/artifact全費用と上限/停止手段を確認し、追加課金可否・金額上限を明示採用。通知だけを停止保証にしない"
+    },
+    {
+      "id": "PG98-03",
+      "item": "Repository権限",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "対象人のread/write/dispatch/admin範囲・信頼ref・編集制限を実設定で確認。接続ツール権限を本人権限証拠にしない"
+    },
+    {
+      "id": "PG98-04",
+      "item": "Actions permissions",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "最小contents read、OIDC/writeなし、許可Action固定SHA、信頼ref手動起動、外部PRコード実行なしを設定と草案で照合"
+    },
+    {
+      "id": "PG98-05",
+      "item": "Secrets必要性",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "repo/org/environment/reusable workflowの継承を含め本番secret参照0。値を取得せず存在可否/参照有無のみ所有者確認"
+    },
+    {
+      "id": "PG98-06",
+      "item": "Secret最小化",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "登録Secret不要設計、一時試験credentialだけ生成/隠蔽/削除。実DB/Auth/Provider資格持込0"
+    },
+    {
+      "id": "PG98-07",
+      "item": "PostgreSQL版",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "PG17候補の明示minor/arch/extension/サポート状態を採否記録し固定manifestにする。現時点未選定"
+    },
+    {
+      "id": "PG98-08",
+      "item": "Docker image固定",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "公式image minor@sha256:digest、runner/Action/dependency固定値と出典取得日を全て確定。latest不可"
+    },
+    {
+      "id": "PG98-09",
+      "item": "外部network",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "取得段階allowlistと試験段階の外向き遮断を実現する方式をレビュー。bridgeだけで外向き遮断済みとしない"
+    },
+    {
+      "id": "PG98-10",
+      "item": "データ完全架空化",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "FAKE-only schema/seed hash・sentinel・実dump/env除外・個人名/実業務値0を確認"
+    },
+    {
+      "id": "PG98-11",
+      "item": "時間上限",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "job15分、case30秒、connect5秒、lock2秒、statement5秒、idleTX10秒の候補を採否。deadlock制御caseはlock上限を別承認値へ"
+    },
+    {
+      "id": "PG98-12",
+      "item": "再実行/ retry",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "retry候補2回まで、40P01/40001のみ全TXrollback後同一operation、最新状態再評価。55P03/57014は自動retryしない"
+    },
+    {
+      "id": "PG98-13",
+      "item": "自動停止",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "gate不成立・secret/data/hash不一致・timeout・audit/cleanup失敗で非0終了、後続起動/自動昇格なし"
+    },
+    {
+      "id": "PG98-14",
+      "item": "ログ保持",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "ログ保持7日候補、機微0、閲覧/削除担当と容量費を採否。取消/失敗ログも保存範囲を確認"
+    },
+    {
+      "id": "PG98-15",
+      "item": "artifact保存",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "artifact10MB/run・7日候補、hash付き最小証拠・閲覧権限・削除/費用を採否。公開repoログ公開範囲を確認"
+    },
+    {
+      "id": "PG98-16",
+      "item": "接続数/隔離",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "A/B更新2物理接続+O観測1、max10候補、READ COMMITTED、setup/app/observer分離。実接続検証は構築後"
+    },
+    {
+      "id": "PG98-17",
+      "item": "cleanup/再構築",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "finallyでrollback/pool close、volume/cache/一時資格除去、job破棄と失敗検知・固定manifest再構築手順をレビュー"
+    },
+    {
+      "id": "PG98-18",
+      "item": "主開発構築許可",
+      "confirmed": false,
+      "evidence_ref": null,
+      "judge": "INITIAL_MANAGER、独立監査は別役割",
+      "criterion": "01～17構築前証拠全件確認後、対象SHA/版/manifest hash/範囲/費用上限/期限/停止条件を人の発出証拠付きで明示許可。現指示は起動許可ではない"
+    }
+  ],
+  "all_required_fields": [
+    "fixed_commit_sha",
+    "manifest_sha256",
+    "execution_purpose",
+    "cost_currency_and_cap",
+    "valid_until",
+    "job_case_timeout",
+    "retry_cap",
+    "stop_conditions",
+    "secrets_conditions",
+    "human_approver_identity_evidence",
+    "approval_evidence_ref"
+  ],
+  "decision_algorithm": [
+    "18個全てID一意・確認済・有効証拠・対象SHA一致であること",
+    "各categoryは同条件を共有し重複を加算せず18/18とする",
+    "必須fieldの未指定/期限切れ/人の証拠不足ならBLOCKED",
+    "承認対象SHA又はmanifest変化ならINVALIDATED・再承認",
+    "開始前にfixture schema/seed/adapter・global入口/順序・audit原子性・復旧/失敗event契約をレビュー",
+    "構築許可と統合試験実測合格を分離。現在はBLOCKED"
+  ],
+  "current_decision": "BLOCKED",
+  "actions_build_allowed": false,
+  "actions_run_allowed": false,
+  "schema_applied": false,
+  "authenticity_reference": "staff-approval-authenticity-99.md＋実行目的必須。AUD-098-03 OPEN"
+}

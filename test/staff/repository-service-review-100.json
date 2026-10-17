@@ -1,0 +1,2736 @@
+{
+  "stage": 100,
+  "source_commit": "b955353d7029e7b6c9dc0721bf781b33391118df",
+  "tree_sha": "2c59119e0cad4ae171b3e9d2184c940fa2aba208",
+  "mode": "STATIC_LEXICAL_PLUS_TARGETED_REVIEW_NOT_RUNTIME_PROOF",
+  "limitations": [
+    "regexでは全SQL構文/分岐/SQL文字列/動的triggerを解決しない",
+    "design SQLの並行variantを全部配備したものとしない",
+    "実catalog・role・外部batch/admin・実配備は未確認",
+    "helperの定義や文字列をfence適用証明にしない"
+  ],
+  "files": [
+    {
+      "path": "app/api/ai-documents/generate/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 25,
+            "text": "let input: unknown; try {input=JSON.parse(text);} catch {return reply({error:'入力形式が不正です。'},400);}"
+          },
+          {
+            "line": 27,
+            "text": "} catch(error) {"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 4,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/monitoring-ai/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 13,
+            "text": "catch(e){return reply({error:e instanceof GenerationError?e.message:'承認済み計画を確認できません。'},e instanceof GenerationError?e.status:500);}"
+          },
+          {
+            "line": 25,
+            "text": "let input;try{input=JSON.parse(text);}catch{return reply({error:'入力が不正です。'},400);}"
+          },
+          {
+            "line": 28,
+            "text": "}catch(e){return reply({error:e instanceof GenerationError?e.message:'AI整理に失敗しました。入力内容は保持しています。'},e instanceof GenerationError?e.status:502);}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 4,
+          "text": "export const runtime='nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/planning-assistance/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 11,
+            "text": "catch(e){return reply({error:e instanceof GenerationError?e.message:'保存済み情報を確認できません。'},e instanceof GenerationError?e.status:500);}"
+          },
+          {
+            "line": 24,
+            "text": "}catch(e){return reply({error:e instanceof GenerationError?e.message:'生成できませんでした。入力は保持しています。'},e instanceof GenerationError?e.status:502);}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 4,
+          "text": "export const runtime='nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/auth/login/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import { getStaffLoginHandlers } from '@/lib/staff/login-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/auth/logout/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import {getStaffSessionHandlers} from '@/lib/staff/session-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime='nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/auth/password/change/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import { getStaffLoginHandlers } from '@/lib/staff/login-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/auth/password/reset/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import { getStaffLoginHandlers } from '@/lib/staff/login-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/auth/session/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import {getStaffSessionHandlers} from '@/lib/staff/session-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime='nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/candidates/result/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import { getCandidateHandlers } from '@/lib/staff/candidate-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/api/staff/candidates/route.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 1,
+          "text": "import { getCandidateHandlers } from '@/lib/staff/candidate-runtime';"
+        },
+        {
+          "line": 2,
+          "text": "export const runtime = 'nodejs';"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/components/ApprovedAiNote.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/components/Header.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/components/LogoutButton.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/dashboard/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 46,
+            "text": "catch { unreadable++; return []; }"
+          },
+          {
+            "line": 53,
+            "text": "} catch { failed = true; }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/layout.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/meetings/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 45,
+            "text": "try { content=parseMeeting(row.content); if(validateMeeting(row.held_on,content)) content=null; } catch { content=null; }"
+          },
+          {
+            "line": 52,
+            "text": "} catch { failed=true; }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/monitoring/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 33,
+            "text": "} catch { failed = true; }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/staff/_components/auth-form.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/staff/login/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/staff/password/change/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/ai-documents/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 59,
+            "text": "const config=await fetch('/api/ai-documents/generate',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);"
+          },
+          {
+            "line": 61,
+            "text": "}catch{if(active)setState('error');}}"
+          },
+          {
+            "line": 68,
+            "text": "catch{setMessage('この文書を読み取れませんでした。');}"
+          },
+          {
+            "line": 80,
+            "text": "}catch{if(mounted.current)setMessage('生成結果を取得できませんでした。本文は残っています。');}"
+          },
+          {
+            "line": 92,
+            "text": "}catch{if(mounted.current)setMessage('保存結果を確認できませんでした。本文を控えて再読み込みしてください。');}"
+          },
+          {
+            "line": 106,
+            "text": "<ul className=\"space-y-2\">{records.map(row=>{let parsed:DocumentContent|null=null;try{parsed=parseDocument(row.content);}catch{}return <li key={row.id}><button disabled={!!busy} onClick={()=>open(row)} className=\"w-full rounded border p-3 t"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 88,
+          "text": "const result=await createClient().rpc('save_ai_document',{p_id:id,p_user_id:userId,p_expected_version:version,p_content:content});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/assessments/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 53,
+            "text": "} catch { if (active) setState(\"error\"); }"
+          },
+          {
+            "line": 73,
+            "text": "} catch { setMessage(\"この記録を読み取れませんでした。管理者に確認してください。\"); }"
+          },
+          {
+            "line": 98,
+            "text": "} catch {"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 84,
+          "text": "const result = await createClient().rpc(\"save_assessment_record\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/edit/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 126,
+          "text": "const { data, error } = await supabase.rpc(\"update_user_with_plan\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/meetings/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 81,
+            "text": "catch { setMessage('指定された会議記録を読み取れませんでした。'); }"
+          },
+          {
+            "line": 85,
+            "text": "} catch { if (active) setState(\"error\"); }"
+          },
+          {
+            "line": 105,
+            "text": "} catch { setMessage(\"この記録を読み取れませんでした。管理者に確認してください。\"); }"
+          },
+          {
+            "line": 130,
+            "text": "} catch {"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 116,
+          "text": "const result = await createClient().rpc(\"save_meeting_record\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringAi.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 30,
+            "text": "}catch(e){if(active) setLoaded({query,error:e instanceof Error?e.message:'承認済み計画を取得できません。'});}"
+          },
+          {
+            "line": 46,
+            "text": "}catch(e){if(latest.current===requested)setError(e instanceof Error?e.message:'AI整理に失敗しました。入力は保持しています。');}"
+          },
+          {
+            "line": 56,
+            "text": "try{const old=JSON.parse(sessionStorage.getItem(key)||'null');if(!old||Date.now()-old.createdAt>3600000)sessionStorage.removeItem(key);}catch{sessionStorage.removeItem(key);}"
+          },
+          {
+            "line": 62,
+            "text": "}catch(e){setError(e instanceof Error?e.message:'引継ぎ情報を保持できませんでした。');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringComparison.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 28,
+            "text": "} catch { invalid = true; prior = null; }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/monitoring/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 59,
+            "text": "} catch { if (active) setState(\"error\"); }"
+          },
+          {
+            "line": 80,
+            "text": "} catch {"
+          },
+          {
+            "line": 103,
+            "text": "} catch { setMessage(\"この記録を読み取れませんでした。管理者に確認してください。\"); }"
+          },
+          {
+            "line": 128,
+            "text": "} catch {"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 74,
+          "text": "const result = await client.rpc('get_plan_review', { p_plan_id: plan.data.id });"
+        },
+        {
+          "line": 114,
+          "text": "const result = await createClient().rpc(\"save_monitoring_record\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/planning-assistance/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 45,
+            "text": "}catch(e){if(token)sessionStorage.removeItem(handoffKey(token));if(active)setHandoffError(e instanceof Error?e.message:'引継ぎ情報を確認できません。');}"
+          },
+          {
+            "line": 53,
+            "text": "useEffect(()=>{let active=true;void load().then(c=>{if(active)setContext(c);}).catch(e=>{if(active)setError(e.message);});return()=>{active=false;};},[id]); // eslint-disable-line react-hooks/exhaustive-deps"
+          },
+          {
+            "line": 55,
+            "text": "async function task(label:string,work:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(label);setError('');setNotice('');try{await work();}catch(e){setError(e instanceof Error?e.message:'操作結果を確認できません。再読み込み前に内容を控えてください。');"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 71,
+          "text": "const result=await createClient().rpc('save_ai_document',{p_id:documentId,p_user_id:id,p_expected_version:0,"
+        },
+        {
+          "line": 81,
+          "text": "const result=await createClient().rpc('act_plan_review',{p_plan_id:context.plan.id,p_revision:context.plan.content_version,p_epoch:context.review.epoch,p_action:'revise',p_reason:'AI計画作成支援：専門員確認済みの提案を下書きに反映するため'});"
+        },
+        {
+          "line": 93,
+          "text": "const result=await createClient().rpc('save_plan_with_imports',{p_plan_id:fresh.plan.id,p_user_id:id,p_expected_version:fresh.plan.content_version,p_content:next,p_imports:imports});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanDraftImport.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 47,
+            "text": "}catch{if(active)setState('error');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanImportHistory.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanReviewPanel.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/plans/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 118,
+            "text": "} catch {"
+          },
+          {
+            "line": 135,
+            "text": "} catch {"
+          },
+          {
+            "line": 229,
+            "text": "} catch {"
+          },
+          {
+            "line": 259,
+            "text": "} catch { if (currentRequest === requestId.current) setReviewError('操作結果を確認できません。再読み込みして状態を確認してください。'); }"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 124,
+          "text": "const { data: reviewData, error: reviewFailure } = await supabase.rpc('get_plan_review', { p_plan_id: activePlan.id });"
+        },
+        {
+          "line": 207,
+          "text": "const { data, error } = await createClient().rpc(\"save_plan_with_imports\", {"
+        },
+        {
+          "line": 239,
+          "text": "const { data, error } = await createClient().rpc('get_plan_review', { p_plan_id: id });"
+        },
+        {
+          "line": 250,
+          "text": "const { data, error } = await createClient().rpc('act_plan_review', { p_plan_id: planId, p_revision: version, p_epoch: review.epoch, p_action: action, p_reason: reason });"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PlanPrintDocument.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PrintButton.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "app/users/[id]/plans/print/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 36,
+            "text": "} catch { return fail('出力データを読み込めませんでした。計画画面から開き直してください。'); }"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 28,
+          "text": "const { data: review, error: reviewError } = await db.rpc('get_plan_review',{p_plan_id:plan.id});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/[id]/records/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 53,
+            "text": "} catch { if (active) setState(\"error\"); }"
+          },
+          {
+            "line": 73,
+            "text": "} catch { setMessage(\"この記録を読み取れませんでした。管理者に確認してください。\"); }"
+          },
+          {
+            "line": 98,
+            "text": "} catch {"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 84,
+          "text": "const result = await createClient().rpc(\"save_support_record\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/new/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 22,
+          "text": "const { data, error } = await supabase.rpc(\"create_user_with_plan\", {"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "app/users/page.tsx",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 96,
+            "text": "} catch { if (isMounted) setFetchState(\"error\"); }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/ai-document.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/ai-generate.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 14,
+            "text": "try {refs = parseRefs(input.sources);} catch {throw new GenerationError('参照記録が不正です。');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/approved-plan.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/assessment.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 30,
+            "text": "try{parseAssessment(content);}catch(error){return error instanceof Error?error.message:'記録内容を確認してください。';}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/meeting-record.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/monitoring-ai-server.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 54,
+            "text": "try{monitoring=parseMonitoring(input.content);}catch{throw new GenerationError('モニタリング内容を確認してください。');}"
+          },
+          {
+            "line": 89,
+            "text": "catch{throw new GenerationError('AI結果の形式を確認できません。入力内容は保持しています。',502);}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 31,
+          "text": "const result=await client.rpc('get_plan_review',{p_plan_id:id});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/monitoring-ai.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/monitoring-deadlines.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/monitoring-handoff-server.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 8,
+            "text": "try{handoff=parseHandoff(value,userId);}catch(e){throw new GenerationError(e instanceof Error?e.message:'引継ぎ情報が不正です。');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/monitoring-handoff.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/monitoring.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/plan-content.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/plan-import.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/plan-review.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/planning-assistance-server.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 44,
+            "text": "try{const ref=parseMonitoringPlanReference(raw);if(ref.userId===userId&&ref.planId===active[0].id)linked=selectApprovedPlan(review,ref.revision);}catch{/* Missing or invalid references stay explicitly unverified. */}"
+          },
+          {
+            "line": 102,
+            "text": "}catch{}"
+          },
+          {
+            "line": 110,
+            "text": "let parsed:unknown;try{parsed=JSON.parse(parts.join('\\n'));}catch{throw new GenerationError('AI結果の形式が不正です。入力は保持しています。',502);}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 27,
+          "text": "const reviewResult=await client.rpc('get_plan_review',{p_plan_id:active[0].id});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/planning-assistance.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/auth-context.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/auth-form-client.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 31,
+            "text": "} catch {return mode==='change'?unknown():result('通信できませんでした。接続を確認し、もう一度お試しください。');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 23,
+            "text": "try{client=await pool.connect();await client.query('BEGIN');begun=true;"
+          },
+          {
+            "line": 26,
+            "text": "await client.query('COMMIT');begun=false;return value;"
+          },
+          {
+            "line": 27,
+            "text": "}catch{broken=true;if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Private database operation unconfirmed');}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 27,
+            "text": "}catch{broken=true;if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Private database operation unconfirmed');}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 19,
+          "text": "export function createAuthFunctionRepository({pool,issuer,orgId,useCase}){"
+        },
+        {
+          "line": 20,
+          "text": "if(typeof window!=='undefined'||typeof pool?.connect!=='function'||typeof issuer!=='string'||!issuer.trim()||!uuid(orgId)||!['RUNTIME','WORKER'].includes(useCase))throw new TypeError('Dedicated server database configuration required');"
+        },
+        {
+          "line": 23,
+          "text": "try{client=await pool.connect();await client.query('BEGIN');begun=true;"
+        },
+        {
+          "line": 24,
+          "text": "const result=await client.query(sql,args);requireValue(result?.rows?.length===1&&Object.hasOwn(result.rows[0],'value'));"
+        },
+        {
+          "line": 26,
+          "text": "await client.query('COMMIT');begun=false;return value;"
+        },
+        {
+          "line": 27,
+          "text": "}catch{broken=true;if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Private database operation unconfirmed');}"
+        },
+        {
+          "line": 31,
+          "text": "if(useCase==='RUNTIME')return Object.freeze({"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 23,
+          "text": "try{client=await pool.connect();await client.query('BEGIN');begun=true;"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/binding-resolver.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/candidate-http.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 26,
+            "text": "try {context=await authenticate(request);}catch {return reply(503,{code:'AUTH_SERVICE_UNAVAILABLE',nextAction:'WAIT'});}"
+          },
+          {
+            "line": 28,
+            "text": "try {if(!await checkCSRF(request,context))return reply(403,{code:'REQUEST_ORIGIN_DENIED'});}catch {return reply(503,{code:'DEPENDENCY_UNAVAILABLE',nextAction:'WAIT'});}"
+          },
+          {
+            "line": 31,
+            "text": "try {input=await boundedJSON(request,maxBytes);}catch(error){return error instanceof RangeError?reply(413,{code:'PAYLOAD_TOO_LARGE'}):reply(400,{code:'INVALID_JSON'});}"
+          },
+          {
+            "line": 36,
+            "text": "}catch {"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/candidate-result.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 30,
+            "text": "try {if(begun)await client.query('ROLLBACK');}finally {client.release();}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 5,
+          "text": "export function createCandidateResultService({authorize,repository}) {"
+        },
+        {
+          "line": 8,
+          "text": "if(!authorize||!repository)return {status:503,code:'DEPENDENCY_UNAVAILABLE',nextAction:'WAIT'};"
+        },
+        {
+          "line": 11,
+          "text": "return repository.findCandidateResult({context,idempotencyKey:input.idempotencyKey});"
+        },
+        {
+          "line": 14,
+          "text": "export function createCandidateResultRepository({pool,operations,authorizeInTransaction}) {"
+        },
+        {
+          "line": 17,
+          "text": "const client=await pool.connect();let begun=false;"
+        },
+        {
+          "line": 19,
+          "text": "await client.query('BEGIN ISOLATION LEVEL READ COMMITTED');begun=true;"
+        },
+        {
+          "line": 20,
+          "text": "await client.query(\"SET LOCAL lock_timeout = '2s'\");"
+        },
+        {
+          "line": 21,
+          "text": "await client.query(\"SET LOCAL statement_timeout = '5s'\");"
+        },
+        {
+          "line": 30,
+          "text": "try {if(begun)await client.query('ROLLBACK');}finally {client.release();}"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/candidate-routes.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 2,
+          "text": "import {createCandidateResultHTTP,createCandidateResultService,createCandidateResultRepository} from './candidate-result.mjs';"
+        },
+        {
+          "line": 4,
+          "text": "import {createTransactionRepository} from './transaction-repository.mjs';"
+        },
+        {
+          "line": 19,
+          "text": "const repository=createTransactionRepository({pool:config.pool,operations,authorizeInTransaction:config.authorizeInTransaction});"
+        },
+        {
+          "line": 20,
+          "text": "const resultRepository=createCandidateResultRepository({pool:config.pool,operations,authorizeInTransaction:config.authorizeInTransaction});"
+        },
+        {
+          "line": 22,
+          "text": "save:createCandidateHTTP({authenticate,checkCSRF,saveCandidate:createCandidateService({authorize:config.authorize,repository})}),"
+        },
+        {
+          "line": 23,
+          "text": "check:createCandidateResultHTTP({authenticate,checkCSRF,findCandidateResult:createCandidateResultService({authorize:config.authorize,repository:resultRepository})})"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/candidate-runtime.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/credential-sealer.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 27,
+            "text": "}catch{throw new Error('Credential envelope unavailable');}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/current-session.mjs",
+      "evidence": {
+        "explicit_locks": [
+          {
+            "line": 56,
+            "text": "await client.query('SELECT pg_advisory_xact_lock_shared(hashtextextended($1::text,0))',[JSON.stringify(['STAFF_AUTH_ORG_V1',issuer,orgId])]);"
+          }
+        ],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 55,
+            "text": "await client.query('BEGIN');begun=true;"
+          },
+          {
+            "line": 63,
+            "text": "await client.query('COMMIT');begun=false;return valid;"
+          },
+          {
+            "line": 64,
+            "text": "}catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Current session verification unavailable');}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 64,
+            "text": "}catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Current session verification unavailable');}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 49,
+          "text": "export function createCurrentSessionRepository({pool,issuer,orgId,loadCurrentSnapshot,now=()=>Date.now()}){"
+        },
+        {
+          "line": 53,
+          "text": "const client=await pool.connect();let begun=false;"
+        },
+        {
+          "line": 55,
+          "text": "await client.query('BEGIN');begun=true;"
+        },
+        {
+          "line": 56,
+          "text": "await client.query('SELECT pg_advisory_xact_lock_shared(hashtextextended($1::text,0))',[JSON.stringify(['STAFF_AUTH_ORG_V1',issuer,orgId])]);"
+        },
+        {
+          "line": 63,
+          "text": "await client.query('COMMIT');begun=false;return valid;"
+        },
+        {
+          "line": 64,
+          "text": "}catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Current session verification unavailable');}"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": true,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 55,
+          "text": "await client.query('BEGIN');begun=true;"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/login-identity.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/login-routes.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 31,
+            "text": "catch {return response(503,'AUTH_CONNECTION_UNAVAILABLE','WAIT');}"
+          },
+          {
+            "line": 34,
+            "text": "try {input=await readInput(request);}catch(error){return response(error instanceof RangeError?413:400,error instanceof RangeError?'PAYLOAD_TOO_LARGE':'INVALID_JSON');}"
+          },
+          {
+            "line": 39,
+            "text": "catch {return response(503,'AUTH_CONNECTION_UNAVAILABLE','WAIT');}"
+          },
+          {
+            "line": 76,
+            "text": "} catch {"
+          },
+          {
+            "line": 78,
+            "text": "try {await config.discardSession({ticket,session,request});}catch { /* no business receipt may survive failed completion */ }"
+          },
+          {
+            "line": 81,
+            "text": "try {await config.markReconcile({ticket,kind});}catch { /* begin must already have durably blocked business use */ }"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/login-runtime.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/login-session.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 12,
+            "text": "await client.query('BEGIN');begun=true;"
+          },
+          {
+            "line": 18,
+            "text": "await client.query('COMMIT');begun=false;"
+          },
+          {
+            "line": 20,
+            "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{ /* COMMIT error can mean outcome unknown; no cookie is issued */ }}throw new Error('Session confirmation unavailable');}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 20,
+            "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{ /* COMMIT error can mean outcome unknown; no cookie is issued */ }}throw new Error('Session confirmation unavailable');}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 7,
+          "text": "export function createLoginSessionRepository({pool,recheckBinding,verifyProviderSession,saveSessionAndAudit,now=()=>Date.now()}) {"
+        },
+        {
+          "line": 10,
+          "text": "const client=await pool.connect();let begun=false;"
+        },
+        {
+          "line": 12,
+          "text": "await client.query('BEGIN');begun=true;"
+        },
+        {
+          "line": 18,
+          "text": "await client.query('COMMIT');begun=false;"
+        },
+        {
+          "line": 20,
+          "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{ /* COMMIT error can mean outcome unknown; no cookie is issued */ }}throw new Error('Session confirmation unavailable');}"
+        },
+        {
+          "line": 24,
+          "text": "export function createLoginCompletion({repository,sealer,ttlSeconds,now=()=>Date.now()}) {"
+        },
+        {
+          "line": 25,
+          "text": "if(typeof repository?.confirmLogin!=='function'||typeof sealer?.seal!=='function'||!Number.isSafeInteger(ttlSeconds)||ttlSeconds<1||ttlSeconds>86400)throw new TypeError('Explicit session dependencies and lifetime required');"
+        },
+        {
+          "line": 34,
+          "text": "const confirmation=await repository.confirmLogin({ticket,session,record});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 12,
+          "text": "await client.query('BEGIN');begun=true;"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/postgres-operations.mjs",
+      "evidence": {
+        "explicit_locks": [
+          {
+            "line": 7,
+            "text": "await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1::text, 0))',[scope]);"
+          }
+        ],
+        "dml": [
+          {
+            "line": 12,
+            "text": "await c.query('INSERT INTO staff_core.import_candidates(candidate_id,org_id,current_revision_id,created_actor_id) VALUES($1,$2,$3,$4)',[candidateId,context.orgId,revisionId,context.actorId]);"
+          },
+          {
+            "line": 15,
+            "text": "await c.query('INSERT INTO staff_core.candidate_revisions(candidate_revision_id,candidate_id,org_id,revision_no,source_ref,reason,recorded_actor_id) VALUES($1,$2,$3,$4,$5,$6,$7)',[revisionId,candidateId,context.orgId,revisionNo,sourceRef,re"
+          },
+          {
+            "line": 18,
+            "text": "for(let i=0;i<items.length;i++) await c.query('INSERT INTO staff_core.candidate_items(candidate_revision_id,item_no,item_kind,received_value) VALUES($1,$2,$3,$4::jsonb)',[revisionId,i+1,items[i].kind,JSON.stringify({value:items[i].value})])"
+          },
+          {
+            "line": 21,
+            "text": "await c.query('INSERT INTO staff_core.candidate_audit(org_id,candidate_id,revision_id,actor_id,action,reason) VALUES($1,$2,$3,$4,$5,$6)',[context.orgId,candidateId,revisionId,context.actorId,action,reason]);"
+          },
+          {
+            "line": 24,
+            "text": "await c.query('INSERT INTO staff_core.candidate_operations(org_id,actor_id,operation,idempotency_key,fingerprint,result) VALUES($1,$2,$3,$4,$5,$6::jsonb)',[context.orgId,context.actorId,operation,idempotencyKey,fingerprint,JSON.stringify(re"
+          }
+        ],
+        "audit_writes": [
+          {
+            "line": 21,
+            "text": "await c.query('INSERT INTO staff_core.candidate_audit(org_id,candidate_id,revision_id,actor_id,action,reason) VALUES($1,$2,$3,$4,$5,$6)',[context.orgId,candidateId,revisionId,context.actorId,action,reason]);"
+          }
+        ],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [
+        {
+          "line": 7,
+          "text": "await client.query('SELECT pg_advisory_xact_lock(hashtextextended($1::text, 0))',[scope]);"
+        },
+        {
+          "line": 8,
+          "text": "const r=await client.query('SELECT fingerprint, result FROM staff_core.candidate_operations WHERE org_id=$1 AND actor_id=$2 AND operation=$3 AND idempotency_key=$4',[orgId,actorId,operation,idempotencyKey]);"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": true,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [
+        {
+          "line": 21,
+          "text": "await c.query('INSERT INTO staff_core.candidate_audit(org_id,candidate_id,revision_id,actor_id,action,reason) VALUES($1,$2,$3,$4,$5,$6)',[context.orgId,candidateId,revisionId,context.actorId,action,reason]);"
+        }
+      ],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/registration-port.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 13,
+            "text": "try {items=toReceivedItems(input.received);} catch {return {status:422,code:'VALIDATION_ERROR'};}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 5,
+          "text": "export function createCandidateService({authorize,repository}) {"
+        },
+        {
+          "line": 8,
+          "text": "if (!authorize || !repository) return {status:503,code:'DEPENDENCY_UNAVAILABLE',nextAction:'WAIT'};"
+        },
+        {
+          "line": 14,
+          "text": "// Repository must atomically recheck authorization and save candidate,"
+        },
+        {
+          "line": 16,
+          "text": "return repository.saveReceivedCandidate({context,items,sourceRef:input.sourceRef,reason:input.reason,idempotencyKey:input.idempotencyKey});"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/session-access.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 96,
+            "text": "await client.query('BEGIN');begun=true;"
+          },
+          {
+            "line": 106,
+            "text": "await client.query('COMMIT');begun=false;"
+          },
+          {
+            "line": 108,
+            "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Session revocation unconfirmed');}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 48,
+            "text": "try{const value=JSON.parse(data);return value!==null&&Object.getPrototypeOf(value)===Object.prototype&&Object.keys(value).length===0;}catch{return false;}"
+          },
+          {
+            "line": 58,
+            "text": "catch{return reply(503,'SESSION_CHECK_UNAVAILABLE');}"
+          },
+          {
+            "line": 64,
+            "text": "catch{return reply(503,'SESSION_CONNECTION_UNAVAILABLE');}"
+          },
+          {
+            "line": 75,
+            "text": "}catch{return reply(503,'SIGNOUT_UNCONFIRMED');}"
+          },
+          {
+            "line": 81,
+            "text": "}catch{"
+          },
+          {
+            "line": 108,
+            "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Session revocation unconfirmed');}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 12,
+          "text": "export function createStaffSessionAuthenticator({issuer,orgId,repository,sealer,verifyProviderIdentity,now=()=>Date.now()}) {"
+        },
+        {
+          "line": 13,
+          "text": "if(typeof issuer!=='string'||!issuer.trim()||!uuid(orgId)||typeof repository?.loadByHash!=='function'||typeof repository?.confirmCurrentSession!=='function'||typeof sealer?.open!=='function'||typeof verifyProviderIdentity!=='function')throw"
+        },
+        {
+          "line": 16,
+          "text": "const row=await repository.loadByHash({tokenHash,issuer,orgId});"
+        },
+        {
+          "line": 27,
+          "text": "if(Date.parse(record.expiresAt)<=checkedAt||Date.parse(provider.validUntil)<=checkedAt||await repository.confirmCurrentSession({record,at:checkedAt})!==true)return null;"
+        },
+        {
+          "line": 90,
+          "text": "export function createStaffSessionRevocationRepository({pool,loadForUpdate,revokeAndEnqueue,now=()=>Date.now()}) {"
+        },
+        {
+          "line": 94,
+          "text": "const client=await pool.connect();let begun=false;"
+        },
+        {
+          "line": 96,
+          "text": "await client.query('BEGIN');begun=true;"
+        },
+        {
+          "line": 106,
+          "text": "await client.query('COMMIT');begun=false;"
+        },
+        {
+          "line": 108,
+          "text": "}catch{if(begun){try{await client.query('ROLLBACK');}catch{}}throw new Error('Session revocation unconfirmed');}"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 96,
+          "text": "await client.query('BEGIN');begun=true;"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/session-postgres.mjs",
+      "evidence": {
+        "explicit_locks": [
+          {
+            "line": 32,
+            "text": "return mapRecord((await client.query(`SELECT ${projection} FROM staff_auth_private.managed_sessions WHERE token_hash=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[tokenHash,issuer,orgId])).rows[0]);"
+          },
+          {
+            "line": 37,
+            "text": "const prior=(await client.query(`SELECT operation_id,state FROM staff_auth_private.session_revocation_outbox WHERE record_id=$1 FOR UPDATE`,[r.recordId])).rows[0];"
+          },
+          {
+            "line": 66,
+            "text": "const r=(await client.query(`SELECT o.operation_id,o.record_id,o.attempt_count FROM staff_auth_private.session_revocation_outbox o JOIN staff_auth_private.managed_sessions s ON s.record_id=o.record_id WHERE s.issuer=$1 AND s.org_id=$2 AND s"
+          },
+          {
+            "line": 76,
+            "text": "const row=(await client.query(`SELECT ${projection} FROM staff_auth_private.managed_sessions WHERE record_id=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[recordId,issuer,orgId])).rows[0];"
+          },
+          {
+            "line": 78,
+            "text": "const claim=(await client.query(`SELECT operation_id FROM staff_auth_private.session_revocation_outbox WHERE operation_id=$1 AND record_id=$2 AND state='LEASED' AND lease_token=$3 AND lease_until>$4 FOR UPDATE`,[operationId,recordId,leaseTo"
+          },
+          {
+            "line": 90,
+            "text": "const s=(await client.query(`SELECT state FROM staff_auth_private.managed_sessions WHERE record_id=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[recordId,issuer,orgId])).rows[0];"
+          }
+        ],
+        "dml": [
+          {
+            "line": 12,
+            "text": "one(await client.query(`INSERT INTO staff_auth_private.session_audit_events(event_id,record_id,operation_id,event_code,recorded_at,attribution,actor_id) VALUES($1,$2,$3,$4,$5,$6,$7)`,[randomUUID(),recordId,operationId,eventCode,iso(at),attr"
+          },
+          {
+            "line": 23,
+            "text": "one(await client.query(`INSERT INTO staff_auth_private.managed_sessions(record_id,token_hash,issuer,org_id,account_id,person_id,auth_user_id,provider_session_id,auth_epoch,purpose,state,created_at,expires_at,expires_at_iso,credential_versio"
+          },
+          {
+            "line": 44,
+            "text": "one(await client.query(`UPDATE staff_auth_private.managed_sessions SET state='REVOKED',revoked_at=$2 WHERE record_id=$1 AND state IN ('ACTIVE','EXPIRED') AND issuer=$3 AND org_id=$4`,[r.recordId,date,issuer,orgId]));"
+          },
+          {
+            "line": 45,
+            "text": "one(await client.query(`INSERT INTO staff_auth_private.session_revocation_outbox(operation_id,record_id,scope,state,created_at,next_attempt_at,attempt_count) VALUES($1,$2,'LOCAL','PENDING',$3,$3,0)`,[operationId,r.recordId,date]));"
+          },
+          {
+            "line": 68,
+            "text": "one(await client.query(`UPDATE staff_auth_private.session_revocation_outbox SET state='LEASED',lease_token=$2,lease_until=$3,attempt_count=attempt_count+1 WHERE operation_id=$1`,[r.operation_id,leaseToken,iso(at+leaseSeconds*1000)]));"
+          },
+          {
+            "line": 92,
+            "text": "const r=await client.query(`UPDATE staff_auth_private.session_revocation_outbox SET state=$4,lease_token=NULL,lease_until=NULL,completed_at=CASE WHEN $4='COMPLETED' THEN $5::timestamptz ELSE NULL END,next_attempt_at=COALESCE($6::timestamptz"
+          }
+        ],
+        "audit_writes": [
+          {
+            "line": 12,
+            "text": "one(await client.query(`INSERT INTO staff_auth_private.session_audit_events(event_id,record_id,operation_id,event_code,recorded_at,attribution,actor_id) VALUES($1,$2,$3,$4,$5,$6,$7)`,[randomUUID(),recordId,operationId,eventCode,iso(at),attr"
+          }
+        ],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 53,
+            "text": "try{await client.query('BEGIN');begun=true;const value=await run(client);await client.query('COMMIT');begun=false;return value;}"
+          },
+          {
+            "line": 54,
+            "text": "catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Cleanup persistence unconfirmed');}"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 54,
+            "text": "catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Cleanup persistence unconfirmed');}"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 12,
+          "text": "one(await client.query(`INSERT INTO staff_auth_private.session_audit_events(event_id,record_id,operation_id,event_code,recorded_at,attribution,actor_id) VALUES($1,$2,$3,$4,$5,$6,$7)`,[randomUUID(),recordId,operationId,eventCode,iso(at),attr"
+        },
+        {
+          "line": 14,
+          "text": "// Hooks run only inside the existing repository transactions. Login binding and"
+        },
+        {
+          "line": 23,
+          "text": "one(await client.query(`INSERT INTO staff_auth_private.managed_sessions(record_id,token_hash,issuer,org_id,account_id,person_id,auth_user_id,provider_session_id,auth_epoch,purpose,state,created_at,expires_at,expires_at_iso,credential_versio"
+        },
+        {
+          "line": 28,
+          "text": "return mapRecord((await client.query(`SELECT ${projection} FROM staff_auth_private.managed_sessions WHERE token_hash=$1 AND issuer=$2 AND org_id=$3`,[tokenHash,issuer,orgId])).rows[0]);"
+        },
+        {
+          "line": 32,
+          "text": "return mapRecord((await client.query(`SELECT ${projection} FROM staff_auth_private.managed_sessions WHERE token_hash=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[tokenHash,issuer,orgId])).rows[0]);"
+        },
+        {
+          "line": 37,
+          "text": "const prior=(await client.query(`SELECT operation_id,state FROM staff_auth_private.session_revocation_outbox WHERE record_id=$1 FOR UPDATE`,[r.recordId])).rows[0];"
+        },
+        {
+          "line": 44,
+          "text": "one(await client.query(`UPDATE staff_auth_private.managed_sessions SET state='REVOKED',revoked_at=$2 WHERE record_id=$1 AND state IN ('ACTIVE','EXPIRED') AND issuer=$3 AND org_id=$4`,[r.recordId,date,issuer,orgId]));"
+        },
+        {
+          "line": 45,
+          "text": "one(await client.query(`INSERT INTO staff_auth_private.session_revocation_outbox(operation_id,record_id,scope,state,created_at,next_attempt_at,attempt_count) VALUES($1,$2,'LOCAL','PENDING',$3,$3,0)`,[operationId,r.recordId,date]));"
+        },
+        {
+          "line": 52,
+          "text": "const client=await pool.connect();let begun=false;"
+        },
+        {
+          "line": 53,
+          "text": "try{await client.query('BEGIN');begun=true;const value=await run(client);await client.query('COMMIT');begun=false;return value;}"
+        },
+        {
+          "line": 54,
+          "text": "catch{if(begun)try{await client.query('ROLLBACK');}catch{}throw new Error('Cleanup persistence unconfirmed');}"
+        },
+        {
+          "line": 57,
+          "text": "// No timer, provider API or runtime credentials are initialized by this factory."
+        },
+        {
+          "line": 66,
+          "text": "const r=(await client.query(`SELECT o.operation_id,o.record_id,o.attempt_count FROM staff_auth_private.session_revocation_outbox o JOIN staff_auth_private.managed_sessions s ON s.record_id=o.record_id WHERE s.issuer=$1 AND s.org_id=$2 AND s"
+        },
+        {
+          "line": 68,
+          "text": "one(await client.query(`UPDATE staff_auth_private.session_revocation_outbox SET state='LEASED',lease_token=$2,lease_until=$3,attempt_count=attempt_count+1 WHERE operation_id=$1`,[r.operation_id,leaseToken,iso(at+leaseSeconds*1000)]));"
+        },
+        {
+          "line": 76,
+          "text": "const row=(await client.query(`SELECT ${projection} FROM staff_auth_private.managed_sessions WHERE record_id=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[recordId,issuer,orgId])).rows[0];"
+        },
+        {
+          "line": 78,
+          "text": "const claim=(await client.query(`SELECT operation_id FROM staff_auth_private.session_revocation_outbox WHERE operation_id=$1 AND record_id=$2 AND state='LEASED' AND lease_token=$3 AND lease_until>$4 FOR UPDATE`,[operationId,recordId,leaseTo"
+        },
+        {
+          "line": 90,
+          "text": "const s=(await client.query(`SELECT state FROM staff_auth_private.managed_sessions WHERE record_id=$1 AND issuer=$2 AND org_id=$3 FOR UPDATE`,[recordId,issuer,orgId])).rows[0];"
+        },
+        {
+          "line": 92,
+          "text": "const r=await client.query(`UPDATE staff_auth_private.session_revocation_outbox SET state=$4,lease_token=NULL,lease_until=NULL,completed_at=CASE WHEN $4='COMPLETED' THEN $5::timestamptz ELSE NULL END,next_attempt_at=COALESCE($6::timestamptz"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": true,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 53,
+          "text": "try{await client.query('BEGIN');begun=true;const value=await run(client);await client.query('COMMIT');begun=false;return value;}"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [
+        {
+          "line": 12,
+          "text": "one(await client.query(`INSERT INTO staff_auth_private.session_audit_events(event_id,record_id,operation_id,event_code,recorded_at,attribution,actor_id) VALUES($1,$2,$3,$4,$5,$6,$7)`,[randomUUID(),recordId,operationId,eventCode,iso(at),attr"
+        }
+      ],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/session-runtime.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 36,
+            "text": "} catch {"
+          },
+          {
+            "line": 37,
+            "text": "if(created){try{await revoke(client);}catch{throw new Error('Provider verification and cleanup unavailable');}}"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/staff/transaction-repository.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [
+          {
+            "line": 13,
+            "text": "await client.query('BEGIN'); begun=true;"
+          },
+          {
+            "line": 16,
+            "text": "await client.query('ROLLBACK'); begun=false;"
+          },
+          {
+            "line": 22,
+            "text": "await client.query('ROLLBACK'); begun=false;"
+          },
+          {
+            "line": 32,
+            "text": "await client.query('COMMIT'); begun=false;"
+          },
+          {
+            "line": 36,
+            "text": "try {await client.query('ROLLBACK');} catch { /* Original failure remains the cause. */ }"
+          }
+        ],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 34,
+            "text": "} catch (error) {"
+          },
+          {
+            "line": 36,
+            "text": "try {await client.query('ROLLBACK');} catch { /* Original failure remains the cause. */ }"
+          }
+        ]
+      },
+      "rpc_calls": [
+        {
+          "line": 5,
+          "text": "export function createTransactionRepository({pool,operations,authorizeInTransaction}) {"
+        },
+        {
+          "line": 10,
+          "text": "const client=await pool.connect();"
+        },
+        {
+          "line": 13,
+          "text": "await client.query('BEGIN'); begun=true;"
+        },
+        {
+          "line": 16,
+          "text": "await client.query('ROLLBACK'); begun=false;"
+        },
+        {
+          "line": 22,
+          "text": "await client.query('ROLLBACK'); begun=false;"
+        },
+        {
+          "line": 32,
+          "text": "await client.query('COMMIT'); begun=false;"
+        },
+        {
+          "line": 36,
+          "text": "try {await client.query('ROLLBACK');} catch { /* Original failure remains the cause. */ }"
+        }
+      ],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [
+        {
+          "line": 13,
+          "text": "await client.query('BEGIN'); begun=true;"
+        }
+      ],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "GLOBAL_CALLER_NOT_DEMONSTRATED"
+    },
+    {
+      "path": "lib/staff/validation.mjs",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/supabase/client.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/supabase/database.types.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/supabase/server.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": [
+          {
+            "line": 27,
+            "text": "} catch {"
+          }
+        ]
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    },
+    {
+      "path": "lib/support-record.ts",
+      "evidence": {
+        "explicit_locks": [],
+        "dml": [],
+        "audit_writes": [],
+        "fence_mentions": [],
+        "transaction_markers": [],
+        "dynamic_sql": [],
+        "exception_handlers": []
+      },
+      "rpc_calls": [],
+      "current_order": "evidence行順。dynamic hook/adapter内順序は未解決",
+      "explicit_lock": false,
+      "implicit_lock": "DB呼出先のDML/FK/trigger/uniqueに依存、純UIのみの場合は直接DB未検出",
+      "transaction_start": [],
+      "fence_position": [],
+      "audit_position": [],
+      "comparison": "NO_DIRECT_MUTATION_SIGNAL_NOT_ABSENCE_PROOF"
+    }
+  ]
+}

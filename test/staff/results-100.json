@@ -1,0 +1,99 @@
+{
+  "stage": 100,
+  "validation_level": "STATIC_EVIDENCE_COMPLETENESS_AND_LINK_CHECK_NOT_LOCK_EXECUTION",
+  "checks": {
+    "fixed_source_blob_identity": true,
+    "scope_counts": true,
+    "function_and_trigger_counts": true,
+    "trigger_contract_fields": true,
+    "code_contract_fields": true,
+    "gate_exact_18": true,
+    "gate_blocked": true,
+    "states_proposal_only": true,
+    "states_evidence_retry_review": true,
+    "case_ids": true,
+    "unexecuted": true,
+    "four_queries": true,
+    "failure_event_contract": true,
+    "findings_not_closed": true
+  },
+  "passed": 14,
+  "failed": 0,
+  "integration_executed": 0,
+  "u09_confirmed": 0,
+  "cross_file_trigger_resolved": 27,
+  "remaining_dynamic_or_cross_file_unresolved": 41,
+  "source_commit": "b955353d7029e7b6c9dc0721bf781b33391118df",
+  "files": [
+    {
+      "path": "test/staff/inspect-locks-100.py",
+      "sha256": "33092632d62503cc86874892fde424ebd1c3e0fec9e3907506591097b5c742fe"
+    },
+    {
+      "path": "test/staff/sql-lock-review-100.json",
+      "sha256": "925272775f65eb78735fb057d4c7ace23d1eef403924ebe72e4fc2a1f1e4e452"
+    },
+    {
+      "path": "test/staff/trigger-review-100.json",
+      "sha256": "25edb829a41db8fb813e5b5124f9eb06c8613affc0dc706170b85253f2661e3f"
+    },
+    {
+      "path": "test/staff/repository-service-review-100.json",
+      "sha256": "2c5ef609334739e9f4d4aad5ea1d58a90c73644d9b28543a01cdb88e03f24ac6"
+    },
+    {
+      "path": "test/staff/source-manifest-100.json",
+      "sha256": "1eb74c0079c23e37e16eadff0a6a45039f94292dba221cd9d09ac23b3d4ce030"
+    },
+    {
+      "path": "test/staff/lock-discrepancies-100.json",
+      "sha256": "11d8671601d06b57619cdf00d051c7aa0683ad85f486d95a5e6bc037e03e389e"
+    },
+    {
+      "path": "design/staff-static-alignment-100.md",
+      "sha256": "1db099d79447dcec94e63500d078129821507d4a4f853e14838b92e87b954491"
+    },
+    {
+      "path": "design/staff-unknown-commit-recovery-100.md",
+      "sha256": "6dcea6f4be73dc9e7e8ce9e34715543621f20f618c58acf66b39df2f770cb830"
+    },
+    {
+      "path": "test/staff/operation-state-proposal-100.json",
+      "sha256": "86cca771c16a8596bcf3bc2dadf5f4bed4122386325a246e8570c3ce2b840a21"
+    },
+    {
+      "path": "design/staff-failure-history-contract-100.md",
+      "sha256": "f2c1490c79c002488807e04ad5a679260d196c28bf3c5dd61d0b7b8926e6c848"
+    },
+    {
+      "path": "test/staff/integration-start-gate-100.json",
+      "sha256": "0ed0ed2d65774f832cb5d09dfe681cad17fb9cbb97d36cd8109f130992b1f477"
+    },
+    {
+      "path": "test/staff/concurrency-cases-100.json",
+      "sha256": "d9268a8aea4e45a5fc6efccb6921b84aacd4e6e4fcbe039572f35c6402605af1"
+    },
+    {
+      "path": "test/staff/open-findings-100.json",
+      "sha256": "e117c63095441821b24a45482b7d4048040e0762ad17c2ab388c91fbea7e849c"
+    },
+    {
+      "path": "design/staff-stage100-report.md",
+      "sha256": "971e832fa096054e9775dfdd14aa2844501dd61da74c310407502347e46c0db0"
+    },
+    {
+      "path": "test/staff/verify-preparation-100.py",
+      "sha256": "7dcb4225416b1f87ce27641db2eb5f1a629f218abaa7475988c38a14cb6a08eb"
+    }
+  ],
+  "byte_public_name_checks": "PASS",
+  "not_verified": [
+    "transitive dynamic control flow/trigger closure",
+    "actual deployed DB/catalog",
+    "live lock ordering",
+    "COMMIT failure behavior",
+    "durable failure journal",
+    "all U09 conditions",
+    "approval human identity"
+  ]
+}

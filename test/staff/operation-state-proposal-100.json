@@ -1,0 +1,116 @@
+{
+  "stage": 100,
+  "status": "PROPOSAL_NOT_ADOPTED_SCHEMA_OR_RUNTIME",
+  "distinction": "DB正式operation状態とclient/独立attempt観測状態を分離。今回既存enum/表を変更しない",
+  "states": [
+    {
+      "state": "PENDING",
+      "transition_condition": "依頼を受領し未適用",
+      "db_or_external_evidence": "独立attempt journalの受領event。業務DB operation存在を意味しない",
+      "retry": "自動適用不可、gate後に開始",
+      "human_review": "通常不要",
+      "audit_or_event": "RECEIVED"
+    },
+    {
+      "state": "APPLYING",
+      "transition_condition": "global取得後処理中",
+      "db_or_external_evidence": "接続/attemptの観測。未commit行は確定証拠でない",
+      "retry": "並行再適用不可",
+      "human_review": "期限超過なら要",
+      "audit_or_event": "STARTED"
+    },
+    {
+      "state": "APPLIED",
+      "transition_condition": "commit済の四照会一致",
+      "db_or_external_evidence": "正式operation/result/audit/版履歴",
+      "retry": "再適用不可、保存結果再送のみ",
+      "human_review": "不一致時のみ",
+      "audit_or_event": "業務TX内成功audit"
+    },
+    {
+      "state": "REJECTED",
+      "transition_condition": "認可/validation/scope/approval等で拒否確定",
+      "db_or_external_evidence": "機微除去failure event、成功結果なし",
+      "retry": "同payload自動retry不可",
+      "human_review": "承認不足等必要時",
+      "audit_or_event": "DENIED + reason_code"
+    },
+    {
+      "state": "ROLLED_BACK",
+      "transition_condition": "全TX abort/rollback確認",
+      "db_or_external_evidence": "DB abort応答/接続観測と照合、別failure event",
+      "retry": "40P01/40001等のみ契約内",
+      "human_review": "不明時要",
+      "audit_or_event": "ROLLED_BACK"
+    },
+    {
+      "state": "UNKNOWN",
+      "transition_condition": "COMMIT送信後に応答/確証欠落",
+      "db_or_external_evidence": "COMMIT_SENTとtimeout等、旧TX未確定",
+      "retry": "適用禁止、四照会のみ",
+      "human_review": "解決不能時要",
+      "audit_or_event": "OUTCOME_UNKNOWN"
+    },
+    {
+      "state": "RECOVERY_REQUIRED",
+      "transition_condition": "証拠矛盾/履歴欠落/identity不明",
+      "db_or_external_evidence": "照会証拠集合と矛盾reason",
+      "retry": "自動適用禁止",
+      "human_review": "必須",
+      "audit_or_event": "RECOVERY_BLOCKED"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "PENDING",
+      "to": "APPLYING",
+      "when": "全実行gate成立時のみ"
+    },
+    {
+      "from": "APPLYING",
+      "to": "APPLIED",
+      "when": "commit確認又は四照会一致"
+    },
+    {
+      "from": "APPLYING",
+      "to": "UNKNOWN",
+      "when": "commit outcome不明"
+    },
+    {
+      "from": "APPLYING",
+      "to": "ROLLED_BACK",
+      "when": "全TXabort確認"
+    },
+    {
+      "from": "PENDING",
+      "to": "REJECTED",
+      "when": "事前validation拒否"
+    },
+    {
+      "from": "APPLYING",
+      "to": "REJECTED",
+      "when": "拒否とrollback確証"
+    },
+    {
+      "from": "UNKNOWN",
+      "to": "APPLIED",
+      "when": "四照会成功一致"
+    },
+    {
+      "from": "UNKNOWN",
+      "to": "RECOVERY_REQUIRED",
+      "when": "矛盾/保持切れ/identity不明"
+    },
+    {
+      "from": "UNKNOWN",
+      "to": "ROLLED_BACK",
+      "when": "旧TX終了/authoritative完全履歴/全0件など非適用確証"
+    }
+  ],
+  "main_decisions": [
+    "7状態の正式採否と既存operation結果へのmapping",
+    "独立attempt journal実装/保存先/保持/権限/欠損時の停止",
+    "recovery担当と証拠採否"
+  ],
+  "automatic_new_request_key": false
+}

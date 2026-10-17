@@ -1,0 +1,42 @@
+{
+  "stage": 100,
+  "findings": [
+    {
+      "id": "AUD-099-01",
+      "status": "OPEN",
+      "performed": "128blob同一性検証・SQL/関数/trigger/code字句照合＋重点12候補",
+      "remaining": "動的呼出/trigger closure/全分岐と実variant・全writer順序の確定、無断修正なし"
+    },
+    {
+      "id": "AUD-099-02",
+      "status": "OPEN",
+      "performed": "同key四照会とstate提案",
+      "remaining": "既存writer global参加、復旧実装と障害実証"
+    },
+    {
+      "id": "AUD-099-03",
+      "status": "OPEN",
+      "performed": "業務auditと独立journal/失敗event責任分離",
+      "remaining": "sink/保持/運用採否・実装・耐久/機密試験"
+    },
+    {
+      "id": "AUD-098-03",
+      "status": "OPEN",
+      "performed": "本人/目的/工程/版/SHA/manifest/費用/期限/停止への束縛維持",
+      "remaining": "人の発出証拠方式と実真正性検証"
+    }
+  ],
+  "u04": "A案維持・AUD-097-01正式人選/実照合までOPEN",
+  "u08": "候補126ファイル、fence実証0、網羅未証明",
+  "u09": "0/18・構築/Actions起動禁止",
+  "u06": "既存MODEL50履歴、統合14全未実行",
+  "carry_forward": [
+    "AUD-090-01～03 OPEN",
+    "AUD-095残件 OPEN",
+    "AUD-096残件/原文照合待ち",
+    "AUD-097-02 原文照合待ち"
+  ],
+  "completion_candidate": false,
+  "reason": "固定対象の静的抽出と重点照合は完了したが全体整合終了条件は未充足。動的/配備closure未確認を合格扱いしない",
+  "independent_audit": "提出用。別スレ送付/受領未実施"
+}

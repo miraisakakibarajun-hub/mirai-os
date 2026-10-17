@@ -1,0 +1,657 @@
+{
+  "stage": 100,
+  "source_commit": "b955353d7029e7b6c9dc0721bf781b33391118df",
+  "tree_sha": "2c59119e0cad4ae171b3e9d2184c940fa2aba208",
+  "mode": "STATIC_LEXICAL_PLUS_TARGETED_REVIEW_NOT_RUNTIME_PROOF",
+  "limitations": [
+    "regexでは全SQL構文/分岐/SQL文字列/動的triggerを解決しない",
+    "design SQLの並行variantを全部配備したものとしない",
+    "実catalog・role・外部batch/admin・実配備は未確認",
+    "helperの定義や文字列をfence適用証明にしない"
+  ],
+  "sources": [
+    {
+      "path": "app/api/ai-documents/generate/route.ts",
+      "git_blob_sha": "42b5cafc83c88fbaa534f1c9d2ea58345f9c137a",
+      "sha256": "5aea6d6079d240a26a1387d71ffacae3cd788fc3c573a416ba38e687f0e1a764"
+    },
+    {
+      "path": "app/api/monitoring-ai/route.ts",
+      "git_blob_sha": "87d8590a788a58a8b6fb11c52502d42a47cf2552",
+      "sha256": "efd2fdfb29ce86bd20acf15a2429bba27ebc574b33ddd0231d50469dd69554cd"
+    },
+    {
+      "path": "app/api/planning-assistance/route.ts",
+      "git_blob_sha": "db4767777a3bb2bc8fdaccf22899cba3ca998377",
+      "sha256": "6940f04792fd8b574c9b201d6ec63379f384125738c2a229fc3d26a6c0905c06"
+    },
+    {
+      "path": "app/api/staff/auth/login/route.ts",
+      "git_blob_sha": "88fcbeed62926ff3e82d0c46cc77f8edbc0f4040",
+      "sha256": "e5bce3e63aa3798801cf0e87caa6406e62ee7abe5de228d2e6fb0cb743ce4e1d"
+    },
+    {
+      "path": "app/api/staff/auth/logout/route.ts",
+      "git_blob_sha": "d69268e611d334a8f56b2422b0aa2e4e27c22fce",
+      "sha256": "c112444c35a4b23072ff666ef46316d782e4df4e6549021eb218b62dd693cad8"
+    },
+    {
+      "path": "app/api/staff/auth/password/change/route.ts",
+      "git_blob_sha": "30fcca6fb6e095a136dc0a83e4ee68a930e7f525",
+      "sha256": "2b944719464eb2c8b2a7f539bd81aa0463ea8040bfedbf798ae95e568289666a"
+    },
+    {
+      "path": "app/api/staff/auth/password/reset/route.ts",
+      "git_blob_sha": "3eb5c12ea9f137fb62839efd49fecca784e3d9de",
+      "sha256": "9ce37569d002e3a26ab02009a0092577273e80efe95ea3da8c7f075e0985a405"
+    },
+    {
+      "path": "app/api/staff/auth/session/route.ts",
+      "git_blob_sha": "093d2a72272a34356b74e69d6059ed30ddc5484a",
+      "sha256": "1394a36c1c9bd702b671ef016216d14a94922f3415ec928d348aa39ffec229c9"
+    },
+    {
+      "path": "app/api/staff/candidates/result/route.ts",
+      "git_blob_sha": "a05a808c27d4726c910814d1635060f919c99d94",
+      "sha256": "78c9f478a767ad8887eb2d15ce353800548f95c52c421fe6e68f5a30db83d4da"
+    },
+    {
+      "path": "app/api/staff/candidates/route.ts",
+      "git_blob_sha": "42b52e3dc7cb80f79e05d388cc708a3480bf2da5",
+      "sha256": "79cd951859e2b91819d5672f15dc64cc874e1db34de56ef4bb7a69750308b150"
+    },
+    {
+      "path": "app/components/ApprovedAiNote.tsx",
+      "git_blob_sha": "2991436d1de026dc06fb5a4aca89b0ff43634a34",
+      "sha256": "94cee7948171c562cda72d6bc30dddd4caa21eea35ddced11889adb8b6faa69f"
+    },
+    {
+      "path": "app/components/Header.tsx",
+      "git_blob_sha": "e981601676fc065abb1c72711c29df719d83ac6a",
+      "sha256": "6b1cc904a33cace6362030446ba60c3d85e5d6c21da2ea3a46654454a25e669e"
+    },
+    {
+      "path": "app/components/LogoutButton.tsx",
+      "git_blob_sha": "8bdfdd64aa2e5cbb12f3c0ea223a0d8696968156",
+      "sha256": "630dd9c1b9f49561d03a15335e8a85ce42b760f2b06ca39828fe1474619f6342"
+    },
+    {
+      "path": "app/dashboard/page.tsx",
+      "git_blob_sha": "9089623c98dc824f535da13ced3e114f2304210a",
+      "sha256": "2e239817487421676482223e9b84d9c0b21092df702066376c4e4a328b27c512"
+    },
+    {
+      "path": "app/layout.tsx",
+      "git_blob_sha": "976eb90df142ef2c4f3f39cee8b0e4c4f4771b62",
+      "sha256": "b98a24027c5c78385b127baf3c2f4f29b18c2c8c19c0beed8c74bb57bd98e4ef"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "git_blob_sha": "880b125b74f6ac1ea873db92d6e1e2577801f24f",
+      "sha256": "6750771e8b026281e698de1ee5cade46051c7b4e3006ffb6953e24a5ad3f3a8e"
+    },
+    {
+      "path": "app/meetings/page.tsx",
+      "git_blob_sha": "d4829d4c6526e97aa66d0295b38c68ebbd860576",
+      "sha256": "618bd5de1f0502f5177c83b38696bb11bbdfc101b7c044cada167af72de67480"
+    },
+    {
+      "path": "app/monitoring/page.tsx",
+      "git_blob_sha": "41138f5acf4c6b5f548a78fd8a720ef3450764a4",
+      "sha256": "ec067479e3ef389cc7ec475deef23a2626dc875199c566418422768629109a96"
+    },
+    {
+      "path": "app/page.tsx",
+      "git_blob_sha": "f14ad6a2cf761a0162aa4779682ba58c639882ba",
+      "sha256": "8907b3f3a99dac6e09f0798e14e34ae1bebb3dbe384c05ddbed5940bac1736f8"
+    },
+    {
+      "path": "app/staff/_components/auth-form.tsx",
+      "git_blob_sha": "bfc726d4e02ca61c01ff811b800731655398ddf5",
+      "sha256": "a3dc725ae0fee026403c4e9a51bdcbd508876961d945e99e5c53abbe205a3d52"
+    },
+    {
+      "path": "app/staff/login/page.tsx",
+      "git_blob_sha": "b5f0649a69e4d9734b15dd7b70561c2f8f73b190",
+      "sha256": "0f9aeadc79c7335e524e3755b5711dff711d2ab16baaaffec8fc6438fe6e03ce"
+    },
+    {
+      "path": "app/staff/password/change/page.tsx",
+      "git_blob_sha": "bcee3481e89691d5d42ad31158a6b0828e2c5ec0",
+      "sha256": "8d2b3239797760ec8a57be49f29ec06e6ae3413cdbb0f8581944137313b95eda"
+    },
+    {
+      "path": "app/users/[id]/ai-documents/page.tsx",
+      "git_blob_sha": "69f320ff2e752572dd0d32fa6bf6227f68daac44",
+      "sha256": "00f73301c4a630dea35dd7c5cd617498c695b580b88914e056cbe0615aa7afc1"
+    },
+    {
+      "path": "app/users/[id]/assessments/page.tsx",
+      "git_blob_sha": "87cef301b7824ec197bd74afb3e6da1e02bbf23f",
+      "sha256": "8639c18b749061fb2bcb0a8c3094c8a2c10f2b4c989e5c7f599d6aef9af52201"
+    },
+    {
+      "path": "app/users/[id]/edit/page.tsx",
+      "git_blob_sha": "9e78c8918b266dab5c73b0fe2555db290b5f1cfa",
+      "sha256": "4a3874c0a095682f02a6f33f5fc1942c4feefd8611e8311a5bb19292fec01f67"
+    },
+    {
+      "path": "app/users/[id]/meetings/page.tsx",
+      "git_blob_sha": "de5eb3df68c9851cff88c483a535e8c70258e11e",
+      "sha256": "2da43d54ce6492bf6bf5da80b748fce30c4bedb02bb9a350d123f76dc33f9d08"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringAi.tsx",
+      "git_blob_sha": "0d3b51254acc0ecdf524e7bc075c19c9fd5d15b3",
+      "sha256": "2d3f3f8136e27ad1219e0f534d03fa9bb9a13f0eb5ae80c21d542a65f044c618"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringComparison.tsx",
+      "git_blob_sha": "f01de4a0d3edc74cfda913634fa5bcbdd300d7a7",
+      "sha256": "94c7e53d9369b71a9e5b7c45921a77b6c5cfea3e6f355c2719f882acc605e851"
+    },
+    {
+      "path": "app/users/[id]/monitoring/page.tsx",
+      "git_blob_sha": "a359be5500cc137417c1c5ae8464d521912b9672",
+      "sha256": "ee5bb7b55bd929f352592c7c3531f93b57519da53acc9fed233694947e67b145"
+    },
+    {
+      "path": "app/users/[id]/page.tsx",
+      "git_blob_sha": "0cd38be14a15334002fd6af78c69881e0c4c9b0d",
+      "sha256": "be9d0b415f17189b83d1d18590002ab86902425fab0f8559a63c04b490acec3c"
+    },
+    {
+      "path": "app/users/[id]/planning-assistance/page.tsx",
+      "git_blob_sha": "c43dd81b99b6d02b1929e65542a25fc6401e65cd",
+      "sha256": "f99cbfdcc0da9bdbe1e257d692fa827d2e9bebade0ec7242e7fa8459f7b1696c"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanDraftImport.tsx",
+      "git_blob_sha": "d98d289c1c390b0ce5b3cce6e2a3e01b02b8cd32",
+      "sha256": "81fa52134979cf737b20e470dfbff91e9a86b907eab96da69f341512404edc7d"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanImportHistory.tsx",
+      "git_blob_sha": "1b5a597be74db05a81f0777d8e8544988228d1b9",
+      "sha256": "0f16d7688cb25cb4f3b7e4037e90bf2adb318a8ab7e21013b7383f48b722dde6"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanReviewPanel.tsx",
+      "git_blob_sha": "887c56faa1b5cc4156df2ad6012dc2e60c88bf9d",
+      "sha256": "cbaa0d237e0c4b59c62bb4ffd708bfd0e31192e50c1de2514d507df7e3d7174a"
+    },
+    {
+      "path": "app/users/[id]/plans/page.tsx",
+      "git_blob_sha": "59d25fe971cd1b64ff462aadcb6342ff1d25d83c",
+      "sha256": "bf676448e7df0fa88c214322027ab03d863cc73b0c22206686945acb94fc2b7f"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PlanPrintDocument.tsx",
+      "git_blob_sha": "86c209294d040ad436b4cd736c42037af4f7d2cd",
+      "sha256": "bf3007d23f504da10e2849967e1a7e8034931a667ffeb212ac1018cc17bfa23d"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PrintButton.tsx",
+      "git_blob_sha": "5ec02e86a830a004f0f8b1f25b6c17aa58d47015",
+      "sha256": "b535a2589413b2604807f1fff58f8fb5c0ce4366bf9200ac4ae37aa812a1e305"
+    },
+    {
+      "path": "app/users/[id]/plans/print/page.tsx",
+      "git_blob_sha": "e9412271061f272a3d7992a9d5a682fa74104f96",
+      "sha256": "4f96c9ed0db54197f524ba23d5fd4fa285f58af0e1b37d050407f22875720454"
+    },
+    {
+      "path": "app/users/[id]/records/page.tsx",
+      "git_blob_sha": "eb57653f068f5c23ee3a75933d6417505b88da93",
+      "sha256": "c35d7a6e2327dbcde72c368885fe6042801165d3ce1cbf01efb3aedff21ae2f7"
+    },
+    {
+      "path": "app/users/new/page.tsx",
+      "git_blob_sha": "b152334ffd06c5f71f463d5df67ffff7ff5499a0",
+      "sha256": "728d1986578facc386ccb6b99aef26442a14f96e73d2f97833d53e49cf61f1c9"
+    },
+    {
+      "path": "app/users/page.tsx",
+      "git_blob_sha": "e1c7ae383cda6ddccc2f7125ebb979134dc81775",
+      "sha256": "3a2423b7fcee96443c8f71f040af186abcf310f62182bc06db4a6084aabfb7fa"
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "git_blob_sha": "0560da784dab3031744964a40c28fe707dba8948",
+      "sha256": "50ed17579ed9c098e3a46bd18ad556980b0d2538086f58a29c076543b19cf62f"
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "git_blob_sha": "d6ae9d897da6e2d7d80b67b3c44053a0da857cc2",
+      "sha256": "5fed6e93a8fd4502cc7303c470047075e09a2f3af3e27d0b4f7bec4f2050b70e"
+    },
+    {
+      "path": "design/staff-auth-privileges-61.sql",
+      "git_blob_sha": "f45b7a84d184d860bd37e7c7a7c3a40d6bebad42",
+      "sha256": "ba7c32dae3d9ef6709d63e7f14cdabfd7c22487d86a589498bcb94b32fbc6b3e"
+    },
+    {
+      "path": "design/staff-auth-storage-59.sql",
+      "git_blob_sha": "5692e969206891e5b5c6cee342917dcd36f19c2c",
+      "sha256": "4e24b171e770649ca38d7646c3c2f87b88d79c03ad507e094ea2aa9df9a257db"
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "git_blob_sha": "fba097a2176a2463bfaee1468b84cb4a0d098fd4",
+      "sha256": "b36770bbe7a5eaadab50f503e98481cd1c0d9058ddedcf020abd19a8e97ecb16"
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "git_blob_sha": "de7c6e0b0020413667112474d013841ab65e5557",
+      "sha256": "44fe5c26b1778625c8b767355396e0ae992dec28e3d1ef4a6351c73552ca9582"
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "git_blob_sha": "9dc8558ce9660be46d862e9bca83d21eee0151e8",
+      "sha256": "b3571d9cabb1f55c5c095de19ecb1fa2adef62d397a8dd004aee5863d5ad0191"
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "git_blob_sha": "082840c63bc5be5d2c52332ba860ec9d80e3269a",
+      "sha256": "91365edf7e0c4a1b49224834f7691522a4f133ce39c52dbee7e072c95010c664"
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "git_blob_sha": "df12c4e98b954c27ce1295b987e00a181d612d26",
+      "sha256": "eab983aaaf7d12c5fe97b6f9a0bc31af97a0e9393ac5d37e82d46c808a21c308"
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "git_blob_sha": "49fcfca2332e5624f85921d4858369c8dcbd9545",
+      "sha256": "f97071333dc5d40d9c1fb2e1062244944caeef24053fb4ea7e04a53f5a75c3ab"
+    },
+    {
+      "path": "design/staff-current-projections-67.sql",
+      "git_blob_sha": "f20d865cd46be57cf9c9c6ba86238ab78b9d1a70",
+      "sha256": "236c54a550e4231ce96d81179c8b6aa8115f1cb698b44928cdc47fc7e5e11047"
+    },
+    {
+      "path": "design/staff-current-projections-68.sql",
+      "git_blob_sha": "d15ac59b91daab4c82c04d3e542686a524c9ae31",
+      "sha256": "71cfafe70a71850df754d5f37fef216b013debc9e369d7433da82bfbc267cb5d"
+    },
+    {
+      "path": "design/staff-current-projections-70.sql",
+      "git_blob_sha": "37b961b0c92e1d557ea586cf63fb4ca0c6f604df",
+      "sha256": "ee65335dd55b1c77e49262838eb019e0eff521527ba77e54b105f32f38dec2a6"
+    },
+    {
+      "path": "design/staff-current-projections-73.sql",
+      "git_blob_sha": "52b4f6648c8877840351cdbaec894ab47a3b5af7",
+      "sha256": "8471b43b7cda76f6b51157ea28f530437f4ef05c9604bf3eee7c8825f6570d8c"
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "git_blob_sha": "121016a4f3dfc228af7c3af7c4732546642514c6",
+      "sha256": "39bf9644013d2f79763457ab8c1b53d76a3bf47f50b351edb1fbcecce3b9ba43"
+    },
+    {
+      "path": "design/staff-grant-dependency-reference-83.sql",
+      "git_blob_sha": "a910697044ba4fc3c3a829016ad01e83357aa505",
+      "sha256": "da72fef2ccd10f701cb2e0b5524564c807bd3c8d423f515d70aa0a54e37aa232"
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "git_blob_sha": "07e4b12c74e47dd6e034c082780d996e516d6c7f",
+      "sha256": "8987ed0b681a8ab9501d708c395696dd86629abb712c5d58d282907e6f085f21"
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "git_blob_sha": "6b27ceaec760163ec21229173cfa2118fc036390",
+      "sha256": "59285dcc1cdf1b5ae5f5ca625cdd38af25e94ab16e011194106f7d507eceb618"
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "git_blob_sha": "34e1cd17434d5432d1cb74ab3deeaa3113f8afa0",
+      "sha256": "e75e21c1d7dd25be558a53232d761ca9eb039937633736887118a4be81105084"
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "git_blob_sha": "09bd95b8e8900ff19ed342087d8a6bc40c7e6ab9",
+      "sha256": "f2082b44eb5c1d8d9c9bd1ffb1b29009ebe8d37d5aba29fe8b3c8232a9973984"
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "git_blob_sha": "4da3bc219c7a0e999d662a39c297c184b1ab8bbd",
+      "sha256": "5806e93e90e09258563f0657bb041c1d31e1fd1db0c8201e5b915e162d7a7738"
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "git_blob_sha": "28994162c02fa6c211c63a32764b92dd60e256b8",
+      "sha256": "99639ade2e84f9ab7e6f20af274dcefa3d6bb96eb2e0d2239c5f8dbd33da9cad"
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "git_blob_sha": "26800486d897ccd247f2db0d0011f57f1e51c417",
+      "sha256": "ca8985caf0adda2db247ab5de8d9a51492be5f589c3168e266c7f6f630ecdb30"
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "git_blob_sha": "f84586999e72aa56dba62166e7c37bded65f2633",
+      "sha256": "c3da08ded7d7aae27650bb181845791f8bc5a9e500701f3839df825b057d4d20"
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "git_blob_sha": "afdf30dbc17a0f5e757f2515cbbb541636e4c48e",
+      "sha256": "acf4d8544f448d3f9eb5f8ec4353e3b021a6b574ab032d8c2ba13c750bc13c6a"
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "git_blob_sha": "a6e65ff21be92c63f5e477d1934d393877dad2c6",
+      "sha256": "cf4aca3ca8bf936b9c672ff4653d557d35f35533ee5b4ea32a615b27b770d2b1"
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "git_blob_sha": "0875e0d491cc8e40b38f9ec74e86ceca54f43cd8",
+      "sha256": "30d9aa7a8498ed5865bcb9d4204b5c746501da506962acb37c015a6257ffca54"
+    },
+    {
+      "path": "design/staff-write-fence-88.sql",
+      "git_blob_sha": "86e23b5fd673d444336e8827087794453de9a25a",
+      "sha256": "dcdd4268f1942fab12383eb92dbb3f9627e11ddbb4c7c9f7a292a450f8bdb1de"
+    },
+    {
+      "path": "lib/ai-document.ts",
+      "git_blob_sha": "7609aff9f2aed50386769a7dd4c9c033401177ca",
+      "sha256": "fa92d704fb28f810b511d5fba90f42c7c08c0cc514596efc4a8cc69dead352bb"
+    },
+    {
+      "path": "lib/ai-generate.ts",
+      "git_blob_sha": "8071a9c5712e8d7f5126ca9b8de7bcc8c269f37d",
+      "sha256": "8e93588deb7faf99399de280ac93bbe757ddec26e8a181717c9a3b7500d48b40"
+    },
+    {
+      "path": "lib/approved-plan.ts",
+      "git_blob_sha": "b3f56b32397b3d9060957be35749142b95c4edca",
+      "sha256": "a69c52fbb6034afff207bfd6e7d8bbf8e3830d592224b088ef3b9b5a2ae3dcd4"
+    },
+    {
+      "path": "lib/assessment.ts",
+      "git_blob_sha": "92ae92378cc9a4ff6ca5190c73f555f1863c387a",
+      "sha256": "86e60d70430e51fa06e7b6c32f8d628f63b9c9da2aa86f860148e1373eea1c14"
+    },
+    {
+      "path": "lib/meeting-record.ts",
+      "git_blob_sha": "d62acf08cccac594cd75ed961ad21d64f74861bb",
+      "sha256": "6b28802747ffa9ce0496037ddcf5e8c576a052e60892deb79e70a39fa36d6abc"
+    },
+    {
+      "path": "lib/monitoring-ai-server.ts",
+      "git_blob_sha": "003119f0ef65f379160e8dbb01e91f875f7262fc",
+      "sha256": "b645edbdee3d557f5c4b79686b9079a71301cae138ad7736ea11eb6d3d9275e8"
+    },
+    {
+      "path": "lib/monitoring-ai.ts",
+      "git_blob_sha": "2ec82c78d5d0dfd348ebc59b32aaa841e609674e",
+      "sha256": "f379baa8a8c84cc9062e1d3e9239fce63ab4c42715321ac3fcdceac10f8be17f"
+    },
+    {
+      "path": "lib/monitoring-deadlines.ts",
+      "git_blob_sha": "af9dbf14bdd29888931b6aff318aff4436349793",
+      "sha256": "238580727072d5c0a9625456edaeb125851051926cb7f78f2929724520964cf5"
+    },
+    {
+      "path": "lib/monitoring-handoff-server.ts",
+      "git_blob_sha": "ef49cd1c15f86d9b9f586b4022c52cce4d4c9a53",
+      "sha256": "16e54ea0529469296934c8567b58d53403ada8e1659304425ab1a5568f2f69a3"
+    },
+    {
+      "path": "lib/monitoring-handoff.ts",
+      "git_blob_sha": "0de2e26a16f1df119e8f5d9d4530f9b35a8a16cc",
+      "sha256": "5f15e28ff0b35a04b067910e7266355409c82e0946be1c721960e93c715278d0"
+    },
+    {
+      "path": "lib/monitoring.ts",
+      "git_blob_sha": "6d89016b3afec7959d77198e8b1773c6322d5369",
+      "sha256": "87877cfd874f3f4b3b7a2617c3cbe4564acb7f0de7c21e4f27e1fdd6969d588b"
+    },
+    {
+      "path": "lib/plan-content.ts",
+      "git_blob_sha": "d5efac6427bac7e46541237da61596dd9c18f98a",
+      "sha256": "a6fdb11209c1ab0a84bd535071acfb1b626a94bf9d5b6a025cfaecb1ddcb669d"
+    },
+    {
+      "path": "lib/plan-import.ts",
+      "git_blob_sha": "feb77df153e518843aea64c3097f1b7cd69d11e3",
+      "sha256": "b54f304928f5e6802cc6832751ce32931cfba308d3bac15ed72f072c186cd0bf"
+    },
+    {
+      "path": "lib/plan-review.ts",
+      "git_blob_sha": "617239e353ecde643bd6c3fcbf452c028f161534",
+      "sha256": "4eda18e233102cc3641e0fe3510e2cdc438ae1f91325e89b90c94c91cfb42409"
+    },
+    {
+      "path": "lib/planning-assistance-server.ts",
+      "git_blob_sha": "e8d77ec97c6298bb0683bc079853d1bbfb763bba",
+      "sha256": "0bde14f12e31c289343924f1f4ef5ca4e954bd665784b90a08d88d63510213cd"
+    },
+    {
+      "path": "lib/planning-assistance.ts",
+      "git_blob_sha": "5524bb797b4f6c8463b758e10dc7b59882a54f04",
+      "sha256": "1c29e764a080e73dd6bfb7fe864ad4557aa3f8ec2419b593115536e5934683a2"
+    },
+    {
+      "path": "lib/staff/auth-context.mjs",
+      "git_blob_sha": "9574482daf73b4e53eb51a9d5887188fff3fa8ad",
+      "sha256": "e42e7253908fb0fbc20c25711c5d4d155a2d6928417b2d9c7c5f2e74b176f8e0"
+    },
+    {
+      "path": "lib/staff/auth-form-client.mjs",
+      "git_blob_sha": "a4efdf0d9c9833f07b1d2cda82ecc0045cefdca3",
+      "sha256": "a2ba7086f03cf2bd4b669c0808ae03f89858633cfcf2f2a4409833c020e5ab67"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.mjs",
+      "git_blob_sha": "888af98c9306e38c4fa340a5b4d8dde445af0e23",
+      "sha256": "6a2d318bcb1cc397a04d57c7cea994e94108a224e9e1b0606f1ae3d0f734c9ec"
+    },
+    {
+      "path": "lib/staff/binding-resolver.mjs",
+      "git_blob_sha": "e826881ef8f4a4af2e59cb001177bd14ff4021c3",
+      "sha256": "ce923fb5fa4c88afe99779b5ece23dca7e6c23be1bdc36d9d7312cfca6e7e86e"
+    },
+    {
+      "path": "lib/staff/candidate-http.mjs",
+      "git_blob_sha": "fe8d427061ed3bc4264ed39b52428d23cb99f287",
+      "sha256": "c7ef04576447a94a77b949a961272d3a345fb733d086e6e00fc3a77bd83850fc"
+    },
+    {
+      "path": "lib/staff/candidate-result.mjs",
+      "git_blob_sha": "0bfaf8bce55355bca49830d508bdb0563bc1681c",
+      "sha256": "b653a7f0707f6391884f4b440c162d3f424bc44439546a562788b6a2aa58f79c"
+    },
+    {
+      "path": "lib/staff/candidate-routes.mjs",
+      "git_blob_sha": "48092c01434e4786ac21e4df7bcc4bbd0b4386f0",
+      "sha256": "152343f15f06cc8baab201ab1fd6c8c7e2c9e18b320e3c28890d6175722236cd"
+    },
+    {
+      "path": "lib/staff/candidate-runtime.ts",
+      "git_blob_sha": "b8b878e4fc781c854ce6a9104d78c2d921da55fd",
+      "sha256": "d5dbc185a649b7b230439e5dd07e283194bbb722f8bbe526da662ab4ef360130"
+    },
+    {
+      "path": "lib/staff/credential-sealer.mjs",
+      "git_blob_sha": "1200a624d1fbad81f4a4e1ea8d49e7065504fa13",
+      "sha256": "95c54ea336e17edf92db325d4def28dca39276744b5ae2746b82bf291b283605"
+    },
+    {
+      "path": "lib/staff/current-session.mjs",
+      "git_blob_sha": "4b332014d15a6f0989ae897a0f51efaddddf6b69",
+      "sha256": "1e5b75fc71e17af12a9e2aa08db581017c988623108fb8f882626c4cfb12ab0e"
+    },
+    {
+      "path": "lib/staff/login-identity.mjs",
+      "git_blob_sha": "cad2f680c54f5f2098c34dcae53481123d24734b",
+      "sha256": "7c1952f0d6d2542876121637ca39426cd24169c23291c141f15bedaace915df2"
+    },
+    {
+      "path": "lib/staff/login-routes.mjs",
+      "git_blob_sha": "48b006abcfafebd43f0526f9178cf45f293c9ae2",
+      "sha256": "c4fd014cdc71ef8254a4263b00ac6099df38041139fb3f02f402c05b91840b70"
+    },
+    {
+      "path": "lib/staff/login-runtime.ts",
+      "git_blob_sha": "5db799bf94fc2285c6eb2ed4af1ec01120a2ae48",
+      "sha256": "4de78f2753fcb76fb27e0426f177bca5061c9e12a2e592afc702584985a1618a"
+    },
+    {
+      "path": "lib/staff/login-session.mjs",
+      "git_blob_sha": "cd86cb3ebd50b0b68683832e3624e8eff841ebcb",
+      "sha256": "7491773602ce10416dd536c3da94f9eb44b105d7be5f656b7bde5261894e1be2"
+    },
+    {
+      "path": "lib/staff/postgres-operations.mjs",
+      "git_blob_sha": "94465adcee479a88329f60fae2f7af348b571079",
+      "sha256": "3b4465c8b0470ff1f60cb7fb7452b88f8cabf3218e621fefb49284bcadaf1513"
+    },
+    {
+      "path": "lib/staff/registration-port.mjs",
+      "git_blob_sha": "46a2b61d12b5266fb1d6ae742b0df64fe0c1c260",
+      "sha256": "8b5534fe49767c767e9c642496607a20e03dfea4a5553f4a9d5fc86dcb23d9e1"
+    },
+    {
+      "path": "lib/staff/session-access.mjs",
+      "git_blob_sha": "8e59f06663fef9260ffac730f81e32df28206986",
+      "sha256": "73c7824da3e07402d67a9720a8cf2e2bc243fa3b26c3e96b2cb9d8c2bbf1cf31"
+    },
+    {
+      "path": "lib/staff/session-postgres.mjs",
+      "git_blob_sha": "c2017bda7822b2962ce3b15a15e90e4a342c7bff",
+      "sha256": "fa0be8c53f38aef386e43d83f87de8e3ca802d4f3d746f154d8c4e9e6287f452"
+    },
+    {
+      "path": "lib/staff/session-runtime.ts",
+      "git_blob_sha": "72d34c1b379843fef5b44f44e33bfa44f2eae661",
+      "sha256": "304f440ff362799291066fe923131a9628780384f08414aac93797c8ca01e089"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.mjs",
+      "git_blob_sha": "a707c597834c06d8585257c117e9dbee2d7e104a",
+      "sha256": "916eb527ba0ada24cb9219cc99caf4fa635326aa64f47f66573c9a2c89e09a32"
+    },
+    {
+      "path": "lib/staff/transaction-repository.mjs",
+      "git_blob_sha": "b87ea73772e10ee46d84e282ac7364cab2c152a3",
+      "sha256": "20954ff6d0700b4767cc198397b674295ba81f39da7a0992a9f97db7f0c622b9"
+    },
+    {
+      "path": "lib/staff/validation.mjs",
+      "git_blob_sha": "1d957d95673802272af23b3550b63d1dfd895946",
+      "sha256": "213372d636666281c578a09daee6e4696ee450014ed6f8f7704123ad1d976478"
+    },
+    {
+      "path": "lib/supabase/client.ts",
+      "git_blob_sha": "36cef0c51fd85b48bc8fd6c925118af1d50a11d8",
+      "sha256": "02a364e65a15be20fa1033640d1b9c53e553766d5baf15151425f80b43bd2750"
+    },
+    {
+      "path": "lib/supabase/database.types.ts",
+      "git_blob_sha": "e16c69cefd9fb661a6a6d2a6127229fa97686207",
+      "sha256": "61f49f1ab8d6667079bc950129c9fc3132f058dceff5858e07d4b6ec8460185b"
+    },
+    {
+      "path": "lib/supabase/server.ts",
+      "git_blob_sha": "c53e4f544879632b4602caabf1d4a2aec05588b9",
+      "sha256": "313cdcba6ee27758c24cd8bc95738933185b7cbb7313bf0cda288c67409d45c3"
+    },
+    {
+      "path": "lib/support-record.ts",
+      "git_blob_sha": "9c557312ddc7b300e895341b1cc965d487944583",
+      "sha256": "bf311344d2ee0ab66fc34253b0ec33a6a012ce08c61f5d12a02f36a507ae8f0c"
+    },
+    {
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "git_blob_sha": "62839eedcd916d84229307abbc12d9825b741655",
+      "sha256": "859d9486e28777535976176a92fbcf484bb047eb0c176683b951bf07e652c317"
+    },
+    {
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "git_blob_sha": "fa676a05db201d25bdd8185f4a185289cf1499ee",
+      "sha256": "9b02f858056710dbf315542cbbfccff1282c7ee8d7a085e0798ebf66e39f22fe"
+    },
+    {
+      "path": "supabase/migrations/20260816004924_ai2026037_phase1_stage6_functions_users_plans.sql",
+      "git_blob_sha": "05659316b9965a4d5af922e77f82d423df63ce90",
+      "sha256": "7ce2d119d3b68cb6c9558967388c0f07719c39a05748aec452d83b7b68e038d8"
+    },
+    {
+      "path": "supabase/migrations/20260816011117_ai2026037_phase1_stage6_errcode_fix.sql",
+      "git_blob_sha": "33aa10d0efa0a6be3d26d42989039df4e6ea720b",
+      "sha256": "e1012b06a169aeae6a74d279086264018d7214174ec8bb246a5f268a2735759a"
+    },
+    {
+      "path": "supabase/migrations/20260906010000_plan_content.sql",
+      "git_blob_sha": "a1f4a6845d85854e885c8dfa9c490337b95a4aab",
+      "sha256": "71fb4a043ec9a8a7d45744c9f52d9b19be298fdb308647b145fa7cb408274169"
+    },
+    {
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "git_blob_sha": "0d5d87be2544ca61251e06758bb35b139d96b277",
+      "sha256": "b832d923b9ceec6565effabaa5e0c8257a2ab1269296844024c30c497e080016"
+    },
+    {
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "git_blob_sha": "c2fc6b54dae8638019579ce921873578ff0e190a",
+      "sha256": "1c803ddefc6928546c28bd88da21fb20b58ab905f3cdc734f43f75f619d728c9"
+    },
+    {
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "git_blob_sha": "f0ea2145a9a10753055c302c8006da4d419c4d07",
+      "sha256": "83ca753ee4f409adc7939ea59acf291a62fb8170c4691417c77747ffac9ff614"
+    },
+    {
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "git_blob_sha": "fa0a17dee261616d82a440daf3551be5c3b5f9fc",
+      "sha256": "5b93d6619a6ea52b3a27752f32dd618620a2da7784178705dff3b0f6aff9e883"
+    },
+    {
+      "path": "supabase/migrations/20260906060000_ai_assessment_sources.sql",
+      "git_blob_sha": "e041e6033641afa9a9811689ac229ab36930401a",
+      "sha256": "5f1d8425390f52764944d068ce83c17f8c1f21fa5e29fa15a428ea2f13143752"
+    },
+    {
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "git_blob_sha": "69075df91dc25b83eb6ecb36e050c71f52a5e7e5",
+      "sha256": "1a5ae71d43c30283b9638b2e6c76935d16aa705b134fd1f3b62338fd128dc1a2"
+    },
+    {
+      "path": "supabase/migrations/20260906080000_plan_import_history.sql",
+      "git_blob_sha": "42028bec0988f5baacf7974030a5f589c170fed2",
+      "sha256": "c7bf4b3f7ac61c9f2bc8384d41de6f163ac7a09f94e50a7364a35aebda9c3841"
+    },
+    {
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "git_blob_sha": "74f5af76a5ae9505f25399f9fab6532b80f3cca5",
+      "sha256": "d9535fd9893b15a0578851d7d575dfe2b382e68032271572df6e93a624aabeaf"
+    },
+    {
+      "path": "supabase/migrations/20260908020000_record_permissions.sql",
+      "git_blob_sha": "1f67833813c8130133688f05dd08a2457c6ff899",
+      "sha256": "663fde63fdc71eb381b443d6c24e5483a42a90cd798274265762a64e9dc67548"
+    },
+    {
+      "path": "supabase/migrations/20260928012955_restrict_users_direct_writes.sql",
+      "git_blob_sha": "359d18c8201385028584b7829e5c9d5340d23f89",
+      "sha256": "781300250b2377195a2c910a5392106c648c01f8c7e70c3d21449cb1c376c596"
+    },
+    {
+      "path": "supabase/migrations/20260929073000_fix_specialist_user_registration.sql",
+      "git_blob_sha": "613f534e2e6cabc6e38f4bbe0ab3b7800846677c",
+      "sha256": "0ad9c0c3106b33aeb79cb5f8ddb64124507b7e01cf392173101e0c4a2a39efa9"
+    },
+    {
+      "path": "test/staff/fixture-63.sql",
+      "git_blob_sha": "287756f8392967356127b44ebf63d54fba89de1c",
+      "sha256": "d4f6bf41397e991cf62af433eccf76539ed96c18897ad340309e392f80af65ac"
+    }
+  ],
+  "selection": "全追跡SQL＋app/lib/scripts/batch/adminのTS/JS系非test source",
+  "tracked_script_paths": [],
+  "external_batch_admin": "UNKNOWN、追跡pathなしを不存在証明にしない"
+}

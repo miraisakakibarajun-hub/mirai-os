@@ -1,0 +1,117 @@
+{
+  "stage": 100,
+  "source_commit": "b955353d7029e7b6c9dc0721bf781b33391118df",
+  "items": [
+    {
+      "id": "LC100-01",
+      "priority": "P0",
+      "path": "lib/staff/transaction-repository.mjs",
+      "current_order": "BEGIN→authorize hook→operation advisory→candidate/revision/items→audit→operation INSERT→COMMIT",
+      "discrepancy": "共通global取得の実体なし。authorize hookに保護を委譲、operation reservationと最終結果insertを区別",
+      "correction_candidate": "共通TX入口でglobal排他を認可読取前に取得。COMMIT不明接続の破棄/復旧を追加",
+      "impact": "候補保存caller・hook・SQL・同key再送/認可試験"
+    },
+    {
+      "id": "LC100-02",
+      "priority": "P0",
+      "path": "lib/staff/postgres-operations.mjs",
+      "current_order": "request scope hash advisory→candidate_operations SELECT、各INSERTはcaller TX",
+      "discrepancy": "operation単位キーはglobal(20261017,88)と別。これだけではU08成立不可",
+      "correction_candidate": "global後だけ呼べる契約/adapter。候補SQLの一意制約とpayload fingerprint再点検",
+      "impact": "org/actor/key境界・absent key・FK/candidate audit"
+    },
+    {
+      "id": "LC100-03",
+      "priority": "P0",
+      "path": "design/staff-auth-functions-63.sql",
+      "current_order": "bound_v1がexecution_bindings/actor_registry FOR SHARE→一部関数はissuer/org hash共有lock→session等",
+      "discrepancy": "globalより前にbinding行lock、別key共有lockでSESSION_CREATED更新、revokeはsession→outbox→audit。共通順序不一致候補",
+      "correction_candidate": "global入口→binding/親の順序とwriter排他を再設計。旧認証局所lockは補助へ。無断変更禁止",
+      "impact": "login/confirm/revoke/worker/private関数・session audit・実Authは未接続"
+    },
+    {
+      "id": "LC100-04",
+      "priority": "P0",
+      "path": "lib/staff/auth-function-repository.mjs",
+      "current_order": "BEGIN→private function SELECT→decode→COMMIT、catch rollback/release(broken)",
+      "discrepancy": "同一client TXは確認、globalは未取得。COMMIT不明をunconfirmedへ集約し正式結果照会なし",
+      "correction_candidate": "globalの責任位置をprivate APIと統一、operation対応/復旧照会追加",
+      "impact": "runtime/worker呼出全体、decode失敗とcommit結果不明の分類"
+    },
+    {
+      "id": "LC100-05",
+      "priority": "P1",
+      "path": "design/staff-business-role-history-82.sql",
+      "current_order": "role_history_identity_82/consistency_82内business_roles FOR UPDATE→organizations FOR UPDATE",
+      "discrepancy": "orgよりroleが先。deferred consistencyが対象更新後に親lockを追加する可能性",
+      "correction_candidate": "外側TXでglobalと全親を事前順序取得、triggerは再取得/検証だけにできるか確認",
+      "impact": "role assignment/current set/任命履歴/FK・同名trigger発火順"
+    },
+    {
+      "id": "LC100-06",
+      "priority": "P1",
+      "path": "design/staff-parent-controls-68.sql",
+      "current_order": "guard_control_68内control行更新→auth_control_events INSERT",
+      "discrepancy": "trigger内正式eventあり。失敗eventとは別。同TXで失敗時に共にrollback",
+      "correction_candidate": "事前親lockとaudit順序を照合。正式event内容/一意性維持、失敗eventは別経路",
+      "impact": "auth/authz controls・operation Requests・append-only trigger"
+    },
+    {
+      "id": "LC100-07",
+      "priority": "P1",
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "current_order": "binding更新→AFTER trigger binding_seal_audit_87→grant_binding_events_87 INSERT",
+      "discrepancy": "正式eventがtriggerで追加される。FK・append guard・COMMIT遅延制約と干渉余地",
+      "correction_candidate": "全親/対象事前取得とaudit trigger closure確認、audit故障で全rollback試験",
+      "impact": "binding/evidence/grant snapshot/operation一意性"
+    },
+    {
+      "id": "LC100-08",
+      "priority": "P1",
+      "path": "design/staff-initial-admissions-70.sql",
+      "current_order": "deferred initial_evidence_70→request/application/attempt/operation/impact/account/control FOR SHARE",
+      "discrepancy": "target処理後に複数親とoperationへ戻る可能性。99順序に対する差分",
+      "correction_candidate": "外側事前取得集合へ含める案、実際のSQL variant選択後に再照合",
+      "impact": "U04初期設定。今回実行禁止、別自然人初回照合維持"
+    },
+    {
+      "id": "LC100-09",
+      "priority": "P1",
+      "path": "design/staff-organization-history-77.sql",
+      "current_order": "organization_member_guard_77でTG_ARGV tableへ動的FOR UPDATE",
+      "discrepancy": "複数SQLから共用。静的引数で部分解決、動的依存closureは未証明",
+      "correction_candidate": "trigger引数→実表対応/親順序を展開し外側のlock集合を定義",
+      "impact": "assignment/contract/business role/dept等の横断履歴"
+    },
+    {
+      "id": "LC100-10",
+      "priority": "P0",
+      "path": "supabase/migrations/（全16ファイル）",
+      "current_order": "DDL・function DML・FK/unique/trigger、global callerなし",
+      "discrepancy": "配備順/実catalog不明。migrationをruntime writerと同じものとして合格不可",
+      "correction_candidate": "停止/排他保守・配備variant固定・実catalog照合を別許可工程へ",
+      "impact": "相談支援既存OS・直接更新閉鎖。今回SQL実行なし"
+    },
+    {
+      "id": "LC100-11",
+      "priority": "P1",
+      "path": "lib/staff/*runtime.ts / app / lib 非test source",
+      "current_order": "runtimeは未接続stubを含む、SDK/RPC/関数依存経由",
+      "discrepancy": "serviceの純字句順だけではtransitive lockを確定不可",
+      "correction_candidate": "固定呼出し連鎖と実DI/bindings照合。未接続を不存在扱いしない",
+      "impact": "全83ソース、UI/読取のみ候補も区別"
+    },
+    {
+      "id": "LC100-12",
+      "priority": "P0",
+      "path": "batch/admin/cron/manual/external",
+      "current_order": "追跡ソースパス調査＋package scripts、外部実体UNKNOWN",
+      "discrepancy": "GitHub外運用/DB catalog未確認。0検出は不存在証明ではない",
+      "correction_candidate": "管理担当へ外部repo/job/manual経路申告と閉鎖証拠依頼",
+      "impact": "DB未接続で確認不能範囲。残れば網羅済み禁止"
+    }
+  ],
+  "existing_code_modified": false,
+  "deployment_or_runtime_verified": false,
+  "main_decision_required": "修正対象variant・共通入口位置・下位lock事前取得集合・migration停止範囲。案の自動採用禁止"
+}

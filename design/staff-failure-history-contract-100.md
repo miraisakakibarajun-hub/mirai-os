@@ -1,0 +1,13 @@
+# 工程100 失敗履歴保全契約（採用判断用）Ver0.1
+
+正式権限変更auditはgrant/operationと同一業務TX、rollbackなら共に消える。失敗そのものの追跡は独立attempt/security event経路で行い、失敗auditを残すために業務TXだけ部分commitしない。trigger内失敗INSERTも同時rollbackされるため、独立記録の代用ではない。
+
+提案フロー：業務DB接続/認可DML前に別の保護された追記journalへATTEMPT_RECEIVEDを耐久確認→業務TX→commit/rollback/拒否/不明観測後に独立記録へ終端event追記。独立記録は同じDB接続/TX/業務親FK/triggerから切り離し、業務TXのglobal/rowlockを待たせない。network呼出をglobal保持中にしない。journalは検証済みsink又は暗号化耐久spool案、現在未実装・未選定。
+
+拒否、validation error、scope不一致、approval不足、rollback、40P01、55P03/57014、UNKNOWNを許可済みreason_codeへ分類。受領だけで終端なしはorphan attemptとしてreconcile、process強制停止でも失敗を無記録で正常終了させない。commit後に終端sink失敗した場合は正式成功auditを維持し、pending終端を再配送・alert。業務成功をrollbackと偽らない。初回受領の耐久確認不能なら変更処理開始を止める案。ログ障害時も誤認可を許可しないが、認証拒否は続ける。拒否洪水のrate制御と証拠欠損カウンタを分け、無記録を監査完全としない。
+
+最小event schema案：event_id、attempt_id、opaque request correlation、actor_id（匿名/未認証はUNKNOWN_ACTOR、攻撃者申告を確定主体にしない）、tenant_ref、resource opaque ID、operation_kind、reason_code allowlist、SQLSTATE allowlist、outcome、observed_at、server_source/version、evidence_ref。request_keyは推測困難な非credential ID限定、外部ログへはHMAC等のcorrelation参照を検討。鍵管理未選定なら無理に実装しない。raw key/原payload/自由文errorは禁止。
+
+password/token/Secret/cookie/Authorization header/生認証情報/credential envelope/SQL parameter/stack raw message/不要な氏名や本文は保存禁止。許可fieldだけを構成し、最大長/文字種/改行を制限、reasonは定数。公開repoは架空fixture/仕様のみ。event ID一意、追記のみ、訂正は旧ID参照の追記。改変検知hashは本人性や絶対改ざん防止を意味しない。
+
+保持期間/閲覧/削除/保管先/暗号化鍵/容量上限/欠損alert/再配送・復旧担当は主開発管理判断待ち。登録Secretや外部本接続は行わない。失敗記録の完全性はsink耐久・kill/通信断・重複/順序逆転・spool満杯・cleanup試験後にのみ評価する。現時点AUD-099-03はOPEN。
