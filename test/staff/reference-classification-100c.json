@@ -1,0 +1,1046 @@
+{
+  "stage": 100,
+  "phase": "continuation",
+  "source_commit": "0a47566d18ff9d6a42f43e65f3c7c3e56f6e7e44",
+  "baseline_register": "trigger-review-100.jsonのcross_file_or_dynamic_unresolved=true全41行",
+  "classification_unit": "当該参照の主たる未解決事項。Aは参照/分岐の静的結論のみでruntime安全性や実配備の合格を意味しない",
+  "counts": {
+    "A": 29,
+    "B": 11,
+    "C": 1
+  },
+  "items": [
+    {
+      "reference_id": "REF100C-01",
+      "source_key": {
+        "path": "design/staff-assignment-history-80.sql",
+        "line": 29,
+        "trigger": "assignment_revision_insert_80",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'assignment_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.assignment_revisions_80",
+        "key_column": "assignment_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-02",
+      "source_key": {
+        "path": "design/staff-assignment-history-80.sql",
+        "line": 31,
+        "trigger": "assignment_set_guard_80",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'assignment_revisions_80','assignment_revision_set_members_80','assignment_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.assignment_revision_sets_80",
+          "staff_core.assignment_revisions_80",
+          "staff_core.assignment_revision_set_members_80"
+        ],
+        "key_column": "assignment_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-03",
+      "source_key": {
+        "path": "design/staff-assignment-history-80.sql",
+        "line": 32,
+        "trigger": "assignment_member_guard_80",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'assignment_revision_sets_80'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.assignment_revision_sets_80",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-04",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 27,
+        "trigger": "business_role_revision_insert_82",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'role_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.business_role_revisions_82",
+        "key_column": "role_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-05",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 29,
+        "trigger": "business_role_set_guard_82",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'business_role_revisions_82','business_role_revision_set_members_82','role_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_role_revision_sets_82",
+          "staff_core.business_role_revisions_82",
+          "staff_core.business_role_revision_set_members_82"
+        ],
+        "key_column": "role_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-06",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 30,
+        "trigger": "business_role_member_guard_82",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'business_role_revision_sets_82'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.business_role_revision_sets_82",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-07",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 70,
+        "trigger": "role_assignment_revision_insert_82",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'role_assignment_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.role_assignment_revisions_82",
+        "key_column": "role_assignment_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-08",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 72,
+        "trigger": "role_assignment_set_guard_82",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'role_assignment_revisions_82','role_assignment_revision_set_members_82','role_assignment_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.role_assignment_revision_sets_82",
+          "staff_core.role_assignment_revisions_82",
+          "staff_core.role_assignment_revision_set_members_82"
+        ],
+        "key_column": "role_assignment_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-09",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 73,
+        "trigger": "role_assignment_member_guard_82",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'role_assignment_revision_sets_82'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.role_assignment_revision_sets_82",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-10",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 95,
+        "trigger": "business_role_identity_82",
+        "function": "staff_core.role_history_identity_82",
+        "arguments": "'role_id','business_role_revision_sets_82'"
+      },
+      "category": "A",
+      "reason": "business_roles呼出ではrole_assignments専用lock分岐は実行されないことをTG_TABLE_NAMEで確定",
+      "static_expansion": {
+        "caller_table": "staff_core.business_roles",
+        "set_table": "staff_core.business_role_revision_sets_82",
+        "key_column": "role_id",
+        "role_assignments_branch": false
+      },
+      "current_conclusion": "この呼出にrole→org lockを誤帰属しない。set SELECTの静的参照先解決",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-11",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 96,
+        "trigger": "role_assignment_identity_82",
+        "function": "staff_core.role_history_identity_82",
+        "arguments": "'role_assignment_id','role_assignment_revision_sets_82'"
+      },
+      "category": "B",
+      "reason": "role_assignments分岐のrole→orgが共通org先行と逆順。deferred/BEFOREの発火と複数接続待機を確認要",
+      "static_expansion": {
+        "caller_table": "staff_core.role_assignments",
+        "set_table": "staff_core.role_assignment_revision_sets_82",
+        "key_column": "role_assignment_id",
+        "role_assignments_branch": true,
+        "explicit_sequence": [
+          "staff_core.business_roles FOR UPDATE",
+          "staff_core.organizations FOR UPDATE"
+        ]
+      },
+      "current_conclusion": "重大な逆順候補を静的確認・deadlock発生自体は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-12",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 122,
+        "trigger": "business_role_consistency_82",
+        "function": "staff_core.role_history_consistency_82",
+        "arguments": "'role_id','business_role_revision_sets_82'"
+      },
+      "category": "A",
+      "reason": "business_roles呼出ではrole_assignments専用lock分岐は実行されないことをTG_TABLE_NAMEで確定",
+      "static_expansion": {
+        "caller_table": "staff_core.business_roles",
+        "set_table": "staff_core.business_role_revision_sets_82",
+        "key_column": "role_id",
+        "role_assignments_branch": false
+      },
+      "current_conclusion": "この呼出にrole→org lockを誤帰属しない。set SELECTの静的参照先解決",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-13",
+      "source_key": {
+        "path": "design/staff-business-role-history-82.sql",
+        "line": 123,
+        "trigger": "role_assignment_consistency_82",
+        "function": "staff_core.role_history_consistency_82",
+        "arguments": "'role_assignment_id','role_assignment_revision_sets_82'"
+      },
+      "category": "B",
+      "reason": "role_assignments分岐のrole→orgが共通org先行と逆順。deferred/BEFOREの発火と複数接続待機を確認要",
+      "static_expansion": {
+        "caller_table": "staff_core.role_assignments",
+        "set_table": "staff_core.role_assignment_revision_sets_82",
+        "key_column": "role_assignment_id",
+        "role_assignments_branch": true,
+        "explicit_sequence": [
+          "staff_core.business_roles FOR UPDATE",
+          "staff_core.organizations FOR UPDATE"
+        ]
+      },
+      "current_conclusion": "重大な逆順候補を静的確認・deadlock発生自体は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-14",
+      "source_key": {
+        "path": "design/staff-contract-history-81.sql",
+        "line": 42,
+        "trigger": "contract_revision_insert_81",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'contract_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.contract_revisions_81",
+        "key_column": "contract_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-15",
+      "source_key": {
+        "path": "design/staff-contract-history-81.sql",
+        "line": 44,
+        "trigger": "contract_set_guard_81",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'contract_revisions_81','contract_revision_set_members_81','contract_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.contract_revision_sets_81",
+          "staff_core.contract_revisions_81",
+          "staff_core.contract_revision_set_members_81"
+        ],
+        "key_column": "contract_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-16",
+      "source_key": {
+        "path": "design/staff-contract-history-81.sql",
+        "line": 45,
+        "trigger": "contract_member_guard_81",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'contract_revision_sets_81'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.contract_revision_sets_81",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-17",
+      "source_key": {
+        "path": "design/staff-department-structure-78.sql",
+        "line": 28,
+        "trigger": "structure_revision_insert_78",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'department_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.department_structure_revisions_78",
+        "key_column": "department_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-18",
+      "source_key": {
+        "path": "design/staff-department-structure-78.sql",
+        "line": 30,
+        "trigger": "structure_member_guard_78",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'department_structure_revision_sets_78'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.department_structure_revision_sets_78",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-19",
+      "source_key": {
+        "path": "design/staff-department-structure-78.sql",
+        "line": 31,
+        "trigger": "structure_set_guard_78",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'department_structure_revisions_78','department_structure_revision_set_members_78','department_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.department_structure_revision_sets_78",
+          "staff_core.department_structure_revisions_78",
+          "staff_core.department_structure_revision_set_members_78"
+        ],
+        "key_column": "department_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-20",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 147,
+        "trigger": "business_site_identity_guard_77",
+        "function": "staff_core.entity_identity_guard_76",
+        "arguments": ""
+      },
+      "category": "C",
+      "reason": "同名CREATE OR REPLACEが3版あり各版の動的表は読取可能だが実配備順/有効function版はGitHubだけでは決定不能",
+      "static_expansion": {
+        "definitions": [
+          "design/staff-business-scopes-76.sql:63",
+          "design/staff-organization-history-77.sql:128",
+          "design/staff-department-structure-78.sql:32"
+        ],
+        "caller_table": "staff_core.business_sites"
+      },
+      "current_conclusion": "適用manifest未確定・実catalog版未確認。候補schema順を隔離構築しても実配備を証明しない",
+      "next_method": "管理者の適用manifest/配備ログ/実catalog function hashを許可範囲で照合。現在実環境接続禁止",
+      "required_permission": "配備責任者の証拠提供・許可済みcatalog readのみ",
+      "required_environment": "実配備証拠/実catalog（未許可）",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-21",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 148,
+        "trigger": "business_revision_insert_77",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'business_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.business_revisions_77",
+        "key_column": "business_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-22",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 150,
+        "trigger": "business_member_guard_77",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'business_revision_sets_77'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.business_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-23",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 151,
+        "trigger": "business_set_guard_77",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'business_revisions_77','business_revision_set_members_77','business_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_revision_sets_77",
+          "staff_core.business_revisions_77",
+          "staff_core.business_revision_set_members_77"
+        ],
+        "key_column": "business_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-24",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 152,
+        "trigger": "business_history_required_77",
+        "function": "staff_core.organization_history_required_77",
+        "arguments": "'business_revision_sets_77','business_id'"
+      },
+      "category": "A",
+      "reason": "固定TG_ARGV/TG_TABLE_NAMEでdeferred SELECTの参照先を展開できる",
+      "static_expansion": {
+        "identity_table": "staff_core.businesses",
+        "set_table": "staff_core.business_revision_sets_77",
+        "key_column": "business_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。COMMIT時の失敗/rollbackは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-25",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 158,
+        "trigger": "site_revision_insert_77",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'site_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.site_revisions_77",
+        "key_column": "site_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-26",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 160,
+        "trigger": "site_member_guard_77",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'site_revision_sets_77'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.site_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-27",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 161,
+        "trigger": "site_set_guard_77",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'site_revisions_77','site_revision_set_members_77','site_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.site_revision_sets_77",
+          "staff_core.site_revisions_77",
+          "staff_core.site_revision_set_members_77"
+        ],
+        "key_column": "site_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-28",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 162,
+        "trigger": "site_history_required_77",
+        "function": "staff_core.organization_history_required_77",
+        "arguments": "'site_revision_sets_77','site_id'"
+      },
+      "category": "A",
+      "reason": "固定TG_ARGV/TG_TABLE_NAMEでdeferred SELECTの参照先を展開できる",
+      "static_expansion": {
+        "identity_table": "staff_core.sites",
+        "set_table": "staff_core.site_revision_sets_77",
+        "key_column": "site_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。COMMIT時の失敗/rollbackは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-29",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 168,
+        "trigger": "department_revision_insert_77",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'department_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.department_revisions_77",
+        "key_column": "department_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-30",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 170,
+        "trigger": "department_member_guard_77",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'department_revision_sets_77'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.department_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-31",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 171,
+        "trigger": "department_set_guard_77",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'department_revisions_77','department_revision_set_members_77','department_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.department_revision_sets_77",
+          "staff_core.department_revisions_77",
+          "staff_core.department_revision_set_members_77"
+        ],
+        "key_column": "department_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-32",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 172,
+        "trigger": "department_history_required_77",
+        "function": "staff_core.organization_history_required_77",
+        "arguments": "'department_revision_sets_77','department_id'"
+      },
+      "category": "A",
+      "reason": "固定TG_ARGV/TG_TABLE_NAMEでdeferred SELECTの参照先を展開できる",
+      "static_expansion": {
+        "identity_table": "staff_core.departments",
+        "set_table": "staff_core.department_revision_sets_77",
+        "key_column": "department_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。COMMIT時の失敗/rollbackは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-33",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 178,
+        "trigger": "business_site_revision_insert_77",
+        "function": "staff_core.organization_revision_insert_77",
+        "arguments": "'relation_id'"
+      },
+      "category": "A",
+      "reason": "TG_TABLE_NAMEと固定TG_ARGVで動的SELECTの表/キーを静的展開できる。INSERT時の初回/後継分岐も確定",
+      "static_expansion": {
+        "read_table": "staff_core.business_site_revisions_77",
+        "key_column": "relation_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。SELECTのみ、親/unique/FK暗黙lockは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-34",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 180,
+        "trigger": "business_site_member_guard_77",
+        "function": "staff_core.organization_member_guard_77",
+        "arguments": "'business_site_revision_sets_77'"
+      },
+      "category": "B",
+      "reason": "対象親表は静的解決できるが子INSERT→trigger親lockの実取得順・待機/FK競合は多接続実証が必要",
+      "static_expansion": {
+        "parent_table": "staff_core.business_site_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      },
+      "current_conclusion": "参照先解決済・順序安全性は未実証",
+      "next_method": "許可後の隔離PGで2writer+observer、順序反転・FK/遅延trigger・rollbackをtrace。U09未充足のため未実施",
+      "required_permission": "隔離試験実行の明示許可・test-only role/観測権限",
+      "required_environment": "未起動の架空PG・A/B/O物理接続",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-35",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 181,
+        "trigger": "business_site_set_guard_77",
+        "function": "staff_core.organization_set_guard_77",
+        "arguments": "'business_site_revisions_77','business_site_revision_set_members_77','relation_id'"
+      },
+      "category": "A",
+      "reason": "固定引数から前集合/segment/revision/overlap SELECTを展開できる",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_site_revision_sets_77",
+          "staff_core.business_site_revisions_77",
+          "staff_core.business_site_revision_set_members_77"
+        ],
+        "key_column": "relation_id",
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。seal操作/暗黙lockとMVCC競合は別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-36",
+      "source_key": {
+        "path": "design/staff-organization-history-77.sql",
+        "line": 182,
+        "trigger": "business_site_history_required_77",
+        "function": "staff_core.organization_history_required_77",
+        "arguments": "'business_site_revision_sets_77','relation_id'"
+      },
+      "category": "A",
+      "reason": "固定TG_ARGV/TG_TABLE_NAMEでdeferred SELECTの参照先を展開できる",
+      "static_expansion": {
+        "identity_table": "staff_core.business_sites",
+        "set_table": "staff_core.business_site_revision_sets_77",
+        "key_column": "relation_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      },
+      "current_conclusion": "参照先解決済。COMMIT時の失敗/rollbackは別試験",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": []
+    },
+    {
+      "reference_id": "REF100C-37",
+      "source_key": {
+        "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+        "line": 15,
+        "trigger": "monitoring_records_updated_at",
+        "function": "public.set_updated_at",
+        "arguments": ""
+      },
+      "category": "A",
+      "reason": "旧scannerはpublic修飾を無修飾定義と結合できず誤って未解決にした。ソース本文は静的に特定",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      },
+      "current_conclusion": "同名定義候補の本文解決。実配置schema/search_path/publicの対応はCとして残る",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": [
+        "C: 適用時search_path/namespaceとpg_get_functiondef確認（許可後、現在接続禁止）"
+      ]
+    },
+    {
+      "reference_id": "REF100C-38",
+      "source_key": {
+        "path": "supabase/migrations/20260906030000_support_records.sql",
+        "line": 15,
+        "trigger": "support_records_updated_at",
+        "function": "public.set_updated_at",
+        "arguments": ""
+      },
+      "category": "A",
+      "reason": "旧scannerはpublic修飾を無修飾定義と結合できず誤って未解決にした。ソース本文は静的に特定",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      },
+      "current_conclusion": "同名定義候補の本文解決。実配置schema/search_path/publicの対応はCとして残る",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": [
+        "C: 適用時search_path/namespaceとpg_get_functiondef確認（許可後、現在接続禁止）"
+      ]
+    },
+    {
+      "reference_id": "REF100C-39",
+      "source_key": {
+        "path": "supabase/migrations/20260906040000_ai_documents.sql",
+        "line": 14,
+        "trigger": "ai_documents_updated_at",
+        "function": "public.set_updated_at",
+        "arguments": ""
+      },
+      "category": "A",
+      "reason": "旧scannerはpublic修飾を無修飾定義と結合できず誤って未解決にした。ソース本文は静的に特定",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      },
+      "current_conclusion": "同名定義候補の本文解決。実配置schema/search_path/publicの対応はCとして残る",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": [
+        "C: 適用時search_path/namespaceとpg_get_functiondef確認（許可後、現在接続禁止）"
+      ]
+    },
+    {
+      "reference_id": "REF100C-40",
+      "source_key": {
+        "path": "supabase/migrations/20260906050000_assessment_records.sql",
+        "line": 15,
+        "trigger": "assessment_records_updated_at",
+        "function": "public.set_updated_at",
+        "arguments": ""
+      },
+      "category": "A",
+      "reason": "旧scannerはpublic修飾を無修飾定義と結合できず誤って未解決にした。ソース本文は静的に特定",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      },
+      "current_conclusion": "同名定義候補の本文解決。実配置schema/search_path/publicの対応はCとして残る",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": [
+        "C: 適用時search_path/namespaceとpg_get_functiondef確認（許可後、現在接続禁止）"
+      ]
+    },
+    {
+      "reference_id": "REF100C-41",
+      "source_key": {
+        "path": "supabase/migrations/20260908010000_meeting_records.sql",
+        "line": 15,
+        "trigger": "meeting_records_updated_at",
+        "function": "public.set_updated_at",
+        "arguments": ""
+      },
+      "category": "A",
+      "reason": "旧scannerはpublic修飾を無修飾定義と結合できず誤って未解決にした。ソース本文は静的に特定",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      },
+      "current_conclusion": "同名定義候補の本文解決。実配置schema/search_path/publicの対応はCとして残る",
+      "next_method": "指定ソース/固定引数/CASE分岐を読取照合し展開表を確認。静的結論をruntime合格へ昇格しない",
+      "required_permission": "repo readのみ",
+      "required_environment": "固定Git tree/テキストのみ",
+      "stop_condition": "fence未証明・不明/矛盾は本番可能判定禁止。B/Cの確認は実行許可取得前停止",
+      "cross_category_dependencies": [
+        "C: 適用時search_path/namespaceとpg_get_functiondef確認（許可後、現在接続禁止）"
+      ]
+    }
+  ],
+  "reconciliation": "41件と一対一。Aの各参照にもFK/trigger実行B・実配備Cの共通依存は残る。分類で原記録や未実証状態を削除しない"
+}

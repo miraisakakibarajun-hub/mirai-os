@@ -1,0 +1,70 @@
+{
+  "stage": 100,
+  "phase": "continuation",
+  "audit_basis": "STAFF-AUD-100 採用通知、部分成果受理・工程完了保留",
+  "classification_counts": {
+    "A": 29,
+    "B": 11,
+    "C": 1
+  },
+  "lock_candidates": {
+    "total": 12,
+    "reviewed": 12,
+    "closed": 0
+  },
+  "writer": {
+    "candidate_files": 126,
+    "fence_applied_verified": 0,
+    "inventory_complete": false
+  },
+  "trigger": {
+    "source_inventory": 155,
+    "original_unresolved": 41,
+    "major_candidates": 18,
+    "runtime_closure_complete": false
+  },
+  "audits": [
+    {
+      "id": "AUD-100-01",
+      "status": "OPEN",
+      "remaining": "global全writer実適用/直接経路閉鎖と網羅証明"
+    },
+    {
+      "id": "AUD-100-02",
+      "status": "OPEN",
+      "remaining": "trigger/暗黙lock/cascade/実variantと多接続実証"
+    },
+    {
+      "id": "AUD-100-03",
+      "status": "OPEN",
+      "remaining": "旧TX終了/DB履歴連続性/key一意/二重適用防止未実証"
+    },
+    {
+      "id": "AUD-100-04",
+      "status": "OPEN",
+      "remaining": "journal方式/7状態採否・耐久/保持と実装未了"
+    },
+    {
+      "id": "AUD-098-03",
+      "status": "OPEN",
+      "remaining": "人の管理承認真正性・対象変更時の再承認実証"
+    }
+  ],
+  "u04": "A維持、AUD-097-01 OPEN。初回別自然人照合と本人重要権限変更の別承認必須",
+  "u09": {
+    "confirmed": 0,
+    "total": 18,
+    "build_allowed": false,
+    "actions_allowed": false
+  },
+  "u06": {
+    "integration_cases": 14,
+    "executed": 0,
+    "model_history": 50,
+    "model_rerun": false
+  },
+  "other_residuals": "AUD-090-01～03/AUD-095/AUD-096等の既知残件を自動閉鎖しない。未提示原文は照合待ち",
+  "stage100_complete": false,
+  "stage101_authorized": false,
+  "independent_audit_submission": "再提出用資料準備。別スレへの送付/受領は未実施"
+}

@@ -1,0 +1,77 @@
+{
+  "stage": 100,
+  "phase": "continuation",
+  "validation_level": "STATIC_RECONCILIATION_ONLY",
+  "passed": 12,
+  "failed": 0,
+  "checks": {
+    "original_41_bijection": true,
+    "classification_counts": true,
+    "classification_requirements": true,
+    "12_candidates_bijection": true,
+    "priority_order_and_no_edits": true,
+    "trigger_155_bijection": true,
+    "candidate_126_bijection": true,
+    "set_updated_at_source": true,
+    "no_completion_no_execution": true,
+    "findings_open": true,
+    "proposal_unadopted": true,
+    "source_bytes_still_match": true
+  },
+  "reference_counts": {
+    "A": 29,
+    "B": 11,
+    "C": 1
+  },
+  "integration_executed": 0,
+  "u09_confirmed": 0,
+  "runtime_global_fence_verified": 0,
+  "baseline_commit": "0a47566d18ff9d6a42f43e65f3c7c3e56f6e7e44",
+  "files": [
+    {
+      "path": "test/staff/reference-classification-100c.json",
+      "sha256": "d63c87ec5434388de9b407576ccbb04badadc4cd18c3c824c3a07a7e71b830e1"
+    },
+    {
+      "path": "test/staff/lock-candidate-refinement-100c.json",
+      "sha256": "37872ec90debae866226e2c6a5c3e16c664ad52a218fa329952caae4b917bc66"
+    },
+    {
+      "path": "test/staff/writer-fence-status-100c.json",
+      "sha256": "3e1a3f6b1efa535e74fbbf7c4062372b2fa5f92be050e71dec812cb90eab8f38"
+    },
+    {
+      "path": "test/staff/trigger-refinement-100c.json",
+      "sha256": "31a1f3c9b1ddf6df331281455e0d0c4f2a1323e61f4744d7d3ec53fa7ab4638b"
+    },
+    {
+      "path": "design/staff-commit-retry-gate-100c.md",
+      "sha256": "5449525f57c3d0d48bcb2f0a397a4decedd684b58c58fb7db045e12957df4035"
+    },
+    {
+      "path": "design/staff-journal-state-decision-100c.md",
+      "sha256": "cdb07e4f86def68c9fd75697643eb8414a00c3bb1ef85532f8411009063e9a4a"
+    },
+    {
+      "path": "test/staff/continuation-status-100c.json",
+      "sha256": "507307013c1d793893d7c3f2b0d9d82d2d8d3a8582ab33ec5dc0740e0172fcd7"
+    },
+    {
+      "path": "design/staff-stage100-continuation-report.md",
+      "sha256": "53af36c0bafa004517d785c815013b88b0893fcd18323709639c655147c2f0ce"
+    },
+    {
+      "path": "test/staff/verify-continuation-100c.py",
+      "sha256": "c2117efd2712a17efc89b87430c65f5314cc4694750a5d1c706bed4ccda46532"
+    }
+  ],
+  "byte_public_name_checks": "PASS",
+  "unverified": [
+    "actual DB/catalog/deployment namespace",
+    "trigger runtime lock/cascade/recursive closure",
+    "COMMIT recovery 4 prerequisites",
+    "durable failure journal/retention",
+    "human approval authenticity",
+    "all 18 U09 conditions"
+  ]
+}

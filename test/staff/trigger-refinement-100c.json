@@ -1,0 +1,3412 @@
+{
+  "stage": 100,
+  "phase": "continuation",
+  "source_commit": "0a47566d18ff9d6a42f43e65f3c7c3e56f6e7e44",
+  "trigger_count": 155,
+  "items": [
+    {
+      "trigger_id": "TRG100C-001",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 29,
+      "name": "assignment_revision_insert_80",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-01",
+      "static_expansion": {
+        "read_table": "staff_core.assignment_revisions_80",
+        "key_column": "assignment_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-002",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 30,
+      "name": "assignment_revision_append_80",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-003",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 31,
+      "name": "assignment_set_guard_80",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-02",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.assignment_revision_sets_80",
+          "staff_core.assignment_revisions_80",
+          "staff_core.assignment_revision_set_members_80"
+        ],
+        "key_column": "assignment_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-004",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 32,
+      "name": "assignment_member_guard_80",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-03",
+      "static_expansion": {
+        "parent_table": "staff_core.assignment_revision_sets_80",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-005",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 43,
+      "name": "assignment_identity_guard_80",
+      "function": "staff_core.assignment_identity_guard_80",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 39,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-006",
+      "path": "design/staff-assignment-history-80.sql",
+      "line": 58,
+      "name": "assignment_consistency_80",
+      "function": "staff_core.assignment_consistency_80",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 53,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-007",
+      "path": "design/staff-auth-functions-63.sql",
+      "line": 31,
+      "name": "session_immutable_v1",
+      "function": "staff_auth_private.guard_session_update_v1",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-008",
+      "path": "design/staff-auth-functions-63.sql",
+      "line": 34,
+      "name": "audit_append_v1",
+      "function": "staff_auth_private.guard_audit_v1",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-009",
+      "path": "design/staff-auth-functions-63.sql",
+      "line": 48,
+      "name": "cleanup_immutable_v1",
+      "function": "staff_auth_private.guard_outbox_v1",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-010",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 27,
+      "name": "business_role_revision_insert_82",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-04",
+      "static_expansion": {
+        "read_table": "staff_core.business_role_revisions_82",
+        "key_column": "role_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-011",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 28,
+      "name": "business_role_revision_append_82",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-012",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 29,
+      "name": "business_role_set_guard_82",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-05",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_role_revision_sets_82",
+          "staff_core.business_role_revisions_82",
+          "staff_core.business_role_revision_set_members_82"
+        ],
+        "key_column": "role_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-013",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 30,
+      "name": "business_role_member_guard_82",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-06",
+      "static_expansion": {
+        "parent_table": "staff_core.business_role_revision_sets_82",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-014",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 70,
+      "name": "role_assignment_revision_insert_82",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-07",
+      "static_expansion": {
+        "read_table": "staff_core.role_assignment_revisions_82",
+        "key_column": "role_assignment_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-015",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 71,
+      "name": "role_assignment_revision_append_82",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-016",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 72,
+      "name": "role_assignment_set_guard_82",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-08",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.role_assignment_revision_sets_82",
+          "staff_core.role_assignment_revisions_82",
+          "staff_core.role_assignment_revision_set_members_82"
+        ],
+        "key_column": "role_assignment_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-017",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 73,
+      "name": "role_assignment_member_guard_82",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-09",
+      "static_expansion": {
+        "parent_table": "staff_core.role_assignment_revision_sets_82",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-018",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 95,
+      "name": "business_role_identity_82",
+      "function": "staff_core.role_history_identity_82",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 87,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=NEW.role_id FOR UPDATE;"
+        },
+        {
+          "line": 88,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-10",
+      "static_expansion": {
+        "caller_table": "staff_core.business_roles",
+        "set_table": "staff_core.business_role_revision_sets_82",
+        "key_column": "role_id",
+        "role_assignments_branch": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-019",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 96,
+      "name": "role_assignment_identity_82",
+      "function": "staff_core.role_history_identity_82",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 87,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=NEW.role_id FOR UPDATE;"
+        },
+        {
+          "line": 88,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_ROLE_BEFORE_ORG",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "role_assignments分岐にbusiness_roles→organizations。org→role callerとの逆順可能性",
+      "reference_classification_id": "REF100C-11",
+      "static_expansion": {
+        "caller_table": "staff_core.role_assignments",
+        "set_table": "staff_core.role_assignment_revision_sets_82",
+        "key_column": "role_assignment_id",
+        "role_assignments_branch": true,
+        "explicit_sequence": [
+          "staff_core.business_roles FOR UPDATE",
+          "staff_core.organizations FOR UPDATE"
+        ]
+      }
+    },
+    {
+      "trigger_id": "TRG100C-020",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 122,
+      "name": "business_role_consistency_82",
+      "function": "staff_core.role_history_consistency_82",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 114,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=a.role_id FOR UPDATE;"
+        },
+        {
+          "line": 115,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-12",
+      "static_expansion": {
+        "caller_table": "staff_core.business_roles",
+        "set_table": "staff_core.business_role_revision_sets_82",
+        "key_column": "role_id",
+        "role_assignments_branch": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-021",
+      "path": "design/staff-business-role-history-82.sql",
+      "line": 123,
+      "name": "role_assignment_consistency_82",
+      "function": "staff_core.role_history_consistency_82",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 114,
+          "text": "PERFORM 1 FROM staff_core.business_roles WHERE role_id=a.role_id FOR UPDATE;"
+        },
+        {
+          "line": 115,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_ROLE_BEFORE_ORG",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "role_assignments分岐にbusiness_roles→organizations。org→role callerとの逆順可能性",
+      "reference_classification_id": "REF100C-13",
+      "static_expansion": {
+        "caller_table": "staff_core.role_assignments",
+        "set_table": "staff_core.role_assignment_revision_sets_82",
+        "key_column": "role_assignment_id",
+        "role_assignments_branch": true,
+        "explicit_sequence": [
+          "staff_core.business_roles FOR UPDATE",
+          "staff_core.organizations FOR UPDATE"
+        ]
+      }
+    },
+    {
+      "trigger_id": "TRG100C-022",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 65,
+      "name": "business_identity_guard_76",
+      "function": "staff_core.entity_identity_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-023",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 66,
+      "name": "site_identity_guard_76",
+      "function": "staff_core.entity_identity_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-024",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 67,
+      "name": "department_identity_guard_76",
+      "function": "staff_core.entity_identity_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-025",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 74,
+      "name": "scope_member_guard_76",
+      "function": "staff_core.scope_member_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 71,
+          "text": "PERFORM 1 FROM staff_core.scope_revision_sets_76 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-026",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 93,
+      "name": "scope_revision_guard_76",
+      "function": "staff_core.scope_seal_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-027",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 94,
+      "name": "scope_set_guard_76",
+      "function": "staff_core.scope_seal_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-028",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 101,
+      "name": "scope_identity_guard_76",
+      "function": "staff_core.scope_identity_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-029",
+      "path": "design/staff-business-scopes-76.sql",
+      "line": 106,
+      "name": "scope_history_required_76",
+      "function": "staff_core.scope_history_required_76",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-030",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 42,
+      "name": "contract_revision_insert_81",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-14",
+      "static_expansion": {
+        "read_table": "staff_core.contract_revisions_81",
+        "key_column": "contract_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-031",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 43,
+      "name": "contract_revision_append_81",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-032",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 44,
+      "name": "contract_set_guard_81",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-15",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.contract_revision_sets_81",
+          "staff_core.contract_revisions_81",
+          "staff_core.contract_revision_set_members_81"
+        ],
+        "key_column": "contract_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-033",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 45,
+      "name": "contract_member_guard_81",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-16",
+      "static_expansion": {
+        "parent_table": "staff_core.contract_revision_sets_81",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-034",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 56,
+      "name": "contract_identity_guard_81",
+      "function": "staff_core.contract_identity_guard_81",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 52,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-035",
+      "path": "design/staff-contract-history-81.sql",
+      "line": 70,
+      "name": "contract_consistency_81",
+      "function": "staff_core.contract_consistency_81",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 66,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=a.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-036",
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "line": 20,
+      "name": "initial_scope_73",
+      "function": "staff_core.validate_effect_scope_73",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-037",
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "line": 21,
+      "name": "stop_scope_73",
+      "function": "staff_core.validate_effect_scope_73",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-038",
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "line": 22,
+      "name": "release_scope_73",
+      "function": "staff_core.validate_effect_scope_73",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 16,
+          "text": "PERFORM 1 FROM staff_core.control_scopes WHERE control_scope_id=scope FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-039",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 47,
+      "name": "scope_org_member_73",
+      "function": "staff_core.guard_scope_member_73",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-040",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 48,
+      "name": "scope_action_member_73",
+      "function": "staff_core.guard_scope_member_73",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-041",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 49,
+      "name": "scope_system_member_73",
+      "function": "staff_core.guard_scope_member_73",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 43,
+          "text": "PERFORM 1 FROM staff_core.control_scope_revisions_73 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-042",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 67,
+      "name": "scope_revision_guard_73",
+      "function": "staff_core.guard_scope_revision_73",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-043",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 79,
+      "name": "scope_identity_73",
+      "function": "staff_core.guard_scope_identity_73",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-044",
+      "path": "design/staff-control-scopes-73.sql",
+      "line": 85,
+      "name": "scope_history_73",
+      "function": "staff_core.require_scope_history_73",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-045",
+      "path": "design/staff-core-history-65.sql",
+      "line": 81,
+      "name": "member_guard_65",
+      "function": "staff_core.guard_person_member_65",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 77,
+          "text": "SELECT sealed INTO closed FROM staff_core.person_revision_sets WHERE set_id=NEW.set_id AND person_id=NEW.person_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-046",
+      "path": "design/staff-core-history-65.sql",
+      "line": 106,
+      "name": "set_guard_65",
+      "function": "staff_core.seal_person_set_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-047",
+      "path": "design/staff-core-history-65.sql",
+      "line": 117,
+      "name": "history_required_65",
+      "function": "staff_core.require_person_history_65",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-048",
+      "path": "design/staff-core-history-65.sql",
+      "line": 119,
+      "name": "revision_append_65",
+      "function": "staff_core.append_only_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-049",
+      "path": "design/staff-core-history-65.sql",
+      "line": 153,
+      "name": "member_guard_65",
+      "function": "staff_core.guard_account_member_65",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 149,
+          "text": "SELECT sealed INTO closed FROM staff_core.account_revision_sets WHERE set_id=NEW.set_id AND account_id=NEW.account_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-050",
+      "path": "design/staff-core-history-65.sql",
+      "line": 178,
+      "name": "set_guard_65",
+      "function": "staff_core.seal_account_set_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-051",
+      "path": "design/staff-core-history-65.sql",
+      "line": 189,
+      "name": "history_required_65",
+      "function": "staff_core.require_account_history_65",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-052",
+      "path": "design/staff-core-history-65.sql",
+      "line": 191,
+      "name": "revision_append_65",
+      "function": "staff_core.append_only_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-053",
+      "path": "design/staff-core-history-65.sql",
+      "line": 212,
+      "name": "person_guard_65",
+      "function": "staff_core.guard_person_identity_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-054",
+      "path": "design/staff-core-history-65.sql",
+      "line": 228,
+      "name": "account_guard_65",
+      "function": "staff_core.guard_account_identity_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-055",
+      "path": "design/staff-department-structure-78.sql",
+      "line": 28,
+      "name": "structure_revision_insert_78",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-17",
+      "static_expansion": {
+        "read_table": "staff_core.department_structure_revisions_78",
+        "key_column": "department_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-056",
+      "path": "design/staff-department-structure-78.sql",
+      "line": 29,
+      "name": "structure_revision_append_78",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-057",
+      "path": "design/staff-department-structure-78.sql",
+      "line": 30,
+      "name": "structure_member_guard_78",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-18",
+      "static_expansion": {
+        "parent_table": "staff_core.department_structure_revision_sets_78",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-058",
+      "path": "design/staff-department-structure-78.sql",
+      "line": 31,
+      "name": "structure_set_guard_78",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-19",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.department_structure_revision_sets_78",
+          "staff_core.department_structure_revisions_78",
+          "staff_core.department_structure_revision_set_members_78"
+        ],
+        "key_column": "department_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-059",
+      "path": "design/staff-department-structure-78.sql",
+      "line": 81,
+      "name": "department_structure_consistency_78",
+      "function": "staff_core.department_structure_consistency_78",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 66,
+          "text": "PERFORM 1 FROM staff_core.organizations WHERE org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-060",
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "line": 77,
+      "name": "binding_event_guard_87",
+      "function": "staff_core.binding_event_guard_87",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 70,
+          "text": "PERFORM 1 FROM staff_core.grant_evidence_bindings_87 WHERE binding_id=NEW.binding_id AND sealed FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-061",
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "line": 93,
+      "name": "binding_child_guard_87",
+      "function": "staff_core.binding_child_guard_87",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 83,
+          "text": "SELECT * INTO b FROM staff_core.grant_evidence_bindings_87 WHERE binding_id=NEW.binding_id AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-062",
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "line": 164,
+      "name": "binding_header_guard_87",
+      "function": "staff_core.binding_header_guard_87",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-063",
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "line": 171,
+      "name": "binding_seal_audit_87",
+      "function": "staff_core.binding_seal_audit_87",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [
+        {
+          "line": 167,
+          "text": "INSERT INTO staff_core.grant_binding_events_87(binding_id,event_kind,actor_id,operation_id,reason_code)"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "line": 167,
+          "text": "INSERT INTO staff_core.grant_binding_events_87(binding_id,event_kind,actor_id,operation_id,reason_code)"
+        }
+      ],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "audit_type": "正式業務event/structural audit、failure journalではない",
+      "audit_risk": "event FK/unique/追加triggerを全親lock集合と照合。INSERT故障時の元更新rollback要"
+    },
+    {
+      "trigger_id": "TRG100C-064",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 79,
+      "name": "grant_dep_guard_75",
+      "function": "staff_core.grant_child_guard_75",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 73,
+          "text": "PERFORM 1 FROM staff_core.access_grant_revisions_75 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        },
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.grant_revision_sets_75 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-065",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 80,
+      "name": "grant_member_guard_75",
+      "function": "staff_core.grant_child_guard_75",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 73,
+          "text": "PERFORM 1 FROM staff_core.access_grant_revisions_75 WHERE revision_id=NEW.revision_id AND sealed=false FOR UPDATE;"
+        },
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.grant_revision_sets_75 WHERE set_id=NEW.set_id AND sealed=false FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-066",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 100,
+      "name": "grant_revision_guard_75",
+      "function": "staff_core.grant_seal_guard_75",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-067",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 101,
+      "name": "grant_set_guard_75",
+      "function": "staff_core.grant_seal_guard_75",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-068",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 108,
+      "name": "grant_identity_guard_75",
+      "function": "staff_core.grant_identity_guard_75",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-069",
+      "path": "design/staff-grant-history-75.sql",
+      "line": 113,
+      "name": "grant_history_required_75",
+      "function": "staff_core.grant_history_required_75",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-070",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 40,
+      "name": "typed_initial_70",
+      "function": "staff_core.guard_typed_auth_request_70",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 30,
+          "text": "PERFORM 1 FROM staff_core.request_revisions WHERE request_revision_id=NEW.request_revision_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-071",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 42,
+      "name": "typed_suspension_70",
+      "function": "staff_core.guard_typed_auth_request_70",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 30,
+          "text": "PERFORM 1 FROM staff_core.request_revisions WHERE request_revision_id=NEW.request_revision_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-072",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 44,
+      "name": "initial_detail_append_70",
+      "function": "staff_core.effect_append_only_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-073",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 46,
+      "name": "initial_admission_append_70",
+      "function": "staff_core.effect_append_only_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-074",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 69,
+      "name": "initial_evidence_70",
+      "function": "staff_core.validate_initial_admission_70",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 51,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 52,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 53,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 54,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 55,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        },
+        {
+          "line": 58,
+          "text": "SELECT * INTO a FROM staff_core.account_links WHERE account_id=detail.account_id FOR SHARE;"
+        },
+        {
+          "line": 61,
+          "text": "SELECT * INTO c FROM staff_core.account_auth_controls WHERE account_id=detail.account_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-075",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 89,
+      "name": "initial_application_source_70",
+      "function": "staff_core.guard_initial_source_70",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-076",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 90,
+      "name": "initial_attempt_source_70",
+      "function": "staff_core.guard_initial_source_70",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-077",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 91,
+      "name": "initial_operation_source_70",
+      "function": "staff_core.guard_initial_source_70",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-078",
+      "path": "design/staff-initial-admissions-70.sql",
+      "line": 92,
+      "name": "initial_impact_source_70",
+      "function": "staff_core.guard_initial_source_70",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-079",
+      "path": "design/staff-login-reservations-69.sql",
+      "line": 25,
+      "name": "reservation_source_69",
+      "function": "staff_core.validate_login_reservation_69",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-080",
+      "path": "design/staff-login-reservations-69.sql",
+      "line": 44,
+      "name": "reserve_login_69",
+      "function": "staff_core.reserve_login_identifier_69",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 31,
+          "text": "SELECT * INTO a FROM staff_core.account_links WHERE account_id=NEW.account_id FOR SHARE;"
+        },
+        {
+          "line": 38,
+          "text": "WHERE issuer=a.issuer COLLATE \"C\" AND login_name=NEW.login_name COLLATE \"C\" FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.login_identifier_reservations(issuer,login_name,person_id,first_account_id,first_revision_id)"
+        }
+      ],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-081",
+      "path": "design/staff-login-reservations-69.sql",
+      "line": 46,
+      "name": "reservation_append_69",
+      "function": "staff_core.append_only_65",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-082",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 147,
+      "name": "business_site_identity_guard_77",
+      "function": "staff_core.entity_identity_guard_76",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-20",
+      "static_expansion": {
+        "definitions": [
+          "design/staff-business-scopes-76.sql:63",
+          "design/staff-organization-history-77.sql:128",
+          "design/staff-department-structure-78.sql:32"
+        ],
+        "caller_table": "staff_core.business_sites"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-083",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 148,
+      "name": "business_revision_insert_77",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-21",
+      "static_expansion": {
+        "read_table": "staff_core.business_revisions_77",
+        "key_column": "business_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-084",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 149,
+      "name": "business_append_77",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-085",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 150,
+      "name": "business_member_guard_77",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-22",
+      "static_expansion": {
+        "parent_table": "staff_core.business_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-086",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 151,
+      "name": "business_set_guard_77",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-23",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_revision_sets_77",
+          "staff_core.business_revisions_77",
+          "staff_core.business_revision_set_members_77"
+        ],
+        "key_column": "business_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-087",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 152,
+      "name": "business_history_required_77",
+      "function": "staff_core.organization_history_required_77",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-24",
+      "static_expansion": {
+        "identity_table": "staff_core.businesses",
+        "set_table": "staff_core.business_revision_sets_77",
+        "key_column": "business_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-088",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 158,
+      "name": "site_revision_insert_77",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-25",
+      "static_expansion": {
+        "read_table": "staff_core.site_revisions_77",
+        "key_column": "site_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-089",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 159,
+      "name": "site_append_77",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-090",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 160,
+      "name": "site_member_guard_77",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-26",
+      "static_expansion": {
+        "parent_table": "staff_core.site_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-091",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 161,
+      "name": "site_set_guard_77",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-27",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.site_revision_sets_77",
+          "staff_core.site_revisions_77",
+          "staff_core.site_revision_set_members_77"
+        ],
+        "key_column": "site_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-092",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 162,
+      "name": "site_history_required_77",
+      "function": "staff_core.organization_history_required_77",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-28",
+      "static_expansion": {
+        "identity_table": "staff_core.sites",
+        "set_table": "staff_core.site_revision_sets_77",
+        "key_column": "site_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-093",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 168,
+      "name": "department_revision_insert_77",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-29",
+      "static_expansion": {
+        "read_table": "staff_core.department_revisions_77",
+        "key_column": "department_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-094",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 169,
+      "name": "department_append_77",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-095",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 170,
+      "name": "department_member_guard_77",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-30",
+      "static_expansion": {
+        "parent_table": "staff_core.department_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-096",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 171,
+      "name": "department_set_guard_77",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-31",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.department_revision_sets_77",
+          "staff_core.department_revisions_77",
+          "staff_core.department_revision_set_members_77"
+        ],
+        "key_column": "department_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-097",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 172,
+      "name": "department_history_required_77",
+      "function": "staff_core.organization_history_required_77",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-32",
+      "static_expansion": {
+        "identity_table": "staff_core.departments",
+        "set_table": "staff_core.department_revision_sets_77",
+        "key_column": "department_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-098",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 178,
+      "name": "business_site_revision_insert_77",
+      "function": "staff_core.organization_revision_insert_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-33",
+      "static_expansion": {
+        "read_table": "staff_core.business_site_revisions_77",
+        "key_column": "relation_id",
+        "predicate": "supersedes_revision_id/revision_no predecessor EXISTS",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-099",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 179,
+      "name": "business_site_append_77",
+      "function": "staff_core.organization_revision_append_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-100",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 180,
+      "name": "business_site_member_guard_77",
+      "function": "staff_core.organization_member_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 104,
+          "text": "EXECUTE format('SELECT sealed FROM staff_core.%I WHERE set_id=$1 FOR UPDATE',TG_ARGV[0]) INTO closed USING NEW.set_id;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認",
+      "reference_classification_id": "REF100C-34",
+      "static_expansion": {
+        "parent_table": "staff_core.business_site_revision_sets_77",
+        "key": "set_id=NEW.set_id",
+        "explicit_row_lock": "FOR UPDATE"
+      }
+    },
+    {
+      "trigger_id": "TRG100C-101",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 181,
+      "name": "business_site_set_guard_77",
+      "function": "staff_core.organization_set_guard_77",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-35",
+      "static_expansion": {
+        "read_tables": [
+          "staff_core.business_site_revision_sets_77",
+          "staff_core.business_site_revisions_77",
+          "staff_core.business_site_revision_set_members_77"
+        ],
+        "key_column": "relation_id",
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-102",
+      "path": "design/staff-organization-history-77.sql",
+      "line": 182,
+      "name": "business_site_history_required_77",
+      "function": "staff_core.organization_history_required_77",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reference_classification_id": "REF100C-36",
+      "static_expansion": {
+        "identity_table": "staff_core.business_sites",
+        "set_table": "staff_core.business_site_revision_sets_77",
+        "key_column": "relation_id",
+        "deferred": true,
+        "explicit_row_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-103",
+      "path": "design/staff-parent-base-68.sql",
+      "line": 31,
+      "name": "actor_guard_68",
+      "function": "staff_core.guard_actor_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-104",
+      "path": "design/staff-parent-base-68.sql",
+      "line": 37,
+      "name": "actor_record_68",
+      "function": "staff_core.record_actor_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.actor_state_events VALUES(gen_random_uuid(),NEW.actor_id,NEW.actor_state,NEW.lock_version,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref);"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "line": 34,
+          "text": "INSERT INTO staff_core.actor_state_events VALUES(gen_random_uuid(),NEW.actor_id,NEW.actor_state,NEW.lock_version,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref);"
+        }
+      ],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "audit_type": "正式業務event/structural audit、failure journalではない",
+      "audit_risk": "event FK/unique/追加triggerを全親lock集合と照合。INSERT故障時の元更新rollback要"
+    },
+    {
+      "trigger_id": "TRG100C-105",
+      "path": "design/staff-parent-base-68.sql",
+      "line": 38,
+      "name": "actor_event_append_68",
+      "function": "staff_core.append_only_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-106",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 40,
+      "name": "member_guard_68",
+      "function": "staff_core.guard_organization_member_68",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 36,
+          "text": "SELECT sealed INTO closed FROM staff_core.organization_revision_sets WHERE set_id=NEW.set_id AND org_id=NEW.org_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-107",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 65,
+      "name": "set_guard_68",
+      "function": "staff_core.seal_organization_set_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-108",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 76,
+      "name": "history_required_68",
+      "function": "staff_core.require_organization_history_68",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-109",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 78,
+      "name": "revision_append_68",
+      "function": "staff_core.append_only_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-110",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 126,
+      "name": "member_guard_68",
+      "function": "staff_core.guard_relation_member_68",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 122,
+          "text": "SELECT sealed INTO closed FROM staff_core.relation_revision_sets WHERE set_id=NEW.set_id AND relation_id=NEW.relation_id FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "MAJOR_CANDIDATE_CHILD_TO_PARENT",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "reverse_order": "子INSERT/UPDATE処理が親set/revision lockへ戻る可能性。既に外側で親取得済みか未確認"
+    },
+    {
+      "trigger_id": "TRG100C-111",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 151,
+      "name": "set_guard_68",
+      "function": "staff_core.seal_relation_set_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-112",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 162,
+      "name": "history_required_68",
+      "function": "staff_core.require_relation_history_68",
+      "deferred": true,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-113",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 164,
+      "name": "revision_append_68",
+      "function": "staff_core.append_only_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-114",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 179,
+      "name": "identity_guard_68",
+      "function": "staff_core.guard_organization_identity_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-115",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 188,
+      "name": "identity_guard_68",
+      "function": "staff_core.guard_relation_identity_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-116",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 232,
+      "name": "auth_control_guard_68",
+      "function": "staff_core.guard_control_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "audit_type": "正式業務event/structural audit、failure journalではない",
+      "audit_risk": "event FK/unique/追加triggerを全親lock集合と照合。INSERT故障時の元更新rollback要"
+    },
+    {
+      "trigger_id": "TRG100C-117",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 233,
+      "name": "authz_control_guard_68",
+      "function": "staff_core.guard_control_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "line": 229,
+          "text": "INSERT INTO staff_core.auth_control_events VALUES(NEW.last_change_event_id,NEW.account_id,kind,before_data,after_data,NEW.updated_at,NEW.updated_actor_id,NEW.evidence_ref,NEW.operation_id);"
+        }
+      ],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "audit_type": "正式業務event/structural audit、failure journalではない",
+      "audit_risk": "event FK/unique/追加triggerを全親lock集合と照合。INSERT故障時の元更新rollback要"
+    },
+    {
+      "trigger_id": "TRG100C-118",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 234,
+      "name": "control_event_append_68",
+      "function": "staff_core.append_only_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-119",
+      "path": "design/staff-parent-controls-68.sql",
+      "line": 244,
+      "name": "control_operation_68",
+      "function": "staff_core.guard_control_operation_68",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-120",
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "line": 45,
+      "name": "policy_condition_guard_85",
+      "function": "staff_core.policy_condition_guard_85",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 42,
+          "text": "PERFORM 1 FROM staff_core.policy_revisions_85 WHERE revision_id=NEW.revision_id AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-121",
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "line": 59,
+      "name": "policy_revision_guard_85",
+      "function": "staff_core.policy_revision_guard_85",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-122",
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "line": 72,
+      "name": "policy_identity_guard_85",
+      "function": "staff_core.policy_identity_guard_85",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-123",
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "line": 128,
+      "name": "evidence_apply_child_guard_85",
+      "function": "staff_core.evidence_apply_child_guard_85",
+      "deferred": false,
+      "explicit_lock_evidence": [
+        {
+          "line": 123,
+          "text": "PERFORM 1 FROM staff_core.authorization_evidence_candidates_85 WHERE evidence_id=NEW.evidence_id AND phase='APPLY' AND NOT sealed FOR UPDATE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-124",
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "line": 145,
+      "name": "evidence_candidate_guard_85",
+      "function": "staff_core.evidence_candidate_guard_85",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-125",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 103,
+      "name": "stop_evidence_66",
+      "function": "staff_core.validate_effect_66",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 76,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 77,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 78,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 79,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-126",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 105,
+      "name": "release_evidence_66",
+      "function": "staff_core.validate_effect_66",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 75,
+          "text": "PERFORM 1 FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 76,
+          "text": "PERFORM 1 FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        },
+        {
+          "line": 77,
+          "text": "PERFORM 1 FROM staff_core.application_attempts WHERE attempt_id=NEW.attempt_id FOR SHARE;"
+        },
+        {
+          "line": 78,
+          "text": "PERFORM 1 FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        },
+        {
+          "line": 79,
+          "text": "PERFORM 1 FROM staff_core.impact_checks WHERE impact_check_id=(SELECT impact_check_id FROM staff_core.applications WHERE application_id=NEW.application_id) FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-127",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 109,
+      "name": "stop_append_66",
+      "function": "staff_core.effect_append_only_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-128",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 110,
+      "name": "release_append_66",
+      "function": "staff_core.effect_append_only_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-129",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 111,
+      "name": "detail_append_66",
+      "function": "staff_core.effect_append_only_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-130",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 149,
+      "name": "request_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-131",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 150,
+      "name": "decision_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-132",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 151,
+      "name": "application_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-133",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 152,
+      "name": "attempt_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-134",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 153,
+      "name": "operation_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-135",
+      "path": "design/staff-suspension-evidence-66.sql",
+      "line": 154,
+      "name": "impact_evidence_66",
+      "function": "staff_core.guard_effect_source_66",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-136",
+      "path": "design/staff-workflow-evidence-72.sql",
+      "line": 24,
+      "name": "initial_workflow_72",
+      "function": "staff_core.validate_workflow_effect_72",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-137",
+      "path": "design/staff-workflow-evidence-72.sql",
+      "line": 25,
+      "name": "stop_workflow_72",
+      "function": "staff_core.validate_workflow_effect_72",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-138",
+      "path": "design/staff-workflow-evidence-72.sql",
+      "line": 26,
+      "name": "release_workflow_72",
+      "function": "staff_core.validate_workflow_effect_72",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 6,
+          "text": "SELECT * INTO c FROM staff_core.change_requests WHERE request_id=NEW.request_id FOR SHARE;"
+        },
+        {
+          "line": 9,
+          "text": "SELECT * INTO o FROM staff_core.operation_requests WHERE operation_id=NEW.operation_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-139",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 88,
+      "name": "request_revision_append_72",
+      "function": "staff_core.workflow_append_only_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-140",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 89,
+      "name": "decision_append_72",
+      "function": "staff_core.workflow_append_only_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-141",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 90,
+      "name": "impact_append_72",
+      "function": "staff_core.workflow_append_only_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-142",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 132,
+      "name": "operation_guard_72",
+      "function": "staff_core.guard_workflow_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-143",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 133,
+      "name": "request_guard_72",
+      "function": "staff_core.guard_workflow_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-144",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 134,
+      "name": "application_guard_72",
+      "function": "staff_core.guard_workflow_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-145",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 135,
+      "name": "attempt_guard_72",
+      "function": "staff_core.guard_workflow_72",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-146",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 152,
+      "name": "application_consistency_72",
+      "function": "staff_core.require_application_consistency_72",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 139,
+          "text": "SELECT * INTO a FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-147",
+      "path": "design/staff-workflow-parents-72.sql",
+      "line": 153,
+      "name": "attempt_consistency_72",
+      "function": "staff_core.require_application_consistency_72",
+      "deferred": true,
+      "explicit_lock_evidence": [
+        {
+          "line": 139,
+          "text": "SELECT * INTO a FROM staff_core.applications WHERE application_id=NEW.application_id FOR SHARE;"
+        }
+      ],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止"
+    },
+    {
+      "trigger_id": "TRG100C-148",
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "line": 286,
+      "name": "trg_users_set_updated_at",
+      "function": "set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち"
+    },
+    {
+      "trigger_id": "TRG100C-149",
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "line": 58,
+      "name": "trg_plans_set_updated_at",
+      "function": "set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち"
+    },
+    {
+      "trigger_id": "TRG100C-150",
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "line": 15,
+      "name": "monitoring_records_updated_at",
+      "function": "public.set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち",
+      "reference_classification_id": "REF100C-37",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-151",
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "line": 15,
+      "name": "support_records_updated_at",
+      "function": "public.set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち",
+      "reference_classification_id": "REF100C-38",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-152",
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "line": 14,
+      "name": "ai_documents_updated_at",
+      "function": "public.set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち",
+      "reference_classification_id": "REF100C-39",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-153",
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "line": 15,
+      "name": "assessment_records_updated_at",
+      "function": "public.set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち",
+      "reference_classification_id": "REF100C-40",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      }
+    },
+    {
+      "trigger_id": "TRG100C-154",
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "line": 53,
+      "name": "capture_plan_revision",
+      "function": "public.capture_plan_revision",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [
+        {
+          "line": 43,
+          "text": "if TG_OP='INSERT' then insert into public.plan_reviews(plan_id) values(new.id); end if;"
+        },
+        {
+          "line": 45,
+          "text": "insert into public.plan_revisions(plan_id,revision,content,saved_by,origin) values(new.id,new.content_version,new.content,actor_id,'save');"
+        },
+        {
+          "line": 46,
+          "text": "insert into public.plan_review_events(plan_id,revision,action,actor) values(new.id,new.content_version,'save',actor_id);"
+        },
+        {
+          "line": 47,
+          "text": "update public.plan_reviews set state='draft',epoch=epoch+1 where plan_id=new.id;"
+        }
+      ],
+      "audit_evidence": [
+        {
+          "line": 46,
+          "text": "insert into public.plan_review_events(plan_id,revision,action,actor) values(new.id,new.content_version,'save',actor_id);"
+        }
+      ],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "audit_type": "正式業務event/structural audit、failure journalではない",
+      "audit_risk": "event FK/unique/追加triggerを全親lock集合と照合。INSERT故障時の元更新rollback要",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち"
+    },
+    {
+      "trigger_id": "TRG100C-155",
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "line": 15,
+      "name": "meeting_records_updated_at",
+      "function": "public.set_updated_at",
+      "deferred": false,
+      "explicit_lock_evidence": [],
+      "additional_dml_evidence": [],
+      "audit_evidence": [],
+      "global_entry": "未証明。trigger自体が先頭global参加を保証するとはしない",
+      "implicit_update": "NEW値変更は追加表DMLと区別。FK/unique/constraintは別の暗黙lockを生み得る",
+      "cascade_recursive": "当該DML→対象表trigger/FKへのclosureは未実証、単独trigger本文だけで再帰なしと判定しない",
+      "failure": "caller同一TX、未捕捉例外は元操作もrollback、deferredならCOMMIT失敗可。failure eventは独立経路",
+      "risk": "UNPROVEN_CALLER_AND_CLOSURE",
+      "next": "固定variantと全親事前取得集合を照合、B/C許可前停止",
+      "deployment": "migration定義であり適用済み証明なし。auth.users/staff cascade等は実schema許可確認待ち",
+      "reference_classification_id": "REF100C-41",
+      "static_expansion": {
+        "source": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql:277-283",
+        "declared_name": "set_updated_at（schema無修飾）",
+        "body": "NEW.updated_at=now(); RETURN NEW;",
+        "additional_dml": false,
+        "explicit_lock": false
+      }
+    }
+  ],
+  "major_candidate_count": 18,
+  "static_updated_at_resolution": "5 unresolved public.set_updated_at references map to unqualified source definition at initial migration:277-283, NEW.updated_at only. Applied namespace not proven",
+  "reference_variant": "entity_identity_guard_76 has three source definitions. Do not auto-adopt 78 just because filename is newer",
+  "complete_runtime_trigger_closure": false
+}
