@@ -1,0 +1,43 @@
+{
+  "stage": 93,
+  "stage93_source_commit": "5715433fddfb76bca8967e03b6f736fa3f36aa64",
+  "raw_output_sha256": {
+    "model92.tap": "493956a56f6ba7cc563af2fb9136ce1eb8232dcf0bdab32a24350aebe3515482",
+    "model92-filtered.tap": "9675389353889c200d7fd530c222f4bb3a71e11e61afb5d8cc6ab029b7e08245",
+    "u06-93-attempt1.tap": "2160a4d4c46de63bc3d8f4004a0867d669d478f0b796c2cb53619d95ab082152",
+    "u06-93.tap": "3ba04fa66d063da6259459a1e6542b5e6cbe06903a5717e444eeec472ebb1e77",
+    "u06-93-committed.tap": "27c65436254a42f67497e3edfb491bbec9305686a7553eceb775a92b51a217b2",
+    "static93.txt": "dc5d288957be701bc75b89ba21b5333cc2770e1eb25fc221dded52fe1e010078"
+  },
+  "stage92_legacy_first": {
+    "pass": 41,
+    "fail": 1,
+    "failure_test_id": "S92-LEGACY-42"
+  },
+  "stage93_first": {
+    "pass": 33,
+    "fail": 1,
+    "failure_test_id": "U06-93-29",
+    "assertion_before": "assert.equal(r.resourceMappingVersion, c.input.resource.version);",
+    "assertion_after": "assert.equal(r.resourceMappingVersion, c.input.resource.version ?? null);",
+    "model_modified_after_failure": false,
+    "model_sha256": "60bc6bab08a90f260a85d8bbe9305c7ca40f38b531b510df512ed71993baad26",
+    "test_before_sha256": "c940239f6bff8b6dd18cc6fa39881655f794e58a60edfdf1e8b61c9f154af089",
+    "test_after_sha256": "dc96344060f7b860dc44546a4e58758bdc5d56890161a7f6a7c0919fcba429dc"
+  },
+  "final_runs": {
+    "MODEL": {
+      "pass": 34,
+      "fail": 0
+    },
+    "STATIC": {
+      "pass": 8,
+      "fail": 0
+    },
+    "source_commit": "5715433fddfb76bca8967e03b6f736fa3f36aa64"
+  },
+  "real_db_connections": 0,
+  "real_auth": false,
+  "production_authorized": false,
+  "commit_binding_note": "Source committed before final test execution; final evidence commit adds ledger/results only. Initial uncommitted attempt has null target_commit and exact source hashes; no commit invented."
+}
