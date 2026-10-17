@@ -1,0 +1,25 @@
+{
+  "kind": "STATIC_POLICY_RECORD_CHECK",
+  "checks": {
+    "first_result_required": true,
+    "separate_human_no_ai": true,
+    "three_checks_low_privilege": true,
+    "unperformed_unassigned": true,
+    "protected_approval_unchanged": true,
+    "audit_open": true,
+    "independent_audit_separate": true,
+    "u09_zero_of_18": true,
+    "execution_blocked": true,
+    "separation_design_maintained": true
+  },
+  "passed": 10,
+  "failed": 0,
+  "not_executed": [
+    "real qualification setting",
+    "human independent verification",
+    "DB",
+    "Actions",
+    "U06 tests"
+  ],
+  "historical_result": "results-97.json retained; applies to pre-A revision"
+}

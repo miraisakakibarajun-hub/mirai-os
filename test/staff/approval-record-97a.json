@@ -1,0 +1,22 @@
+{
+  "decision_id": "STAFF-097-U04-A",
+  "date": "2026-10-17",
+  "timezone": "Asia/Tokyo",
+  "channel": "この会話のユーザー指示",
+  "decision_authority": "主開発採用判断としてユーザーが通知",
+  "decision": "U04 A案採用",
+  "source_instruction_title": "MIRAI OS 職員基盤 工程97 U04方針確定指示",
+  "applies_to_previous_commit": "9c250698764dc0f9372b9abb91a1f47906bf6ebb",
+  "record_kind": "承認通知の転記。署名原本・本人認証・承認真正性実装とは区別",
+  "independently_authenticated": false,
+  "audit_status": "AUD-097-01 OPEN",
+  "actual_initial_verification": "NOT_PERFORMED",
+  "changes": [
+    "通常管理兼務から初回設定結果の独立照合を除外",
+    "別自然人・非AI・3確認事項・高権限不要を明記",
+    "U08/U09独立監査分離を明記"
+  ],
+  "protected_changes_policy": "UNCHANGED",
+  "u09_confirmed_count": 0,
+  "actions_build_and_run_authorized": false
+}

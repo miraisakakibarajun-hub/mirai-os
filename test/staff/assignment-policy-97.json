@@ -1,7 +1,7 @@
 {
   "stage": 97,
   "source_commit": "1503cb7b3e6de76163548ebb4fbf5a684ba04c0f",
-  "authority": "工程97ユーザー追加指示（管理判断の転記。実承認の真正性検証済みを意味しない）",
+  "authority": "工程97 U04方針確定指示：主開発によるA案採用のユーザー通知。承認真正性の独立検証は未実施",
   "scope": "一般社団法人みらいの当面の初期運用のみ",
   "role_reference": "INITIAL_MANAGER（実名対応は非公開決定記録）",
   "design": {
@@ -12,8 +12,9 @@
   "initial_operation": {
     "u04": {
       "initial_executor": "INITIAL_MANAGER",
-      "verification_duties": "INITIAL_MANAGER",
-      "evidence_custodian": "INITIAL_MANAGER"
+      "verification_duties": "INITIAL_MANAGER（通常確認のみ。初回設定結果の独立照合を除く）",
+      "evidence_custodian": "INITIAL_MANAGER",
+      "first_result_verifier": "UNASSIGNED_NATURAL_PERSON"
     },
     "u08": {
       "management_accountable": "INITIAL_MANAGER",
@@ -208,5 +209,35 @@
   "build_authorized": false,
   "actions_authorized": false,
   "real_db_auth_production_authorized": false,
-  "audit_status": "OPEN。担当指定の反映のみ。独立監査による採否判断前に指摘を閉じない"
+  "audit_status": "OPEN。担当指定の反映のみ。独立監査による採否判断前に指摘を閉じない",
+  "revision": "A-adopted",
+  "supersedes": "9c250698764dc0f9372b9abb91a1f47906bf6ebb のU04兼務範囲（通常業務は維持、初回結果の独立照合を除外）",
+  "u04_initial_trust_anchor": {
+    "target": "PROTECTED_CHANGE_APPROVER",
+    "first_result_independent_verification_required": true,
+    "verifier_distinct_from": "INITIAL_MANAGER",
+    "verifier_must_be_natural_person": true,
+    "ai_work_audit_ai_eligible": false,
+    "high_admin_privilege_required": false,
+    "checks": [
+      "対象本人であること",
+      "法人として承認者に設定する意思決定が存在すること",
+      "実設定結果が法人意思決定どおりであること"
+    ],
+    "frequency": "初回設定結果の一回性確認を基本とする。通常の常時独立照合は要求しない",
+    "verifier_assigned": false,
+    "verification_completed": false,
+    "evidence": null,
+    "trust_anchor_established": false,
+    "failed_or_missing_evidence": "照合完了扱い不可。信頼起点成立・有効化への移行を保留",
+    "reset_policy": "今回の決定は再設定・復旧時の独立照合省略を承認しない。信頼起点を再作成する場合の扱いは別途判断"
+  },
+  "independent_audit_role_separation_required": true,
+  "audit_findings": {
+    "AUD-097-01": {
+      "status": "OPEN",
+      "policy_decided": true,
+      "closure_requires": "実際の別自然人による3項目照合の完了証拠と監査確認"
+    }
+  }
 }
