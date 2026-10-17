@@ -1,0 +1,15 @@
+# 工程99 COMMIT結果不明・retry・idempotency設計 Ver0.1
+
+request_keyは初回に生成し、通信再送・DB再試行・結果照会で変更しない。operation識別キーは(tenant_id,actor_id,operation_kind,request_key)、DB UNIQUE。payload hashには正規化方式版、対象ID、変更前期待版、変更内容、承認ID/対象manifestを含める。同key異payloadはCONFLICTで拒否。actor/tenantは認証済みserver側で決め、依頼者の文字列を信用しない。結果照会にも現在の閲覧資格と対象境界確認が必要。過去成功応答を現在の権限許可に再利用しない。
+
+状態：NEW→IN_FLIGHT→COMMITTED / ABORTED_CONFIRMED / UNKNOWN。clientの状態とDB状態を分離する。UNKNOWNは成功件数にも失敗件数にも確定加算しない。
+
+COMMIT応答不明時：接続は再利用せず廃棄、同keyでprimaryへ照会。まず新しいTXで同じglobal排他を取得し、旧TXがまだ保持中なら待つ。取得timeoutならUNKNOWNを維持して後続変更を止める。取得後の新statementでoperationを読む。旧成功行がありpayload一致なら保存済み結果を返し再変更0。行がなく、同じauthoritative primary/DB incarnationであること、旧TXが終了したこと、operation保持期間内であることを確認できた場合のみABORTED_CONFIRMED相当として再処理候補へ進む。replicaの0件、単なる接続断、照会timeout、failoverで履歴喪失疑いがあればUNKNOWNのまま停止・手動確認。行なしだけでrollbackと断定しない。
+
+再試行は同key・同payload・同期待版で、全TXを最初からやり直す。現在資格/期限/所属/停止/承認対象版を再評価する。期待版が変わったらCONFLICTとして終了し、最新期待版へ勝手に書換えない。利用者が新たな変更を判断した場合だけ新key/新承認で別操作にする。これにより工程98の「最新期待版でretry」の曖昧さを解消する。
+
+候補上限：40P01/40001で全TX abortが確認できる場合に2回まで再試行（初回含む最大3回）、指数backoff候補100/200ms+jitter、job/case期限を超えたら停止。READ COMMITTED契約は維持、40001のためにisolationを変更しない。55P03/57014は自動再試行せずrollback/停止、認可拒否/期限/版不一致/異payload/監査制約エラーは再試行しない。COMMIT不明はこのDB retry枠で盲目的に再実行せず結果解決を先行させる。
+
+同key同payloadの並行依頼はglobal後の予約/DB一意制約で1成功に収束。保存結果の保持期間は再送可能期間以上として別途決定し、期間未決/削除後のkey再利用は禁止。tombstone/operation記録を消して古い依頼が再適用される構造を作らない。bulkの部分commitを許可しない。outboxは同operationの同event_idを再利用する。
+
+未充足：実DDL/一意制約、正規化実装、primary/failover識別、旧TX終了の観測、保持/鍵再利用運用、実harness・障害注入。全て設計のみ。

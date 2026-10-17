@@ -1,3 +1,5 @@
+> 工程99現行参照：工程99でglobal先頭へ訂正。tenant/person行を共通fenceとする案は現行で使用禁止。現行仕様はstaff-isolated-integration-spec-99.md。 以下は工程98当時の履歴。
+
 # 工程98 U06 隔離PostgreSQL統合試験仕様 Ver0.1
 
 分類B：隔離試験設計・未実行。構築ゲート未充足。workflowファイル・DBは作成しない。既存50件はMODEL履歴として保持し本工程で再実行・統合合格へ換算しない。完全grant単位union、必須拒否を先行、新deny grantなしを維持する。

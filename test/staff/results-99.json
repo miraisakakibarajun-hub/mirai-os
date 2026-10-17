@@ -1,0 +1,77 @@
+{
+  "stage": 99,
+  "validation_level": "STATIC_CONTRACT_CONSISTENCY_ONLY",
+  "passed": 12,
+  "failed": 0,
+  "checks": {
+    "14_ids_traceable": true,
+    "zero_executed": true,
+    "old_cases_unexecuted": true,
+    "case_contracts": true,
+    "global_evidence": true,
+    "retry_fixed_version": true,
+    "unknown_commit_covered": true,
+    "deadlock_control_isolated": true,
+    "u09_blocked": true,
+    "findings_open": true,
+    "diffs_present": true,
+    "u04_preserved": true
+  },
+  "integration_executed": 0,
+  "model_rerun": false,
+  "baseline_commit": "34f9f7b7af574f7cc9e7a5b60cd6ad1ff5279949",
+  "files": [
+    {
+      "path": "design/staff-global-lock-contract-99.md",
+      "sha256": "78ae0e2ee466cd9bca7a776de975dc259398f7dfba4058c88e87eadbd7aa6cf7"
+    },
+    {
+      "path": "design/staff-transaction-audit-99.md",
+      "sha256": "96bcf563837d6e4c44d5ccdc443f6eaf16bc5529733b44494f6f5a64b002a95b"
+    },
+    {
+      "path": "design/staff-commit-retry-idempotency-99.md",
+      "sha256": "0409b9aff6515e03c9901ef9ed1769a94a04141595be459b71a17eb4eb43ee29"
+    },
+    {
+      "path": "design/staff-approval-authenticity-99.md",
+      "sha256": "6856730dd4f829f4f4dbea49e52edc08d1aa9e32468af361c165aa626db6abdd"
+    },
+    {
+      "path": "design/staff-isolated-integration-spec-98.md",
+      "sha256": "e105d11a9a81c008fac45c70384d64f638e7a16bde63cd7e2f6e794e0b372274"
+    },
+    {
+      "path": "design/staff-approval-authenticity-98.md",
+      "sha256": "870bebb4eb06a33ad546639409c43af1e2ec8491a9682abf1438c112df4f6f3a"
+    },
+    {
+      "path": "test/staff/concurrency-cases-99.json",
+      "sha256": "6c41a84e9e2d6c548955983a4da0c62776172dc72b1fe1f7eb51f6c6dd1e90be"
+    },
+    {
+      "path": "design/staff-isolated-integration-spec-99.md",
+      "sha256": "d3d1bccc2fd4c87e11f213abd94b5541e827ee1ae65ab1482a7d7d1f3159039a"
+    },
+    {
+      "path": "test/staff/open-findings-99.json",
+      "sha256": "44cb71271e376b0626171a71c6d956cdfd8a42cf278f04d7030bf665c6d889d2"
+    },
+    {
+      "path": "design/staff-stage99-report.md",
+      "sha256": "db941123cff9260f06ba698deb27f1a8c445dd2e5b2f428dde9d7631d3d03289"
+    },
+    {
+      "path": "test/staff/verify-contracts-99.py",
+      "sha256": "07d06297dbc602e56d70e14994dad313148001fd5c333bc78b4891152b6907f0"
+    }
+  ],
+  "byte_privacy_checks": "PASS",
+  "not_verified": [
+    "live global fence coverage",
+    "transaction atomicity",
+    "commit failure injection",
+    "human approval authenticity",
+    "all 18 U09 conditions"
+  ]
+}

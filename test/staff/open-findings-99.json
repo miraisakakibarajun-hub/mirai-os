@@ -1,0 +1,49 @@
+{
+  "stage": 99,
+  "basis": "STAFF-AUD-098主開発採用のユーザー通知",
+  "findings": [
+    {
+      "id": "AUD-098-01",
+      "status": "OPEN_PENDING_INDEPENDENT_REVIEW",
+      "design_response": "global最上位を復元、98の代替行lock案を撤回、内部lock/同期を分離",
+      "remaining": "主開発差分確認・全writer実適用/迂回閉鎖・隔離実証"
+    },
+    {
+      "id": "AUD-098-02",
+      "status": "OPEN",
+      "design_response": "同一TX成功audit/operation、commit不明解決・同key固定retry",
+      "remaining": "DDL/adapter/harnessと実故障試験"
+    },
+    {
+      "id": "AUD-098-03",
+      "status": "OPEN",
+      "design_response": "本人性/工程/版/SHA/manifest/費用/期限/停止固定、変更時無効",
+      "remaining": "人の証拠方式採用・実真正性検証"
+    }
+  ],
+  "u09": {
+    "confirmed": 0,
+    "total": 18,
+    "build_allowed": false,
+    "actions_allowed": false
+  },
+  "u04": {
+    "policy": "A維持",
+    "AUD-097-01": "OPEN、正式人選/初回実照合未了"
+  },
+  "carry_forward": [
+    "AUD-095-01～04 OPEN（担当指定反映済みでも実証未了）",
+    "AUD-096-04 OPEN。他残件は原文照合待ち",
+    "AUD-097-02 原文照合待ち・閉鎖扱い不可",
+    "AUD-090-01～03 OPEN"
+  ],
+  "spec_differences_for_main_review": [
+    "98 tenant/person共通fence→global後の補助lock",
+    "98下位lockで競合同期→global待機を最初に観測",
+    "98最新期待版retry→同期待版固定、変更はCONFLICT",
+    "98対象外変更なら承認継続案→SHA/manifest変更は承認無効",
+    "下位lock種類順位/operation予約順位は具体化案、既存全関数との照合前に適用しない"
+  ],
+  "production_authorized": false,
+  "independent_audit_submission": "提出用資料作成。別スレ送付・受領は未実施"
+}
