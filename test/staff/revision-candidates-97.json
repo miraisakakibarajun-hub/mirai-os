@@ -1,0 +1,121 @@
+{
+  "stage": 97,
+  "baseline_commit": "1503cb7b3e6de76163548ebb4fbf5a684ba04c0f",
+  "scope": "静的検索による改訂候補。旧成果物・正本・実装は変更しない",
+  "search_terms": [
+    "別自然人",
+    "別の自然人",
+    "FORBIDDEN_SAME",
+    "separate_natural",
+    "ROOT_SEPARATION",
+    "兼務",
+    "別人"
+  ],
+  "candidates": [
+    {
+      "path": "design/staff-safety-readiness-92.md",
+      "section": "U04実行条件・同一人物不可",
+      "proposed_treatment": "一般原則と当法人初期運用例外を併記",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "design/staff-u04-selection-94.md",
+      "section": "独立照合者の必要条件",
+      "proposed_treatment": "役割分離可能な設計を維持し初期運用の兼務を区別",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "design/staff-management-decisions-95.md",
+      "section": "U04人選・兼務表",
+      "proposed_treatment": "当法人の役割担当は指定済、確認方法等の未決は残す",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "design/staff-assignments-review-96.md",
+      "section": "U04表・別自然人必須・監査重点",
+      "proposed_treatment": "一般原則と工程97の限定例外を区別",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "test/staff/management-decisions-95.json",
+      "section": "FORBIDDEN_SAME_NATURAL_PERSON_R_Aおよび兼務条件",
+      "proposed_treatment": "当時のモデルとして保持。現行票は工程97を参照",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "test/staff/assignments-96.json",
+      "section": "executor_verifier_separate_natural_persons / 未指定票",
+      "proposed_treatment": "当時の証拠を保持。工程97の現行割当で置き換えず追記参照",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "test/staff/verify-evidence-96.py",
+      "section": "工程96別自然人assert",
+      "proposed_treatment": "工程96専用検証のまま保持。工程97判定へ流用禁止",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    },
+    {
+      "path": "test/staff/access-boundaries-model-89.mjs",
+      "section": "ROOT_SEPARATION",
+      "proposed_treatment": "旧モデルを保持。将来の実装変更は法人・運用範囲を明示し保護対象の自己承認拒否を維持",
+      "related_u": [
+        "U04"
+      ],
+      "related_aud": [
+        "AUD-095-01",
+        "AUD-095-03"
+      ],
+      "status": "候補・履歴保持"
+    }
+  ],
+  "additional_review": "より広い表現差・正本内の同義表現は適用時に対象SHA全文で再確認。候補一覧を全記述の不存在証明としない"
+}

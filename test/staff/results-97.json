@@ -1,0 +1,29 @@
+{
+  "stage": 97,
+  "kind": "STATIC_RECORD_CONSISTENCY_ONLY",
+  "baseline_commit": "1503cb7b3e6de76163548ebb4fbf5a684ba04c0f",
+  "checks": {
+    "separation_capability": true,
+    "combined_duties_not_independent": true,
+    "protected_changes": true,
+    "u09_18_unconfirmed": true,
+    "execution_blocked": true,
+    "public_names_absent": true,
+    "utf8_lf": true
+  },
+  "passed": 7,
+  "failed": 0,
+  "files_sha256": {
+    "design/staff-initial-operation-exception-97.md": "4e0f7f0c821531f2b626ff2a9dd69bdf593d11a068f0705a841a54e010a7a1fd",
+    "test/staff/assignment-policy-97.json": "fafacb153ff27bbc131032d2811baa665d6ae7ebffcf63a34fb3481577c8fedd",
+    "test/staff/revision-candidates-97.json": "39651cfa302cbf80cdce8fc05af5173e5519d7d1d5b01b0961f3da1ac922823a"
+  },
+  "not_tested": [
+    "actual authorization",
+    "approval authenticity",
+    "U09 infrastructure",
+    "U06 model rerun",
+    "DB/Actions execution"
+  ],
+  "historical_files_changed": false
+}

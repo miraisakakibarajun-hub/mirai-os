@@ -1,0 +1,212 @@
+{
+  "stage": 97,
+  "source_commit": "1503cb7b3e6de76163548ebb4fbf5a684ba04c0f",
+  "authority": "工程97ユーザー追加指示（管理判断の転記。実承認の真正性検証済みを意味しない）",
+  "scope": "一般社団法人みらいの当面の初期運用のみ",
+  "role_reference": "INITIAL_MANAGER（実名対応は非公開決定記録）",
+  "design": {
+    "role_separation_supported": true,
+    "default_executor_verifier_separate": true,
+    "automatic_exception_for_other_corporations": false
+  },
+  "initial_operation": {
+    "u04": {
+      "initial_executor": "INITIAL_MANAGER",
+      "verification_duties": "INITIAL_MANAGER",
+      "evidence_custodian": "INITIAL_MANAGER"
+    },
+    "u08": {
+      "management_accountable": "INITIAL_MANAGER",
+      "administrative_investigation_and_review_duties": "INITIAL_MANAGER"
+    },
+    "u09": {
+      "management_accountable": "INITIAL_MANAGER",
+      "technical_cost_security_confirmation_and_approval_administration": "INITIAL_MANAGER"
+    },
+    "combined_duties_allowed": true,
+    "independent_natural_person_verification_claimed": false,
+    "actual_access_granted": false
+  },
+  "protected_changes": {
+    "subject": "INITIAL_MANAGER",
+    "operations": [
+      "権限付与",
+      "権限拡大",
+      "停止解除"
+    ],
+    "required_approver": "PROTECTED_CHANGE_APPROVER",
+    "distinct_natural_person_required": true,
+    "self_approval_allowed": false,
+    "combined_duties_exception_applies": false,
+    "approval_authenticity_verified": false
+  },
+  "u09_checks": [
+    {
+      "id": "PG96-01",
+      "item": "Actions利用枠",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-02",
+      "item": "追加課金条件",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-03",
+      "item": "Repository権限",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-04",
+      "item": "Actions permissions",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-05",
+      "item": "Secrets必要性",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-06",
+      "item": "Secret最小化",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-07",
+      "item": "PostgreSQL版",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-08",
+      "item": "Docker image固定",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-09",
+      "item": "外部network",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-10",
+      "item": "データ完全架空化",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-11",
+      "item": "時間上限",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-12",
+      "item": "再実行/ retry",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-13",
+      "item": "自動停止",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-14",
+      "item": "ログ保持",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-15",
+      "item": "artifact保存",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-16",
+      "item": "接続数/隔離",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-17",
+      "item": "cleanup/再構築",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    },
+    {
+      "id": "PG96-18",
+      "item": "主開発構築許可",
+      "management_owner": "INITIAL_MANAGER",
+      "management_assignment_status": "担当者指定済",
+      "verification_status": "未確認",
+      "verification_confirmed": false,
+      "evidence": null
+    }
+  ],
+  "u09_confirmed_count": 0,
+  "build_authorized": false,
+  "actions_authorized": false,
+  "real_db_auth_production_authorized": false,
+  "audit_status": "OPEN。担当指定の反映のみ。独立監査による採否判断前に指摘を閉じない"
+}
