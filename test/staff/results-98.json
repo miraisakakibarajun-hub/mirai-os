@@ -1,0 +1,77 @@
+{
+  "stage": 98,
+  "validation_level": "STATIC_PREPARATION_CONSISTENCY_ONLY",
+  "passed": 12,
+  "failed": 0,
+  "checks": {
+    "ten_routes": true,
+    "route_contracts": true,
+    "eighteen_conditions": true,
+    "condition_contracts": true,
+    "evidence_bijection": true,
+    "zero_confirmed_no_evidence": true,
+    "no_execution": true,
+    "case_ids_and_dependencies": true,
+    "required_topics": true,
+    "u04_open": true,
+    "writer_not_promoted": true,
+    "baseline_identity": true
+  },
+  "integration_executed": 0,
+  "model_rerun": false,
+  "source_commit": "a4ee7260e634f97645c6aa81ce470660a6033aa5",
+  "files": [
+    {
+      "path": "test/staff/github-observations-98.json",
+      "sha256": "f78c9fe60d4e78b90d501407e50f6b8466cdfd8f3f13e6e8ee90057c1b6313c6"
+    },
+    {
+      "path": "test/staff/writer-final-checks-98.json",
+      "sha256": "1b824210b300c2482d01367d83573561d3e80499e91daa89011bd9b1f797dc77"
+    },
+    {
+      "path": "design/staff-writer-final-procedure-98.md",
+      "sha256": "e8dc3354afff39a165d3170631cdbfd566a0a022664952ec29d73e369bd1d01e"
+    },
+    {
+      "path": "test/staff/u09-confirmation-spec-98.json",
+      "sha256": "cfc9fd7308b489d499116311d2347b1b32358bc9bae49c31e80def76d824e6ad"
+    },
+    {
+      "path": "test/staff/u09-evidence-register-98.json",
+      "sha256": "65303474a5d7c54ab1b1738db0395313e12cd25614af4ecfbbbf26d44714e863"
+    },
+    {
+      "path": "test/staff/concurrency-cases-98.json",
+      "sha256": "e5952e36bbc8142572710ed26db7801f34026b382c6a3d47bce4c9014aec5bd5"
+    },
+    {
+      "path": "design/staff-isolated-integration-spec-98.md",
+      "sha256": "f1fcfe930f07a83c0c0acbef1b50dfb13def2f5473fe426f050ab9d545094c63"
+    },
+    {
+      "path": "design/staff-approval-authenticity-98.md",
+      "sha256": "2a38af5c1cc86faf94b49b44798547ca81bffb32bba5bdf1088bf35fcea1001c"
+    },
+    {
+      "path": "test/staff/open-register-98.json",
+      "sha256": "4a833749ec0c9b514dcfda5665b812168bb45f0983fd3279fd56edbbf95534b7"
+    },
+    {
+      "path": "design/staff-stage98-report.md",
+      "sha256": "c0b18564b38a484f304e7318dcdaf174bc45a763d706c53a4d4edccbe500ab59"
+    },
+    {
+      "path": "test/staff/verify-preparation-98.py",
+      "sha256": "fda629916a9351274ba9e80c754d30a3268472462c84ff63bd5f7d1886bcd000"
+    }
+  ],
+  "byte_and_public_name_checks": "PASS",
+  "not_verified": [
+    "actual U09 conditions",
+    "writer coverage/runtime fence",
+    "DB/Actions integration",
+    "approval identity authenticity",
+    "audit source full text"
+  ]
+}

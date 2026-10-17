@@ -1,0 +1,385 @@
+{
+  "stage": 98,
+  "evidence": [
+    {
+      "id": "EV98-01",
+      "condition_id": "PG98-01",
+      "required_content": "日時/期間/利用枠/残分の確認記録、私的情報は除去",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-02",
+      "condition_id": "PG98-02",
+      "required_content": "追加課金なし条件と停止適用の所有者確認",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-03",
+      "condition_id": "PG98-03",
+      "required_content": "権限範囲・確認日・対象refを記録、実個人一覧は非公開",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-04",
+      "condition_id": "PG98-04",
+      "required_content": "設定確認と固定workflow草案hash、未登録のまま",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-05",
+      "condition_id": "PG98-05",
+      "required_content": "参照の有無の確認記録のみ、値/私的名称一覧を転記しない",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-06",
+      "condition_id": "PG98-06",
+      "required_content": "credentialを含まない生成・保管・削除手順版",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-07",
+      "condition_id": "PG98-07",
+      "required_content": "固定版manifest・確認日、構築許可後にserver版照合",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-08",
+      "condition_id": "PG98-08",
+      "required_content": "immutable manifest・取得元とreview、pullは構築許可後",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-09",
+      "condition_id": "PG98-09",
+      "required_content": "段階別通信設計、構築前は静的review・構築後は別検証",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-10",
+      "condition_id": "PG98-10",
+      "required_content": "fixture manifestとレビュー結果",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-11",
+      "condition_id": "PG98-11",
+      "required_content": "15分/30秒等候補値の採否記録、実測は構築後",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-12",
+      "condition_id": "PG98-12",
+      "required_content": "retry契約/期待case/予算、未実証を明記",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-13",
+      "condition_id": "PG98-13",
+      "required_content": "停止条件表と静的否定系、runtime実証は構築後",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-14",
+      "condition_id": "PG98-14",
+      "required_content": "保持/アクセス/削除の判断記録",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-15",
+      "condition_id": "PG98-15",
+      "required_content": "artifact manifestと保持/課金/閲覧責任の決定",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-16",
+      "condition_id": "PG98-16",
+      "required_content": "接続/role/TX契約、実2接続確認は構築後",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-17",
+      "condition_id": "PG98-17",
+      "required_content": "破棄手順・失敗停止・再構築手順、実結果は構築後",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    },
+    {
+      "id": "EV98-18",
+      "condition_id": "PG98-18",
+      "required_content": "対象commit/manifest/条件/期間/判断者の構築許可記録",
+      "common_fields": [
+        "collector",
+        "judge",
+        "observed_at_JST_and_UTC",
+        "repo",
+        "target_commit",
+        "target_version",
+        "manifest_sha256",
+        "source_reference",
+        "redacted_evidence_sha256",
+        "decision",
+        "valid_until_or_reconfirm_trigger"
+      ],
+      "evidence_ref": null,
+      "acquired": false,
+      "invalidates_on": "ref/設定/料金期間/資格/manifest/担当権限の変更。AI文だけ・対象不明・失効証拠は不採用"
+    }
+  ],
+  "confirmed_count": 0,
+  "secret_values_allowed": false
+}

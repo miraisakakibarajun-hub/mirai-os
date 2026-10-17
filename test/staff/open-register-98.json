@@ -1,0 +1,90 @@
+{
+  "stage": 98,
+  "u04": {
+    "policy": "A維持",
+    "status": "OPEN",
+    "items": [
+      "独立照合者の正式人選",
+      "法人決定原本",
+      "初回照合方法",
+      "証拠保管先",
+      "再設定・復旧時の独立照合条件"
+    ],
+    "qualification_set": false,
+    "actual_verification_completed": false
+  },
+  "audits": [
+    {
+      "id": "AUD-097-01",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-097-02",
+      "status": "UNCONFIRMED_OPEN_FOR_TRACKING",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-096-04",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-095-01",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-095-02",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-095-03",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-095-04",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-090-01",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-090-02",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    },
+    {
+      "id": "AUD-090-03",
+      "status": "OPEN",
+      "closure": "独立監査の対象指摘原文と実証証拠を確認後、主開発判断。設計記録だけで閉じない"
+    }
+  ],
+  "audit_source_limit": "STAFF-AUD-097再監査採用はユーザー通知。AUD-097-02およびAUD-096他残件の原文/全件一覧は本会話で未提示。推測で内容や解消を確定しない。AUD-096-04はユーザー指定の継続真正性事項。",
+  "aud096_other_residuals": "原文照合待ち・閉鎖扱い禁止",
+  "u08": {
+    "candidate_files": 126,
+    "fence_verified": 0,
+    "complete": false
+  },
+  "u09": {
+    "confirmed": 0,
+    "total": 18,
+    "actions_build_run_allowed": false
+  },
+  "u06": {
+    "model_history": 50,
+    "integration_executed": 0,
+    "production_authorized": false
+  },
+  "abc": {
+    "A": "非実行手順・証拠契約の文書化",
+    "B": "架空隔離試験準備のみ。起動は18条件＋明示許可待ち",
+    "C": "実DB/実Auth/正式権限/本番登録/移行/未承認Actionsは禁止"
+  }
+}
