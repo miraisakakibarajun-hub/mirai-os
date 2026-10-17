@@ -1,0 +1,123 @@
+{
+  "development": "STAFF-WORK-094",
+  "status": "COMPLETION_CANDIDATE_INDEPENDENT_AUDIT_PENDING",
+  "baseline_commit": "3078b1adb1396c8b290f54ed205133fc692da767",
+  "tested_source_commit": "b3e11e9c66d1214fe9aa540f917a3510dd961e5a",
+  "current_test_baseline": "STAFF-TEST-BASELINE-094-01",
+  "new_files": [
+    "design/staff-formal-gaps-94.md",
+    "design/staff-legacy-root-cause-94.md",
+    "design/staff-stage94-report.md",
+    "design/staff-u04-selection-94.md",
+    "design/staff-u06-audit-cases-94.md",
+    "design/staff-u08-proof-plan-94.md",
+    "design/staff-u08-roles-94.md",
+    "test/staff/current-test-baseline-94.json",
+    "test/staff/grant-audit-94.test.mjs",
+    "test/staff/grant-audit-fixture-94.mjs",
+    "test/staff/legacy-byte-evidence-94.json",
+    "test/staff/legacy-reproduction-94.json",
+    "test/staff/reproduce-legacy-94.py",
+    "test/staff/test-history-94.json",
+    "test/staff/u09-build-decision-94.json",
+    "test/staff/u09-owners-94.json",
+    "test/staff/verify-management-94.py",
+    "test/staff/results-94.json"
+  ],
+  "updated_existing_files": [],
+  "MODEL": {
+    "pass": 50,
+    "fail": 0,
+    "existing_93": 34,
+    "new_94": 16,
+    "command": "node --test --test-reporter=tap test/staff/grant-union-93.test.mjs test/staff/grant-audit-94.test.mjs",
+    "scope": "synthetic grant union and audit projection only",
+    "syntax": "node --check new fixture/test PASS"
+  },
+  "STATIC": {
+    "pass": 10,
+    "fail": 0,
+    "command": "python test/staff/verify-management-94.py",
+    "scope": "provenance, drift rejection, history, responsibilities, fixed baseline and conservative preflight",
+    "type_lint_SQL_full_dependencies": "NOT_EXECUTED"
+  },
+  "legacy_reproduction": {
+    "command": "python test/staff/reproduce-legacy-94.py",
+    "official_Git_bytes": {
+      "pass": 0,
+      "fail": 1,
+      "expected_exit_code": 1,
+      "result": "OLD_FAILURE_REPRODUCED_NOT_ACTIVE_SET"
+    },
+    "transformed_legacy_bytes": {
+      "pass": 1,
+      "fail": 0,
+      "expected_exit_code": 0,
+      "result": "OLD_COPY_MATCH_REPRODUCED_NOT_ACTIVE_SET"
+    },
+    "not_counted_in_current_passes": true
+  },
+  "old_failure_root_cause": {
+    "path_count": 127,
+    "extra_LF_only": 125,
+    "CRLF_to_LF_plus_extra_LF": 2,
+    "official_blob_matches_declared_and_stage89_commit": 127,
+    "cause": "Materialized byte transformations used as source evidence without first verifying against Git blobs",
+    "old_failures_retained": true,
+    "transformation_tool_or_exact_time": "NOT_PROVEN"
+  },
+  "U09": {
+    "confirmed_conditions": 0,
+    "required_conditions": 18,
+    "decision": "BUILD_PROHIBITED_PENDING_CONFIRMATIONS"
+  },
+  "audit_status": {
+    "AUD-093-01": "RELATED_DECISION_MATERIAL_PREPARED_ORIGINAL_NUMBER_MAPPING_UNVERIFIED",
+    "AUD-093-02": "RELATED_DECISION_MATERIAL_PREPARED_ORIGINAL_NUMBER_MAPPING_UNVERIFIED",
+    "AUD-093-03": "RELATED_DECISION_MATERIAL_PREPARED_ORIGINAL_NUMBER_MAPPING_UNVERIFIED",
+    "AUD-093-04": "ROOT_CAUSE_AND_REPRODUCTION_PREPARED_CLOSURE_FOR_INDEPENDENT_AUDIT",
+    "AUD-090-01": "OPEN",
+    "AUD-090-02": "OPEN",
+    "AUD-090-03": "OPEN"
+  },
+  "U_status": {
+    "U01": "UNAPPROVED_REMAINDER",
+    "U02": "UNAPPROVED_REMAINDER_EXISTING_PRINCIPLES_RETAINED",
+    "U03": "UNAPPROVED_REMAINDER",
+    "U04": "R_A_CONDITIONAL_PERSONS_AND_EVIDENCE_NOT_SELECTED",
+    "U05": "UNAPPROVED_REMAINDER",
+    "U06": "APPROVED_UNION_SYNTHETIC_ONLY",
+    "U07": "UNAPPROVED_REMAINDER",
+    "U08": "GLOBAL_FENCE_CONDITIONAL_COVERAGE_NOT_PROVEN",
+    "U09": "ACTIONS_PG_CONDITIONAL_BUILD_PROHIBITED"
+  },
+  "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+  "FORMAL_ACCEPTANCE": "NOT_EXECUTED",
+  "real_db_connections": 0,
+  "real_auth": false,
+  "formal_grants": false,
+  "production_registration_or_migration": false,
+  "actions_or_containers_started": false,
+  "canonical_docs_modified": false,
+  "production_authorized": false,
+  "source_hashes": {
+    "design/staff-formal-gaps-94.md": "ea3bd4eccb70782fc98dcc630d7d63cb22aee1a1010b2fc646f017c9cced47e7",
+    "design/staff-legacy-root-cause-94.md": "e166b700464a70e082577047b78c4cbf0b8b2b5e2298737470978e0ddb968565",
+    "design/staff-stage94-report.md": "bb375d2710e7adae4d51aaacb98eb11cc845f27ce98f0b067ecfbf960197b0d7",
+    "design/staff-u04-selection-94.md": "bbc996c7c1ecea147e55c39e812bb5d17065e87e170d5f1ed7224d25395b2c13",
+    "design/staff-u06-audit-cases-94.md": "464b4abb130833ba77790ab5abb993668c9f294dea400e930133aba5f97ad9f4",
+    "design/staff-u08-proof-plan-94.md": "941775e2e3bcdc98339f1c29a2b0574f509a1bb1e68d2b01ad48101bbb0efada",
+    "design/staff-u08-roles-94.md": "57f60b13256442ef6ad0001a9d74f6e0fd534e0b5ecaa37414c8362da56d04d1",
+    "test/staff/current-test-baseline-94.json": "a121ce0e0e6d7d44c3a6da03f1e689785992366bbfa128a30585704882c18d9e",
+    "test/staff/grant-audit-94.test.mjs": "17005857f4805c05bf73b129987bdc52af887cf9db614005d1b735702c8ecaee",
+    "test/staff/grant-audit-fixture-94.mjs": "b1ba0b04459962f419fcadfbd548b568fb638374245f00843207cf67706c17e4",
+    "test/staff/legacy-byte-evidence-94.json": "8273cad98d2791e3260647578f17ba6674f806701062c31947da4878b9f099fd",
+    "test/staff/legacy-reproduction-94.json": "d08744f742f3c20e10b4d2f74fc30db1255c82fef4e7f484b3d0af4b4dbe1d65",
+    "test/staff/reproduce-legacy-94.py": "9360a1a2c27f7c76c7b0e15d2fcdcdaac49c29bb0d81ab8727a25dc6e8f2adf7",
+    "test/staff/test-history-94.json": "21576003df7d31b9da5cdf4088f541a8aabd4cc268d4b78aa84adf94904662c5",
+    "test/staff/u09-build-decision-94.json": "3f86423fd3608ae23e328ae8171a78487f40314e9eaec9146f7c863314759625",
+    "test/staff/u09-owners-94.json": "d7917e9d9319b141adbc582cc22f26a34c4b99d70f51451acc4f12ba6ddfcda5",
+    "test/staff/verify-management-94.py": "51b29120516f95651e08b3595137a6df4671aeefe62b1a5535c5a781e61b353f"
+  },
+  "audit_submission": "PACKAGE_PREPARED_OTHER_THREAD_TRANSFER_RECEIPT_UNCONFIRMED"
+}
