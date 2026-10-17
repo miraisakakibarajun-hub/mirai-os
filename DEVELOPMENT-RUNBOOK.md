@@ -374,3 +374,8 @@ AUD087-01 remains pending full-writer integration and two-connection MVCC/deadlo
 `design/staff-concurrency-test-plan-89.md` Ver0.1 plans native isolated PG17 with two workers plus one observer, READ COMMITTED, explicit barriers/pg_locks/pg_blocking_pids, same-grant/grant-revoke/approval-parent/body-stop/audit failure, deadlock control, timeout/retry/unknown COMMIT, and evidence/acceptance requirements. Entire native plan NOT_EXECUTED; no environment was created or connected. Existing project DB/staging not used.
 
 AUD088-01..05 have decision/planning/model responses, not implementation closure. AUD087-01..04 remain design-improved/implementation verification continuing. AUD086 ID/qualification decisions pending. No public API/production writer/DB/Auth/staff/main changes. Independent-audit handoff prepared; receipt/result and main-thread policy adoption unconfirmed.
+
+
+## 工程90 未決採否準備（Ver0.1 / 2026-10-17）
+
+STAFF-AUD-089採用・89条件付き完了の指示に基づく。design/staff-final-decisions-90.md にU04/U06/U08/U09各1件の最終判断票、試験レベル、業務API信頼境界を集約。test/staff/writer-boundaries-90.jsonは127ソース再確認/79候補の限定台帳で、全writer網羅を証明しない。STATIC12件・MODEL36件成功、詳細results-90.json。隔離統合/正式受入は未実施。U01〜U09全て未承認。SQL/API/正本D01〜D12変更なし。実DB/実Auth/正式付与/本番は禁止継続。独立監査への提出用成果、受領未確認。

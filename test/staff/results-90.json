@@ -1,0 +1,49 @@
+{
+  "development": "STAFF-WORK-090",
+  "status": "AUDIT_CANDIDATE_NOT_ACCEPTED",
+  "baseline_commit": "1c6312beafffc54b61a70dbd636d257e699162b1",
+  "levels": {
+    "STATIC": {
+      "pass": 12,
+      "fail": 0,
+      "evidence": [
+        "decision-evidence-90.test.mjs:1-6",
+        "safety-boundaries-89.test.mjs:37-42"
+      ],
+      "syntax": "node --check PASS",
+      "typecheck": "NOT_EXECUTED",
+      "sql_schema": "NOT_EXECUTED",
+      "lint": "NOT_EXECUTED",
+      "full_dependency_resolution": "NOT_EXECUTED"
+    },
+    "MODEL": {
+      "pass": 36,
+      "fail": 0,
+      "evidence": [
+        "safety-boundaries-89.test.mjs:1-36"
+      ],
+      "synthetic_only": true
+    },
+    "ISOLATED_INTEGRATION": {
+      "status": "NOT_EXECUTED"
+    },
+    "FORMAL_ACCEPTANCE": {
+      "status": "NOT_EXECUTED"
+    }
+  },
+  "real_db_connections": 0,
+  "real_auth": false,
+  "production_authorized": false,
+  "unknown_writers_excluded": false,
+  "U_status": {
+    "U01": "UNAPPROVED",
+    "U02": "UNAPPROVED",
+    "U03": "UNAPPROVED",
+    "U04": "UNAPPROVED",
+    "U05": "UNAPPROVED",
+    "U06": "UNAPPROVED",
+    "U07": "UNAPPROVED",
+    "U08": "UNAPPROVED",
+    "U09": "UNAPPROVED"
+  }
+}

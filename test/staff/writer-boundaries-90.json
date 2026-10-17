@@ -1,0 +1,1860 @@
+{
+  "baseline_commit": "1c6312beafffc54b61a70dbd636d257e699162b1",
+  "source_count": 127,
+  "candidate_count": 79,
+  "inventory_complete": false,
+  "productionReady": false,
+  "limitations": [
+    "runtime call graph",
+    "DB catalog and roles",
+    "console and maintenance",
+    "external jobs and repositories",
+    "computed SQL and RPC",
+    "deployment configuration"
+  ],
+  "sources": [
+    {
+      "path": "app/api/staff/auth/login/route.ts",
+      "sha256": "07814cafb31615998ccc27102873d5042c0f5716de9dcbe5cc17dfb518bc9c3a",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/login-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/staff/auth/logout/route.ts",
+      "sha256": "68fd02597591d371ebfd21d86d4ae487e4b01c8914ddacdb991c14c083786c34",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/session-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/staff/auth/password/change/route.ts",
+      "sha256": "62f2343ab72ad274132f38a925ad2c7e04c156f444f5e404ddb7755ae426a94a",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/login-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/staff/auth/password/reset/route.ts",
+      "sha256": "839756adf3002a1c855d9a32eb571107408819f7f9c607d55539ff27760316d6",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/login-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/staff/candidates/result/route.ts",
+      "sha256": "b9fb2633a09a9f260184aff079c7a9d49dfd2ecc32b82d429544e7f771004180",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/candidate-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/staff/candidates/route.ts",
+      "sha256": "8f25942bc4f1999729eed36d5d7a32c4a4b2abca423aac6502c0e75bd0be4081",
+      "entry_evidence": [
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/staff/candidate-runtime"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "sha256": "a0a871f3dbb9017b78c7e52715e080429aac6124dc64213cd770c46c87a2e9cf",
+      "entry_evidence": [
+        "staff_core.assignment_identity_guard_80",
+        "staff_core.assignment_consistency_80",
+        "staff_core.scope_operating_reference_at_80",
+        "staff_core.department_structure_reference_at_80",
+        "staff_core.assignment_reference_at_80",
+        "staff_core.assignment_reference_80"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.assignment_revision_set_members_80",
+        "staff_core.assignment_revision_sets_80",
+        "staff_core.assignment_revisions_80",
+        "staff_core.assignments"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "sha256": "4981105063330fc8d7aa2b4c5785b6ae4e6a62e08d58b6f210905e28fdc37c39",
+      "entry_evidence": [
+        "staff_auth_private.guard_session_update_v1",
+        "staff_auth_private.guard_audit_v1",
+        "staff_auth_private.guard_outbox_v1",
+        "staff_auth_private.bound_v1",
+        "staff_auth_private.fence_key_v1",
+        "staff_auth_private.account_valid_v1",
+        "staff_auth_private.login_ticket_v1",
+        "staff_auth_private.read_session_v1",
+        "staff_auth_private.confirm_current_session_v1",
+        "staff_auth_private.confirm_login_v1",
+        "staff_auth_private.revoke_local_session_v1",
+        "staff_auth_private.claim_revocation_v1",
+        "staff_auth_private.read_claim_credentials_v1",
+        "staff_auth_private.finish_revocation_v1"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "OF",
+        "OR",
+        "staff_auth_private.execution_bindings",
+        "staff_auth_private.managed_sessions",
+        "staff_auth_private.session_audit_events",
+        "staff_auth_private.session_revocation_outbox"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-auth-privileges-61.sql",
+      "sha256": "d92fd0402803493309f3b353e7d8babb81e3467c4770d5dc67ff9b7a2fd32921",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-auth-storage-59.sql",
+      "sha256": "bc18c1271687dda90d7b79cb911c472ad110c98bd5530413a1d49282ab34be27",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "staff_auth_private.managed_sessions",
+        "staff_auth_private.session_audit_events",
+        "staff_auth_private.session_revocation_outbox"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "sha256": "c80a35eb614f320e486930e6bdf641cfee15547871b2c7c5a013c9b41e6ee246",
+      "entry_evidence": [
+        "staff_core.role_history_identity_82",
+        "staff_core.role_history_consistency_82",
+        "staff_core.role_assignment_reference_at_82",
+        "staff_core.role_assignment_reference_82"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.business_role_revision_set_members_82",
+        "staff_core.business_role_revision_sets_82",
+        "staff_core.business_role_revisions_82",
+        "staff_core.business_roles",
+        "staff_core.role_assignment_revision_set_members_82",
+        "staff_core.role_assignment_revision_sets_82",
+        "staff_core.role_assignment_revisions_82",
+        "staff_core.role_assignments"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "sha256": "14fcc9e001e76bac927214069f07f8aadb36e538b51cd92f1c316e5bc87b4994",
+      "entry_evidence": [
+        "staff_core.entity_identity_guard_76",
+        "staff_core.scope_member_guard_76",
+        "staff_core.scope_seal_guard_76",
+        "staff_core.scope_identity_guard_76",
+        "staff_core.scope_history_required_76",
+        "staff_core.scope_reference_match_76"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.businesses",
+        "staff_core.departments",
+        "staff_core.scope_definition_revisions",
+        "staff_core.scope_definitions",
+        "staff_core.scope_revision_set_members_76",
+        "staff_core.scope_revision_sets_76",
+        "staff_core.sites"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "sha256": "860ff963bf06bb1b5f44f679919c5a4a66432e9f04061457a9f15b6eb1282d47",
+      "entry_evidence": [
+        "staff_core.contract_identity_guard_81",
+        "staff_core.contract_consistency_81",
+        "staff_core.contract_reference_at_81",
+        "staff_core.contract_reference_81"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.contract_revision_set_members_81",
+        "staff_core.contract_revision_sets_81",
+        "staff_core.contract_revisions_81",
+        "staff_core.contracts"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "sha256": "3305c806953c06a36f0bda4f80a0b919b4c2c4b0ad2e3ea6d388b313bca9596e",
+      "entry_evidence": [
+        "staff_core.validate_effect_scope_73"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "sha256": "64b8f0669039fefe0962d36512ab9b79e7d31aeaad5d75f33f638da183f045ef",
+      "entry_evidence": [
+        "staff_core.guard_scope_member_73",
+        "staff_core.guard_scope_revision_73",
+        "staff_core.guard_scope_identity_73",
+        "staff_core.require_scope_history_73",
+        "staff_core.scope_contains_73",
+        "staff_core.initial_policy_readiness_73"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.control_scope_actions_73",
+        "staff_core.control_scope_organizations_73",
+        "staff_core.control_scope_revisions_73",
+        "staff_core.control_scope_systems_73",
+        "staff_core.control_scopes"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "sha256": "3588142a0e2dc74d796c29af5b5acd6da3496b54083d8989b631d9272fe98a5e",
+      "entry_evidence": [
+        "staff_core.append_only_65",
+        "staff_core.guard_person_member_65",
+        "staff_core.seal_person_set_65",
+        "staff_core.require_person_history_65",
+        "staff_core.guard_account_member_65",
+        "staff_core.seal_account_set_65",
+        "staff_core.require_account_history_65",
+        "staff_core.guard_person_identity_65",
+        "staff_core.guard_account_identity_65"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.account_link_revisions",
+        "staff_core.account_links",
+        "staff_core.account_revision_set_members",
+        "staff_core.account_revision_sets",
+        "staff_core.person_revision_set_members",
+        "staff_core.person_revision_sets",
+        "staff_core.person_revisions",
+        "staff_core.persons"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-current-projections-67.sql",
+      "sha256": "8119915224a443b2f440eb22cfde6398aec4a16b95e96f5793b955406b253538",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-current-projections-68.sql",
+      "sha256": "801f5acada691e06d001becc8400a79f86f68d23ad7733315ece658254b59222",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-current-projections-70.sql",
+      "sha256": "fc2508c114efb7668138283c875f8f68b95e4449b40eb8ea78abde1e749ddd61",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-current-projections-73.sql",
+      "sha256": "ac3ebf9bda7aea6a0fda1be1408f479a559b9bd035556b07b5f20e0c8a7c878b",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "sha256": "7dc1695a65e57550402226d098b564ae9beb3665fcbed36be15627885f706ad2",
+      "entry_evidence": [
+        "staff_core.entity_identity_guard_76",
+        "staff_core.department_structure_consistency_78",
+        "staff_core.department_structure_reference_78"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.department_structure_revision_set_members_78",
+        "staff_core.department_structure_revision_sets_78",
+        "staff_core.department_structure_revisions_78",
+        "staff_core.departments"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-grant-dependency-reference-83.sql",
+      "sha256": "27ca388c1592532cd337eb57df4384ffd80c2c9f3edb66aa868251d998d84c07",
+      "entry_evidence": [
+        "staff_core.grant_dependency_reference_at_83",
+        "staff_core.grant_dependency_reference_83"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "sha256": "ed99791c84e1d4585c8992f62140d3c88e7641624780b66d275b337b9bd8e99f",
+      "entry_evidence": [
+        "staff_core.binding_event_guard_87",
+        "staff_core.binding_child_guard_87",
+        "staff_core.binding_snapshots_match_87",
+        "staff_core.binding_header_guard_87",
+        "staff_core.binding_seal_audit_87",
+        "staff_core.binding_diagnostic_at_87"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.grant_binding_events_87",
+        "staff_core.grant_dependency_snapshots_87",
+        "staff_core.grant_evidence_bindings_87"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "sha256": "a8db377193bdaf69aa82e5f4f2206d7078f25deac8d5de08f4f233c31c4a74a4",
+      "entry_evidence": [
+        "staff_core.grant_child_guard_75",
+        "staff_core.grant_seal_guard_75",
+        "staff_core.grant_identity_guard_75",
+        "staff_core.grant_history_required_75"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.access_grant_revisions_75",
+        "staff_core.access_grants",
+        "staff_core.grant_dependencies_75",
+        "staff_core.grant_revision_set_members_75",
+        "staff_core.grant_revision_sets_75"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "sha256": "2b29931a8b329c4ff62907326f54fdafcae9a684d3f8f4a64718eacc9e19f6d9",
+      "entry_evidence": [
+        "staff_core.guard_typed_auth_request_70",
+        "staff_core.validate_initial_admission_70",
+        "staff_core.guard_initial_source_70"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "OR",
+        "staff_core.initial_auth_admissions",
+        "staff_core.initial_auth_request_details"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "sha256": "6a12ee1384eb9f665562b51e073a3322e90311aff7827e2abfe66507fbcb279f",
+      "entry_evidence": [
+        "staff_core.validate_login_reservation_69",
+        "staff_core.reserve_login_identifier_69"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "OR",
+        "staff_core.login_identifier_reservations"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "sha256": "758ee340a5874c638611d75363e64fbff4f72fb8bdcc8eb3977b5a41fde7e5ec",
+      "entry_evidence": [
+        "staff_core.organization_revision_insert_77",
+        "staff_core.organization_revision_append_77",
+        "staff_core.organization_member_guard_77",
+        "staff_core.organization_set_guard_77",
+        "staff_core.entity_identity_guard_76",
+        "staff_core.organization_history_required_77",
+        "staff_core.scope_operating_reference_77"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "guard.",
+        "staff_core.",
+        "staff_core.business_revision_set_members_77",
+        "staff_core.business_revision_sets_77",
+        "staff_core.business_revisions_77",
+        "staff_core.business_site_revision_set_members_77",
+        "staff_core.business_site_revision_sets_77",
+        "staff_core.business_site_revisions_77",
+        "staff_core.business_sites",
+        "staff_core.businesses",
+        "staff_core.department_revision_set_members_77",
+        "staff_core.department_revision_sets_77",
+        "staff_core.department_revisions_77",
+        "staff_core.departments",
+        "staff_core.site_revision_set_members_77",
+        "staff_core.site_revision_sets_77",
+        "staff_core.site_revisions_77",
+        "staff_core.sites"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "sha256": "f0cb097d70876925a5fee94c91e06e5b8ba87d97f73ffcceed0d4a6445446ad9",
+      "entry_evidence": [
+        "staff_core.append_only_68",
+        "staff_core.guard_actor_68",
+        "staff_core.record_actor_68"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.actor_registry",
+        "staff_core.actor_state_events",
+        "staff_core.organizations"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "sha256": "f019a5326b7520d5aaed9bea8cd53c9dc3c241b90ea9d8700d3dfbec07a394ea",
+      "entry_evidence": [
+        "staff_core.guard_organization_member_68",
+        "staff_core.seal_organization_set_68",
+        "staff_core.require_organization_history_68",
+        "staff_core.guard_relation_member_68",
+        "staff_core.seal_relation_set_68",
+        "staff_core.require_relation_history_68",
+        "staff_core.guard_organization_identity_68",
+        "staff_core.guard_relation_identity_68",
+        "staff_core.guard_control_68",
+        "staff_core.guard_control_operation_68"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.account_auth_controls",
+        "staff_core.account_authz_controls",
+        "staff_core.actor_registry",
+        "staff_core.auth_control_events",
+        "staff_core.organization_revision_set_members",
+        "staff_core.organization_revision_sets",
+        "staff_core.organization_revisions",
+        "staff_core.organizations",
+        "staff_core.person_organization_revisions",
+        "staff_core.person_organizations",
+        "staff_core.relation_revision_set_members",
+        "staff_core.relation_revision_sets"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "sha256": "c08835c6f7feb8f63b1c16cef978d8c4355cc264ff56d6232d3e694d461c28da",
+      "entry_evidence": [
+        "staff_core.policy_condition_guard_85",
+        "staff_core.policy_revision_guard_85",
+        "staff_core.policy_identity_guard_85",
+        "staff_core.policy_candidate_status_at_85",
+        "staff_core.policy_candidate_status_85",
+        "staff_core.evidence_apply_child_guard_85",
+        "staff_core.evidence_candidate_guard_85"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "OR",
+        "staff_core.",
+        "staff_core.authorization_apply_contexts_85",
+        "staff_core.authorization_evidence_candidates_85",
+        "staff_core.policy_conditions_85",
+        "staff_core.policy_domains_85",
+        "staff_core.policy_revisions_85"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "sha256": "92234ee66e543fa77f6c1bb52cf29f62d68613fe03079e14211a72479c844794",
+      "entry_evidence": [
+        "staff_core.effect_evidence_valid_66",
+        "staff_core.validate_effect_66",
+        "staff_core.effect_append_only_66",
+        "staff_core.guard_effect_source_66"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "OR",
+        "staff_core.access_suspensions",
+        "staff_core.application_attempts",
+        "staff_core.applications",
+        "staff_core.decision_records",
+        "staff_core.request_revisions",
+        "staff_core.suspension_releases",
+        "staff_core.suspension_request_details"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "sha256": "c6ec2203f71c40c2e0fe461ab586fae376ecca12d3e991d93f68a4f8fd3983e5",
+      "entry_evidence": [
+        "staff_core.validate_workflow_effect_72"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "sha256": "bb3b14b4f06cdbc362e2a676b716e896ce40dfd84fb981b05ca7c19e8263d69c",
+      "entry_evidence": [
+        "staff_core.workflow_append_only_72",
+        "staff_core.guard_workflow_72",
+        "staff_core.require_application_consistency_72"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "ON",
+        "OR",
+        "staff_core.",
+        "staff_core.application_attempts",
+        "staff_core.applications",
+        "staff_core.change_requests",
+        "staff_core.decision_records",
+        "staff_core.impact_checks",
+        "staff_core.operation_requests",
+        "staff_core.request_revisions"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "design/staff-write-fence-88.sql",
+      "sha256": "3fdb929eeae32d0683fbb579559e96ea6e9d297ff730ad39675d2f175fa50c78",
+      "entry_evidence": [
+        "staff_core.acquire_write_fence_88",
+        "staff_core.acquire_body_read_fence_88"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.mjs",
+      "sha256": "489624baa9e00dca27fe10cd315141e2b0f7fb3b834a579772ad1c28637b4379",
+      "entry_evidence": [
+        "createAuthFunctionRepository"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/binding-resolver.mjs",
+      "sha256": "a70bc61f515819eace78bf5281932cd07764880fc722398418fb77039acda040",
+      "entry_evidence": [
+        "createBindingResolver"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/candidate-result.mjs",
+      "sha256": "b5ea7088c61c1bff38c259cf1c187dd5951225b49cea0f88dae176992026a026",
+      "entry_evidence": [
+        "createCandidateResultService",
+        "createCandidateResultRepository",
+        "createCandidateResultHTTP"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "./candidate-http.mjs"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/credential-sealer.mjs",
+      "sha256": "a41b09d5c3100273d1a75865968bf05b1776b2524b6506e4452e3dfb6574b4fa",
+      "entry_evidence": [
+        "createCredentialSealer"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/current-session.mjs",
+      "sha256": "53d2d8c4e1666edcf01406215bb7d655afb295fe977d4d3de917388df28cbb1b",
+      "entry_evidence": [
+        "assessSuspensions",
+        "assessCurrentSession",
+        "createCurrentSessionRepository"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/login-identity.mjs",
+      "sha256": "395bf7b239fbd94b53851e57d23b9405d723be071cfc03c1447b4c992143d89c",
+      "entry_evidence": [
+        "createLoginTicketLoader"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/login-session.mjs",
+      "sha256": "362370d23a981b7911877c6d906ebdc9832ceaa88064ac60eb1ad0d477002ef9",
+      "entry_evidence": [
+        "createLoginSessionRepository",
+        "createLoginCompletion"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/postgres-operations.mjs",
+      "sha256": "18dd046f67a75f0642b106a91299310fce00ada904a10ee06ab54ff441fcb0f3",
+      "entry_evidence": [
+        "createPostgresOperations"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [],
+      "target_lexemes": [
+        "staff_core.candidate_audit",
+        "staff_core.candidate_items",
+        "staff_core.candidate_operations",
+        "staff_core.candidate_revisions",
+        "staff_core.import_candidates"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/session-access.mjs",
+      "sha256": "bf3237df272f82313d13792da10b817751f1e257c69cb4e097b176c5575cdc49",
+      "entry_evidence": [
+        "staffCookieHash",
+        "createStaffSessionAuthenticator",
+        "createStaffBusinessAuthenticator",
+        "createStaffSessionHTTP",
+        "createStaffSessionRevocationRepository"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/session-postgres.mjs",
+      "sha256": "a411400814cc2e73227b2e7aa4cb52266268c5d037446966c6843c95548ad9d8",
+      "entry_evidence": [
+        "createPostgresSessionOperations",
+        "createPostgresRevocationWorker"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto"
+      ],
+      "target_lexemes": [
+        "OF",
+        "staff_auth_private.managed_sessions",
+        "staff_auth_private.session_audit_events",
+        "staff_auth_private.session_revocation_outbox"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.mjs",
+      "sha256": "ad3e92e727a1833e52ed076823f265f1126a01c44f75a2fc312e3603ccd5211a",
+      "entry_evidence": [
+        "createSupabasePasswordProvider"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "@supabase/supabase-js"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/staff/transaction-repository.mjs",
+      "sha256": "58a9db364c55d932687af410bac0e7551ddd0c6a80f0da84467eb90f87dbb6df",
+      "entry_evidence": [
+        "createTransactionRepository"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/ai-documents/generate/route.ts",
+      "sha256": "06015ce8f41dfa87743af9444b37317b7a0d10dee2857775185d9c8608a2e546",
+      "entry_evidence": [
+        "GET",
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/supabase/server",
+        "@/lib/ai-generate"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/monitoring-ai/route.ts",
+      "sha256": "7edc49dd9f483c3b10dec92965a25944fe05ec3c3b7f58450f1a0c609c40b95a",
+      "entry_evidence": [
+        "GET",
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/supabase/server",
+        "@/lib/ai-generate",
+        "@/lib/monitoring-ai-server"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/api/planning-assistance/route.ts",
+      "sha256": "0e42ad9d6c6255da00480a66b3c84b928f0fcd2acbec5b6bb67b8d6949a65a75",
+      "entry_evidence": [
+        "GET",
+        "POST"
+      ],
+      "entry_kind": "HTTP_ROUTE",
+      "imports": [
+        "@/lib/supabase/server",
+        "@/lib/ai-generate",
+        "@/lib/planning-assistance-server"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/components/LogoutButton.tsx",
+      "sha256": "24cc5faf3d9253739ab9c7975b1c7f185b1cc990ea7d426218ec84a7fef6a0a0",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "next/navigation",
+        "react",
+        "@/lib/supabase/client"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "sha256": "e1cfe46fd4f1a6b16523cd887dc6a6f4a9569aadaebbc5566893275fe6e8b1f7",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "react",
+        "@/lib/supabase/client"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/ai-documents/page.tsx",
+      "sha256": "6786247275443398047261b3d4573c39b209799575e1cf1c1d6009b8d5fe6463",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/lib/supabase/client",
+        "@/lib/ai-document",
+        "@/lib/assessment",
+        "@/lib/supabase/database.types"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/assessments/page.tsx",
+      "sha256": "47becf2cba6b4635f7f3949a1bff0133024e0db7524bad7df585814d9a5255af",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/lib/supabase/client",
+        "@/lib/assessment",
+        "@/lib/supabase/database.types"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/edit/page.tsx",
+      "sha256": "b7586568fa33e681eb4e0ed73cb93c1aa4a5b7dff061beffd16893a99d25ba32",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "react",
+        "@/lib/supabase/client"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/meetings/page.tsx",
+      "sha256": "ed473b36174417b3442e165ce7ef12e14e86dbc59da66a6b037e16103621a628",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/lib/supabase/client",
+        "@/lib/meeting-record",
+        "@/lib/supabase/database.types"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/monitoring/page.tsx",
+      "sha256": "ceec2da00e116f7a676282434c0e7d12fa50c318bd92c0382f3dda9784f06a0e",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/app/components/ApprovedAiNote",
+        "@/lib/supabase/client",
+        "@/lib/monitoring",
+        "@/lib/supabase/database.types",
+        "./MonitoringComparison",
+        "./MonitoringAi"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/planning-assistance/page.tsx",
+      "sha256": "68d368ca13e10cfc0d17856244b712d8e8d6cba835a15484e0d41bd966e51ca4",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/lib/supabase/client",
+        "@/lib/plan-content",
+        "@/lib/plan-review",
+        "@/lib/planning-assistance",
+        "@/lib/planning-assistance-server",
+        "@/lib/ai-document",
+        "@/lib/monitoring-handoff",
+        "@/lib/monitoring-ai",
+        "@/lib/monitoring",
+        "@/lib/supabase/database.types"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/plans/page.tsx",
+      "sha256": "3e4b7eee357e8e6a5331caaa7af33030d216b3cb97638b9bf57d166ad1a86985",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "./PlanReviewPanel",
+        "@/lib/plan-review",
+        "@/lib/plan-import",
+        "./PlanDraftImport",
+        "react",
+        "@/lib/supabase/client",
+        "@/lib/plan-content"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/plans/print/page.tsx",
+      "sha256": "c6c2c4a540cc1e0ec621b423de1c034fb8264833d76000c728648f9bb634b76f",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "next/link",
+        "@/lib/supabase/server",
+        "@/lib/approved-plan",
+        "./PlanPrintDocument",
+        "./PrintButton",
+        "./print.module.css"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/[id]/records/page.tsx",
+      "sha256": "45da7eede8d38aed741912f352233c529f11d8364ed2b722809969f11f374c1d",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "react",
+        "next/navigation",
+        "next/link",
+        "@/lib/supabase/client",
+        "@/lib/support-record",
+        "@/lib/supabase/database.types"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "app/users/new/page.tsx",
+      "sha256": "71343700ea565915f44e70efa188373a326f4da8328dc8e84adb8e2e25bab2bc",
+      "entry_evidence": [],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "next/navigation",
+        "next/link",
+        "react",
+        "react",
+        "@/lib/supabase/client"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/monitoring-ai-server.ts",
+      "sha256": "3a71186c7f023a4b3b0a0ff86a983c75738fe8559ca76e6f17bb73e194a51595",
+      "entry_evidence": [
+        "loadMonitoringAiContext",
+        "generateMonitoringChanges"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "node:crypto",
+        "@supabase/supabase-js",
+        "./supabase/database.types",
+        "./ai-generate",
+        "./ai-document",
+        "./plan-review",
+        "./approved-plan",
+        "./monitoring",
+        "./planning-assistance",
+        "./monitoring-ai"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "lib/planning-assistance-server.ts",
+      "sha256": "059cb3f8e197ab121dd7885d0935fec1805c5c3bff578bcc25a16c57628b2658",
+      "entry_evidence": [
+        "loadPlanningContext",
+        "generatePlanning"
+      ],
+      "entry_kind": "MODULE_CALLERS_NOT_PROVEN",
+      "imports": [
+        "./monitoring-handoff-server",
+        "node:crypto",
+        "@supabase/supabase-js",
+        "./supabase/database.types",
+        "./ai-generate",
+        "./ai-document",
+        "./plan-review",
+        "./approved-plan",
+        "./monitoring",
+        "./planning-assistance"
+      ],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "sha256": "b29801f4a2865ccc239eaf4c319d7598d5f1cba20e8c07a5a9be7a64540d60cd",
+      "entry_evidence": [
+        "set_updated_at"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "facilities",
+        "facility_service_types",
+        "on",
+        "roles",
+        "service_types",
+        "staff",
+        "staff_facility_roles",
+        "staff_org_roles",
+        "to",
+        "user_service_assignments",
+        "users"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "sha256": "63e01c6b5e72dfdbfefca2460720233e96dffa0c7dd8d971026af8931d8e301c",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "on",
+        "plans",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260816004924_ai2026037_phase1_stage6_functions_users_plans.sql",
+      "sha256": "0f4d201038bf274c6b86562cb09d962c4928cfc5d026a72e63352f9ad9a76efe",
+      "entry_evidence": [
+        "create_user_with_plan",
+        "update_user_with_plan"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "plans",
+        "users"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260816011117_ai2026037_phase1_stage6_errcode_fix.sql",
+      "sha256": "0c06acc670a6f907c6dc5649f2a33450fff03b92beb8688761cc438013448c40",
+      "entry_evidence": [
+        "create_user_with_plan",
+        "update_user_with_plan"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "plans",
+        "users"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906010000_plan_content.sql",
+      "sha256": "bf7bebbce1ceed7e77e266d66bd962802c779690ab2c43d6c8718ff507d12dfe",
+      "entry_evidence": [
+        "public.save_plan_content"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "array",
+        "string"
+      ],
+      "target_lexemes": [
+        "public.plans"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "sha256": "286612b0b966831ea9a010ea6463639591d5658c67a2fdd2a0895a6ae9d8fe19",
+      "entry_evidence": [
+        "public.save_monitoring_record"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.monitoring_records",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "sha256": "d7aea03480549d95d3de280605c038b4df603c48187a004af5465b7eb05c3258",
+      "entry_evidence": [
+        "public.save_support_record"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.support_records",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "sha256": "80759a8001bb839c55f8c274e981d98f60720513f8318761323407e5ee770778",
+      "entry_evidence": [
+        "public.save_ai_document"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "array",
+        "string",
+        "number"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.ai_documents",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "sha256": "7177e594f54ff7866051d9b03cbe65b9e4d57f239c1c15938e6efa3f099962f6",
+      "entry_evidence": [
+        "public.save_assessment_record"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.assessment_records",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906060000_ai_assessment_sources.sql",
+      "sha256": "150324adf6806dd44057770094b2db7d56b51be58484d8396c815af203bf121c",
+      "entry_evidence": [
+        "public.save_ai_document"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "array",
+        "string",
+        "number"
+      ],
+      "target_lexemes": [
+        "public.ai_documents"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "sha256": "8e8f4bc848711f2f08aa2db33c0dfcbc65291eb572846d5c844ca6a80bb55437",
+      "entry_evidence": [
+        "public.can_manage_plan",
+        "public.capture_plan_revision",
+        "public.get_plan_review",
+        "public.act_plan_review",
+        "public.create_user_with_plan",
+        "public.update_user_with_plan",
+        "public.save_plan_content"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "array",
+        "string"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.plan_assignments",
+        "public.plan_review_events",
+        "public.plan_reviews",
+        "public.plan_revisions",
+        "public.plans",
+        "public.roles",
+        "public.users"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260906080000_plan_import_history.sql",
+      "sha256": "268ca2a0ff913aaf6132658b898ef02b7d897c14e3d423c1126e8e2e95e17dfb",
+      "entry_evidence": [
+        "public.save_plan_with_imports",
+        "public.get_plan_review"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "string",
+        "サービス等利用計画の下書き"
+      ],
+      "target_lexemes": [
+        "public.plan_import_events"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "sha256": "66a189861cd0842191b577aea50f10d985e9c9959c5a6840601df1e9ffc0f5be",
+      "entry_evidence": [
+        "public.save_meeting_record"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [
+        "string",
+        "array"
+      ],
+      "target_lexemes": [
+        "on",
+        "public.meeting_records",
+        "to"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260908020000_record_permissions.sql",
+      "sha256": "10432a34746fe1a8c022a8862c308c00b4b2335e9840bba0730b4d242830234a",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "on"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260928012955_restrict_users_direct_writes.sql",
+      "sha256": "762c95bf224d9cb961d8a0b96b5324b70a18056bbe6ab4435ee1560999fc0e16",
+      "entry_evidence": [],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    },
+    {
+      "path": "supabase/migrations/20260929073000_fix_specialist_user_registration.sql",
+      "sha256": "ad7aed0c28a7f041d84fe01879aa7ec72d895838234d9e6b32102c5e8c09bb1b",
+      "entry_evidence": [
+        "public.create_user_with_plan"
+      ],
+      "entry_kind": "SQL_DEFINITION_NOT_PROVEN_EXECUTED",
+      "imports": [],
+      "target_lexemes": [
+        "public.plan_assignments",
+        "public.plans",
+        "public.users"
+      ],
+      "target_status": "LEXICAL_ONLY_NOT_RUNTIME_PROOF",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "fence_status": "NOT_VERIFIED",
+      "exception_paths": "UNKNOWN",
+      "batch_admin_non_api": "NOT_EXCLUDED"
+    }
+  ]
+}
