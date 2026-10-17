@@ -1,0 +1,163 @@
+{
+  "development": "STAFF-WORK-096",
+  "status": "COMPLETION_CANDIDATE_PENDING_INDEPENDENT_AUDIT",
+  "baseline_commit": "7ce5e3ec75227c6ed068c913bbb0515f46173314",
+  "tested_source_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+  "new_files": [
+    "design/staff-assignments-review-96.md",
+    "test/staff/assignments-96.json",
+    "test/staff/inspect-sources-96.py",
+    "test/staff/nonexecuting-checks-96.json",
+    "test/staff/source-manifest-96.json",
+    "test/staff/test-history-96.json",
+    "test/staff/verify-evidence-96.py",
+    "test/staff/writer-investigation-96.json",
+    "test/staff/results-96.json"
+  ],
+  "updated_existing_files": [],
+  "STATIC": {
+    "stage": 96,
+    "validation_level": "STATIC_EVIDENCE_ONLY",
+    "checks": [
+      "RAW_GIT_290_AND_EXACT_REGENERATION_PASS",
+      "TEN_SEARCH_CATEGORIES_AND_CONSERVATIVE_FENCE_STATUS_PASS",
+      "NO_PERSON_APPOINTED_ZERO_OF18_UNCHANGED_PASS",
+      "ONE_TO_ONE_18_INTEGRATION_DEPENDENCIES_PASS",
+      "READ_ONLY_FINDINGS_NOT_PROMOTED_TO_CONFIRMATION_PASS",
+      "U06_FIFTY_DEFINITIONS_UNCHANGED_NOT_RERUN_PASS"
+    ],
+    "passed": 6,
+    "model_cases_added": 0,
+    "U06_model_rerun": false,
+    "real_db_connections": 0,
+    "real_auth": false,
+    "actions_started": false
+  },
+  "reproduce_command": "python test/staff/inspect-sources-96.py --verify",
+  "source_survey": {
+    "tracked_blobs": 298,
+    "raw_blob_verified_text_files": 290,
+    "excluded_assets": 8,
+    "query_categories": 10,
+    "candidate_files": 126,
+    "literal_import_edges": 242,
+    "fence_verified_writers": 0,
+    "inventory_complete": false,
+    "query_counts": [
+      {
+        "category": "API route",
+        "scoped_file_count": 10,
+        "detected_file_count": 10,
+        "detected_line_count": 13
+      },
+      {
+        "category": "service",
+        "scoped_file_count": 60,
+        "detected_file_count": 20,
+        "detected_line_count": 75
+      },
+      {
+        "category": "repository/data access",
+        "scoped_file_count": 11,
+        "detected_file_count": 6,
+        "detected_line_count": 37
+      },
+      {
+        "category": "SQL INSERT/UPDATE/DELETE",
+        "scoped_file_count": 197,
+        "detected_file_count": 89,
+        "detected_line_count": 2389
+      },
+      {
+        "category": "migration",
+        "scoped_file_count": 16,
+        "detected_file_count": 16,
+        "detected_line_count": 279
+      },
+      {
+        "category": "batch",
+        "scoped_file_count": 7,
+        "detected_file_count": 5,
+        "detected_line_count": 14
+      },
+      {
+        "category": "admin script",
+        "scoped_file_count": 47,
+        "detected_file_count": 18,
+        "detected_line_count": 71
+      },
+      {
+        "category": "cron/job",
+        "scoped_file_count": 158,
+        "detected_file_count": 14,
+        "detected_line_count": 46
+      },
+      {
+        "category": "test fixture",
+        "scoped_file_count": 102,
+        "detected_file_count": 78,
+        "detected_line_count": 3900
+      },
+      {
+        "category": "manual SQL",
+        "scoped_file_count": 105,
+        "detected_file_count": 22,
+        "detected_line_count": 53
+      }
+    ]
+  },
+  "U09": {
+    "assigned_conditions": 0,
+    "confirmed_conditions": 0,
+    "required_conditions": 18,
+    "build_authorized": false,
+    "integration_dependency_rows": 18,
+    "state_machine": [
+      "担当者未指定",
+      "担当者指定済",
+      "確認済"
+    ]
+  },
+  "audit_status": {
+    "AUD-095-01": "OPEN_REAL_PERSONS_UNASSIGNED",
+    "AUD-095-02": "OPEN_GATE_NOT_RUNTIME_PROVEN",
+    "AUD-095-03": "OPEN_HUMAN_APPROVAL_RECORD_DESIGN_ONLY",
+    "AUD-095-04": "OPEN_LOW_CI_ENFORCEMENT_NOT_IMPLEMENTED",
+    "AUD-090-01": "OPEN",
+    "AUD-090-02": "OPEN",
+    "AUD-090-03": "OPEN"
+  },
+  "U_status": {
+    "U01": "UNAPPROVED_REMAINDER",
+    "U02": "UNAPPROVED_REMAINDER_EXISTING_PRINCIPLES_RETAINED",
+    "U03": "UNAPPROVED_REMAINDER",
+    "U04": "R_A_CONDITIONAL_DISTINCT_NATURAL_PERSONS_REQUIRED_UNASSIGNED",
+    "U05": "UNAPPROVED_REMAINDER",
+    "U06": "APPROVED_COMPLETE_GRANT_UNION_EXISTING50_MAINTAINED_NO_NEW_CASES",
+    "U07": "UNAPPROVED_REMAINDER",
+    "U08": "READ_ONLY10_PATH_SURVEY_COMPLETED_COVERAGE_NOT_PROVEN",
+    "U09": "CONDITIONAL_METHOD_ZERO_OF18_NO_BUILD_PERMISSION"
+  },
+  "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+  "FORMAL_ACCEPTANCE": "NOT_EXECUTED",
+  "real_db_connections": 0,
+  "real_product_auth": false,
+  "formal_grants": false,
+  "production_registration_or_migration": false,
+  "actions_enabled_or_started": false,
+  "secrets_registered": false,
+  "DB_started": false,
+  "canonical_docs_modified": false,
+  "settings_changed": false,
+  "source_hashes": {
+    "design/staff-assignments-review-96.md": "3865c96e8b3888975f1ec6ee9bbb38a6270b00a7e67e13bde2f258236c0f57a6",
+    "test/staff/assignments-96.json": "0a9a8553583a7f3d2a2dbb58a5fc53609ead291592d939bbf3ea68482e3b0cdf",
+    "test/staff/inspect-sources-96.py": "c6af2ad9240c2eaf529004d7749360e7b5a5def5a26fb307f0345c360d03708e",
+    "test/staff/nonexecuting-checks-96.json": "737f0ab3ce4634bc66e3cd5cfac2bae5d0144d560981d48ae3dfb1e53447f466",
+    "test/staff/source-manifest-96.json": "5c44762f89ba4414e31e3a78afdfb24131d266f3465f4e019e5b5bfa662764d2",
+    "test/staff/test-history-96.json": "0e98b6d175a382dff302010f6a3eb38e282899334241218aa63a86654130a44e",
+    "test/staff/verify-evidence-96.py": "cbba7e75c3b2c0ec39893aab97c18a653bd6a2373fd6c9b219e7527d91f3862a",
+    "test/staff/writer-investigation-96.json": "9dac9d38d1d90bd1e8f68fc76ed08decdc606ac09a75647cdc165e39ae45e05f"
+  },
+  "audit_submission": "PACKAGE_PREPARED_OTHER_THREAD_TRANSFER_RECEIPT_UNCONFIRMED"
+}

@@ -1,0 +1,96 @@
+{
+  "stage": 96,
+  "tested_source_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+  "previous_history": {
+    "path": "test/staff/test-history-95.json",
+    "commit": "7ce5e3ec75227c6ed068c913bbb0515f46173314",
+    "sha256": "5670716df15c78ae3b0d4d06fb9bdbdc7180f26eb30bedf58666968369ea8661",
+    "preserved_without_modification": true
+  },
+  "U06": {
+    "cases": 50,
+    "last_run_result": "PASS_STAGE95_UNCHANGED_SUBSET",
+    "current_stage_rerun": false,
+    "current_stage_new_cases": 0,
+    "definitions_byte_hash_verified_unchanged": true,
+    "evidence": "test/staff/results-95.json / current-test-baseline-95.json"
+  },
+  "static_final": [
+    {
+      "check_id": "STATIC96-01",
+      "name": "RAW_GIT_290_AND_EXACT_REGENERATION_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    },
+    {
+      "check_id": "STATIC96-02",
+      "name": "TEN_SEARCH_CATEGORIES_AND_CONSERVATIVE_FENCE_STATUS_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    },
+    {
+      "check_id": "STATIC96-03",
+      "name": "NO_PERSON_APPOINTED_ZERO_OF18_UNCHANGED_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    },
+    {
+      "check_id": "STATIC96-04",
+      "name": "ONE_TO_ONE_18_INTEGRATION_DEPENDENCIES_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    },
+    {
+      "check_id": "STATIC96-05",
+      "name": "READ_ONLY_FINDINGS_NOT_PROMOTED_TO_CONFIRMATION_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    },
+    {
+      "check_id": "STATIC96-06",
+      "name": "U06_FIFTY_DEFINITIONS_UNCHANGED_NOT_RERUN_PASS",
+      "target_stage": 96,
+      "target_commit": "5a2afc6ad1b170afecdb1053bd2ac2828da1e996",
+      "result": "PASS",
+      "applicability": "READ_ONLY_SOURCE_AND_EVIDENCE_VALIDATION_ONLY",
+      "environment": "Python3.12.14 offline scanner; GitHub GETs used for source/metadata, no app/DB/Auth/Actions execution"
+    }
+  ],
+  "validation_attempts": [
+    {
+      "id": "SCAN96-INTERIM01",
+      "result": "FAIL_RETAINED_INTERIM_EVIDENCE_STALE",
+      "reason": "Two resolved CSS imports reclassified from unresolved code to known excluded assets in scanner, then --verify run before regenerating result. Exact comparison correctly rejected stale JSON. Source bytes unchanged.",
+      "resolution": "Regenerated JSON after classification update, then final --verify matched exactly. Not a U06/model/DB test."
+    }
+  ],
+  "external_read_failures": [
+    {
+      "action": "GET Actions permissions",
+      "result": "CONNECTOR_ENDPOINT_UNSUPPORTED_HTTP400",
+      "not_a_runtime_test": true
+    },
+    {
+      "action": "GET workflows list",
+      "result": "CONNECTOR_ENDPOINT_UNSUPPORTED_HTTP400",
+      "not_a_runtime_test": true
+    }
+  ],
+  "historical_failures_not_erased": true,
+  "U06_or_integration_acceptance_not_inferred": true
+}
