@@ -389,3 +389,14 @@ STAFF-AUD-089採用・89条件付き完了の指示に基づく。design/staff-f
 ## 工程91 文書是正・STAFF-AUD-091 再監査（2026-10-17）
 
 主開発がAUD-091を採用、要修正・再監査対象。工程91未完了、92移行保留。方式変更なし。既存Drive正本9文書をpatch版（D01 Ver0.2.1/D02 Ver0.5.1/他対象 Ver0.4.1）へ是正。旧版/旧承認状態は履歴に明示、現行状態/フッター統一。差分232件、全文9文書・27領域一致、否定系3拒否。詳細design/staff-document-corrections-91.md、test/staff/document-corrections-91.json、document-comparison-results-91.json。AUD-090-01〜03 OPEN。Work比較済み、独立再監査未了。DB/Auth/正式付与/本番なし。提出先はSTAFF-AUD-091 再監査、受領未確認。
+
+
+## 工程95 管理判断分離・バイト証拠の開発運用手順（2026-10-17）
+
+主開発の工程95指示に基づく文書手順の反映。判断票はdesign/staff-management-decisions-95.md、標準案はdesign/staff-byte-standard-95.md。人選/範囲/構築承認、技術検証、外部設定/費用確認を分け、未確認をWorkで補完しない。U04実設定、実DB/実認証/正式付与/本番登録・移行、未承認Actions起動は禁止継続。
+
+監査用取得物は固定commit/tree/pathの生バイトからGit blob SHAを照合し、その後にSHA-256台帳を生成する。表示/編集コピーの改行・EOF変換を原本hashにしない。不一致は停止して原因を記録し、正規化してhashを合わせない。工程94で旧127ファイルの原本対応を確認：125件は末尾LF追加、2件はCRLF→LF変換＋末尾LF追加のローカルコピーが旧台帳根拠だった。上記工程89等の取得・試験記述は当時の報告として保持し、原本バイト確認済みの現在の根拠には用いない。旧失敗は履歴保持。
+
+新規/明示承認対象のUTF-8・BOMなし・LF・末尾LF1つ、formatter対象allowlist、変更前後のbyte hash、複数fileのbyte-only mass rewrite保留等を標準案とする。既存CRLF/外部原本を一括変更しない。`.gitattributes`/formatter/lint/editor/Git/CIへの機械設定は未承認の将来候補で、本工程は変更しない。
+
+U09は18条件の実担当者/証拠・固定manifest・管理者の別構築承認が揃うまで構築不可。U06は架空モデルのままで、統合への移行条件は判断票の票6に従う。試験の成功は管理承認や本番許可ではない。工程95成果は独立監査提出用・主開発の完了採否待ち。
