@@ -1,0 +1,86 @@
+{
+  "stage": 93,
+  "basis": "stage92 A/B/C retained; conditional method adoption never implies execution authorization",
+  "artifacts": [
+    {
+      "artifact": "U04条件整理書",
+      "path": "design/staff-u04-conditions-93.md",
+      "current_class": "A",
+      "next_class_conditions": "法人の二者指名/真正性・形式/正式保管/再設定手順の採否と別途架空試験許可",
+      "unmet_conditions": "人選/方法/形式/保管/手順未確定",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "writer候補表",
+      "path": "test/staff/writer-inventory-93.json",
+      "current_class": "A",
+      "next_class_conditions": "配備/catalog/role/call graph照合後、U09許可下で隔離fence検証",
+      "unmet_conditions": "全writer未証明・全行未確認",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "writer検証手順",
+      "path": "design/staff-writer-proof-93.md",
+      "current_class": "A",
+      "next_class_conditions": "P0〜P8の実証計画採否、U09許可",
+      "unmet_conditions": "実経路/直接更新閉鎖/競合未検証",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "U09チェックリスト",
+      "path": "design/staff-u09-preflight-93.md",
+      "current_class": "A",
+      "next_class_conditions": "全18項目証拠付き確認＋主開発の構築許可",
+      "unmet_conditions": "全項目未確認又は未採用",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "U06仕様/fixture実装",
+      "path": "test/staff/grant-union-fixture-93.mjs",
+      "current_class": "A",
+      "next_class_conditions": "schema/role/TX/fence/スタブ契約とU09実行前条件を満たす",
+      "unmet_conditions": "正式writer/scope階層/永続監査未確定",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "U06ケース/テスト",
+      "path": "test/staff/grant-union-93.test.mjs",
+      "current_class": "A",
+      "next_class_conditions": "実2接続/永続化/失効競合/role否定はBとして別許可",
+      "unmet_conditions": "モデルは統合・受入に昇格しない",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "試験履歴台帳",
+      "path": "test/staff/test-history-93.json",
+      "current_class": "A",
+      "next_class_conditions": "固定コミット・source hash照合を保ったまま追記",
+      "unmet_conditions": "過去個別試験詳細不明は未確認を維持",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "静的検査/結果",
+      "path": "test/staff/verify-preparation-93.py",
+      "current_class": "A",
+      "next_class_conditions": "隔離試験は別B、正式受入は別判断",
+      "unmet_conditions": "環境/本番の証明を含まない",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "隔離DB/role/競合/API stub",
+      "path": "NOT_CONSTRUCTED",
+      "current_class": "B_BLOCKED",
+      "next_class_conditions": "U09全18チェックPASS＋主開発構築許可",
+      "unmet_conditions": "未充足・構築不可",
+      "automatic_promotion": false
+    },
+    {
+      "artifact": "正式資格/実DB/実認証/本番登録/移行",
+      "path": "NOT_IMPLEMENTED",
+      "current_class": "C_PROHIBITED",
+      "next_class_conditions": "別の主開発明示判断と必要な監査・受入。今回解除しない",
+      "unmet_conditions": "実行禁止継続",
+      "automatic_promotion": false
+    }
+  ]
+}

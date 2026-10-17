@@ -1,0 +1,2793 @@
+{
+  "stage": 93,
+  "syntheticOnly": true,
+  "productionAuthorized": false,
+  "tests": [
+    {
+      "testId": "U06-93-01",
+      "name": "grant A only",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_A"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-02",
+      "name": "grant B only",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-03",
+      "name": "A+B independent witnesses",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_A",
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-04",
+      "name": "A revoked B survives",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "REVOKED"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": [
+          {
+            "grantId": "FAKE_GRANT_A",
+            "reason": "REVOKED"
+          }
+        ]
+      }
+    },
+    {
+      "testId": "U06-93-05",
+      "name": "B revoked A survives",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "REVOKED"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_A"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-06",
+      "name": "both revoked",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "REVOKED"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "REVOKED"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-07",
+      "name": "different resource scope",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_DAHLIA"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-08",
+      "name": "A expires B still valid",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 10,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-09",
+      "name": "B expires A still valid",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 10,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_A"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-10",
+      "name": "both expire at exclusive end",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 20,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "OS_ENTRY_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-11",
+      "name": "inactive staff mandatory rejection",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": false,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "MANDATORY_STATE",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-12",
+      "name": "inactive dependency A only",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": false,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-13",
+      "name": "both membership dependencies inactive",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": false,
+            "FAKE_MEMBER_B": false,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-14",
+      "name": "global stopped rejects surviving grants",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": true,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "MANDATORY_STATE",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-15",
+      "name": "start inclusive",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 0,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_A",
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-16",
+      "name": "before period",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": -1,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "OS_ENTRY_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-17",
+      "name": "A scope wrong B valid",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_DAHLIA",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-18",
+      "name": "no action scope splicing",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_DAHLIA",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_EDIT",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-19",
+      "name": "entry does not imply body",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-20",
+      "name": "body without entry rejected",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "OS_ENTRY_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-21",
+      "name": "no deny grant introduced",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "DENY",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "INVALID_OR_UNSUPPORTED_GRANT",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-22",
+      "name": "duplicate grant IDs rejected",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "INVALID_OR_UNSUPPORTED_GRANT",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-23",
+      "name": "wrong org resource",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_OTHER_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "INVALID_BOUNDARY",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-24",
+      "name": "A wrong person B valid",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_OTHER_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-25",
+      "name": "session invalid before union",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": false,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "MANDATORY_STATE",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-26",
+      "name": "unknown dependency A excluded",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "ALLOW",
+        "reason": "COMPLETE_WITNESS",
+        "witnessIds": [
+          "FAKE_GRANT_B"
+        ],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-27",
+      "name": "invalid period rejected",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 20,
+              "to": 10,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "INVALID_OR_UNSUPPORTED_GRANT",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-28",
+      "name": "missing explicit stopped flag is not active",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "MANDATORY_STATE",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-29",
+      "name": "missing mapping version refused",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "INVALID_BOUNDARY",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-30",
+      "name": "entry revoked refuses body",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "REVOKED"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "OS_ENTRY_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-31",
+      "name": "no suffix or prefix scope inheritance",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS_ROOM"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    },
+    {
+      "testId": "U06-93-32",
+      "name": "expired A and future B do not bridge gap",
+      "spec": "U06 complete-grant union; exact scope fixture",
+      "input": {
+        "context": {
+          "syntheticOnly": true,
+          "policyVersion": "FIXTURE_COMPLETE_GRANT_UNION_93",
+          "person": "FAKE_PERSON",
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "now": 10,
+          "authenticated": true,
+          "accountActive": true,
+          "sessionActive": true,
+          "staffActive": true,
+          "stopped": false,
+          "assignments": {
+            "FAKE_MEMBER_A": true,
+            "FAKE_MEMBER_B": true,
+            "FAKE_MEMBER_BASE": true
+          },
+          "grants": [
+            {
+              "id": "FAKE_GRANT_ENTRY",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "OS_ENTER",
+              "scope": "FAKE_ORG_SCOPE",
+              "assignmentId": "FAKE_MEMBER_BASE",
+              "from": 0,
+              "to": 20,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_A",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_A",
+              "from": 0,
+              "to": 10,
+              "state": "ACTIVE"
+            },
+            {
+              "id": "FAKE_GRANT_B",
+              "version": 1,
+              "kind": "ALLOW",
+              "person": "FAKE_PERSON",
+              "tenant": "FAKE_TENANT",
+              "org": "FAKE_ORG",
+              "system": "FAKE_GH",
+              "action": "BODY_READ",
+              "scope": "FAKE_COSMOS",
+              "assignmentId": "FAKE_MEMBER_B",
+              "from": 11,
+              "to": 20,
+              "state": "ACTIVE"
+            }
+          ]
+        },
+        "resource": {
+          "syntheticOnly": true,
+          "id": "FAKE_RESOURCE",
+          "version": 1,
+          "tenant": "FAKE_TENANT",
+          "org": "FAKE_ORG",
+          "system": "FAKE_GH",
+          "scope": "FAKE_COSMOS"
+        },
+        "action": "BODY_READ"
+      },
+      "expected": {
+        "status": "DENY",
+        "reason": "ACTION_SCOPE_REQUIRED",
+        "witnessIds": [],
+        "excluded": []
+      }
+    }
+  ]
+}
