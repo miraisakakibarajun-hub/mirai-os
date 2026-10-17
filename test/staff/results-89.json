@@ -1,0 +1,20 @@
+{
+  "stage":89,
+  "date":"2026-10-17",
+  "baseline_commit":"8ea0d0c353efc86e245150ac4be19186e8d0b8f9",
+  "validation_level":"L1_MODEL_AND_SOURCE_STATIC_REVIEW",
+  "command":"node --test test/staff/safety-boundaries-89.test.mjs",
+  "passed":42,
+  "failed":0,
+  "skipped":0,
+  "source_inventory":{"tracked_sources":127,"possible_writer_files":79,"review_findings":158,"candidate_count_is_not_confirmed_writer_count":true},
+  "source_check":{"command":"node test/staff/writer-coverage-89.mjs --check","exit_code":1,"expected_exit_code":1,"blocked_as_intended":true},
+  "syntax_checks":{"writer-coverage-89.mjs":0,"access-boundaries-model-89.mjs":0,"safety-boundaries-89.test.mjs":0},
+  "physical_db_connections":0,
+  "real_auth_tested":false,
+  "productionReady":false,
+  "authorization_verified":false,
+  "not_executed":["runtime whole-writer call graph and DB role audit","fence integration into existing writers","real PostgreSQL two-session competition","real representative identity or bootstrap provisioning","OS entry/list/body/edit/approval through real APIs","live project DB/Auth or production"],
+  "U01_U09":"all unapproved; decision pack proposals only",
+  "independent_audit":"handoff prepared, receipt and result unconfirmed"
+}

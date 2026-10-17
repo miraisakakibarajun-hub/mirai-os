@@ -1,0 +1,1746 @@
+{
+  "baseline_commit": "8ea0d0c353efc86e245150ac4be19186e8d0b8f9",
+  "scope": "tracked app/lib/design/supabase-migration source files; test modules excluded",
+  "not_a_complete_runtime_call_graph": true,
+  "sources": [
+    {
+      "path": "app/api/staff/auth/login/route.ts",
+      "blob": "88fcbeed62926ff3e82d0c46cc77f8edbc0f4040",
+      "sha256": "07814cafb31615998ccc27102873d5042c0f5716de9dcbe5cc17dfb518bc9c3a",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/auth/logout/route.ts",
+      "blob": "d69268e611d334a8f56b2422b0aa2e4e27c22fce",
+      "sha256": "68fd02597591d371ebfd21d86d4ae487e4b01c8914ddacdb991c14c083786c34",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/auth/password/change/route.ts",
+      "blob": "30fcca6fb6e095a136dc0a83e4ee68a930e7f525",
+      "sha256": "62f2343ab72ad274132f38a925ad2c7e04c156f444f5e404ddb7755ae426a94a",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/auth/password/reset/route.ts",
+      "blob": "3eb5c12ea9f137fb62839efd49fecca784e3d9de",
+      "sha256": "839756adf3002a1c855d9a32eb571107408819f7f9c607d55539ff27760316d6",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/auth/session/route.ts",
+      "blob": "093d2a72272a34356b74e69d6059ed30ddc5484a",
+      "sha256": "be3ab712307c3c9380938ef9327bc239b92534085404cca88f405e012a69fc29",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "GET"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/candidates/result/route.ts",
+      "blob": "a05a808c27d4726c910814d1635060f919c99d94",
+      "sha256": "b9fb2633a09a9f260184aff079c7a9d49dfd2ecc32b82d429544e7f771004180",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/staff/candidates/route.ts",
+      "blob": "42b52e3dc7cb80f79e05d388cc708a3480bf2da5",
+      "sha256": "8f25942bc4f1999729eed36d5d7a32c4a4b2abca423aac6502c0e75bd0be4081",
+      "signals": [
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "blob": "0560da784dab3031744964a40c28fe707dba8948",
+      "sha256": "a0a871f3dbb9017b78c7e52715e080429aac6124dc64213cd770c46c87a2e9cf",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.assignment_identity_guard_80",
+        "staff_core.assignment_consistency_80",
+        "staff_core.scope_operating_reference_at_80",
+        "staff_core.department_structure_reference_at_80",
+        "staff_core.assignment_reference_at_80",
+        "staff_core.assignment_reference_80"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "blob": "d6ae9d897da6e2d7d80b67b3c44053a0da857cc2",
+      "sha256": "4981105063330fc8d7aa2b4c5785b6ae4e6a62e08d58b6f210905e28fdc37c39",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_auth_private.guard_session_update_v1",
+        "staff_auth_private.guard_audit_v1",
+        "staff_auth_private.guard_outbox_v1",
+        "staff_auth_private.bound_v1",
+        "staff_auth_private.fence_key_v1",
+        "staff_auth_private.account_valid_v1",
+        "staff_auth_private.login_ticket_v1",
+        "staff_auth_private.read_session_v1",
+        "staff_auth_private.confirm_current_session_v1",
+        "staff_auth_private.confirm_login_v1",
+        "staff_auth_private.revoke_local_session_v1",
+        "staff_auth_private.claim_revocation_v1",
+        "staff_auth_private.read_claim_credentials_v1",
+        "staff_auth_private.finish_revocation_v1"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-auth-privileges-61.sql",
+      "blob": "f45b7a84d184d860bd37e7c7a7c3a40d6bebad42",
+      "sha256": "d92fd0402803493309f3b353e7d8babb81e3467c4770d5dc67ff9b7a2fd32921",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-auth-storage-59.sql",
+      "blob": "5692e969206891e5b5c6cee342917dcd36f19c2c",
+      "sha256": "bc18c1271687dda90d7b79cb911c472ad110c98bd5530413a1d49282ab34be27",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "blob": "fba097a2176a2463bfaee1468b84cb4a0d098fd4",
+      "sha256": "c80a35eb614f320e486930e6bdf641cfee15547871b2c7c5a013c9b41e6ee246",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.role_history_identity_82",
+        "staff_core.role_history_consistency_82",
+        "staff_core.role_assignment_reference_at_82",
+        "staff_core.role_assignment_reference_82"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "blob": "de7c6e0b0020413667112474d013841ab65e5557",
+      "sha256": "14fcc9e001e76bac927214069f07f8aadb36e538b51cd92f1c316e5bc87b4994",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.entity_identity_guard_76",
+        "staff_core.scope_member_guard_76",
+        "staff_core.scope_seal_guard_76",
+        "staff_core.scope_identity_guard_76",
+        "staff_core.scope_history_required_76",
+        "staff_core.scope_reference_match_76"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "blob": "9dc8558ce9660be46d862e9bca83d21eee0151e8",
+      "sha256": "860ff963bf06bb1b5f44f679919c5a4a66432e9f04061457a9f15b6eb1282d47",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.contract_identity_guard_81",
+        "staff_core.contract_consistency_81",
+        "staff_core.contract_reference_at_81",
+        "staff_core.contract_reference_81"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "blob": "082840c63bc5be5d2c52332ba860ec9d80e3269a",
+      "sha256": "3305c806953c06a36f0bda4f80a0b919b4c2c4b0ad2e3ea6d388b313bca9596e",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.validate_effect_scope_73"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "blob": "df12c4e98b954c27ce1295b987e00a181d612d26",
+      "sha256": "64b8f0669039fefe0962d36512ab9b79e7d31aeaad5d75f33f638da183f045ef",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.guard_scope_member_73",
+        "staff_core.guard_scope_revision_73",
+        "staff_core.guard_scope_identity_73",
+        "staff_core.require_scope_history_73",
+        "staff_core.scope_contains_73",
+        "staff_core.initial_policy_readiness_73"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "blob": "49fcfca2332e5624f85921d4858369c8dcbd9545",
+      "sha256": "3588142a0e2dc74d796c29af5b5acd6da3496b54083d8989b631d9272fe98a5e",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.append_only_65",
+        "staff_core.guard_person_member_65",
+        "staff_core.seal_person_set_65",
+        "staff_core.require_person_history_65",
+        "staff_core.guard_account_member_65",
+        "staff_core.seal_account_set_65",
+        "staff_core.require_account_history_65",
+        "staff_core.guard_person_identity_65",
+        "staff_core.guard_account_identity_65"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-current-projections-67.sql",
+      "blob": "f20d865cd46be57cf9c9c6ba86238ab78b9d1a70",
+      "sha256": "8119915224a443b2f440eb22cfde6398aec4a16b95e96f5793b955406b253538",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-current-projections-68.sql",
+      "blob": "d15ac59b91daab4c82c04d3e542686a524c9ae31",
+      "sha256": "801f5acada691e06d001becc8400a79f86f68d23ad7733315ece658254b59222",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-current-projections-70.sql",
+      "blob": "37b961b0c92e1d557ea586cf63fb4ca0c6f604df",
+      "sha256": "fc2508c114efb7668138283c875f8f68b95e4449b40eb8ea78abde1e749ddd61",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-current-projections-73.sql",
+      "blob": "52b4f6648c8877840351cdbaec894ab47a3b5af7",
+      "sha256": "ac3ebf9bda7aea6a0fda1be1408f479a559b9bd035556b07b5f20e0c8a7c878b",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "blob": "121016a4f3dfc228af7c3af7c4732546642514c6",
+      "sha256": "7dc1695a65e57550402226d098b564ae9beb3665fcbed36be15627885f706ad2",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.entity_identity_guard_76",
+        "staff_core.department_structure_consistency_78",
+        "staff_core.department_structure_reference_78"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-grant-dependency-reference-83.sql",
+      "blob": "a910697044ba4fc3c3a829016ad01e83357aa505",
+      "sha256": "27ca388c1592532cd337eb57df4384ffd80c2c9f3edb66aa868251d998d84c07",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.grant_dependency_reference_at_83",
+        "staff_core.grant_dependency_reference_83"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "blob": "07e4b12c74e47dd6e034c082780d996e516d6c7f",
+      "sha256": "ed99791c84e1d4585c8992f62140d3c88e7641624780b66d275b337b9bd8e99f",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.binding_event_guard_87",
+        "staff_core.binding_child_guard_87",
+        "staff_core.binding_snapshots_match_87",
+        "staff_core.binding_header_guard_87",
+        "staff_core.binding_seal_audit_87",
+        "staff_core.binding_diagnostic_at_87"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "blob": "6b27ceaec760163ec21229173cfa2118fc036390",
+      "sha256": "a8db377193bdaf69aa82e5f4f2206d7078f25deac8d5de08f4f233c31c4a74a4",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.grant_child_guard_75",
+        "staff_core.grant_seal_guard_75",
+        "staff_core.grant_identity_guard_75",
+        "staff_core.grant_history_required_75"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "blob": "34e1cd17434d5432d1cb74ab3deeaa3113f8afa0",
+      "sha256": "2b29931a8b329c4ff62907326f54fdafcae9a684d3f8f4a64718eacc9e19f6d9",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.guard_typed_auth_request_70",
+        "staff_core.validate_initial_admission_70",
+        "staff_core.guard_initial_source_70"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "blob": "09bd95b8e8900ff19ed342087d8a6bc40c7e6ab9",
+      "sha256": "6a12ee1384eb9f665562b51e073a3322e90311aff7827e2abfe66507fbcb279f",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.validate_login_reservation_69",
+        "staff_core.reserve_login_identifier_69"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "blob": "4da3bc219c7a0e999d662a39c297c184b1ab8bbd",
+      "sha256": "758ee340a5874c638611d75363e64fbff4f72fb8bdcc8eb3977b5a41fde7e5ec",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.organization_revision_insert_77",
+        "staff_core.organization_revision_append_77",
+        "staff_core.organization_member_guard_77",
+        "staff_core.organization_set_guard_77",
+        "staff_core.entity_identity_guard_76",
+        "staff_core.organization_history_required_77",
+        "staff_core.scope_operating_reference_77"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "blob": "28994162c02fa6c211c63a32764b92dd60e256b8",
+      "sha256": "f0cb097d70876925a5fee94c91e06e5b8ba87d97f73ffcceed0d4a6445446ad9",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.append_only_68",
+        "staff_core.guard_actor_68",
+        "staff_core.record_actor_68"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "blob": "26800486d897ccd247f2db0d0011f57f1e51c417",
+      "sha256": "f019a5326b7520d5aaed9bea8cd53c9dc3c241b90ea9d8700d3dfbec07a394ea",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.guard_organization_member_68",
+        "staff_core.seal_organization_set_68",
+        "staff_core.require_organization_history_68",
+        "staff_core.guard_relation_member_68",
+        "staff_core.seal_relation_set_68",
+        "staff_core.require_relation_history_68",
+        "staff_core.guard_organization_identity_68",
+        "staff_core.guard_relation_identity_68",
+        "staff_core.guard_control_68",
+        "staff_core.guard_control_operation_68"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "blob": "f84586999e72aa56dba62166e7c37bded65f2633",
+      "sha256": "c08835c6f7feb8f63b1c16cef978d8c4355cc264ff56d6232d3e694d461c28da",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.policy_condition_guard_85",
+        "staff_core.policy_revision_guard_85",
+        "staff_core.policy_identity_guard_85",
+        "staff_core.policy_candidate_status_at_85",
+        "staff_core.policy_candidate_status_85",
+        "staff_core.evidence_apply_child_guard_85",
+        "staff_core.evidence_candidate_guard_85"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "blob": "afdf30dbc17a0f5e757f2515cbbb541636e4c48e",
+      "sha256": "92234ee66e543fa77f6c1bb52cf29f62d68613fe03079e14211a72479c844794",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.effect_evidence_valid_66",
+        "staff_core.validate_effect_66",
+        "staff_core.effect_append_only_66",
+        "staff_core.guard_effect_source_66"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "blob": "a6e65ff21be92c63f5e477d1934d393877dad2c6",
+      "sha256": "c6ec2203f71c40c2e0fe461ab586fae376ecca12d3e991d93f68a4f8fd3983e5",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.validate_workflow_effect_72"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "blob": "0875e0d491cc8e40b38f9ec74e86ceca54f43cd8",
+      "sha256": "bb3b14b4f06cdbc362e2a676b716e896ce40dfd84fb981b05ca7c19e8263d69c",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.workflow_append_only_72",
+        "staff_core.guard_workflow_72",
+        "staff_core.require_application_consistency_72"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "design/staff-write-fence-88.sql",
+      "blob": "86e23b5fd673d444336e8827087794453de9a25a",
+      "sha256": "3fdb929eeae32d0683fbb579559e96ea6e9d297ff730ad39675d2f175fa50c78",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staff_core.acquire_write_fence_88",
+        "staff_core.acquire_body_read_fence_88"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/auth-context.mjs",
+      "blob": "9574482daf73b4e53eb51a9d5887188fff3fa8ad",
+      "sha256": "c3da0b791bfa2a09cba7837d03da59fa36c8d7e29f5e95ee8e5e6571ad08fbf2",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createVerifiedAuthenticator",
+        "createOriginGuard"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/auth-form-client.mjs",
+      "blob": "a4efdf0d9c9833f07b1d2cda82ecc0045cefdca3",
+      "sha256": "30808a8da4d7c3cf20d69d1c96260671d9fd14f208a51358cebbce67f9eebb5d",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createAuthFormClient"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.mjs",
+      "blob": "888af98c9306e38c4fa340a5b4d8dde445af0e23",
+      "sha256": "489624baa9e00dca27fe10cd315141e2b0f7fb3b834a579772ad1c28637b4379",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createAuthFunctionRepository"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/binding-resolver.mjs",
+      "blob": "e826881ef8f4a4af2e59cb001177bd14ff4021c3",
+      "sha256": "a70bc61f515819eace78bf5281932cd07764880fc722398418fb77039acda040",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createBindingResolver"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/candidate-http.mjs",
+      "blob": "fe8d427061ed3bc4264ed39b52428d23cb99f287",
+      "sha256": "57651a792b370b0552910815d5b35295dcccd6107db86e4f9063fcf7a2ce5b58",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createCandidateHTTP"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/candidate-result.mjs",
+      "blob": "0bfaf8bce55355bca49830d508bdb0563bc1681c",
+      "sha256": "b5ea7088c61c1bff38c259cf1c187dd5951225b49cea0f88dae176992026a026",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createCandidateResultService",
+        "createCandidateResultRepository",
+        "createCandidateResultHTTP"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/candidate-routes.mjs",
+      "blob": "48092c01434e4786ac21e4df7bcc4bbd0b4386f0",
+      "sha256": "8892491722c8392c3a973881ba27eeb88a8c3e65e31348f2de133edc0784397f",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createCandidateRouteHandlers"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/candidate-runtime.ts",
+      "blob": "b8b878e4fc781c854ce6a9104d78c2d921da55fd",
+      "sha256": "0fafd13c82f99add9082cc79d0fdc3e140fd89b290bd2bd64943ee7d318d5ae9",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "getCandidateHandlers"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/credential-sealer.mjs",
+      "blob": "1200a624d1fbad81f4a4e1ea8d49e7065504fa13",
+      "sha256": "a41b09d5c3100273d1a75865968bf05b1776b2524b6506e4452e3dfb6574b4fa",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createCredentialSealer"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/current-session.mjs",
+      "blob": "4b332014d15a6f0989ae897a0f51efaddddf6b69",
+      "sha256": "53d2d8c4e1666edcf01406215bb7d655afb295fe977d4d3de917388df28cbb1b",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "assessSuspensions",
+        "assessCurrentSession",
+        "createCurrentSessionRepository"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/login-identity.mjs",
+      "blob": "cad2f680c54f5f2098c34dcae53481123d24734b",
+      "sha256": "395bf7b239fbd94b53851e57d23b9405d723be071cfc03c1447b4c992143d89c",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createLoginTicketLoader"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/login-routes.mjs",
+      "blob": "48b006abcfafebd43f0526f9178cf45f293c9ae2",
+      "sha256": "2116e2b1d02b01b4c96350933fd12b9d0bdb6af0f639b8fc09dc43bba22b1445",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createLoginHandlers"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/login-runtime.ts",
+      "blob": "5db799bf94fc2285c6eb2ed4af1ec01120a2ae48",
+      "sha256": "b44c8bc7b72b4974a87038d3ec56ca347cb20abfcb634daa03209b71b0757ef1",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "getStaffLoginHandlers"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/login-session.mjs",
+      "blob": "cd86cb3ebd50b0b68683832e3624e8eff841ebcb",
+      "sha256": "362370d23a981b7911877c6d906ebdc9832ceaa88064ac60eb1ad0d477002ef9",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createLoginSessionRepository",
+        "createLoginCompletion"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/postgres-operations.mjs",
+      "blob": "94465adcee479a88329f60fae2f7af348b571079",
+      "sha256": "18dd046f67a75f0642b106a91299310fce00ada904a10ee06ab54ff441fcb0f3",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createPostgresOperations"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/registration-port.mjs",
+      "blob": "46a2b61d12b5266fb1d6ae742b0df64fe0c1c260",
+      "sha256": "935de575c20dccfed8132d35e93eab93dbc3f2ca2a5399de581436188b38caed",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createCandidateService"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/session-access.mjs",
+      "blob": "8e59f06663fef9260ffac730f81e32df28206986",
+      "sha256": "bf3237df272f82313d13792da10b817751f1e257c69cb4e097b176c5575cdc49",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "staffCookieHash",
+        "createStaffSessionAuthenticator",
+        "createStaffBusinessAuthenticator",
+        "createStaffSessionHTTP",
+        "createStaffSessionRevocationRepository"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/session-postgres.mjs",
+      "blob": "c2017bda7822b2962ce3b15a15e90e4a342c7bff",
+      "sha256": "a411400814cc2e73227b2e7aa4cb52266268c5d037446966c6843c95548ad9d8",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createPostgresSessionOperations",
+        "createPostgresRevocationWorker"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/session-runtime.ts",
+      "blob": "72d34c1b379843fef5b44f44e33bfa44f2eae661",
+      "sha256": "5f641cd4199975d87a3fd55311abd400e8313c674f0e58e513156d4994bcde45",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "getStaffSessionHandlers"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.mjs",
+      "blob": "a707c597834c06d8585257c117e9dbee2d7e104a",
+      "sha256": "ad3e92e727a1833e52ed076823f265f1126a01c44f75a2fc312e3603ccd5211a",
+      "signals": [
+        "SQL_MUTATION_OR_DDL",
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createSupabasePasswordProvider"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/transaction-repository.mjs",
+      "blob": "b87ea73772e10ee46d84e282ac7364cab2c152a3",
+      "sha256": "58a9db364c55d932687af410bac0e7551ddd0c6a80f0da84467eb90f87dbb6df",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createTransactionRepository"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/staff/validation.mjs",
+      "blob": "1d957d95673802272af23b3550b63d1dfd895946",
+      "sha256": "bb12ae234f563c51aa4d2fb55933e04361a7c859d5d3be463e84d1a8f6bcc555",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "validateCandidate",
+        "toReceivedItems"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/ai-documents/generate/route.ts",
+      "blob": "42b5cafc83c88fbaa534f1c9d2ea58345f9c137a",
+      "sha256": "06015ce8f41dfa87743af9444b37317b7a0d10dee2857775185d9c8608a2e546",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "GET",
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/monitoring-ai/route.ts",
+      "blob": "87d8590a788a58a8b6fb11c52502d42a47cf2552",
+      "sha256": "7edc49dd9f483c3b10dec92965a25944fe05ec3c3b7f58450f1a0c609c40b95a",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "GET",
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/api/planning-assistance/route.ts",
+      "blob": "db4767777a3bb2bc8fdaccf22899cba3ca998377",
+      "sha256": "0e42ad9d6c6255da00480a66b3c84b928f0fcd2acbec5b6bb67b8d6949a65a75",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW",
+        "HTTP_MUTATION_ENTRY"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "GET",
+        "POST"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/components/ApprovedAiNote.tsx",
+      "blob": "2991436d1de026dc06fb5a4aca89b0ff43634a34",
+      "sha256": "b2c35e638537a1c62480311e4efdd3e1f242fe9e18a8460382116de50a261a34",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/components/Header.tsx",
+      "blob": "e981601676fc065abb1c72711c29df719d83ac6a",
+      "sha256": "14ee82799561932201aabbd9412c6b7dea08602f0aa886485661af6e14156148",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/components/LogoutButton.tsx",
+      "blob": "8bdfdd64aa2e5cbb12f3c0ea223a0d8696968156",
+      "sha256": "24cc5faf3d9253739ab9c7975b1c7f185b1cc990ea7d426218ec84a7fef6a0a0",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/dashboard/page.tsx",
+      "blob": "9089623c98dc824f535da13ced3e114f2304210a",
+      "sha256": "d7f15bafdcd203e986cd2fd9355a767059c7960d98470e871a384f0b5f2dd28a",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/layout.tsx",
+      "blob": "976eb90df142ef2c4f3f39cee8b0e4c4f4771b62",
+      "sha256": "fb309ea06c5a7939901e3acd1919aef57898bdb93417b27126f6670b9556ef17",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "blob": "880b125b74f6ac1ea873db92d6e1e2577801f24f",
+      "sha256": "e1cfe46fd4f1a6b16523cd887dc6a6f4a9569aadaebbc5566893275fe6e8b1f7",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/meetings/page.tsx",
+      "blob": "d4829d4c6526e97aa66d0295b38c68ebbd860576",
+      "sha256": "2b789f53a1b19f526b8a14bfd7bca5139a872032c0e06b097ce8d1252cbfe059",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/monitoring/page.tsx",
+      "blob": "41138f5acf4c6b5f548a78fd8a720ef3450764a4",
+      "sha256": "b28f4a68daef8192b9b54d9e7ba1591700e04a51f97d2cfcee616742f8d10ba9",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/page.tsx",
+      "blob": "f14ad6a2cf761a0162aa4779682ba58c639882ba",
+      "sha256": "1f2d7c7e3e0f0d759a7c565ee05a9d0c980fd4a4d265ae0138643d1df54d90d9",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/staff/_components/auth-form.tsx",
+      "blob": "bfc726d4e02ca61c01ff811b800731655398ddf5",
+      "sha256": "3b755f88a29abd306f6c89252b39786c843cd1ef636ef2ce9970b925c950eda7",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/staff/login/page.tsx",
+      "blob": "b5f0649a69e4d9734b15dd7b70561c2f8f73b190",
+      "sha256": "6458e104f7293bb230a701923f066b275406ed025a49748d5e4e05bbc7a0c1a6",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/staff/password/change/page.tsx",
+      "blob": "bcee3481e89691d5d42ad31158a6b0828e2c5ec0",
+      "sha256": "f8594856f1ffe2be0b47e0f81c56668f4271cdeb3a32e83f93ab5883bf8c8a2d",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/ai-documents/page.tsx",
+      "blob": "69f320ff2e752572dd0d32fa6bf6227f68daac44",
+      "sha256": "6786247275443398047261b3d4573c39b209799575e1cf1c1d6009b8d5fe6463",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/assessments/page.tsx",
+      "blob": "87cef301b7824ec197bd74afb3e6da1e02bbf23f",
+      "sha256": "47becf2cba6b4635f7f3949a1bff0133024e0db7524bad7df585814d9a5255af",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/edit/page.tsx",
+      "blob": "9e78c8918b266dab5c73b0fe2555db290b5f1cfa",
+      "sha256": "b7586568fa33e681eb4e0ed73cb93c1aa4a5b7dff061beffd16893a99d25ba32",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/meetings/page.tsx",
+      "blob": "de5eb3df68c9851cff88c483a535e8c70258e11e",
+      "sha256": "ed473b36174417b3442e165ce7ef12e14e86dbc59da66a6b037e16103621a628",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringAi.tsx",
+      "blob": "0d3b51254acc0ecdf524e7bc075c19c9fd5d15b3",
+      "sha256": "5e7ee5541d759d96aa141ccd2f9ccc129342ed428656df3abb2d8f1a97c07f60",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringComparison.tsx",
+      "blob": "f01de4a0d3edc74cfda913634fa5bcbdd300d7a7",
+      "sha256": "a0f6b3c6289871ef594a5504ba4034fcb0be8eb07f3bf1601464418c5ad7ea29",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "previousMonitoring"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/monitoring/page.tsx",
+      "blob": "a359be5500cc137417c1c5ae8464d521912b9672",
+      "sha256": "ceec2da00e116f7a676282434c0e7d12fa50c318bd92c0382f3dda9784f06a0e",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/page.tsx",
+      "blob": "0cd38be14a15334002fd6af78c69881e0c4c9b0d",
+      "sha256": "bd4de8c8b4bf97e1c75198f4d1e42d6559348dd726c8b7b04d5f5a5be1d3ee29",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/planning-assistance/page.tsx",
+      "blob": "c43dd81b99b6d02b1929e65542a25fc6401e65cd",
+      "sha256": "68d368ca13e10cfc0d17856244b712d8e8d6cba835a15484e0d41bd966e51ca4",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanDraftImport.tsx",
+      "blob": "d98d289c1c390b0ce5b3cce6e2a3e01b02b8cd32",
+      "sha256": "7d60c23ef37f6710fb7a1966829a6214b3acd221ef67cfba1b313794c847d723",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanImportHistory.tsx",
+      "blob": "1b5a597be74db05a81f0777d8e8544988228d1b9",
+      "sha256": "324dfb100f3cba2187ed1dac4c6cdcf9e33eac5a7c0d11174ea6d8866c11156f",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanReviewPanel.tsx",
+      "blob": "887c56faa1b5cc4156df2ad6012dc2e60c88bf9d",
+      "sha256": "34f011d794ddc4f10661f8c6924328178a4e5a310007aaf368fc45d4b3bebac9",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/page.tsx",
+      "blob": "59d25fe971cd1b64ff462aadcb6342ff1d25d83c",
+      "sha256": "3e4b7eee357e8e6a5331caaa7af33030d216b3cb97638b9bf57d166ad1a86985",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PlanPrintDocument.tsx",
+      "blob": "86c209294d040ad436b4cd736c42037af4f7d2cd",
+      "sha256": "5013e568d60d344ac58ee757bc32874713189824a33f58a73e826b179469cd23",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PrintButton.tsx",
+      "blob": "5ec02e86a830a004f0f8b1f25b6c17aa58d47015",
+      "sha256": "7d48ab9b8dafba14cc794f2fe67f43ba88ce2aad150e9df69ebb15dbec155b08",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/plans/print/page.tsx",
+      "blob": "e9412271061f272a3d7992a9d5a682fa74104f96",
+      "sha256": "c6c2c4a540cc1e0ec621b423de1c034fb8264833d76000c728648f9bb634b76f",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/[id]/records/page.tsx",
+      "blob": "eb57653f068f5c23ee3a75933d6417505b88da93",
+      "sha256": "45da7eede8d38aed741912f352233c529f11d8364ed2b722809969f11f374c1d",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/new/page.tsx",
+      "blob": "b152334ffd06c5f71f463d5df67ffff7ff5499a0",
+      "sha256": "71343700ea565915f44e70efa188373a326f4da8328dc8e84adb8e2e25bab2bc",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "app/users/page.tsx",
+      "blob": "e1c7ae383cda6ddccc2f7125ebb979134dc81775",
+      "sha256": "f995692d93eba3153c3f3cf884b693c5bef46d9ec308bf5f6d168fa448ac224a",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/ai-document.ts",
+      "blob": "7609aff9f2aed50386769a7dd4c9c033401177ca",
+      "sha256": "d83195584b3432138dd8dd87dd60d0627030ffeb03c6b80ede1f6d262ade2172",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "parseRefs",
+        "emptyDocument",
+        "parseDocument"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/ai-generate.ts",
+      "blob": "8071a9c5712e8d7f5126ca9b8de7bcc8c269f37d",
+      "sha256": "e4459bfe9c15f80d44ea76220a36e4d0f5fd6dbd3b8d8421f0207f34ccfe3fc4",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "generateDocument"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/approved-plan.ts",
+      "blob": "b3f56b32397b3d9060957be35749142b95c4edca",
+      "sha256": "8ca2b0c94d504ffa978fcd8accefe0596369cef59e688bdbd549f0b848fe456e",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "selectApprovedPlan"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/assessment.ts",
+      "blob": "92ae92378cc9a4ff6ca5190c73f555f1863c387a",
+      "sha256": "41d6d972c6e8ca6094e073083d77ec448d50a87ba8e9ceba2ef3bc6c608e6343",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "emptyAssessment",
+        "parseAssessment",
+        "validateAssessment",
+        "missingAssessment"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/meeting-record.ts",
+      "blob": "d62acf08cccac594cd75ed961ad21d64f74861bb",
+      "sha256": "59b96ddd884b530c0c5959ae6f4e58b352f58db76a709daad3e3a0a64a44e3da",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "emptyMeeting",
+        "parseMeeting",
+        "validateMeeting"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring-ai-server.ts",
+      "blob": "003119f0ef65f379160e8dbb01e91f875f7262fc",
+      "sha256": "3a71186c7f023a4b3b0a0ff86a983c75738fe8559ca76e6f17bb73e194a51595",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "loadMonitoringAiContext",
+        "generateMonitoringChanges"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring-ai.ts",
+      "blob": "2ec82c78d5d0dfd348ebc59b32aaa841e609674e",
+      "sha256": "a34ab19257497b8a61e81baf599eb3456821e24882ffb34dcacdc5138de4cf27",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring-deadlines.ts",
+      "blob": "af9dbf14bdd29888931b6aff318aff4436349793",
+      "sha256": "7e497dc9cd23ff8b06a54742a5379d80854f237023cbbb9ddf3d7a3740aa900f",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "monitoringDeadlines"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring-handoff-server.ts",
+      "blob": "ef49cd1c15f86d9b9f586b4022c52cce4d4c9a53",
+      "sha256": "ce8dfbb1abd719369940a3fe6321475b7cfd93052cb29b580ada00e3e020a902",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "resolveMonitoringHandoff"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring-handoff.ts",
+      "blob": "0de2e26a16f1df119e8f5d9d4530f9b35a8a16cc",
+      "sha256": "12c33dd81b15c9a784814f129489f9b08c38ef9d5fe3e707a85b4b14cddec2d3",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "parseHandoff"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/monitoring.ts",
+      "blob": "6d89016b3afec7959d77198e8b1773c6322d5369",
+      "sha256": "400d96035921b9704da09e52221e5c3c5a78fd2471505b6bcdc52dc6165de712",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "parseMonitoringPlanReference",
+        "monitoringPlanReference",
+        "emptyMonitoring",
+        "validDate",
+        "parseMonitoring",
+        "validateMonitoring"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/plan-content.ts",
+      "blob": "d5efac6427bac7e46541237da61596dd9c18f98a",
+      "sha256": "7530dac1bfe21ca775d328059b31a2bd45348fd1e3983ae10fc3c92defd1735b",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "emptyPlan",
+        "parsePlan",
+        "validatePlan"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/plan-import.ts",
+      "blob": "feb77df153e518843aea64c3097f1b7cd69d11e3",
+      "sha256": "21f22de25e3d5dce9021657a28650f739a855ecebf05cdb5e34ca6d5d1905a1c",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/plan-review.ts",
+      "blob": "617239e353ecde643bd6c3fcbf452c028f161534",
+      "sha256": "f9a814f48c03b7a7ec35e231bad444fee4a139c30451e0aa619694f960c77f5e",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "parseReview"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/planning-assistance-server.ts",
+      "blob": "e8d77ec97c6298bb0683bc079853d1bbfb763bba",
+      "sha256": "059cb3f8e197ab121dd7885d0935fec1805c5c3bff578bcc25a16c57628b2658",
+      "signals": [
+        "IO_OR_PROVIDER_REVIEW"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "loadPlanningContext",
+        "generatePlanning"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/planning-assistance.ts",
+      "blob": "5524bb797b4f6c8463b758e10dc7b59882a54f04",
+      "sha256": "247f6937d13a85fad49c265116455ed3bbb6dc3ef119ab742c9206cdd1427e30",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "reasonFields",
+        "parseReasons",
+        "parseFields",
+        "draftPlan",
+        "proposalBody",
+        "compactMaterials"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/supabase/client.ts",
+      "blob": "36cef0c51fd85b48bc8fd6c925118af1d50a11d8",
+      "sha256": "a496f70177c91f7e0290215790f5743ba5907bf1050fb8f86b65b668f853d7c0",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createClient"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/supabase/database.types.ts",
+      "blob": "e16c69cefd9fb661a6a6d2a6127229fa97686207",
+      "sha256": "dc3283db2571e89f77c12a20c6d377bf26bd72805846fbfd5cd368eabc048227",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/supabase/server.ts",
+      "blob": "c53e4f544879632b4602caabf1d4a2aec05588b9",
+      "sha256": "7cb972a1f4a8874f686820cb2861ea471383a23b521b79738b5007bf732f4d0a",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "createClient"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "lib/support-record.ts",
+      "blob": "9c557312ddc7b300e895341b1cc965d487944583",
+      "sha256": "21d06c0ac6206cfccf3b0523d7f15a07f22c539b42509c7bd0473fc5416c7095",
+      "signals": [],
+      "possibleWriter": false,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "emptySupport",
+        "validSupportDateTime",
+        "supportDateTimeForInput",
+        "parseSupport",
+        "validateSupport"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "blob": "62839eedcd916d84229307abbc12d9825b741655",
+      "sha256": "b29801f4a2865ccc239eaf4c319d7598d5f1cba20e8c07a5a9be7a64540d60cd",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "set_updated_at"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "blob": "fa676a05db201d25bdd8185f4a185289cf1499ee",
+      "sha256": "63e01c6b5e72dfdbfefca2460720233e96dffa0c7dd8d971026af8931d8e301c",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260816004924_ai2026037_phase1_stage6_functions_users_plans.sql",
+      "blob": "05659316b9965a4d5af922e77f82d423df63ce90",
+      "sha256": "0f4d201038bf274c6b86562cb09d962c4928cfc5d026a72e63352f9ad9a76efe",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "create_user_with_plan",
+        "update_user_with_plan"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260816011117_ai2026037_phase1_stage6_errcode_fix.sql",
+      "blob": "33aa10d0efa0a6be3d26d42989039df4e6ea720b",
+      "sha256": "0c06acc670a6f907c6dc5649f2a33450fff03b92beb8688761cc438013448c40",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "create_user_with_plan",
+        "update_user_with_plan"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906010000_plan_content.sql",
+      "blob": "a1f4a6845d85854e885c8dfa9c490337b95a4aab",
+      "sha256": "bf7bebbce1ceed7e77e266d66bd962802c779690ab2c43d6c8718ff507d12dfe",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_plan_content"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "blob": "0d5d87be2544ca61251e06758bb35b139d96b277",
+      "sha256": "286612b0b966831ea9a010ea6463639591d5658c67a2fdd2a0895a6ae9d8fe19",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_monitoring_record"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "blob": "c2fc6b54dae8638019579ce921873578ff0e190a",
+      "sha256": "d7aea03480549d95d3de280605c038b4df603c48187a004af5465b7eb05c3258",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_support_record"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "blob": "f0ea2145a9a10753055c302c8006da4d419c4d07",
+      "sha256": "80759a8001bb839c55f8c274e981d98f60720513f8318761323407e5ee770778",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_ai_document"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "blob": "fa0a17dee261616d82a440daf3551be5c3b5f9fc",
+      "sha256": "7177e594f54ff7866051d9b03cbe65b9e4d57f239c1c15938e6efa3f099962f6",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_assessment_record"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906060000_ai_assessment_sources.sql",
+      "blob": "e041e6033641afa9a9811689ac229ab36930401a",
+      "sha256": "150324adf6806dd44057770094b2db7d56b51be58484d8396c815af203bf121c",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_ai_document"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "blob": "69075df91dc25b83eb6ecb36e050c71f52a5e7e5",
+      "sha256": "8e8f4bc848711f2f08aa2db33c0dfcbc65291eb572846d5c844ca6a80bb55437",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.can_manage_plan",
+        "public.capture_plan_revision",
+        "public.get_plan_review",
+        "public.act_plan_review",
+        "public.create_user_with_plan",
+        "public.update_user_with_plan",
+        "public.save_plan_content"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260906080000_plan_import_history.sql",
+      "blob": "42028bec0988f5baacf7974030a5f589c170fed2",
+      "sha256": "268ca2a0ff913aaf6132658b898ef02b7d897c14e3d423c1126e8e2e95e17dfb",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_plan_with_imports",
+        "public.get_plan_review"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "blob": "74f5af76a5ae9505f25399f9fab6532b80f3cca5",
+      "sha256": "66a189861cd0842191b577aea50f10d985e9c9959c5a6840601df1e9ffc0f5be",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.save_meeting_record"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260908020000_record_permissions.sql",
+      "blob": "1f67833813c8130133688f05dd08a2457c6ff899",
+      "sha256": "10432a34746fe1a8c022a8862c308c00b4b2335e9840bba0730b4d242830234a",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260928012955_restrict_users_direct_writes.sql",
+      "blob": "359d18c8201385028584b7829e5c9d5340d23f89",
+      "sha256": "762c95bf224d9cb961d8a0b96b5324b70a18056bbe6ab4435ee1560999fc0e16",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [],
+      "fenceVerification": "NOT_VERIFIED"
+    },
+    {
+      "path": "supabase/migrations/20260929073000_fix_specialist_user_registration.sql",
+      "blob": "613f534e2e6cabc6e38f4bbe0ab3b7800846677c",
+      "sha256": "ad7aed0c28a7f041d84fe01879aa7ec72d895838234d9e6b32102c5e8c09bb1b",
+      "signals": [
+        "SQL_MUTATION_OR_DDL"
+      ],
+      "possibleWriter": true,
+      "fenceCallMention": false,
+      "exportsOrFunctions": [
+        "public.create_user_with_plan"
+      ],
+      "fenceVerification": "NOT_VERIFIED"
+    }
+  ]
+}
