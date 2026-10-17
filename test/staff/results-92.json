@@ -1,0 +1,42 @@
+{
+  "stage": 92,
+  "baseline_commit": "43049af9e056d849865ed1e17f0009e814b7670a",
+  "STATIC": {
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "command": "python test/staff/verify-readiness-92.py",
+    "scope": "blob hash, exact regeneration, required fields, missing/changed source rejection, overclaim/audit closure rejection; not type/lint/SQL validation"
+  },
+  "MODEL": {
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "command": "node --test --test-reporter=tap --test-skip-pattern='unfenced writer|new source cannot|changed source is|missing file is|fence mention is|inventory of actual baseline' test/staff/safety-boundaries-89.test.mjs",
+    "scope": "Existing synthetic model regression only. Does not prove new U04 procedure or PG behavior."
+  },
+  "prior_attempt": {
+    "tests": 42,
+    "pass": 41,
+    "fail": 1,
+    "failed_test": "inventory of actual baseline is hash checked and remains blocked",
+    "cause": "Negative-lookahead test-name filter did not exclude old source snapshot assertion. Old127 hash inventory is not current199 Git blob manifest; not rewritten as passing.",
+    "followup": "Current199 exact Git blob hash check passes. Model-only rerun passes36."
+  },
+  "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+  "FORMAL_ACCEPTANCE": "NOT_EXECUTED",
+  "real_db_connections": 0,
+  "real_auth": false,
+  "workflow_started": false,
+  "production_authorized": false,
+  "sha256": {
+    "design/staff-safety-readiness-92.md": "d5370c310476ab5090a85ec7d84c12e6de53efa2520766b5e8255bd9b8d6f1c6",
+    "test/staff/scan-writers-92.py": "f2f80a9d465d520880331360b558698145006c905277ed89e918fe0c47eb3baa",
+    "test/staff/writer-source-manifest-92.json": "cbac06556f6773477938c7e35af41a05f21bfef44b2eb7da2deb9ef0433b41db",
+    "test/staff/writer-inventory-92.json": "5945685f2815b5582c48efc03e61081660f82eed519f9818783543aae4d6dcf7",
+    "test/staff/readiness-evidence-92.json": "a76ff7b05c4c254faed8beec8988d727fd324787c5f4060e7ac3ff9bad54d586",
+    "test/staff/drive-review-92.json": "45e1a1d1caceb4d5e77302ed85cb37b2deabdbfc26437d46b8e0a9e37c698a29",
+    "test/staff/verify-readiness-92.py": "d0d7bb436ec22c88ae420d0875265377542ae769ef6c7b64b346d595e2ac7136"
+  },
+  "github_save": "EXPLICIT_SAVE_ONLY_AUTHORIZATION_RECEIVED_READBACK_REPORTED_SEPARATELY"
+}

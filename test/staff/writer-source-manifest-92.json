@@ -1,0 +1,1495 @@
+{
+  "baseline_commit": "43049af9e056d849865ed1e17f0009e814b7670a",
+  "tree_truncated": false,
+  "files": [
+    {
+      "path": ".env.example",
+      "git_blob_sha": "0a2dfadd1d9e4e2b342d797b745baca920fdcf93",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": ".gitignore",
+      "git_blob_sha": "041a50a59b6706adf6ed217ad7994d805b2dd473",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob_sha": "8bd0e39085d5260e7f8faffcad2fdc45e10aef33",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "CLAUDE.md",
+      "git_blob_sha": "43c994c2d3617f947bcb5adf1933e21dabe46bb5",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "DEVELOPMENT-RUNBOOK.md",
+      "git_blob_sha": "3d1fb9a090b0d1a66552f4b5d2ac93673125c1e8",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha": "69592442b4ac958a81f66c64b76350073f7640c0",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "app/api/ai-documents/generate/route.ts",
+      "git_blob_sha": "42b5cafc83c88fbaa534f1c9d2ea58345f9c137a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/monitoring-ai/route.ts",
+      "git_blob_sha": "87d8590a788a58a8b6fb11c52502d42a47cf2552",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/planning-assistance/route.ts",
+      "git_blob_sha": "db4767777a3bb2bc8fdaccf22899cba3ca998377",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/auth/login/route.ts",
+      "git_blob_sha": "88fcbeed62926ff3e82d0c46cc77f8edbc0f4040",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/auth/logout/route.ts",
+      "git_blob_sha": "d69268e611d334a8f56b2422b0aa2e4e27c22fce",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/auth/password/change/route.ts",
+      "git_blob_sha": "30fcca6fb6e095a136dc0a83e4ee68a930e7f525",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/auth/password/reset/route.ts",
+      "git_blob_sha": "3eb5c12ea9f137fb62839efd49fecca784e3d9de",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/auth/session/route.ts",
+      "git_blob_sha": "093d2a72272a34356b74e69d6059ed30ddc5484a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/candidates/result/route.ts",
+      "git_blob_sha": "a05a808c27d4726c910814d1635060f919c99d94",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/api/staff/candidates/route.ts",
+      "git_blob_sha": "42b52e3dc7cb80f79e05d388cc708a3480bf2da5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/components/ApprovedAiNote.tsx",
+      "git_blob_sha": "2991436d1de026dc06fb5a4aca89b0ff43634a34",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/components/Header.tsx",
+      "git_blob_sha": "e981601676fc065abb1c72711c29df719d83ac6a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/components/LogoutButton.tsx",
+      "git_blob_sha": "8bdfdd64aa2e5cbb12f3c0ea223a0d8696968156",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/dashboard/page.tsx",
+      "git_blob_sha": "9089623c98dc824f535da13ced3e114f2304210a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/favicon.ico",
+      "git_blob_sha": "718d6fea4835ec2d246af9800eddb7ffb276240c",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "app/globals.css",
+      "git_blob_sha": "a2dc41ecee5ec435200fe7cba2bde4107f823774",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "app/layout.tsx",
+      "git_blob_sha": "976eb90df142ef2c4f3f39cee8b0e4c4f4771b62",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "git_blob_sha": "880b125b74f6ac1ea873db92d6e1e2577801f24f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/meetings/page.tsx",
+      "git_blob_sha": "d4829d4c6526e97aa66d0295b38c68ebbd860576",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/monitoring/page.tsx",
+      "git_blob_sha": "41138f5acf4c6b5f548a78fd8a720ef3450764a4",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/page.tsx",
+      "git_blob_sha": "f14ad6a2cf761a0162aa4779682ba58c639882ba",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/staff/_components/auth-form.tsx",
+      "git_blob_sha": "bfc726d4e02ca61c01ff811b800731655398ddf5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/staff/login/page.tsx",
+      "git_blob_sha": "b5f0649a69e4d9734b15dd7b70561c2f8f73b190",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/staff/password/change/page.tsx",
+      "git_blob_sha": "bcee3481e89691d5d42ad31158a6b0828e2c5ec0",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/ai-documents/page.tsx",
+      "git_blob_sha": "69f320ff2e752572dd0d32fa6bf6227f68daac44",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/assessments/page.tsx",
+      "git_blob_sha": "87cef301b7824ec197bd74afb3e6da1e02bbf23f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/edit/page.tsx",
+      "git_blob_sha": "9e78c8918b266dab5c73b0fe2555db290b5f1cfa",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/meetings/page.tsx",
+      "git_blob_sha": "de5eb3df68c9851cff88c483a535e8c70258e11e",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringAi.tsx",
+      "git_blob_sha": "0d3b51254acc0ecdf524e7bc075c19c9fd5d15b3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/monitoring/MonitoringComparison.tsx",
+      "git_blob_sha": "f01de4a0d3edc74cfda913634fa5bcbdd300d7a7",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/monitoring/page.tsx",
+      "git_blob_sha": "a359be5500cc137417c1c5ae8464d521912b9672",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/page.tsx",
+      "git_blob_sha": "0cd38be14a15334002fd6af78c69881e0c4c9b0d",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/planning-assistance/page.tsx",
+      "git_blob_sha": "c43dd81b99b6d02b1929e65542a25fc6401e65cd",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanDraftImport.tsx",
+      "git_blob_sha": "d98d289c1c390b0ce5b3cce6e2a3e01b02b8cd32",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanImportHistory.tsx",
+      "git_blob_sha": "1b5a597be74db05a81f0777d8e8544988228d1b9",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/PlanReviewPanel.tsx",
+      "git_blob_sha": "887c56faa1b5cc4156df2ad6012dc2e60c88bf9d",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/page.tsx",
+      "git_blob_sha": "59d25fe971cd1b64ff462aadcb6342ff1d25d83c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PlanPrintDocument.tsx",
+      "git_blob_sha": "86c209294d040ad436b4cd736c42037af4f7d2cd",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/print/PrintButton.tsx",
+      "git_blob_sha": "5ec02e86a830a004f0f8b1f25b6c17aa58d47015",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/print/page.tsx",
+      "git_blob_sha": "e9412271061f272a3d7992a9d5a682fa74104f96",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/[id]/plans/print/print.module.css",
+      "git_blob_sha": "5ca5b906264fb3c4635cf7136df5f46f412109b7",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "app/users/[id]/records/page.tsx",
+      "git_blob_sha": "eb57653f068f5c23ee3a75933d6417505b88da93",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/new/page.tsx",
+      "git_blob_sha": "b152334ffd06c5f71f463d5df67ffff7ff5499a0",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "app/users/page.tsx",
+      "git_blob_sha": "e1c7ae383cda6ddccc2f7125ebb979134dc81775",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-approval-authority-74.md",
+      "git_blob_sha": "b15042bc009a0f00ae91a7f3e023169bdbb04ee6",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-approved-methods-91.md",
+      "git_blob_sha": "03f922fc38ad8d66218e8423a9efef1ca4de2a29",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-assignment-history-80.md",
+      "git_blob_sha": "ebdd54acce7e9b691e35722b4a60202e0726cd74",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-assignment-history-80.sql",
+      "git_blob_sha": "0560da784dab3031744964a40c28fe707dba8948",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-auth-adapter-64.md",
+      "git_blob_sha": "7417b24e0cc8bb5b19021315f9e5a9ce9d11db56",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-check-61.md",
+      "git_blob_sha": "f3a125cf571878ac87624c7bc17f6013cf5c0b42",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-function-contracts-62.md",
+      "git_blob_sha": "904bebe174375f54000b9da62044bf8f07ba216f",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-functions-63.sql",
+      "git_blob_sha": "d6ae9d897da6e2d7d80b67b3c44053a0da857cc2",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-auth-isolated-result-63.md",
+      "git_blob_sha": "693a243b8769266b5e50a5b62dfe623d53f29261",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-operations-60.md",
+      "git_blob_sha": "b7c1080ff23d3c18dfa35f9d29f9751285fd458f",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-privileges-61.sql",
+      "git_blob_sha": "f45b7a84d184d860bd37e7c7a7c3a40d6bebad42",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-auth-readiness-62.md",
+      "git_blob_sha": "760af8dd9574d73f72b5ba3360c0b75897e94513",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-storage-59.md",
+      "git_blob_sha": "0da71159d908b9c629fdeea92bc39d3e3a5f096a",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-auth-storage-59.sql",
+      "git_blob_sha": "5692e969206891e5b5c6cee342917dcd36f19c2c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-business-role-history-82.md",
+      "git_blob_sha": "790f79292730bc89674a798a3337bb478734c085",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-business-role-history-82.sql",
+      "git_blob_sha": "fba097a2176a2463bfaee1468b84cb4a0d098fd4",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-business-scopes-76.md",
+      "git_blob_sha": "be26959e2c5ec7852be56efdbf6369b2743caefd",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-business-scopes-76.sql",
+      "git_blob_sha": "de7c6e0b0020413667112474d013841ab65e5557",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-concurrency-test-plan-89.md",
+      "git_blob_sha": "60b1c797f25271f873b28a198ad8ace05eb962c1",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-contract-history-81.md",
+      "git_blob_sha": "e37b77356aa729ef48eb024a54da29fc52d3dffa",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-contract-history-81.sql",
+      "git_blob_sha": "9dc8558ce9660be46d862e9bca83d21eee0151e8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-control-scope-evidence-73.sql",
+      "git_blob_sha": "082840c63bc5be5d2c52332ba860ec9d80e3269a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-control-scopes-73.md",
+      "git_blob_sha": "11c875e28b49eb43b2136550601c7369c9e2aeda",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-control-scopes-73.sql",
+      "git_blob_sha": "df12c4e98b954c27ce1295b987e00a181d612d26",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-core-history-65.md",
+      "git_blob_sha": "16248d3cb8c285a9a0097bda4a31ef8ef4efd4b2",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-core-history-65.sql",
+      "git_blob_sha": "49fcfca2332e5624f85921d4858369c8dcbd9545",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-current-projections-67.md",
+      "git_blob_sha": "9c45ee9dd5a84b1c0d52efd72103e6d0bef4e66f",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-current-projections-67.sql",
+      "git_blob_sha": "f20d865cd46be57cf9c9c6ba86238ab78b9d1a70",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-current-projections-68.sql",
+      "git_blob_sha": "d15ac59b91daab4c82c04d3e542686a524c9ae31",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-current-projections-70.sql",
+      "git_blob_sha": "37b961b0c92e1d557ea586cf63fb4ca0c6f604df",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-current-projections-73.sql",
+      "git_blob_sha": "52b4f6648c8877840351cdbaec894ab47a3b5af7",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-decision-pack-89.md",
+      "git_blob_sha": "460192ec8cfe428616600f3b145ccdc24f5189b9",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-department-structure-78.md",
+      "git_blob_sha": "1c50d5f162a8b0aa248626845170c76c35273f94",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-department-structure-78.sql",
+      "git_blob_sha": "121016a4f3dfc228af7c3af7c4732546642514c6",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-document-corrections-91.md",
+      "git_blob_sha": "0ea19b34608a7ad3b0a28062bec78b0df8515342",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-final-decisions-90.md",
+      "git_blob_sha": "0e76abc0f48538ad28f19c5a36d0f282c6ec9065",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-grant-dependency-reference-83.md",
+      "git_blob_sha": "9e43635556eabdcac03fcef6513764481212b94b",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-grant-dependency-reference-83.sql",
+      "git_blob_sha": "a910697044ba4fc3c3a829016ad01e83357aa505",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.md",
+      "git_blob_sha": "66c434b8a0a3aef1c45031d70e846e227b75bb78",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-grant-evidence-binding-87.sql",
+      "git_blob_sha": "07e4b12c74e47dd6e034c082780d996e516d6c7f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-grant-history-75.md",
+      "git_blob_sha": "f006eaed4a06a851094ffa0132ba1897af4b3cc2",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-grant-history-75.sql",
+      "git_blob_sha": "6b27ceaec760163ec21229173cfa2118fc036390",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-grant-invalidation-contract-84.md",
+      "git_blob_sha": "993e6623233e792a7f559ab16d3c23db3e3c01af",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-implementation-readiness-86.md",
+      "git_blob_sha": "c0b1beb67f9ba18a2e5f115fa9a3e8b8ef572def",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-initial-admissions-70.md",
+      "git_blob_sha": "b113f3009184dc198f0921240aafd9c2106e1ace",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-initial-admissions-70.sql",
+      "git_blob_sha": "34e1cd17434d5432d1cb74ab3deeaa3113f8afa0",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-initial-apply-contract-71.md",
+      "git_blob_sha": "5897ba6e2f1efda2820698a735e5c276b9208dd3",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-login-reservations-69.md",
+      "git_blob_sha": "080f00a492eccc534fbb64cfb0a8918bc6fb3e5a",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-login-reservations-69.sql",
+      "git_blob_sha": "09bd95b8e8900ff19ed342087d8a6bc40c7e6ab9",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-organization-history-77.md",
+      "git_blob_sha": "bc583aad4d8a11c1a0309dc8a1a2629c484f92d5",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-organization-history-77.sql",
+      "git_blob_sha": "4da3bc219c7a0e999d662a39c297c184b1ab8bbd",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-parent-base-68.sql",
+      "git_blob_sha": "28994162c02fa6c211c63a32764b92dd60e256b8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-parent-controls-68.md",
+      "git_blob_sha": "a532b428267c3d1736fe86273906ec752351839d",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-parent-controls-68.sql",
+      "git_blob_sha": "26800486d897ccd247f2db0d0011f57f1e51c417",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.md",
+      "git_blob_sha": "7d244e9ceccb45ac604cb9423031f152529c7dd8",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-policy-evidence-candidates-85.sql",
+      "git_blob_sha": "f84586999e72aa56dba62166e7c37bded65f2633",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-safety-contracts-88.md",
+      "git_blob_sha": "22f1f92e431ec6ea453b5cbd60718d6f8c5c6a7d",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.md",
+      "git_blob_sha": "9101ad19a787492ef23c55e1534d79f01534cf2e",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-suspension-evidence-66.sql",
+      "git_blob_sha": "afdf30dbc17a0f5e757f2515cbbb541636e4c48e",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-workflow-evidence-72.sql",
+      "git_blob_sha": "a6e65ff21be92c63f5e477d1934d393877dad2c6",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-workflow-parents-72.md",
+      "git_blob_sha": "7e957596ccfc7f8445e4cc2f8ade9931f32eec65",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "design/staff-workflow-parents-72.sql",
+      "git_blob_sha": "0875e0d491cc8e40b38f9ec74e86ceca54f43cd8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "design/staff-write-fence-88.sql",
+      "git_blob_sha": "86e23b5fd673d444336e8827087794453de9a25a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "git_blob_sha": "90a6382bf3297cefe346975eb21a4c264ae3938e",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/ai-document.ts",
+      "git_blob_sha": "7609aff9f2aed50386769a7dd4c9c033401177ca",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/ai-generate.ts",
+      "git_blob_sha": "8071a9c5712e8d7f5126ca9b8de7bcc8c269f37d",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/approved-plan.ts",
+      "git_blob_sha": "b3f56b32397b3d9060957be35749142b95c4edca",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/assessment.ts",
+      "git_blob_sha": "92ae92378cc9a4ff6ca5190c73f555f1863c387a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/meeting-record.ts",
+      "git_blob_sha": "d62acf08cccac594cd75ed961ad21d64f74861bb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring-ai-server.ts",
+      "git_blob_sha": "003119f0ef65f379160e8dbb01e91f875f7262fc",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring-ai.ts",
+      "git_blob_sha": "2ec82c78d5d0dfd348ebc59b32aaa841e609674e",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring-deadlines.ts",
+      "git_blob_sha": "af9dbf14bdd29888931b6aff318aff4436349793",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring-handoff-server.ts",
+      "git_blob_sha": "ef49cd1c15f86d9b9f586b4022c52cce4d4c9a53",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring-handoff.ts",
+      "git_blob_sha": "0de2e26a16f1df119e8f5d9d4530f9b35a8a16cc",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/monitoring.ts",
+      "git_blob_sha": "6d89016b3afec7959d77198e8b1773c6322d5369",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/plan-content.ts",
+      "git_blob_sha": "d5efac6427bac7e46541237da61596dd9c18f98a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/plan-import.ts",
+      "git_blob_sha": "feb77df153e518843aea64c3097f1b7cd69d11e3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/plan-review.ts",
+      "git_blob_sha": "617239e353ecde643bd6c3fcbf452c028f161534",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/planning-assistance-server.ts",
+      "git_blob_sha": "e8d77ec97c6298bb0683bc079853d1bbfb763bba",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/planning-assistance.ts",
+      "git_blob_sha": "5524bb797b4f6c8463b758e10dc7b59882a54f04",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-context.mjs",
+      "git_blob_sha": "9574482daf73b4e53eb51a9d5887188fff3fa8ad",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-context.test.mjs",
+      "git_blob_sha": "1dea0406a47e02ecce1a86be61aab6b9e5b97618",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-form-client.mjs",
+      "git_blob_sha": "a4efdf0d9c9833f07b1d2cda82ecc0045cefdca3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-form-client.test.mjs",
+      "git_blob_sha": "61431f656b1174e929d63a460febed39c60e9491",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.mjs",
+      "git_blob_sha": "888af98c9306e38c4fa340a5b4d8dde445af0e23",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/auth-function-repository.test.mjs",
+      "git_blob_sha": "da9445e2273a1eff6193dfb0a8d4c6b3af4c7af6",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/binding-resolver.mjs",
+      "git_blob_sha": "e826881ef8f4a4af2e59cb001177bd14ff4021c3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/binding-resolver.test.mjs",
+      "git_blob_sha": "c42bdfec0d645ddd9dba9ed02567139883be9d3f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-http.mjs",
+      "git_blob_sha": "fe8d427061ed3bc4264ed39b52428d23cb99f287",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-http.test.mjs",
+      "git_blob_sha": "812eed774b5907ef4c558b1c21fd767a4b2b1dfe",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-result.mjs",
+      "git_blob_sha": "0bfaf8bce55355bca49830d508bdb0563bc1681c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-result.test.mjs",
+      "git_blob_sha": "7abd2ce95ee34f70100463d0c781e0fa019e7170",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-routes.mjs",
+      "git_blob_sha": "48092c01434e4786ac21e4df7bcc4bbd0b4386f0",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-routes.test.mjs",
+      "git_blob_sha": "6c81cb013666126867c9ea2bcce33adac142b97c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/candidate-runtime.ts",
+      "git_blob_sha": "b8b878e4fc781c854ce6a9104d78c2d921da55fd",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/credential-sealer.mjs",
+      "git_blob_sha": "1200a624d1fbad81f4a4e1ea8d49e7065504fa13",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/current-session.mjs",
+      "git_blob_sha": "4b332014d15a6f0989ae897a0f51efaddddf6b69",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/current-session.test.mjs",
+      "git_blob_sha": "b5dca714a7304e92a77959b7e712de9f1b91166f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-identity.mjs",
+      "git_blob_sha": "cad2f680c54f5f2098c34dcae53481123d24734b",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-identity.test.mjs",
+      "git_blob_sha": "ddcf0a7f9fe4b128bd9d4e17a058e823f8677859",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-routes.mjs",
+      "git_blob_sha": "48b006abcfafebd43f0526f9178cf45f293c9ae2",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-routes.test.mjs",
+      "git_blob_sha": "6dbfc7cc0eca57f7c5b665f316fe9e98a857e84a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-runtime.ts",
+      "git_blob_sha": "5db799bf94fc2285c6eb2ed4af1ec01120a2ae48",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-session.mjs",
+      "git_blob_sha": "cd86cb3ebd50b0b68683832e3624e8eff841ebcb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/login-session.test.mjs",
+      "git_blob_sha": "b5ee82cef2a13b9f669772dca99a1577375ea04f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/postgres-operations.mjs",
+      "git_blob_sha": "94465adcee479a88329f60fae2f7af348b571079",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/postgres-operations.test.mjs",
+      "git_blob_sha": "a124cec7f438ea15c7680bb5019f8172829875fe",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/registration-port.mjs",
+      "git_blob_sha": "46a2b61d12b5266fb1d6ae742b0df64fe0c1c260",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/registration-port.test.mjs",
+      "git_blob_sha": "668d202bc7fda4430da26cba0b455ecac3e72c3f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/session-access.mjs",
+      "git_blob_sha": "8e59f06663fef9260ffac730f81e32df28206986",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/session-access.test.mjs",
+      "git_blob_sha": "50113175387244bde933578d84188dbecffc1b93",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/session-postgres.mjs",
+      "git_blob_sha": "c2017bda7822b2962ce3b15a15e90e4a342c7bff",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/session-postgres.test.mjs",
+      "git_blob_sha": "bd4a5353ed254a4c5d72c61026b6893bc152b3a3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/session-runtime.ts",
+      "git_blob_sha": "72d34c1b379843fef5b44f44e33bfa44f2eae661",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.mjs",
+      "git_blob_sha": "a707c597834c06d8585257c117e9dbee2d7e104a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/supabase-password-provider.test.mjs",
+      "git_blob_sha": "3ff96529b1de80038051b0339c89113191aa3f1f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/transaction-repository.mjs",
+      "git_blob_sha": "b87ea73772e10ee46d84e282ac7364cab2c152a3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/transaction-repository.test.mjs",
+      "git_blob_sha": "d020bb4932c9ac47284ed870c4e33cada86babbb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/validation.mjs",
+      "git_blob_sha": "1d957d95673802272af23b3550b63d1dfd895946",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/staff/validation.test.mjs",
+      "git_blob_sha": "2963083caf1fae42de85d8a2e15290f19bebd900",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/supabase/client.ts",
+      "git_blob_sha": "36cef0c51fd85b48bc8fd6c925118af1d50a11d8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/supabase/database.types.ts",
+      "git_blob_sha": "e16c69cefd9fb661a6a6d2a6127229fa97686207",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/supabase/server.ts",
+      "git_blob_sha": "c53e4f544879632b4602caabf1d4a2aec05588b9",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "lib/support-record.ts",
+      "git_blob_sha": "9c557312ddc7b300e895341b1cc965d487944583",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "next.config.ts",
+      "git_blob_sha": "e9ffa3083ad279ecf95fd8eae59cb253e9a539c4",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "package-lock.json",
+      "git_blob_sha": "a42995264f213a4289eafa761c1bb24cbf1ea543",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "package.json",
+      "git_blob_sha": "90d8368c1079134521cbbe87ec1fbfc5ad8a404e",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "postcss.config.mjs",
+      "git_blob_sha": "61e36849cf7cfa9f1f71b4a3964a4953e3e243d3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "public/file.svg",
+      "git_blob_sha": "004145cddf3f9db91b57b9cb596683c8eb420862",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "public/globe.svg",
+      "git_blob_sha": "567f17b0d7c7fb662c16d4357dd74830caf2dccb",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "public/next.svg",
+      "git_blob_sha": "5174b28c565c285e3e312ec5178be64fbeca8398",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "public/vercel.svg",
+      "git_blob_sha": "77053960334e2e34dc584dea8019925c3b4ccca9",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "public/window.svg",
+      "git_blob_sha": "b2b2a44f6ebc70c450043c05a002e7a93ba5d651",
+      "scanned": false,
+      "classification_reason": "NON_EXECUTABLE_DOC_STYLE_ASSET; outside-runtime entry discovery still required"
+    },
+    {
+      "path": "supabase/migrations/20260814045200_ai2026037_phase1_initial_schema.sql",
+      "git_blob_sha": "62839eedcd916d84229307abbc12d9825b741655",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260816003836_ai2026037_phase1_stage6_plans_table.sql",
+      "git_blob_sha": "fa676a05db201d25bdd8185f4a185289cf1499ee",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260816004924_ai2026037_phase1_stage6_functions_users_plans.sql",
+      "git_blob_sha": "05659316b9965a4d5af922e77f82d423df63ce90",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260816011117_ai2026037_phase1_stage6_errcode_fix.sql",
+      "git_blob_sha": "33aa10d0efa0a6be3d26d42989039df4e6ea720b",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906010000_plan_content.sql",
+      "git_blob_sha": "a1f4a6845d85854e885c8dfa9c490337b95a4aab",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906020000_monitoring_records.sql",
+      "git_blob_sha": "0d5d87be2544ca61251e06758bb35b139d96b277",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906030000_support_records.sql",
+      "git_blob_sha": "c2fc6b54dae8638019579ce921873578ff0e190a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906040000_ai_documents.sql",
+      "git_blob_sha": "f0ea2145a9a10753055c302c8006da4d419c4d07",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906050000_assessment_records.sql",
+      "git_blob_sha": "fa0a17dee261616d82a440daf3551be5c3b5f9fc",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906060000_ai_assessment_sources.sql",
+      "git_blob_sha": "e041e6033641afa9a9811689ac229ab36930401a",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906070000_plan_approval.sql",
+      "git_blob_sha": "69075df91dc25b83eb6ecb36e050c71f52a5e7e5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260906080000_plan_import_history.sql",
+      "git_blob_sha": "42028bec0988f5baacf7974030a5f589c170fed2",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260908010000_meeting_records.sql",
+      "git_blob_sha": "74f5af76a5ae9505f25399f9fab6532b80f3cca5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260908020000_record_permissions.sql",
+      "git_blob_sha": "1f67833813c8130133688f05dd08a2457c6ff899",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260928012955_restrict_users_direct_writes.sql",
+      "git_blob_sha": "359d18c8201385028584b7829e5c9d5340d23f89",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "supabase/migrations/20260929073000_fix_specialist_user_registration.sql",
+      "git_blob_sha": "613f534e2e6cabc6e38f4bbe0ab3b7800846677c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-dashboard-render.cjs",
+      "git_blob_sha": "587cdd703c4fd71eae8b3720616b174e7f961169",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-meeting-list-render.cjs",
+      "git_blob_sha": "0a94d65703e7333a048809d817cb7476cbf5ca81",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-monitoring-ai-browser.cjs",
+      "git_blob_sha": "d1fcc3b90761174dbee4cf475bade53cfd70a468",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-monitoring-ai.cjs",
+      "git_blob_sha": "c49511426bed8fcdafa220f1dbdac2a3c839e615",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-monitoring-handoff-browser.cjs",
+      "git_blob_sha": "335af28bb9be2620a1e9953ad4aa6610c6df3aea",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-planning-adoption-browser.cjs",
+      "git_blob_sha": "1f51bd63d165fb51efbf4d1c851a6e11f246f9eb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test-planning-assistance.cjs",
+      "git_blob_sha": "9580e3608397e93a2580a8ca4d196579942aa1ce",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/access-boundaries-model-89.mjs",
+      "git_blob_sha": "4090d15793b1a406f9bf01d395079ad5c9deed56",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/approval-reflection-91.json",
+      "git_blob_sha": "d8cd547b2b5a30db0e86be0afeb40641e2f10318",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/approval-reflection-91.test.mjs",
+      "git_blob_sha": "635e5533cd14b222f5a4be83a6c54611c41a5bfb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/assignment-history-80.mjs",
+      "git_blob_sha": "cf90e8de383d0904ff1ecb909263a6e0fdbfeb29",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/auth-functions-63.mjs",
+      "git_blob_sha": "9737b3ae5cfc635424e7fb0e15b879cb80077b69",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/business-role-history-82.mjs",
+      "git_blob_sha": "88ed4b3914b7aa847619ddfeda5aa92f7908e967",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/business-scopes-76.mjs",
+      "git_blob_sha": "bdc41ebde726ee84a4699cc3fc7a64676f8331c3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/contract-history-81.mjs",
+      "git_blob_sha": "c48fbeadbd748a889fe999646b8b5067fce51718",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/control-scopes-73.mjs",
+      "git_blob_sha": "3496475100ed549dec323142fb1e7efe08d4af7b",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/core-history-65.mjs",
+      "git_blob_sha": "2fb479af2d5074f868b4740a412115490c8a8e54",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/current-projections-67.mjs",
+      "git_blob_sha": "a18321896668294bc2f65aa96c881ee730030c51",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/decision-evidence-90.test.mjs",
+      "git_blob_sha": "40553b6de25407901921c6cb6cc87a93368cc8dc",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/department-structure-78.mjs",
+      "git_blob_sha": "01d0531f3d09847ba31c23a66935beb6819f00ff",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/document-comparison-results-91.json",
+      "git_blob_sha": "76319bec48dbc0442b46b1e2f0d0f716b31841a8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/document-corrections-91.json",
+      "git_blob_sha": "c7556d14be88893a3d4d998919689e45c77437fb",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/fixture-63.sql",
+      "git_blob_sha": "287756f8392967356127b44ebf63d54fba89de1c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/grant-dependency-reference-83.mjs",
+      "git_blob_sha": "3eedd2d4649a9c9ecd21a41d29bc08a19fc65be3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/grant-evidence-binding-87.mjs",
+      "git_blob_sha": "a12978edacd902f1ffa1577035f5e19b31a569bc",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/grant-history-75.mjs",
+      "git_blob_sha": "36f6e07128a828d8e34155a856160855f118b361",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/initial-admissions-70.mjs",
+      "git_blob_sha": "ef9cd2f955db626f9a588249cb90046b01aa07e7",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/login-reservations-69.mjs",
+      "git_blob_sha": "d468b3697b8935497292ac56d5473c1c9d85dc44",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/organization-history-77.mjs",
+      "git_blob_sha": "f7c3b032c3ce75fa8b772f4eac0542cef8db61ba",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/parent-controls-68.mjs",
+      "git_blob_sha": "e2534cd0aaf70f8f39dae440da98b43fc6e94be1",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/policy-evidence-candidates-85.mjs",
+      "git_blob_sha": "f7ce8bfd4534536c84154c0cffbad11eea868869",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/registration-readiness-86.test.mjs",
+      "git_blob_sha": "d0153650f099e9e9b67f4f47da53f2d5590c056d",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/results-87.json",
+      "git_blob_sha": "a495264aed3ad89aae5d280e6639d99a8e1d38a5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/results-88.json",
+      "git_blob_sha": "ed89413cbec7b9a42ba86c67e301e35272e7dc12",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/results-89.json",
+      "git_blob_sha": "5e2c3ad57621501719e4b31a224fd588269dbd79",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/results-90.json",
+      "git_blob_sha": "174ec624dbffe4290b310c7fc1b01a26fd21bbef",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/results-91.json",
+      "git_blob_sha": "600ae72461b82a0a1aace0017b734d4a81a6420c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/safety-boundaries-89.test.mjs",
+      "git_blob_sha": "5ee798a90d0d7c02bbcd9e1bb41c3ad1ccdcc583",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/safety-contract-88.test.mjs",
+      "git_blob_sha": "d5bd392bb7861579043413b03005f043545e4670",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/safety-contract-model-88.mjs",
+      "git_blob_sha": "6e108e70ca942ab0dd1d3eaa38d2cccd3bb6ab75",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/suspension-evidence-66.mjs",
+      "git_blob_sha": "37d96456666693b3fc646f9d91c863e68bfff7c4",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/verify-document-diff-91.mjs",
+      "git_blob_sha": "445b5d9ffa6127699a1c61f22256bad938f27db3",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/workflow-parents-72.mjs",
+      "git_blob_sha": "cde0bc600c739c0d902cb45afa9f662adfa219b8",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/write-fence-88.mjs",
+      "git_blob_sha": "a1061057099c0ade3d9b3c65d4d2adbc038ba31f",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/writer-boundaries-90.json",
+      "git_blob_sha": "90972944c8ec43fd550d774e35eb43d1bef79ef0",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/writer-coverage-89.mjs",
+      "git_blob_sha": "2b8025fd1da49b7c410663e1e2d28d0b58524756",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/writer-coverage-results-89.json",
+      "git_blob_sha": "bca19cd774e284bb7694220e78da2e289ea120de",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "test/staff/writer-inventory-89.json",
+      "git_blob_sha": "e5e5cdfcb3c76734440921a5ecf7457351e4146c",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    },
+    {
+      "path": "tsconfig.json",
+      "git_blob_sha": "3a13f90a773b0facb675bf5b1a8239c8f33d36f5",
+      "scanned": true,
+      "classification_reason": "EXECUTABLE_OR_BUILD_TEST_CONFIG"
+    }
+  ],
+  "scan_selection": "All tracked sql/ts/tsx/mjs/cjs/js/json/yaml/yml/sh including tests, migrations and package scripts. Documentation is not proof of deployment."
+}

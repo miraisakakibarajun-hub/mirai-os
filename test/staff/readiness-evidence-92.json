@@ -1,0 +1,68 @@
+{
+  "stage": 92,
+  "baseline_commit": "43049af9e056d849865ed1e17f0009e814b7670a",
+  "authority": "主開発 工程92指示 2026-10-17",
+  "stage91": "COMPLETE_BY_MAIN_DEVELOPMENT",
+  "stage92": "SAVED_DELIVERABLES_PENDING_INDEPENDENT_AUDIT_AND_MAIN_DECISION",
+  "audit_status": {
+    "AUD-091-01": "RESOLVED_BY_MAIN_DEVELOPMENT",
+    "AUD-091-02": "RESOLVED_BY_MAIN_DEVELOPMENT",
+    "AUD-091-03": "CONDITIONALLY_RESOLVED_DETAILS_NOT_RETRIEVED",
+    "AUD-090-01": "OPEN",
+    "AUD-090-02": "OPEN",
+    "AUD-090-03": "OPEN"
+  },
+  "methods": {
+    "U04": "R-A_CONDITIONAL",
+    "U06": "COMPLETE_GRANT_UNION_APPROVED",
+    "U08": "GLOBAL_FENCE_CONDITIONAL",
+    "U09": "ACTIONS_ISOLATED_POSTGRESQL_CONDITIONAL"
+  },
+  "inventory_complete": false,
+  "environment_build_authorized": false,
+  "environment_built": false,
+  "real_db_connections": 0,
+  "real_auth": false,
+  "production_authorized": false,
+  "new_runtime_implementation": false,
+  "document_changes": [],
+  "U04": {
+    "person_selection": "NOT_APPOINTED",
+    "evidence_location": "CORPORATE_RESTRICTED_DRIVE_PROPOSED_NOT_ASSIGNED",
+    "readiness": "DECISION_READY_EXECUTION_BLOCKED"
+  },
+  "U09": {
+    "major": 17,
+    "minor": null,
+    "image_digest": null,
+    "actions_permission": "UNVERIFIED_CONNECTOR_ENDPOINT_UNAVAILABLE",
+    "billing_allowance": "OWNER_CONFIRMATION_REQUIRED",
+    "secrets": "NO_REAL_SECRET_REFERENCE_DESIGN_ONLY",
+    "readiness": "CONDITIONS_PROPOSED_BUILD_BLOCKED",
+    "plan_minutes_per_run": 15,
+    "plan_runs_per_month": 20,
+    "plan_runner_minutes_month": 300
+  },
+  "implementation_classes": {
+    "A": "PURE_APPROVED_LOGIC_AND_STATIC_CHECKS_ONLY",
+    "B": "ISOLATED_ONLY_AFTER_PREFLIGHT_AND_MAIN_APPROVAL",
+    "C": "REAL_DB_AUTH_GRANTS_PRODUCTION_OR_UNAPPROVED_SPEC_FORBIDDEN"
+  },
+  "test_levels": {
+    "STATIC": "SEE_RESULTS",
+    "MODEL": "PRIOR_MODEL_REGRESSION_ONLY",
+    "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+    "FORMAL_ACCEPTANCE": "NOT_EXECUTED"
+  },
+  "audit_submission": "PACKAGE_PREPARED_OTHER_THREAD_RECEIPT_UNVERIFIED",
+  "github_save": "EXPLICIT_MAIN_DEVELOPMENT_AUTHORIZATION_RECEIVED_2026-10-17_SAVE_ONLY",
+  "save_authorization": {
+    "repository": "miraisakakibarajun-hub/mirai-os",
+    "branch": "feat/staff-candidate-routes-20261011",
+    "new_files_only": 8,
+    "personal_data": false,
+    "credential_values": false,
+    "canonical_document_changes": false,
+    "stage93_authorized": false
+  }
+}

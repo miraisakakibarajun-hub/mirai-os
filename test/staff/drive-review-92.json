@@ -1,0 +1,97 @@
+{
+  "level": "LIMITED_READ_REVIEW_NOT_FULL_DIFF_AUDIT",
+  "documents": [
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    },
+    {
+      "read": true,
+      "modified": false,
+      "method_mentions_present": {
+        "U04": true,
+        "U06": true,
+        "U08": true,
+        "U09": true
+      }
+    }
+  ],
+  "private_urls_ids_body_exported": false,
+  "status_note": "正本は工程91保存時点。工程92の進行状態はstaff-safety-readiness-92.mdで区別。方式変更なし。D03/D06/D08未変更・未再点検。"
+}
