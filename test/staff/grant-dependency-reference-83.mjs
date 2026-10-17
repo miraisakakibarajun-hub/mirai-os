@@ -1,11 +1,13 @@
 // 68 + 65 + 66 + 59 + 63 integration with parent/history/control objects.
 // Approval, control-scope, operation and external Auth remain fixtures.
+import {pathToFileURL} from 'node:url';
 import {readFile} from 'node:fs/promises';import assert from 'node:assert/strict';
 import {createAuthFunctionRepository} from '../../lib/staff/auth-function-repository.mjs';
 import {createCredentialSealer} from '../../lib/staff/credential-sealer.mjs';
 import {createLoginCompletion} from '../../lib/staff/login-session.mjs';
 import {createStaffSessionAuthenticator} from '../../lib/staff/session-access.mjs';
-const {PGlite}=await import(process.env.PGLITE_MODULE||'@electric-sql/pglite');const db=new PGlite();let checks=0;
+export async function runGrantReferenceFixture83(extension) {
+const db=new (await import(process.env.PGLITE_MODULE||'@electric-sql/pglite')).PGlite();let checks=0;
 const id=n=>`${String(n).padStart(8,'0')}-1234-1234-1234-123456889012`,issuer='https://integration.invalid/auth/v1';
 // Explicit ISOLATED metadata adapter for legacy scenarios. Production must
 // supply verified provenance; these fixture values are NOT approval evidence.
@@ -1276,7 +1278,13 @@ try{
  await role('test_runtime');await assert.rejects(ref83(5000130));checks++;
  await assert.rejects(at83(5000130,future83));checks++;
 
- console.log(JSON.stringify({checks,scope:'83 current declared dependency references +82 regression; no authority/containment/fence/authorization verified'}));
+ await role('postgres');
+ if (extension) await extension({db,q,txn,id,grant83,at83,relationVersion,assignmentChange80,contractChange81,roleChange82,accountRecord83,currentScope83,proof83,from83,day77,decisionEffect,scopeVersion,allActions});
+ console.log(JSON.stringify({validation_level:'L2_ISOLATED_SQL_INTEGRATION',authorization_verified:false,checks,scope:'83 current declared dependency references +82 regression; no authority/containment/fence/authorization verified'}));
 }catch(e){console.error(JSON.stringify({checks,message:e.message,where:e.where,stack:e.stack}));process.exitCode=1;}finally{await db.close();}
 
 
+
+
+}
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await runGrantReferenceFixture83();

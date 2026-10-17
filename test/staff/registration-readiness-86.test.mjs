@@ -1,4 +1,4 @@
-import test from 'node:test';
+import test, {after} from 'node:test';
 import assert from 'node:assert/strict';
 
 // TEST ONLY: executable specification of the NORMAL onboarding sequence.
@@ -100,3 +100,5 @@ test('late failure retains identity and relationship histories',()=>{
   const s=at(4), r=advance(s,'GRANTS',{...completeEvidence(),qualified:false});
   assert.deepEqual(r.completed,['CANDIDATE','IDENTITY','RELATIONS','AUTH']);
 });
+
+after(()=>console.log(JSON.stringify({validation_level:'L1_MODEL',scope:'86 synthetic ordered onboarding model only',live_auth_tested:false,production_tested:false})));

@@ -1,0 +1,50 @@
+{
+  "stage": 87,
+  "executed_date": "2026-10-17",
+  "baseline_commit": "8f4a36079f3b656966304d8888c19f6ddd29f9f7",
+  "authorization_verified": false,
+  "runs": [
+    {
+      "validation_level": "L1_MODEL",
+      "command": "node --test test/staff/registration-readiness-86.test.mjs",
+      "checks": 44,
+      "passed": 44,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "synthetic registration order model; no DB/Auth"
+    },
+    {
+      "validation_level": "L2_ISOLATED_SQL_INTEGRATION",
+      "command": "PGLITE_MODULE=<external pinned PGlite0.5.8 module> node test/staff/grant-evidence-binding-87.mjs",
+      "database": "PostgreSQL 18.3 / PGlite 0.5.8 / single connection",
+      "checks": 65,
+      "passed": 65,
+      "failed": 0,
+      "scope": "87 typed grant/evidence/dependency binding with candidate65..85 parent SQL; synthetic authority/Auth/decisions",
+      "concurrency": "two requests queued on one connection; expected-version winner1/loser0; no multi-connection MVCC verification"
+    },
+    {
+      "validation_level": "L2_ISOLATED_SQL_INTEGRATION",
+      "command": "same 87 command, reused runGrantReferenceFixture83",
+      "checks": 767,
+      "passed": 767,
+      "failed": 0,
+      "scope": "existing83 parent/reference regression; counted separately from87"
+    }
+  ],
+  "syntax_checks": [
+    {"command": "node --check test/staff/grant-evidence-binding-87.mjs", "exit_code": 0},
+    {"command": "node --check test/staff/grant-dependency-reference-83.mjs", "exit_code": 0}
+  ],
+  "not_executed": [
+    "L3 real project DB/Auth/API and operation permission checks",
+    "L4 production configuration and deployment checks",
+    "two-connection native PostgreSQL17 MVCC, locks, deadlocks and concurrent parent invalidation",
+    "formal grant writer, true approver identity and protected self-operation authorization",
+    "same-permission duplicate grants across different grant IDs under adopted policy",
+    "outbox and unknown external COMMIT outcomes",
+    "application-wide lint/build/browser tests"
+  ],
+  "U01_U09": "all unapproved; no implicit policy adoption",
+  "independent_audit": "handoff prepared; receipt and outcome unconfirmed"
+}
