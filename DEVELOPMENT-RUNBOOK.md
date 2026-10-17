@@ -379,3 +379,8 @@ AUD088-01..05 have decision/planning/model responses, not implementation closure
 ## 工程90 未決採否準備（Ver0.1 / 2026-10-17）
 
 STAFF-AUD-089採用・89条件付き完了の指示に基づく。design/staff-final-decisions-90.md にU04/U06/U08/U09各1件の最終判断票、試験レベル、業務API信頼境界を集約。test/staff/writer-boundaries-90.jsonは127ソース再確認/79候補の限定台帳で、全writer網羅を証明しない。STATIC12件・MODEL36件成功、詳細results-90.json。隔離統合/正式受入は未実施。U01〜U09全て未承認。SQL/API/正本D01〜D12変更なし。実DB/実Auth/正式付与/本番は禁止継続。独立監査への提出用成果、受領未確認。
+
+
+## 工程91 承認方式反映（2026-10-17）
+
+主開発工程91指示を反映。U04 R-A条件付き採用、U06 完全grant単位union採用（必須拒否先行/初期denyなし/根拠独立保持）、U08 global fence条件付き採用、U09 Actions隔離PostgreSQL採用予定。U01/02/03/05/07未承認。U04の5条件/U08の4条件/U09の6条件は未充足で実行保留、AUD-090-01〜03 OPEN。D01 Ver0.2、D02 Ver0.5、D04/D05/D07/D09/D10/D11/D12 Ver0.4へ既存Drive正本を改訂し読戻し確認。D03/D06/D08 Ver0.3維持。Work-UとD旧Uを混同しない。design/staff-approved-methods-91.md、test/staff/approval-reflection-91.json参照。STATIC16/MODEL36成功、隔離統合/正式受入未実施。SQL/API/workflow/DB/Auth/正式付与/本番操作なし。独立監査提出用、受領未確認。

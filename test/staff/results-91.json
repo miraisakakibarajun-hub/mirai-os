@@ -1,0 +1,32 @@
+{
+  "development": "STAFF-WORK-091",
+  "STATIC": {
+    "pass": 16,
+    "fail": 0,
+    "commands": [
+      "node --check test/staff/approval-reflection-91.test.mjs",
+      "node --test test/staff/approval-reflection-91.test.mjs (10)",
+      "node --test test/staff/safety-boundaries-89.test.mjs (static 6)"
+    ],
+    "typecheck": "NOT_EXECUTED",
+    "sql_schema": "NOT_EXECUTED",
+    "lint": "NOT_EXECUTED",
+    "full_dependencies": "NOT_EXECUTED"
+  },
+  "MODEL": {
+    "pass": 36,
+    "fail": 0,
+    "source": "test/staff/safety-boundaries-89.test.mjs",
+    "synthetic_only": true
+  },
+  "drive_readback": {
+    "verified": 9,
+    "body_preserved": true,
+    "title_version_verified": true
+  },
+  "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+  "FORMAL_ACCEPTANCE": "NOT_EXECUTED",
+  "real_db_connections": 0,
+  "real_auth": false,
+  "production_authorized": false
+}

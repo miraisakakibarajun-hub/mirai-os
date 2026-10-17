@@ -1,0 +1,145 @@
+{
+  "development": "STAFF-WORK-091",
+  "approval_date": "2026-10-17",
+  "authority": "主開発スレ 工程91正式指示",
+  "baseline_commit": "54379dba3b27215482aeccad57ce864480f16300",
+  "decisions": {
+    "U04": {
+      "status": "CONDITIONALLY_ADOPTED",
+      "method": "R-A",
+      "conditions": {
+        "initial_executor": false,
+        "independent_verifier": false,
+        "personnel_designation": false,
+        "authenticity_verification": false,
+        "evidence_custody": false
+      },
+      "execution_allowed": false
+    },
+    "U06": {
+      "status": "ADOPTED",
+      "method": "COMPLETE_GRANT_UNION",
+      "mandatory_denials_first": true,
+      "deny_grants": false,
+      "independent_witnesses": true,
+      "implementation_complete": false
+    },
+    "U08": {
+      "status": "CONDITIONALLY_ADOPTED",
+      "method": "GLOBAL_FENCE",
+      "conditions": {
+        "all_writers_inventoried": false,
+        "zero_unfenced_writers": false,
+        "direct_write_paths_closed": false,
+        "concurrency_tests_complete": false
+      },
+      "production_allowed": false
+    },
+    "U09": {
+      "status": "CONDITIONALLY_ADOPTED_PLANNED",
+      "method": "GITHUB_ACTIONS_ISOLATED_POSTGRESQL",
+      "conditions": {
+        "usage_quota": false,
+        "cost": false,
+        "actions_permissions": false,
+        "secrets": false,
+        "postgres_image": false,
+        "stop_conditions": false
+      },
+      "build_allowed": false,
+      "execution_allowed": false
+    }
+  },
+  "remaining_unapproved": [
+    "U01",
+    "U02",
+    "U03",
+    "U05",
+    "U07"
+  ],
+  "audit": {
+    "AUD-090-01": "OPEN",
+    "AUD-090-02": "OPEN",
+    "AUD-090-03": "OPEN"
+  },
+  "writer_inventory": {
+    "source_files": 127,
+    "candidate_files": 79,
+    "runtime_completeness_proven": false,
+    "evidence": "test/staff/writer-boundaries-90.json"
+  },
+  "real_db_connections": 0,
+  "real_auth": false,
+  "production_authorized": false,
+  "document_evidence": [
+    {
+      "document": "D05",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.5",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.1",
+      "new_version": "Ver0.2",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.3",
+      "new_version": "Ver0.4",
+      "title_verified": true,
+      "content_verified": true
+    }
+  ],
+  "unchanged_documents": {
+    "D03": "Ver0.3",
+    "D06": "Ver0.3",
+    "D08": "Ver0.3"
+  },
+  "number_namespace": "Work-U != legacy D-U"
+}
