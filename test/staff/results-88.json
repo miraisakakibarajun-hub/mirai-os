@@ -1,0 +1,15 @@
+{
+  "stage":88,
+  "date":"2026-10-17",
+  "baseline_commit":"b19770fd6020eebdfc16f8649047ee41adafd4b6",
+  "production_authorized":false,
+  "runs":[
+    {"validation_level":"L1_MODEL","command":"node --test test/staff/safety-contract-88.test.mjs","passed":38,"failed":0,"skipped":0,"physical_db_connections":0,"scope":"hypothetical representative approval, grant union, body scope, two logical-session schedules"},
+    {"validation_level":"L2_ISOLATED_SQL_SINGLE_SESSION","command":"PGLITE_MODULE=<external PGlite0.5.8 module> node test/staff/write-fence-88.mjs","passed":10,"failed":0,"physical_db_connections":1,"database":"PostgreSQL18.3/PGlite0.5.8","scope":"fence SQL creation/invoker/search_path/READ COMMITTED/role closure"},
+    {"validation_level":"L2_ISOLATED_SQL_INTEGRATION","command":"same88 SQL command reuses83 fixture","passed":767,"failed":0,"scope":"existing83 regression; counted separately"}
+  ],
+  "syntax_checks":{"safety-contract-model-88.mjs":0,"write-fence-88.mjs":0},
+  "not_executed":["two physical DB sessions updating same grant","two physical DB sessions granting and revoking concurrently","deadlock/lock-timeout/native MVCC","approval vs grant change across DB sessions","all existing writer entrypoints using common fence","real actor/representative approval","real OS API/body and current scope mapping","live project DB/Auth","production"],
+  "policy_decisions":"U01..U09 remain unapproved; global fence/union/resource contracts are proposals",
+  "independent_audit":"handoff prepared; receipt/outcome unconfirmed"
+}
