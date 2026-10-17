@@ -1,0 +1,568 @@
+{
+  "stage": 96,
+  "u04": {
+    "initial_executor": null,
+    "independent_verifier": null,
+    "evidence_custodian": null,
+    "executor_verifier_separate_natural_persons": true,
+    "target_person_cannot_solely_prove_or_approve_own_authenticity": true,
+    "actual_qualification_set": false
+  },
+  "u08": {
+    "investigation_accountable": null,
+    "investigator": null,
+    "result_reviewer": null,
+    "source_scope": "miraisakakibarajun-hub/mirai-os / feat/staff-candidate-routes-20261011 at fixed SHA",
+    "read_only_source_investigation_performed": true,
+    "real_DB_permission": false
+  },
+  "u09_role_people": {
+    "technical": null,
+    "cost": null,
+    "security": null,
+    "final_approver": null
+  },
+  "u09_checks": [
+    {
+      "id": "PG96-01",
+      "source_condition": "PG95-01",
+      "item": "Actions利用枠",
+      "roles_needed": [
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "GitHub請求管理責任者",
+      "assigned_people": {
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "請求期間・runner種別・残分・他workflow消費を管理画面で確認",
+      "required_evidence": "日時/期間/利用枠/残分の確認記録、私的情報は除去"
+    },
+    {
+      "id": "PG96-02",
+      "source_condition": "PG95-02",
+      "item": "追加課金条件",
+      "roles_needed": [
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "GitHub請求管理責任者",
+      "assigned_people": {
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "支払・予算停止の適用範囲、既消費、storage/artifactを照合",
+      "required_evidence": "追加課金なし条件と停止適用の所有者確認"
+    },
+    {
+      "id": "PG96-03",
+      "source_condition": "PG95-03",
+      "item": "Repository権限",
+      "roles_needed": [
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "repo設定確認責任者",
+      "assigned_people": {
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "対象repoの実行者role/編集起動権限/信頼refを確認",
+      "required_evidence": "権限範囲・確認日・対象refを記録、実個人一覧は非公開"
+    },
+    {
+      "id": "PG96-04",
+      "source_condition": "PG95-04",
+      "item": "Actions permissions",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "repo設定確認責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "許可Action/runner/dispatch、contents read、OIDC/write不要、checkout永続化なしをreview",
+      "required_evidence": "設定確認と固定workflow草案hash、未登録のまま"
+    },
+    {
+      "id": "PG96-05",
+      "source_condition": "PG95-05",
+      "item": "Secrets必要性",
+      "roles_needed": [
+        "security",
+        "technical",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "repo設定確認責任者",
+      "assigned_people": {
+        "security": null,
+        "technical": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "実DB/Auth/Provider参照0・環境secret継承0を設計/設定で確認",
+      "required_evidence": "参照の有無の確認記録のみ、値/私的名称一覧を転記しない"
+    },
+    {
+      "id": "PG96-06",
+      "source_condition": "PG95-06",
+      "item": "Secret最小化",
+      "roles_needed": [
+        "security",
+        "technical",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験技術責任者",
+      "assigned_people": {
+        "security": null,
+        "technical": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "捨てる試験credential、role分離、マスキング/破棄を設計確認",
+      "required_evidence": "credentialを含まない生成・保管・削除手順版"
+    },
+    {
+      "id": "PG96-07",
+      "source_condition": "PG95-07",
+      "item": "PostgreSQL版",
+      "roles_needed": [
+        "technical",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "DB隔離設計責任者",
+      "assigned_people": {
+        "technical": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "候補major17のminor/arch/extension互換を確定",
+      "required_evidence": "固定版manifest・確認日、構築許可後にserver版照合"
+    },
+    {
+      "id": "PG96-08",
+      "source_condition": "PG95-08",
+      "item": "Docker image固定",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験技術責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "公式minor+digest、job image digest/Action SHAを選定",
+      "required_evidence": "immutable manifest・取得元とreview、pullは構築許可後"
+    },
+    {
+      "id": "PG96-09",
+      "source_condition": "PG95-09",
+      "item": "外部network",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "通信分離確認責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "取得先allowlistと試験中job bridge限定/外部API遮断を確認",
+      "required_evidence": "段階別通信設計、構築前は静的review・構築後は別検証"
+    },
+    {
+      "id": "PG96-10",
+      "source_condition": "PG95-10",
+      "item": "データ完全架空化",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "fixture検証責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "選定schema/seed hash、FAKE ID/sentinel、実dump/.env除外を確認",
+      "required_evidence": "fixture manifestとレビュー結果"
+    },
+    {
+      "id": "PG96-11",
+      "source_condition": "PG95-11",
+      "item": "時間上限",
+      "roles_needed": [
+        "technical",
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験技術責任者",
+      "assigned_people": {
+        "technical": null,
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "job/case/connect/lock/statement/idleTX各上限をreview",
+      "required_evidence": "15分/30秒等候補値の採否記録、実測は構築後"
+    },
+    {
+      "id": "PG96-12",
+      "source_condition": "PG95-12",
+      "item": "再実行/ retry",
+      "roles_needed": [
+        "technical",
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験技術責任者",
+      "assigned_people": {
+        "technical": null,
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "SQLSTATE別rollback/同一key/最大2retry案とcommit不明照会をreview",
+      "required_evidence": "retry契約/期待case/予算、未実証を明記"
+    },
+    {
+      "id": "PG96-13",
+      "source_condition": "PG95-13",
+      "item": "自動停止",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験技術責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "未確認/枠不足/secret/data/image/timeout/cleanup不一致を停止する設計",
+      "required_evidence": "停止条件表と静的否定系、runtime実証は構築後"
+    },
+    {
+      "id": "PG96-14",
+      "source_condition": "PG95-14",
+      "item": "ログ保持",
+      "roles_needed": [
+        "security",
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "証拠保管責任者",
+      "assigned_people": {
+        "security": null,
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "7日案・機微除去・閲覧/削除責任/容量課金を採否",
+      "required_evidence": "保持/アクセス/削除の判断記録"
+    },
+    {
+      "id": "PG96-15",
+      "source_condition": "PG95-15",
+      "item": "artifact保存",
+      "roles_needed": [
+        "technical",
+        "security",
+        "cost",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "証拠保管責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "cost": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "上限10MB/run・7日案、内容最小化/失敗時記録をreview",
+      "required_evidence": "artifact manifestと保持/課金/閲覧責任の決定"
+    },
+    {
+      "id": "PG96-16",
+      "source_condition": "PG95-16",
+      "item": "接続数/隔離",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "DB隔離設計責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "writer2＋観測1/max10案・READ COMMITTED・同一TXfence・role分離をreview",
+      "required_evidence": "接続/role/TX契約、実2接続確認は構築後"
+    },
+    {
+      "id": "PG96-17",
+      "source_condition": "PG95-17",
+      "item": "cleanup/再構築",
+      "roles_needed": [
+        "technical",
+        "security",
+        "final_approver"
+      ],
+      "accountable_role_proposal": "隔離試験実行責任者",
+      "assigned_people": {
+        "technical": null,
+        "security": null,
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "常時rollback/切断/破棄、volume/cacheなし、固定manifestから再作成をreview",
+      "required_evidence": "破棄手順・失敗停止・再構築手順、実結果は構築後"
+    },
+    {
+      "id": "PG96-18",
+      "source_condition": "PG95-18",
+      "item": "主開発構築許可",
+      "roles_needed": [
+        "final_approver"
+      ],
+      "accountable_role_proposal": "主開発・管理者",
+      "assigned_people": {
+        "final_approver": null
+      },
+      "status": "担当者未指定",
+      "assignment_confirmed": false,
+      "verification_confirmed": false,
+      "evidence": null,
+      "method": "01〜17の構築前設計/所有者証拠を全件確認し範囲/費用/停止を明示判断",
+      "required_evidence": "対象commit/manifest/条件/期間/判断者の構築許可記録"
+    }
+  ],
+  "assignment_state_machine": {
+    "担当者未指定": "必要役割の実名/任命根拠未登録",
+    "担当者指定済": "主開発が実名決定し本人/役割/範囲の指定記録があるが確認証拠の採否は未了",
+    "確認済": "担当指定に加え対象版/方法/結果の証拠と承認者の確認がある"
+  },
+  "confirmed_count": 0,
+  "build_authorized": false,
+  "integration_dependencies": [
+    {
+      "dependency_id": "INT96-01",
+      "u09_condition_id": "PG96-01",
+      "stage95_condition_id": "PG95-01",
+      "integration_prerequisite": "確認したrunner残枠と試験予算がDB準備前の必要時間を満たす",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-02",
+      "u09_condition_id": "PG96-02",
+      "stage95_condition_id": "PG95-02",
+      "integration_prerequisite": "追加課金なし/停止の管理判断がschema/seed/ログ保存までの試験を許可する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-03",
+      "u09_condition_id": "PG96-03",
+      "stage95_condition_id": "PG95-03",
+      "integration_prerequisite": "信頼ref/実行者のrepo権限が対象固定コードだけの試験を許可する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-04",
+      "u09_condition_id": "PG96-04",
+      "stage95_condition_id": "PG95-04",
+      "integration_prerequisite": "dispatch/最小token/許可Actionの設定がテストDB作成の入口を制御する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-05",
+      "u09_condition_id": "PG96-05",
+      "stage95_condition_id": "PG95-05",
+      "integration_prerequisite": "実DB/Auth/Provider資格0を証明して完全架空test DB以外を接続不能にする",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-06",
+      "u09_condition_id": "PG96-06",
+      "stage95_condition_id": "PG95-06",
+      "integration_prerequisite": "一時試験credentialと準備/非superuser role分離でschema適用/否定系を成立させる",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-07",
+      "u09_condition_id": "PG96-07",
+      "stage95_condition_id": "PG95-07",
+      "integration_prerequisite": "PG版/extensionをschema依存と束縛しtransaction/lock動作を比較可能にする",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-08",
+      "u09_condition_id": "PG96-08",
+      "stage95_condition_id": "PG95-08",
+      "integration_prerequisite": "固定image/digest/Action SHAでtest DB/schema/seed/複数接続の実体を再現する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-09",
+      "u09_condition_id": "PG96-09",
+      "stage95_condition_id": "PG95-09",
+      "integration_prerequisite": "取得段階allowlistと試験段階bridge分離により実APIやDBへ接続しない",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-10",
+      "u09_condition_id": "PG96-10",
+      "stage95_condition_id": "PG95-10",
+      "integration_prerequisite": "FAKE seed/sentinel/件数/hashを確認してgrant根拠の入力を完全架空化する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-11",
+      "u09_condition_id": "PG96-11",
+      "stage95_condition_id": "PG95-11",
+      "integration_prerequisite": "connection/case/lock/statement/job timeoutで多接続の停止を検証する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-12",
+      "u09_condition_id": "PG96-12",
+      "stage95_condition_id": "PG95-12",
+      "integration_prerequisite": "SQLSTATE別rollback/同一key/commit不明照会で二重grantとaudit重複を検証する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-13",
+      "u09_condition_id": "PG96-13",
+      "stage95_condition_id": "PG95-13",
+      "integration_prerequisite": "preflight/lock/監査失敗時に後続試験を止め不正な成功を返さない",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-14",
+      "u09_condition_id": "PG96-14",
+      "stage95_condition_id": "PG95-14",
+      "integration_prerequisite": "audit logの機微除去/保持/閲覧条件を確定し試験証拠を失わない",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-15",
+      "u09_condition_id": "PG96-15",
+      "stage95_condition_id": "PG95-15",
+      "integration_prerequisite": "grant witness/版/評価時点/operationとTX/lock結果をartifactへ束縛する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-16",
+      "u09_condition_id": "PG96-16",
+      "stage95_condition_id": "PG95-16",
+      "integration_prerequisite": "writer2/観測1、READ COMMITTED、同一TXfence下の失効/本文競合を実証する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-17",
+      "u09_condition_id": "PG96-17",
+      "stage95_condition_id": "PG95-17",
+      "integration_prerequisite": "rollback/pool閉鎖/資格除去/job破棄/再構築を失敗時も確認する",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    },
+    {
+      "dependency_id": "INT96-18",
+      "u09_condition_id": "PG96-18",
+      "stage95_condition_id": "PG95-18",
+      "integration_prerequisite": "管理者が版/範囲/費用/停止を明示承認した後だけ隔離統合の構築へ移る",
+      "status": "NOT_SATISFIED",
+      "blocks_build_or_integration": true
+    }
+  ],
+  "no_real_person_selected": true,
+  "nonexecuting_findings_do_not_change_assignment_or_confirmed_count": true
+}

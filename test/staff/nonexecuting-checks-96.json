@@ -1,0 +1,64 @@
+{
+  "stage": 96,
+  "source_commit": "7ce5e3ec75227c6ed068c913bbb0515f46173314",
+  "repository_metadata": {
+    "repository": "miraisakakibarajun-hub/mirai-os",
+    "default_branch": "main",
+    "visibility": "public",
+    "archived": false,
+    "connection_reported_permissions": {
+      "admin": true,
+      "maintain": true,
+      "pull": true,
+      "push": true,
+      "triage": true
+    },
+    "permissions_do_not_identify_human_approver": true
+  },
+  "target_ref_workflow_paths": [],
+  "default_branch_snapshot": {
+    "name": "main",
+    "commit": "8496843b502e57bcb90aa715ff96a3ed8d203781",
+    "tree_sha": "de8ad40001fa94d6fdc28614d8f20f15426b460a",
+    "truncated": false,
+    "workflow_paths": []
+  },
+  "actions_permissions": {
+    "status": "UNCONFIRMED",
+    "attempt": "GET repo/actions/permissions",
+    "reason": "Connector rejected endpoint as unsupported (HTTP400 INVALID_ARGUMENT). This is not proof Actions are disabled or permissions denied by GitHub."
+  },
+  "workflow_runtime_inventory": {
+    "status": "UNCONFIRMED",
+    "attempt": "GET repo/actions/workflows",
+    "reason": "Connector endpoint unsupported; zero tracked workflows on two inspected refs is not whole-account absence proof."
+  },
+  "secrets": {
+    "status": "UNCONFIRMED_EXISTENCE_AND_ABSENCE",
+    "reason": "Secrets endpoint family unsupported by available GitHub fetch capability; no values or private-name lists requested. .env.example and .gitignore are not secret-store evidence."
+  },
+  "billing": {
+    "status": "OWNER_CONFIRMATION_REQUIRED",
+    "method": "指定費用確認担当がGitHub Billing/Usage/Budgetsで対象期間・runner・残枠・支払・停止・artifact/storage費を確認し匿名化証拠を提出。今回未取得。"
+  },
+  "postgres_image": {
+    "status": "PROPOSAL_ONLY_NOT_SELECTED_OR_PULLED",
+    "candidate": "Official postgres major17; explicit minor/arch/digest and job image/Action SHA still unset; no repository workflow pins observed on inspected refs."
+  },
+  "workflow_design": {
+    "status": "DESIGN_ONLY_NO_FILE_CREATED",
+    "reference": "design/staff-management-decisions-95.md tickets5/6; dispatch-only trusted ref, least permissions, synthetic service, pre-service gate, time/retry/artifact/cleanup limits are proposals not deployed settings."
+  },
+  "byte_configuration": {
+    "tracked_target_ref": [
+      "eslint.config.mjs"
+    ],
+    "ci_enforcement": "NOT_IMPLEMENTED_OR_DEMONSTRATED",
+    "settings_changed": false
+  },
+  "nonexecuting_observations_do_not_promote_conditions": true,
+  "u09_verified_conditions": 0,
+  "actions_enabled_or_started": false,
+  "secret_writes": false,
+  "db_started": false
+}
