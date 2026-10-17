@@ -1,0 +1,29 @@
+{
+  "stage": 94,
+  "basis_commit": "3078b1adb1396c8b290f54ed205133fc692da767",
+  "method": "ACTIONS_ISOLATED_POSTGRESQL_CONDITIONAL",
+  "verified_checks": 0,
+  "required_checks": 18,
+  "decision": "BUILD_PROHIBITED_PENDING_CONFIRMATIONS",
+  "main_development_build_authorization": false,
+  "any_unknown_blocks": true,
+  "design_preflight_does_not_equal_runtime_validation": true,
+  "steps": [
+    {
+      "condition": "1〜17の責任者/方法/対象版/証拠が未確認",
+      "result": "BLOCK_NO_BUILD"
+    },
+    {
+      "condition": "1〜17の構築前証拠を確認済み・18の主開発許可なし",
+      "result": "READY_FOR_MAIN_DECISION_ONLY_NO_BUILD"
+    },
+    {
+      "condition": "対象版を束縛した18の構築許可と全構築前条件確認",
+      "result": "別途許可されたB範囲の準備へ。実DB/本番Cは禁止継続"
+    },
+    {
+      "condition": "構築後のrole/network/timeout/cleanup等の実測未了",
+      "result": "統合試験未了・正式受入/本番可へ昇格不可"
+    }
+  ]
+}

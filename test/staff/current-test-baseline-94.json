@@ -1,0 +1,487 @@
+{
+  "baseline_id": "STAFF-TEST-BASELINE-094-01",
+  "stage": 94,
+  "base_commit": "3078b1adb1396c8b290f54ed205133fc692da767",
+  "source_commit_binding": "Immutable tested source commit recorded in results-94.json and test-history-94.json; exact definitions bound below, avoiding self-referential commit hashes.",
+  "commands": {
+    "MODEL": "node --test --test-reporter=tap test/staff/grant-union-93.test.mjs test/staff/grant-audit-94.test.mjs",
+    "STATIC": "python test/staff/verify-management-94.py"
+  },
+  "definition_sha256": {
+    "test/staff/grant-union-fixture-93.mjs": "60bc6bab08a90f260a85d8bbe9305c7ca40f38b531b510df512ed71993baad26",
+    "test/staff/grant-union-93.test.mjs": "dc96344060f7b860dc44546a4e58758bdc5d56890161a7f6a7c0919fcba429dc",
+    "test/staff/grant-union-cases-93.json": "1e522c6f84e205a55ae5213eae6b9237c0007b647c0de59bca45ea80267e8c8a",
+    "test/staff/grant-audit-fixture-94.mjs": "b1ba0b04459962f419fcadfbd548b568fb638374245f00843207cf67706c17e4",
+    "test/staff/grant-audit-94.test.mjs": "17005857f4805c05bf73b129987bdc52af887cf9db614005d1b735702c8ecaee",
+    "test/staff/verify-management-94.py": "51b29120516f95651e08b3595137a6df4671aeefe62b1a5535c5a781e61b353f",
+    "test/staff/reproduce-legacy-94.py": "9360a1a2c27f7c76c7b0e15d2fcdcdaac49c29bb0d81ab8727a25dc6e8f2adf7"
+  },
+  "active_tests": [
+    {
+      "test_id": "U06-94-01",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-02",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-03",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-04",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-05",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-06",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-07",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-08",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-09",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-10",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-11",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-12",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-13",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-14",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-15",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-94-16",
+      "level": "MODEL",
+      "definition": "test/staff/grant-audit-94.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-01",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-02",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-03",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-04",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-05",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-06",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-07",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-08",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-09",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-10",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-11",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-12",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-13",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-14",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-15",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-16",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-17",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-18",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-19",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-20",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-21",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-22",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-23",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-24",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-25",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-26",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-27",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-28",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-29",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-30",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-31",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-32",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-PRIORITY",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "U06-93-IMMUTABLE",
+      "level": "MODEL",
+      "definition": "test/staff/grant-union-93.test.mjs",
+      "status": "Active",
+      "spec": "approved U06 complete grant union; synthetic exact-scope and audit projection only"
+    },
+    {
+      "test_id": "S94-STATIC-01",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_01_all127_original_blob_provenance_and_transform",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-02",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_02_extra_LF_and_CRLF_drift_rejected",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-03",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_03_old_failure_reproduction_kept_separate",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-04",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_04_all18_responsibility_fields_currently_unknown",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-05",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_05_preflight_no_automatic_promotion",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-06",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_06_current_baseline_unique_and_hash_bound",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-07",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_07_history_failures_immutable_and_no_current_pass_override",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-08",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_08_audit_projection_not_production_import",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-09",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_09_approved_union_algorithm_unchanged",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    },
+    {
+      "test_id": "S94-STATIC-10",
+      "level": "STATIC",
+      "definition": "test/staff/verify-management-94.py",
+      "name": "test_static_10_build_decision_stays_blocked",
+      "status": "Active",
+      "spec": "management preparation/provenance/history/preflight evidence only"
+    }
+  ],
+  "not_in_active_set": [
+    {
+      "test_id": "S92-LEGACY-42",
+      "status": "Historical failure",
+      "applicability": "Not applicable to current raw-Git source baseline; original failure retained",
+      "rerun": "Cause reproduction completed separately, old result remains FAIL"
+    },
+    {
+      "test_id": "U06-93-29-FIRST-ASSERTION",
+      "status": "Superseded",
+      "applicability": "Old undefined expectation, historical FAIL retained; current null expectation is Active"
+    },
+    {
+      "test_id": "ISOLATED_INTEGRATION",
+      "status": "Re-run required",
+      "applicability": "Not executed yet; execution required after U09 approval, not part of Active set"
+    },
+    {
+      "test_id": "FORMAL_ACCEPTANCE",
+      "status": "Re-run required",
+      "applicability": "Not executed yet; separate approval needed, not part of Active set"
+    },
+    {
+      "test_id": "S93-STATIC-SNAPSHOT",
+      "status": "Superseded",
+      "applicability": "Stage93 evidence preserved, stage94 static set selected instead"
+    }
+  ],
+  "states": {
+    "Active": "Adopted current definition at fixed hashes; a past PASS is not a new run",
+    "Superseded": "Definition or evidence scope replaced; old result unchanged",
+    "Historical failure": "Immutable failed execution result, even after correction",
+    "Re-run required": "Cannot be claimed accepted; includes required future execution not yet performed",
+    "Not applicable": "Explicitly outside current acceptance scope, never erases a failure"
+  },
+  "promotion": "No STATIC/MODEL pass implies integration/formal/production approval"
+}

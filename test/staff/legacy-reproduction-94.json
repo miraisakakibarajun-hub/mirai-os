@@ -1,0 +1,34 @@
+{
+  "stage": 94,
+  "real_db_connections": 0,
+  "runs": [
+    {
+      "run_id": "REPRO94-OFFICIAL_GIT_BYTES",
+      "test_id": "S92-LEGACY-42",
+      "source_bytes": "OFFICIAL_GIT_BYTES",
+      "definition_commit": "1c6312beafffc54b61a70dbd636d257e699162b1",
+      "command": "node --test --test-reporter=tap --test-name-pattern=inventory of actual baseline test/staff/safety-boundaries-89.test.mjs",
+      "exit_code": 1,
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "output_sha256": "df66f6657743603d0eae9006bb4d7f64a05f93365047f58ca45bb2ce5fa06104",
+      "expected_exit_code": 1,
+      "interpretation": "Historical provenance failure reproduced; not current active suite result"
+    },
+    {
+      "run_id": "REPRO94-LEGACY_MATERIALIZED_BYTES",
+      "test_id": "S92-LEGACY-42",
+      "source_bytes": "LEGACY_MATERIALIZED_BYTES",
+      "definition_commit": "1c6312beafffc54b61a70dbd636d257e699162b1",
+      "command": "node --test --test-reporter=tap --test-name-pattern=inventory of actual baseline test/staff/safety-boundaries-89.test.mjs",
+      "exit_code": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "output_sha256": "c96239ea2fb78c8cb7f0f4566be7408b424577f98941b9605dedf3914ccf0975",
+      "expected_exit_code": 0,
+      "interpretation": "Transformed old copy matches old ledger; not original Git bytes"
+    }
+  ]
+}
