@@ -1,0 +1,82 @@
+{
+  "development": "STAFF-WORK-095",
+  "status": "COMPLETION_CANDIDATE_PENDING_INDEPENDENT_AUDIT",
+  "baseline_commit": "d85f858ea87d93126e93bf392de7b29453603a88",
+  "tested_source_commit": "07055b569d0e2004925ddd84e8b1141feacefe8c",
+  "current_baseline": "STAFF-TEST-BASELINE-095-01",
+  "new_files": [
+    "design/staff-byte-standard-95.md",
+    "design/staff-management-decisions-95.md",
+    "test/staff/current-test-baseline-95.json",
+    "test/staff/management-decisions-95.json",
+    "test/staff/preflight-95.test.mjs",
+    "test/staff/preflight-model-95.mjs",
+    "test/staff/test-history-95.json",
+    "test/staff/results-95.json"
+  ],
+  "updated_files": [
+    "DEVELOPMENT-RUNBOOK.md"
+  ],
+  "MODEL": {
+    "pass": 60,
+    "fail": 0,
+    "U06_unchanged": 50,
+    "FAKE_gate": 10
+  },
+  "STATIC": {
+    "pass": 8,
+    "fail": 0,
+    "scope": "byte helper unit checks; not full repo formatting/lint validation"
+  },
+  "total": {
+    "pass": 68,
+    "fail": 0,
+    "skip": 0
+  },
+  "command": "node --test --test-reporter=tap test/staff/grant-union-93.test.mjs test/staff/grant-audit-94.test.mjs test/staff/preflight-95.test.mjs",
+  "syntax": "node --check test/staff/preflight-model-95.mjs and preflight-95.test.mjs PASS",
+  "pre_save_integrity": "68 IDs exactly match adopted set; 8 definition/input hashes match; 18 unconfirmed responsibility rows with named roles and empty persons; all10 writer paths included",
+  "ISOLATED_INTEGRATION": "NOT_EXECUTED",
+  "FORMAL_ACCEPTANCE": "NOT_EXECUTED",
+  "u09_constructible": false,
+  "role_persons_selected": false,
+  "real_db_connections": 0,
+  "real_auth": false,
+  "formal_grants": false,
+  "production_registration_or_migration": false,
+  "actions_started": false,
+  "settings_changed": false,
+  "canonical_docs_modified": false,
+  "runbook_change": "APPEND_ONLY_DOCUMENTED_BYTE_PROVENANCE_AND_STANDARD_PROPOSALS",
+  "audit_status": {
+    "AUD-094-01": "MANAGEMENT_PACKET_PREPARED_ORIGINAL_MAPPING_UNVERIFIED",
+    "AUD-094-02": "MANAGEMENT_PACKET_PREPARED_ORIGINAL_MAPPING_UNVERIFIED",
+    "AUD-094-03": "MANAGEMENT_PACKET_PREPARED_ORIGINAL_MAPPING_UNVERIFIED",
+    "AUD-094-04": "RUNBOOK_DOCUMENTATION_AND_BYTE_STANDARD_PROPOSAL_WITH_NEGATIVE_TESTS_NO_SETTINGS_ACTIVATION",
+    "AUD-090-01": "OPEN",
+    "AUD-090-02": "OPEN",
+    "AUD-090-03": "OPEN"
+  },
+  "U_status": {
+    "U01": "UNAPPROVED_REMAINDER",
+    "U02": "UNAPPROVED_REMAINDER_EXISTING_PRINCIPLES_RETAINED",
+    "U03": "UNAPPROVED_REMAINDER",
+    "U04": "R_A_CONDITIONAL_PERSON_AND_EVIDENCE_DECISIONS_PENDING",
+    "U05": "UNAPPROVED_REMAINDER",
+    "U06": "APPROVED_COMPLETE_GRANT_UNION_SYNTHETIC_ONLY",
+    "U07": "UNAPPROVED_REMAINDER",
+    "U08": "GLOBAL_FENCE_CONDITIONAL_SCOPE_DECISIONS_AND_COVERAGE_PENDING",
+    "U09": "ACTIONS_PG_CONDITIONAL_NO_BUILD_PERMISSION"
+  },
+  "source_hashes": {
+    "design/staff-byte-standard-95.md": "8b450b5461f6030509ed9fae8719c36127c5169712fad12ef5f850e922465fdb",
+    "design/staff-management-decisions-95.md": "063e65913b782f5279bfccbad6910a7bbb3b9e6700817e6561107a6483c3337b",
+    "test/staff/current-test-baseline-95.json": "78f6963b25e63d5996aaad8f1533819a2abb263d89a5d4b1920caf72a999f9a4",
+    "test/staff/management-decisions-95.json": "ccb14d81bfbb6ee3d39e35b8750596600458f473f5edc8161762905fc7098c1a",
+    "test/staff/preflight-95.test.mjs": "267510fdbf77080c0f13312c6c98e4e448ab765c29315f3ce9c82e32f7e20a45",
+    "test/staff/preflight-model-95.mjs": "56b1a709022e18d3d3dd7a7c465fb202293a6e676440023c0a7db73dd409edb3",
+    "test/staff/test-history-95.json": "5670716df15c78ae3b0d4d06fb9bdbdc7180f26eb30bedf58666968369ea8661",
+    "DEVELOPMENT-RUNBOOK.md": "3886e41e636693c20c1bb249f1625781b9afba3586571501f46d4e790d3b4690"
+  },
+  "independent_audit_submission": "PACKET_PREPARED_OTHER_THREAD_TRANSFER_RECEIPT_UNCONFIRMED"
+}
