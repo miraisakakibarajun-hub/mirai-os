@@ -1,0 +1,5256 @@
+{
+  "development": "STAFF-WORK-091-CORRECTION",
+  "audit_target": "STAFF-AUD-091 再監査",
+  "approval_date": "2026-10-17",
+  "scope": "document-only; adopted methods unchanged",
+  "stage91": "NOT_COMPLETE",
+  "stage92": "HOLD",
+  "entries": [
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 64,
+      "old_text": "D05 実装・API・連携設計書 Ver0.4",
+      "new_text": "D05 実装・API・連携設計書 Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-001"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 125,
+      "end": 139,
+      "old_text": "文書状態：初稿・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-002"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "認可の論理式",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6248,
+      "end": 6375,
+      "old_text": "認証済み主体・本人対応・アカウント有効・同法人関係有効・対象scope一致・操作許可・現在時刻内・全必須依存有効・停止なしをすべて要求する。複数依存はANDを基本とする。代替根拠を認める場合は別途審査した許可へ分け、どれか1つが残れば継続とは解釈しない。",
+      "new_text": "認証済み主体・本人対応・アカウント有効・同法人関係有効・対象scope一致・操作許可・期間内・全必須依存有効・停止なしを先に評価する。各grant内の必須依存はANDで、一部依存の残存だけでは当該grantを有効にしない。複数grant間は完全grant単位unionであり、一方失効後も他grantが全条件を独立充足すればその根拠で許可可能とする。別grant間のactionとscopeを合成しない。初期deny grantなし。根拠grantと版を独立保持し監査追跡する。",
+      "reason": "grant内ANDとgrant間unionの混同を限定是正",
+      "related_U": "Work-U06",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-003"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第15章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 12828,
+      "end": 12842,
+      "old_text": "043 D05 Ver0.9",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D05 Ver0.9",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-004"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第15章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 12903,
+      "end": 12990,
+      "old_text": "GH D05 Ver0.9・D04 Ver0.8を参照し、確定した月次自己承認・初期代理なし・担当と有効権限を維持。旧版の表記差を現行未解消事項に戻さない。原本は更新しない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH D05 Ver0.9・D04 Ver0.8を参照し、確定した月次自己承認・初期代理なし・担当と有効権限を維持。旧版の表記差を現行未解消事項に戻さない。原本は更新しない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-005"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13559,
+      "end": 13580,
+      "old_text": "職員基盤 D01 基本設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D01 基本設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-006"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13583,
+      "end": 13608,
+      "old_text": "職員基盤 D02 データベース設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D02 データベース設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-007"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13611,
+      "end": 13635,
+      "old_text": "職員基盤 D03 画面・入力設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D03 画面・入力設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-008"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13638,
+      "end": 13669,
+      "old_text": "職員基盤 D04 業務・権限・状態遷移詳細設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D04 業務・権限・状態遷移詳細設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-009"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13672,
+      "end": 13709,
+      "old_text": "相談支援 AI-2026-024 D05 実装設計書 Ver1.0 追補版",
+      "new_text": "【改訂履歴：当時の記述・参照版】相談支援 AI-2026-024 D05 実装設計書 Ver1.0 追補版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-010"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13712,
+      "end": 13743,
+      "old_text": "GH AI-2026-043 D05 実装設計書 Ver0.9",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH AI-2026-043 D05 実装設計書 Ver0.9",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-011"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13762,
+      "end": 13768,
+      "old_text": "Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-012"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13833,
+      "end": 13942,
+      "old_text": "設計責任者・承認確認先：榊原純。初稿・承認確認待ち。MIRAI STANDARDの配色・Yu Gothic・章見出し・ページ番号を使用。目次は章名一覧で自動更新ではなく、Google Docsの見出し一覧も利用できる。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】設計責任者・承認確認先：榊原純。初稿・承認確認待ち。MIRAI STANDARDの配色・Yu Gothic・章見出し・ページ番号を使用。目次は章名一覧で自動更新ではなく、Google Docsの見出し一覧も利用できる。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-013"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14034,
+      "end": 14149,
+      "old_text": "本章はD02・D03・D04 Ver0.2の追加案をAPIへ対応させた設計案。DB製品、分散認可、担当者、数値設定の採用を確定しない。GH既決条件はOS固有の確定として扱う。024・043原本、案件台帳、本番DBは変更していない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本章はD02・D03・D04 Ver0.2の追加案をAPIへ対応させた設計案。DB製品、分散認可、担当者、数値設定の採用を確定しない。GH既決条件はOS固有の確定として扱う。024・043原本、案件台帳、本番DBは変更していない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-014"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14162,
+      "end": 14501,
+      "old_text": "POST /suspensionsはsuspension_kindをACCOUNT_GLOBAL／ORG_ACCESS／OS_ACCESSとして区別する案。ACCOUNT_GLOBALはaccount_id必須、法人1件のみの操作権限から全体停止を許可しない。ORG_ACCESSはaccount_idとorg_id必須、OS_ACCESSはaccount_id・org_id・system_code必須（D02 Ver0.3と本書第18章の統合案）。型に不要な範囲値を無視せず拒否する。個別grant取消はGRANT_CHANGEでgrant_id・期待版・理由を指定し、上位範囲停止と混同しない。人物全アカウント一括停止は対象一覧と専用判断を要する別案とし、自動提供しない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】POST /suspensionsはsuspension_kindをACCOUNT_GLOBAL／ORG_ACCESS／OS_ACCESSとして区別する案。ACCOUNT_GLOBALはaccount_id必須、法人1件のみの操作権限から全体停止を許可しない。ORG_ACCESSはaccount_idとorg_id必須、OS_ACCESSはaccount_id・org_id・system_code必須（D02 Ver0.3と本書第18章の統合案）。型に不要な範囲値を無視せず拒否する。個別grant取消はGRANT_CHANGEでgrant_id・期待版・理由を指定し、上位範囲停止と混同しない。人物全アカウント一括停止は対象一覧と専用判断を要する別案とし、自動提供しない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-015"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17073,
+      "end": 17192,
+      "old_text": "改訂記録 Ver0.2 2026年10月10日：上位版更新、停止要求と解除、認可評価、競合、状態別結果、履歴時間、GH確定条件、8確認ケースを追加。設計責任者・承認確認先は榊原純。044は採番候補、設計承認・実装・試験・本番接続は未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂記録 Ver0.2 2026年10月10日：上位版更新、停止要求と解除、認可評価、競合、状態別結果、履歴時間、GH確定条件、8確認ケースを追加。設計責任者・承認確認先は榊原純。044は採番候補、設計承認・実装・試験・本番接続は未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-016"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第18章 D02〜D04 Ver0.3 統合API対応案（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17194,
+      "end": 17235,
+      "old_text": "第18章 D02〜D04 Ver0.3 統合API対応案（2026年10月10日）",
+      "new_text": "【改訂履歴：当時の記述・参照版】第18章 D02〜D04 Ver0.3 統合API対応案（2026年10月10日）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-017"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第18章 D02〜D04 Ver0.3 統合API対応案（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 23424,
+      "end": 23513,
+      "old_text": "改訂Ver0.3：23対応行、追加取得パスと型、停止対象/表名/状態/再送境界の統合案、6検証観点を追記。榊原純を確認先とし、採番候補044・未実装・未試験・既存原本維持を継続。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂Ver0.3：23対応行、追加取得パスと型、停止対象/表名/状態/再送境界の統合案、6検証観点を追記。榊原純を確認先とし、採番候補044・未実装・未試験・既存原本維持を継続。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-018"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 26499,
+      "end": 26661,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-019"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "正式適用の接続案",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 172374,
+      "end": 172627,
+      "old_text": "72の申請・判断・影響・適用・試行・操作、74の型付き証拠へ接続。入力のAPPROVED・actor・時刻・方針版を信頼せず実主体と正本から解決する。初期信頼起点・承認方針未決なら適用保留。全変更経路共通fence／ロックの後、新DB時刻で停止・依存・期待版・資格・期限・リースを再照合し、grant版／set・適用／試行／操作・成功監査・outboxを原子保存する案。外側COMMIT確認後だけ成功、結果不明は同一適用IDを照合。82辞書先行と80／81法人先行、71／63認証境界の全経路統一は未完成。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】72の申請・判断・影響・適用・試行・操作、74の型付き証拠へ接続。入力のAPPROVED・actor・時刻・方針版を信頼せず実主体と正本から解決する。初期信頼起点・承認方針未決なら適用保留。全変更経路共通fence／ロックの後、新DB時刻で停止・依存・期待版・資格・期限・リースを再照合し、grant版／set・適用／試行／操作・成功監査・outboxを原子保存する案。外側COMMIT確認後だけ成功、結果不明は同一適用IDを照合。82辞書先行と80／81法人先行、71／63認証境界の全経路統一は未完成。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-020"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 174142,
+      "end": 174241,
+      "old_text": "D05 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D05 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-021"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 174242,
+      "end": 174299,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-022"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 41,
+      "old_text": "職員共通基盤  D05  |  Ver0.3  |  承認確認待ち        ",
+      "new_text": "職員基盤 D05 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-023"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第18章 D02〜D04 Ver0.3 統合API対応案（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19894,
+      "end": 20029,
+      "old_text": "MAP13 ST08審査｜POST /change-requests/{id}/decisions｜CHANGE_REVIEW＋対象領域/規則｜decision_records・workflow_status・監査｜TC13/16-01。共通自己/代理U06/07未決。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】MAP13 ST08審査｜POST /change-requests/{id}/decisions｜CHANGE_REVIEW＋対象領域/規則｜decision_records・workflow_status・監査｜TC13/16-01。共通自己/代理U06/07未決。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-024"
+    },
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "部署別番号・初期権限の具体化案 PLAN-NUM-AUTH-02（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 30161,
+      "end": 30279,
+      "old_text": "初期設定は本人照合→認証対応→具体許可一覧と範囲の確認→導入用承認根拠→一度限りbootstrap→拒否/許可検証→入口閉鎖の案。榊原純本人への初期付与は城戸裕子確認を要する案、城戸裕子自身の初期審査権限の承認経路と導入実行主体は未決。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】初期設定は本人照合→認証対応→具体許可一覧と範囲の確認→導入用承認根拠→一度限りbootstrap→拒否/許可検証→入口閉鎖の案。榊原純本人への初期付与は城戸裕子確認を要する案、城戸裕子自身の初期審査権限の承認経路と導入実行主体は未決。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D05-FIX-025"
+    },
+    {
+      "document": "D05",
+      "change_id": "D05-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D05 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D05",
+      "change_id": "D05-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D05。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D05 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 57,
+      "end": 63,
+      "old_text": "Ver0.4",
+      "new_text": "Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-001"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 64,
+      "end": 119,
+      "old_text": "案件番号候補　AI-2026-044\u000b設計責任者・承認確認先　榊原純\u000b作成日　\u000b文書状態　初稿・承認確認待ち",
+      "new_text": "案件番号候補　AI-2026-044\u000b設計責任者・承認確認先　榊原純\u000b作成日　\u000b文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-002"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第12章　整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7846,
+      "end": 7860,
+      "old_text": "024 D12 Ver1.0",
+      "new_text": "【改訂履歴：当時の記述・参照版】024 D12 Ver1.0",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-003"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第12章　整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7931,
+      "end": 7945,
+      "old_text": "043 D12 Ver0.3",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D12 Ver0.3",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-004"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "Ver0.1 初版",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8490,
+      "end": 8499,
+      "old_text": "Ver0.1 初版",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1 初版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-005"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "設計責任者・承認確認先：榊原純。文書状態：初稿・承認確認待ち。案件番号AI-2026-044は採番候補。承認・実施の記録を得た後に、担当・日程・対象範囲・判定欄を実施版として改訂する。",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8579,
+      "end": 8671,
+      "old_text": "設計責任者・承認確認先：榊原純。文書状態：初稿・承認確認待ち。案件番号AI-2026-044は採番候補。承認・実施の記録を得た後に、担当・日程・対象範囲・判定欄を実施版として改訂する。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】設計責任者・承認確認先：榊原純。文書状態：初稿・承認確認待ち。案件番号AI-2026-044は採番候補。承認・実施の記録を得た後に、担当・日程・対象範囲・判定欄を実施版として改訂する。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-006"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8672,
+      "end": 8695,
+      "old_text": "精査記録 Ver0.2（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】精査記録 Ver0.2（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-007"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8817,
+      "end": 9026,
+      "old_text": "照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-008"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10404,
+      "end": 10548,
+      "old_text": "現行照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-009"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 11133,
+      "end": 11195,
+      "old_text": "Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-010"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18164,
+      "end": 18326,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-011"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "限界と次工程",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41562,
+      "end": 41727,
+      "old_text": "実Auth・正式actor資格・承認方針採用・初期信頼起点・完全依存証拠・成功適用／監査／outbox、実PG17全親統合／複数接続／期限跨ぎcommitは未検証。85の封印は構造不変性で、認可成功ではない。実職員17名・所属・組織・Auth・DB変更なし。次は86でgrant／scope／宣言依存集合の型付き束縛を具体化する。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】実Auth・正式actor資格・承認方針採用・初期信頼起点・完全依存証拠・成功適用／監査／outbox、実PG17全親統合／複数接続／期限跨ぎcommitは未検証。85の封印は構造不変性で、認可成功ではない。実職員17名・所属・組織・Auth・DB変更なし。次は86でgrant／scope／宣言依存集合の型付き束縛を具体化する。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-012"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41760,
+      "end": 41859,
+      "old_text": "D12 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D12 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-013"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41860,
+      "end": 41917,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-014"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 29,
+      "old_text": "職員共通基盤 D12 | Ver0.3 | 承認確認待ち　",
+      "new_text": "職員基盤 D12 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-015"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10549,
+      "end": 10748,
+      "old_text": "共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-016"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "架空職員の導入・認証・権限シナリオ SCN-BOOT-01（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19215,
+      "end": 19369,
+      "old_text": "段階03 初期許可案・根拠確認｜A-Mの職員基盤内許可一覧、A-RのP-M受益要求審査の限定許可、S-Bの限定適用操作を同一版へ固定。A-Mの付与はP-R承認根拠を確認。A-R自身の最初の審査許可の導入根拠は未決で、欠落時はbootstrap保留。架空試験専用に用意した根拠を実導入の承認済み経路と扱わない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】段階03 初期許可案・根拠確認｜A-Mの職員基盤内許可一覧、A-RのP-M受益要求審査の限定許可、S-Bの限定適用操作を同一版へ固定。A-Mの付与はP-R承認根拠を確認。A-R自身の最初の審査許可の導入根拠は未決で、欠落時はbootstrap保留。架空試験専用に用意した根拠を実導入の承認済み経路と扱わない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D12-FIX-017"
+    },
+    {
+      "document": "D12",
+      "change_id": "D12-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D12 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D12",
+      "change_id": "D12-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D12。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D12 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 61,
+      "old_text": "D02 データベース設計書 Ver0.5",
+      "new_text": "D02 データベース設計書 Ver0.5.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-001"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 119,
+      "end": 135,
+      "old_text": "文書状態：設計初稿・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-002"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第1章 設計の位置づけと判断区分",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 476,
+      "end": 601,
+      "old_text": "本書は、MIRAI OS全体から共通参照する職員基盤の論理データモデルを定義する。D01 Ver0.1を起点に、人物、組織、所属、契約、業務役割、アカウント、権限、履歴、既存ID対応を具体化する。データベース構築・本番登録・権限付与は実施していない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本書は、MIRAI OS全体から共通参照する職員基盤の論理データモデルを定義する。D01 Ver0.1を起点に、人物、組織、所属、契約、業務役割、アカウント、権限、履歴、既存ID対応を具体化する。データベース構築・本番登録・権限付与は実施していない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-003"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第15章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14111,
+      "end": 14125,
+      "old_text": "043 D04 Ver0.8",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D04 Ver0.8",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-004"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第15章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14202,
+      "end": 14216,
+      "old_text": "043 D02 Ver0.9",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D02 Ver0.9",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-005"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第17章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15494,
+      "end": 15594,
+      "old_text": "本書の上位文書は職員基盤D01 Ver0.1。既存024・043の原本は変更していない。D01で行った全体レビューを引き継ぎ、D02ではデータモデル・認可・旧ID・保存に関係する次の原本を再確認した。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本書の上位文書は職員基盤D01 Ver0.1。既存024・043の原本は変更していない。D01で行った全体レビューを引き継ぎ、D02ではデータモデル・認可・旧ID・保存に関係する次の原本を再確認した。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-006"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第17章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15602,
+      "end": 15633,
+      "old_text": "相談支援 AI-2026-024 D02 Ver1.0 追補版",
+      "new_text": "【改訂履歴：当時の記述・参照版】相談支援 AI-2026-024 D02 Ver1.0 追補版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-007"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第17章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15636,
+      "end": 15667,
+      "old_text": "相談支援 AI-2026-024 D05 Ver1.0 追補版",
+      "new_text": "【改訂履歴：当時の記述・参照版】相談支援 AI-2026-024 D05 Ver1.0 追補版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-008"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第17章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15670,
+      "end": 15695,
+      "old_text": "GH AI-2026-043 D02 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH AI-2026-043 D02 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-009"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第17章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15698,
+      "end": 15723,
+      "old_text": "GH AI-2026-043 D04 Ver0.8",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH AI-2026-043 D04 Ver0.8",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-010"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15878,
+      "end": 15884,
+      "old_text": "Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-011"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15936,
+      "end": 15942,
+      "old_text": "承認確認待ち",
+      "new_text": "【改訂履歴：当時の状態・作業記録】承認確認待ち",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-012"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16015,
+      "end": 16165,
+      "old_text": "本章の構造・制約は設計案であり、業務承認・物理DB作成・移行を意味しない。D01 Ver0.1の10月10日追記と、043 D02 Ver0.9・D04 Ver0.8・D05 Ver0.9・D07 Ver0.10および整合レビューVer0.16を確認して更新した。024・043原本は変更していない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本章の構造・制約は設計案であり、業務承認・物理DB作成・移行を意味しない。D01 Ver0.1の10月10日追記と、043 D02 Ver0.9・D04 Ver0.8・D05 Ver0.9・D07 Ver0.10および整合レビューVer0.16を確認して更新した。024・043原本は変更していない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-013"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18396,
+      "end": 18535,
+      "old_text": "改訂記録 Ver0.2 2026年10月10日：既存D02を継続しGHの確定承認条件を反映。法人別停止、契約更新、依存条件、資源範囲、履歴時間、初期登録、保存・失効競合の精査案と8確認ケースを追加。設計責任者・承認確認先は榊原純。採番候補044、業務未決、未実装・未試験を維持。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂記録 Ver0.2 2026年10月10日：既存D02を継続しGHの確定承認条件を反映。法人別停止、契約更新、依存条件、資源範囲、履歴時間、初期登録、保存・失効競合の精査案と8確認ケースを追加。設計責任者・承認確認先は榊原純。採番候補044、業務未決、未実装・未試験を維持。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-014"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第19章 DI01〜DI05 統合項目・制約案 Ver0.3（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18537,
+      "end": 18580,
+      "old_text": "第19章 DI01〜DI05 統合項目・制約案 Ver0.3（2026年10月10日）",
+      "new_text": "【改訂履歴：当時の記述・参照版】第19章 DI01〜DI05 統合項目・制約案 Ver0.3（2026年10月10日）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-015"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第19章 DI01〜DI05 統合項目・制約案 Ver0.3（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18581,
+      "end": 18690,
+      "old_text": "本章はD04〜D12 Ver0.2の追加条件を論理モデルへ反映する設計案。既存表の識別子を継続し、以下の追加・読替えを行う。業務採用・DDL作成・実データ登録は未実施。第18章の概念案に対する具体項目は本章を参照する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本章はD04〜D12 Ver0.2の追加条件を論理モデルへ反映する設計案。既存表の識別子を継続し、以下の追加・読替えを行う。業務採用・DDL作成・実データ登録は未実施。第18章の概念案に対する具体項目は本章を参照する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-016"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第19章 DI01〜DI05 統合項目・制約案 Ver0.3（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 22622,
+      "end": 22701,
+      "old_text": "Ver0.3改訂：5件の具体項目・制約・版選択候補を追記。初期17名と欠番・未確認条件は変更しない。設計責任者・承認確認先：榊原純。案件番号044は採番候補。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：5件の具体項目・制約・版選択候補を追記。初期17名と欠番・未確認条件は変更しない。設計責任者・承認確認先：榊原純。案件番号044は採番候補。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-017"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第20章 追加保存領域の統合辞書案 Ver0.4（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 22703,
+      "end": 22740,
+      "old_text": "第20章 追加保存領域の統合辞書案 Ver0.4（2026年10月10日）",
+      "new_text": "【改訂履歴：当時の記述・参照版】第20章 追加保存領域の統合辞書案 Ver0.4（2026年10月10日）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-018"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第20章 追加保存領域の統合辞書案 Ver0.4（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 22741,
+      "end": 22881,
+      "old_text": "D05 Ver0.3 MAP01〜23の保存先を集約する。以下は論理項目案、ID物理型・文字長・索引・DDLは未決。PKは不変ID、FKは参照整合、時刻はタイムゾーン付き時点、状態は列挙、版番号は整数。根拠本文や秘密を監査へ複写しない。既存のpersons等は第4〜19章を維持。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D05 Ver0.3 MAP01〜23の保存先を集約する。以下は論理項目案、ID物理型・文字長・索引・DDLは未決。PKは不変ID、FKは参照整合、時刻はタイムゾーン付き時点、状態は列挙、版番号は整数。根拠本文や秘密を監査へ複写しない。既存のpersons等は第4〜19章を維持。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-019"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "第20章 追加保存領域の統合辞書案 Ver0.4（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 26894,
+      "end": 26972,
+      "old_text": "Ver0.4：D05追加保存領域・CONTROL境界・適用親子・候補/影響/出力/初期設定の辞書案を集約。榊原純を確認先、044候補、未実装・未試験を維持。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.4：D05追加保存領域・CONTROL境界・適用親子・候補/影響/出力/初期設定の辞書案を集約。榊原純を確認先、044候補、未実装・未試験を維持。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-020"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 30188,
+      "end": 30350,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-021"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 284939,
+      "end": 285038,
+      "old_text": "D02 Ver0.5：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D02 Ver0.5：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-022"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 285039,
+      "end": 285096,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-023"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 40,
+      "old_text": "職員共通基盤  D02  |  Ver0.4  |  承認確認待ち       ",
+      "new_text": "職員基盤 D02 | Ver0.5.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-024"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "確定事項と設計案の境界",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 783,
+      "end": 862,
+      "old_text": "D01の10月10日追記とU01〜U13を継承。共通基盤・他OSの自己承認、代理承認、権限付与者、正式採番等は未決。GH内の確定条件は第9・18章で区別する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】D01の10月10日追記とU01〜U13を継承。共通基盤・他OSの自己承認、代理承認、権限付与者、正式採番等は未決。GH内の確定条件は第9・18章で区別する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-025"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "未決条件のまま利用可能にしない",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9174,
+      "end": 9370,
+      "old_text": "共通基盤・他OSの自己承認U06、代理承認U07、付与者U08は未決。GH月次は両拠点とも榊原純が作成・提出・承認し、有効な対象権限による自己承認可、初期代理なし、不在時pending維持と確定。GH権限付与・変更・停止担当は榊原純。本人の初期管理者登録は導入時一回、通常の自己追加・拡大は禁止。導入実施者・認証方法は未決。他OSへ自動適用しない。承認条件未確定の機能は本番有効化を保留する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通基盤・他OSの自己承認U06、代理承認U07、付与者U08は未決。GH月次は両拠点とも榊原純が作成・提出・承認し、有効な対象権限による自己承認可、初期代理なし、不在時pending維持と確定。GH権限付与・変更・停止担当は榊原純。本人の初期管理者登録は導入時一回、通常の自己追加・拡大は禁止。導入実施者・認証方法は未決。他OSへ自動適用しない。承認条件未確定の機能は本番有効化を保留する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-026"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "D04以降へ渡すもの",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15414,
+      "end": 15476,
+      "old_text": "本書は設計初稿として保存する。D02の完成判定は未決の採用判断と後続設計との相互確認後。実装完了や本番利用承認とは別に扱う。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】本書は設計初稿として保存する。D02の完成判定は未決の採用判断と後続設計との相互確認後。実装完了や本番利用承認とは別に扱う。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-027"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "承認主体・自己操作・代理",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 245698,
+      "end": 245811,
+      "old_text": "代理は初期設定なし。代理元account_idが入力されたことだけで代理権限を作らず、採用済み代理方針と専用根拠がなければ保留する。共通基盤の自己承認比較対象や他OS条件が未決の操作はPOLICY_UNDECIDEDとする案。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】代理は初期設定なし。代理元account_idが入力されたことだけで代理権限を作らず、採用済み代理方針と専用根拠がなければ保留する。共通基盤の自己承認比較対象や他OS条件が未決の操作はPOLICY_UNDECIDEDとする案。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D02-FIX-028"
+    },
+    {
+      "document": "D02",
+      "change_id": "D02-CURRENT",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D02 Ver0.5.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D02",
+      "change_id": "D02-HISTORY",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.5 → Ver0.5.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D02。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D02 Ver0.5.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 58,
+      "old_text": "D07 テスト設計書\u000bVer0.4",
+      "new_text": "D07 テスト設計書\u000bVer0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-001"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 59,
+      "end": 123,
+      "old_text": "案件番号：AI-2026-044（採番候補・未登録）\u000b設計責任者・承認確認先：榊原純\u000b状態：設計案・承認確認待ち／全ケース未実施",
+      "new_text": "案件番号：AI-2026-044（採番候補・未登録）\u000b設計責任者・承認確認先：榊原純\u000b状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-002"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "既存テスト設計の扱い",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 11853,
+      "end": 11982,
+      "old_text": "024 D07 Ver1.0の単体・結合・画面・API・DB・セキュリティ・受入・証跡管理を参照する。8画面・15API・17表・AI処理、60分セッション、ローカル一時保持等は本案件の仕様へ転用しない。共有端末は職員D03・D05の非永続保持を基準にする。",
+      "new_text": "【改訂履歴：当時の記述・参照版】024 D07 Ver1.0の単体・結合・画面・API・DB・セキュリティ・受入・証跡管理を参照する。8画面・15API・17表・AI処理、60分セッション、ローカル一時保持等は本案件の仕様へ転用しない。共有端末は職員D03・D05の非永続保持を基準にする。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-003"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "既存テスト設計の扱い",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 11983,
+      "end": 12114,
+      "old_text": "043 D07 Ver0.2の前提・手順・期待結果・証拠、未実施表示、性能目標保留を継承する。GHの月次総評や承認担当の決定は、職員基盤の審査担当・付与者の決定にはならない。現行D07 Ver0.2を確認したが、旧文書の参照版との優先関係全体はU13として残す。",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D07 Ver0.2の前提・手順・期待結果・証拠、未実施表示、性能目標保留を継承する。GHの月次総評や承認担当の決定は、職員基盤の審査担当・付与者の決定にはならない。現行D07 Ver0.2を確認したが、旧文書の参照版との優先関係全体はU13として残す。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-004"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13337,
+      "end": 13415,
+      "old_text": "職員D01〜D06 Ver0.1を設計根拠とする。以下に直接参照した先行ケース・実装契約・品質管理と、比較対象の既存D07を示す。既存原本は変更していない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員D01〜D06 Ver0.1を設計根拠とする。以下に直接参照した先行ケース・実装契約・品質管理と、比較対象の既存D07を示す。既存原本は変更していない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-005"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13416,
+      "end": 13440,
+      "old_text": "職員基盤 D03 画面・入力設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D03 画面・入力設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-006"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13443,
+      "end": 13474,
+      "old_text": "職員基盤 D04 業務・権限・状態遷移詳細設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D04 業務・権限・状態遷移詳細設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-007"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13477,
+      "end": 13505,
+      "old_text": "職員基盤 D05 実装・API・連携設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D05 実装・API・連携設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-008"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13508,
+      "end": 13532,
+      "old_text": "職員基盤 D06 開発・品質管理書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D06 開発・品質管理書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-009"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13535,
+      "end": 13564,
+      "old_text": "AI-2026-024 D07 テスト設計書 Ver1.0",
+      "new_text": "【改訂履歴：当時の記述・参照版】AI-2026-024 D07 テスト設計書 Ver1.0",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-010"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "15  参照資料と改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13567,
+      "end": 13596,
+      "old_text": "AI-2026-043 D07 テスト設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】AI-2026-043 D07 テスト設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-011"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "改訂履歴",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13604,
+      "end": 13701,
+      "old_text": "Ver0.1：機能・結合・運用40ケース、性能3ケース、対応表、証跡・判定方法を初版整理。全ケース未実施。設計案・承認確認待ち。設計責任者・承認確認先：榊原純。AI-2026-044は採番候補。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1：機能・結合・運用40ケース、性能3ケース、対応表、証跡・判定方法を初版整理。全ケース未実施。設計案・承認確認待ち。設計責任者・承認確認先：榊原純。AI-2026-044は採番候補。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-012"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13702,
+      "end": 13725,
+      "old_text": "精査記録 Ver0.2（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】精査記録 Ver0.2（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-013"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13847,
+      "end": 14056,
+      "old_text": "照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-014"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16685,
+      "end": 16721,
+      "old_text": "D02・D03 Ver0.3反映後の試験追跡補足（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】D02・D03 Ver0.3反映後の試験追跡補足（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-015"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16987,
+      "end": 17134,
+      "old_text": "DI01〜05はD02/D03への具体案反映済みだが、採用・他文書の統合・技術試験は未完了。D02のrevision_sets方式は候補で、方式決定後に期間分割・同時訂正・記録順・現在権限の試験期待値を固定する。全ケース未実施。前追記のDB02番号対応にずれがあったため原文を照合して訂正した。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】DI01〜05はD02/D03への具体案反映済みだが、採用・他文書の統合・技術試験は未完了。D02のrevision_sets方式は候補で、方式決定後に期間分割・同時訂正・記録順・現在権限の試験期待値を固定する。全ケース未実施。前追記のDB02番号対応にずれがあったため原文を照合して訂正した。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-016"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17136,
+      "end": 17170,
+      "old_text": "D04・D05 Ver0.3統合後の追跡更新（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】D04・D05 Ver0.3統合後の追跡更新（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-017"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17398,
+      "end": 17518,
+      "old_text": "観点数は前追記44＋今回10＝54。親ケース40・PF3と枝番実行分母・実行実績とは区別。D05 MAP01〜23を画面/操作/API/許可/保存先/TCの対応案として参照。全ケース未実施、具体スキーマ確定後に故障点と操作別の実行表を作る。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】観点数は前追記44＋今回10＝54。親ケース40・PF3と枝番実行分母・実行実績とは区別。D05 MAP01〜23を画面/操作/API/許可/保存先/TCの対応案として参照。全ケース未実施、具体スキーマ確定後に故障点と操作別の実行表を作る。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-018"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17681,
+      "end": 17825,
+      "old_text": "現行照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-019"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18442,
+      "end": 18504,
+      "old_text": "Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-020"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "承認条件同期・登録段階整理（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19934,
+      "end": 20106,
+      "old_text": "TC03/36/38はREG-G01〜05の独立進行を検証する案。人物識別根拠が揃い職種等が不足する架空候補で、人物段階だけが成立するケースと契約依存有効化が保留するケースを分ける。以前の「有効化0件」は全人物が根拠不足の試験前提に限り、未設定職種だけで人物ID発行を一律拒否しない。ID方式と関係必須条件の採用後に期待を固定、全ケース未実施。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】TC03/36/38はREG-G01〜05の独立進行を検証する案。人物識別根拠が揃い職種等が不足する架空候補で、人物段階だけが成立するケースと契約依存有効化が保留するケースを分ける。以前の「有効化0件」は全人物が根拠不足の試験前提に限り、未設定職種だけで人物ID発行を一律拒否しない。ID方式と関係必須条件の採用後に期待を固定、全ケース未実施。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-021"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 22306,
+      "end": 22468,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-022"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "REAL-DATA-25 実職員情報による段階的登録検証（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 39844,
+      "end": 40001,
+      "old_text": "証跡様式案：ケースID／環境・build版／データ区分（実職員・架空・検証用複製）／対象参照／登録段階／入力根拠／期待値／実際値／保存結果・再読取・監査ログ参照／確認者／実施日時／NOT_RUN・BLOCKED・PASS・FAIL／修正事項。パスワード・トークンは記録しない。現時点の実施欄は空欄、全ケース未実施。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】証跡様式案：ケースID／環境・build版／データ区分（実職員・架空・検証用複製）／対象参照／登録段階／入力根拠／期待値／実際値／保存結果・再読取・監査ログ参照／確認者／実施日時／NOT_RUN・BLOCKED・PASS・FAIL／修正事項。パスワード・トークンは記録しない。現時点の実施欄は空欄、全ケース未実施。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-023"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 40677,
+      "end": 40776,
+      "old_text": "D07 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D07 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-024"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 40777,
+      "end": 40834,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-025"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 42,
+      "old_text": "職員共通基盤  D07  |  Ver0.3  |  全ケース未実施        ",
+      "new_text": "職員基盤 D07 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-026"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 15771,
+      "end": 15888,
+      "old_text": "TC30-01：GHホーム別の現在権限、月次総評の有効な保留版、自分の承認を許すGH条件と共通基盤側自己承認未決を区別。初期代理なし、期限経過は遅延表示のみ。GHの実業務試験はGH側D07へ追跡し、共通基盤の試験合格だけで代替しない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】TC30-01：GHホーム別の現在権限、月次総評の有効な保留版、自分の承認を許すGH条件と共通基盤側自己承認未決を区別。初期代理なし、期限経過は遅延表示のみ。GHの実業務試験はGH側D07へ追跡し、共通基盤の試験合格だけで代替しない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-027"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17826,
+      "end": 18025,
+      "old_text": "共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-028"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "部署別番号・初期権限の具体化案 PLAN-NUM-AUTH-02（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 23950,
+      "end": 24068,
+      "old_text": "初期設定は本人照合→認証対応→具体許可一覧と範囲の確認→導入用承認根拠→一度限りbootstrap→拒否/許可検証→入口閉鎖の案。榊原純本人への初期付与は城戸裕子確認を要する案、城戸裕子自身の初期審査権限の承認経路と導入実行主体は未決。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】初期設定は本人照合→認証対応→具体許可一覧と範囲の確認→導入用承認根拠→一度限りbootstrap→拒否/許可検証→入口閉鎖の案。榊原純本人への初期付与は城戸裕子確認を要する案、城戸裕子自身の初期審査権限の承認経路と導入実行主体は未決。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-029"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "架空職員の導入・認証・権限シナリオ SCN-BOOT-01（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 27328,
+      "end": 27482,
+      "old_text": "段階03 初期許可案・根拠確認｜A-Mの職員基盤内許可一覧、A-RのP-M受益要求審査の限定許可、S-Bの限定適用操作を同一版へ固定。A-Mの付与はP-R承認根拠を確認。A-R自身の最初の審査許可の導入根拠は未決で、欠落時はbootstrap保留。架空試験専用に用意した根拠を実導入の承認済み経路と扱わない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】段階03 初期許可案・根拠確認｜A-Mの職員基盤内許可一覧、A-RのP-M受益要求審査の限定許可、S-Bの限定適用操作を同一版へ固定。A-Mの付与はP-R承認根拠を確認。A-R自身の最初の審査許可の導入根拠は未決で、欠落時はbootstrap保留。架空試験専用に用意した根拠を実導入の承認済み経路と扱わない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D07-FIX-030"
+    },
+    {
+      "document": "D07",
+      "change_id": "D07-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D07 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D07",
+      "change_id": "D07-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D07。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D07 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 62,
+      "old_text": "D10 アーキテクチャ設計書 Ver0.4",
+      "new_text": "D10 アーキテクチャ設計書 Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-001"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 112,
+      "end": 130,
+      "old_text": "文書状態：設計案／採用・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-002"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "Ver0.1 初版",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7621,
+      "end": 7630,
+      "old_text": "Ver0.1 初版",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1 初版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-003"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "Ver0.1 初版",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7792,
+      "end": 7842,
+      "old_text": "文書状態：初稿・承認確認待ち。案件番号AI-2026-044は候補。設計責任者・承認確認先：榊原純。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】文書状態：初稿・承認確認待ち。案件番号AI-2026-044は候補。設計責任者・承認確認先：榊原純。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-004"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7843,
+      "end": 7866,
+      "old_text": "精査記録 Ver0.2（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】精査記録 Ver0.2（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-005"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 7988,
+      "end": 8197,
+      "old_text": "照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-006"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9409,
+      "end": 9553,
+      "old_text": "現行照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-007"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10321,
+      "end": 10383,
+      "old_text": "Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-008"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 12547,
+      "end": 12709,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-009"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 21377,
+      "end": 21476,
+      "old_text": "D10 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D10 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-010"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 21477,
+      "end": 21534,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-011"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 51,
+      "old_text": "職員共通基盤 D10 | Ver0.3 | 承認確認待ち                       ",
+      "new_text": "職員基盤 D10 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-012"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9554,
+      "end": 9753,
+      "old_text": "共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-013"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "MIN-REGISTER-26 初回実データ登録の最小実装範囲（設計案・2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17118,
+      "end": 17177,
+      "old_text": "工程の現状はすべて未着手。環境選択・費用・初期資格が未決ならその依存工程を保留し、設計と実装準備の独立作業は継続する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】工程の現状はすべて未着手。環境選択・費用・初期資格が未決ならその依存工程を保留し、設計と実装準備の独立作業は継続する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D10-FIX-014"
+    },
+    {
+      "document": "D10",
+      "change_id": "D10-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D10 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D10",
+      "change_id": "D10-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D10。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D10 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 55,
+      "end": 71,
+      "old_text": "D01 基本設計書 Ver0.2",
+      "new_text": "D01 基本設計書 Ver0.2.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-001"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 115,
+      "end": 163,
+      "old_text": "文書状態：基本設計初稿／業務承認待ち。Google Driveへの保存と設計承認は別に管理する。",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-002"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第2章 背景と既存設計の継承",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 1092,
+      "end": 1221,
+      "old_text": "GH AI-2026-043-D02はstaffとstaff_site_rolesを持ち、退職後の作成者保持、法人・拠点境界、有効期間付き権限を設計する。D04 Ver0.2は氏名・職種による自動権限付与を否定し、managerとapproverを分離する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH AI-2026-043-D02はstaffとstaff_site_rolesを持ち、退職後の作成者保持、法人・拠点境界、有効期間付き権限を設計する。D04 Ver0.2は氏名・職種による自動権限付与を否定し、managerとapproverを分離する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-003"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第4章 案件番号候補と文書管理",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 2074,
+      "end": 2143,
+      "old_text": "本書は原本から独立した新規文書。改訂時は変更理由・対象章・判断根拠・確認者・承認範囲を記録し、Ver0.1の保存を承認済みへ読み替えない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本書は原本から独立した新規文書。改訂時は変更理由・対象章・判断根拠・確認者・承認範囲を記録し、Ver0.1の保存を承認済みへ読み替えない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-004"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第12章 システム権限",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6740,
+      "end": 6865,
+      "old_text": "【参照資料内で確定】GHの正式総評は月次のみ、承認担当は榊原純（043-D03・D04・D07 Ver0.2）。今回の016との人物対応確認と有効な対象拠点の承認権限が必要であり、名前や管理者役割だけでは許可しない。共通基盤の全件承認者を意味しない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】【参照資料内で確定】GHの正式総評は月次のみ、承認担当は榊原純（043-D03・D04・D07 Ver0.2）。今回の016との人物対応確認と有効な対象拠点の承認権限が必要であり、名前や管理者役割だけでは許可しない。共通基盤の全件承認者を意味しない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-005"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第20章 未決条件と判断の段階",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13068,
+      "end": 13164,
+      "old_text": "U13 原本の版・優先関係：024-D04のファイル名Ver1.0と本文Ver1.1、043の旧D01・D02とD03・D04・D07 Ver0.2の未反映事項。既存設計への正式な変更合意前。",
+      "new_text": "【改訂履歴：当時の記述・参照版】U13 原本の版・優先関係：024-D04のファイル名Ver1.0と本文Ver1.1、043の旧D01・D02とD03・D04・D07 Ver0.2の未反映事項。既存設計への正式な変更合意前。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-006"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "R04 GHの承認担当と自己承認",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13929,
+      "end": 14060,
+      "old_text": "根拠：043-D03・D04・D07 Ver0.2、台帳R10・U02。対応：榊原純を承認担当とする既存決定を保持し、有効権限を要求。自己承認・代理承認・付与者はU06〜U08に残す。判定：最新の条件と整合する記述。旧D01・D02の表現差は未改訂のまま可視化。",
+      "new_text": "【改訂履歴：当時の記述・参照版】根拠：043-D03・D04・D07 Ver0.2、台帳R10・U02。対応：榊原純を承認担当とする既存決定を保持し、有効権限を要求。自己承認・代理承認・付与者はU06〜U08に残す。判定：最新の条件と整合する記述。旧D01・D02の表現差は未改訂のまま可視化。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-007"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "R10 原本版の不一致",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14821,
+      "end": 14982,
+      "old_text": "根拠：024-D04はファイル名Ver1.0だが本文はVer1.1。043-D01・D02の承認表現とD04 Ver0.2の詳細には差があり、既存レビューもR10として管理。対応：資料IDと本文の版を併記し、無断の一括修正や「最新だから全面優先」という解釈をしない。判定：U13。今回の確認済み条件だけを分離して継承する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】根拠：024-D04はファイル名Ver1.0だが本文はVer1.1。043-D01・D02の承認表現とD04 Ver0.2の詳細には差があり、既存レビューもR10として管理。対応：資料IDと本文の版を併記し、無断の一括修正や「最新だから全面優先」という解釈をしない。判定：U13。今回の確認済み条件だけを分離して継承する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-008"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第23章 次工程と受入の考え方",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16600,
+      "end": 16699,
+      "old_text": "本書Ver0.1の到達点は、指定範囲の基本設計、17名の転記、未決の明示、既存文書との差分レビュー、後続文書構成の提示。正式採番・業務承認・D02〜D12本文の完成・実装・移行・試験・導入は未完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本書Ver0.1の到達点は、指定範囲の基本設計、17名の転記、未決の明示、既存文書との差分レビュー、後続文書構成の提示。正式採番・業務承認・D02〜D12本文の完成・実装・移行・試験・導入は未完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-009"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17100,
+      "end": 17193,
+      "old_text": "相談支援資料：AI-2026-024-D01〜D12（DOCX原本）およびD02・D05・D09・D10の20260924追補。D04はファイル名Ver1.0／本文Ver1.1の差あり。",
+      "new_text": "【改訂履歴：当時の記述・参照版】相談支援資料：AI-2026-024-D01〜D12（DOCX原本）およびD02・D05・D09・D10の20260924追補。D04はファイル名Ver1.0／本文Ver1.1の差あり。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-010"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17194,
+      "end": 17297,
+      "old_text": "GH資料：AI-2026-043-D01（DOCX）、D02〜D12（Google Docs）。D03・D04・D07はVer0.2、その他はVer0.1を確認。既存の整合レビューと現行資料照合も併読した。",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH資料：AI-2026-043-D01（DOCX）、D02〜D12（Google Docs）。D03・D04・D07はVer0.2、その他はVer0.1を確認。既存の整合レビューと現行資料照合も併読した。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-011"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17299,
+      "end": 17346,
+      "old_text": "資料01 AI-2026-024-D01_MIRAI OS基本設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料01 AI-2026-024-D01_MIRAI OS基本設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-012"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17347,
+      "end": 17407,
+      "old_text": "資料02 AI-2026-024-D02_MIRAI データベース設計書_Ver1.0_20260924追補.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料02 AI-2026-024-D02_MIRAI データベース設計書_Ver1.0_20260924追補.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-013"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17408,
+      "end": 17457,
+      "old_text": "資料03 AI-2026-024-D02_MIRAI データベース設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料03 AI-2026-024-D02_MIRAI データベース設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-014"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17458,
+      "end": 17513,
+      "old_text": "資料04 AI-2026-024-D03_MIRAI OS相談支援MVP入力画面設計書_Ver1.0docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料04 AI-2026-024-D03_MIRAI OS相談支援MVP入力画面設計書_Ver1.0docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-015"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17514,
+      "end": 17565,
+      "old_text": "資料05 AI-2026-024-D04_MIRAI OS MVP詳細設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料05 AI-2026-024-D04_MIRAI OS MVP詳細設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-016"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17566,
+      "end": 17628,
+      "old_text": "資料06 AI-2026-024-D05_MIRAI OS MVP実装設計書_Ver1.0_20260924追補.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料06 AI-2026-024-D05_MIRAI OS MVP実装設計書_Ver1.0_20260924追補.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-017"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17629,
+      "end": 17680,
+      "old_text": "資料07 AI-2026-024-D05_MIRAI OS MVP実装設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料07 AI-2026-024-D05_MIRAI OS MVP実装設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-018"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17681,
+      "end": 17735,
+      "old_text": "資料08 AI-2026-024-D06_MIRAI OS MVP開発・品質管理書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料08 AI-2026-024-D06_MIRAI OS MVP開発・品質管理書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-019"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17736,
+      "end": 17784,
+      "old_text": "資料09 AI-2026-024-D07_MIRAI OSテスト設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料09 AI-2026-024-D07_MIRAI OSテスト設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-020"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17785,
+      "end": 17832,
+      "old_text": "資料10 AI-2026-024-D08_MIRAI OS開発標準書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料10 AI-2026-024-D08_MIRAI OS開発標準書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-021"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17833,
+      "end": 17889,
+      "old_text": "資料11 AI-2026-024-D09_AI本部標準技術選定書_Ver1.0_20260924追補.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料11 AI-2026-024-D09_AI本部標準技術選定書_Ver1.0_20260924追補.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-022"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17890,
+      "end": 17935,
+      "old_text": "資料12 AI-2026-024-D09_AI本部標準技術選定書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料12 AI-2026-024-D09_AI本部標準技術選定書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-023"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17936,
+      "end": 17995,
+      "old_text": "資料13 AI-2026-024-D10_システムアーキテクチャ設計書_Ver1.0_20260924追補.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料13 AI-2026-024-D10_システムアーキテクチャ設計書_Ver1.0_20260924追補.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-024"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 17996,
+      "end": 18044,
+      "old_text": "資料14 AI-2026-024-D10_システムアーキテクチャ設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料14 AI-2026-024-D10_システムアーキテクチャ設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-025"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18045,
+      "end": 18096,
+      "old_text": "資料15 AI-2026-024-D11_MIRAI OS運用・コスト設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料15 AI-2026-024-D11_MIRAI OS運用・コスト設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-026"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18097,
+      "end": 18140,
+      "old_text": "資料16 AI-2026-024-D12_インフラ運用設計書_Ver1.0.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料16 AI-2026-024-D12_インフラ運用設計書_Ver1.0.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-027"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18141,
+      "end": 18187,
+      "old_text": "資料17 AI-2026-043 D01〜D12 整合レビューと未決条件整理 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料17 AI-2026-043 D01〜D12 整合レビューと未決条件整理 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-028"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18188,
+      "end": 18225,
+      "old_text": "資料18 AI-2026-043 現行資料照合と設計改訂案 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料18 AI-2026-043 現行資料照合と設計改訂案 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-029"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18226,
+      "end": 18285,
+      "old_text": "資料19 AI-2026-043-D01_MIRAI_OS_GH支援管理システム_基本設計書_Ver0.1.docx",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料19 AI-2026-043-D01_MIRAI_OS_GH支援管理システム_基本設計書_Ver0.1.docx",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-030"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18286,
+      "end": 18344,
+      "old_text": "資料20 AI-2026-043-D02 MIRAI OS GH支援管理システム データベース設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料20 AI-2026-043-D02 MIRAI OS GH支援管理システム データベース設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-031"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18345,
+      "end": 18401,
+      "old_text": "資料21 AI-2026-043-D03 MIRAI OS GH支援管理システム 入力画面設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料21 AI-2026-043-D03 MIRAI OS GH支援管理システム 入力画面設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-032"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18402,
+      "end": 18456,
+      "old_text": "資料22 AI-2026-043-D04 MIRAI OS GH支援管理システム 詳細設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料22 AI-2026-043-D04 MIRAI OS GH支援管理システム 詳細設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-033"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18457,
+      "end": 18511,
+      "old_text": "資料23 AI-2026-043-D05 MIRAI OS GH支援管理システム 実装設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料23 AI-2026-043-D05 MIRAI OS GH支援管理システム 実装設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-034"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18512,
+      "end": 18569,
+      "old_text": "資料24 AI-2026-043-D06 MIRAI OS GH支援管理システム 開発と品質管理書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料24 AI-2026-043-D06 MIRAI OS GH支援管理システム 開発と品質管理書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-035"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18570,
+      "end": 18625,
+      "old_text": "資料25 AI-2026-043-D07 MIRAI OS GH支援管理システム テスト設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料25 AI-2026-043-D07 MIRAI OS GH支援管理システム テスト設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-036"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18626,
+      "end": 18684,
+      "old_text": "資料26 AI-2026-043-D08 MIRAI OS GH支援管理システム 開発標準の適用整理 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料26 AI-2026-043-D08 MIRAI OS GH支援管理システム 開発標準の適用整理 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-037"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18685,
+      "end": 18739,
+      "old_text": "資料27 AI-2026-043-D09 MIRAI OS GH支援管理システム 技術選定書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料27 AI-2026-043-D09 MIRAI OS GH支援管理システム 技術選定書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-038"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18740,
+      "end": 18799,
+      "old_text": "資料28 AI-2026-043-D10 MIRAI OS GH支援管理システム アーキテクチャ設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料28 AI-2026-043-D10 MIRAI OS GH支援管理システム アーキテクチャ設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-039"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18800,
+      "end": 18856,
+      "old_text": "資料29 AI-2026-043-D11 MIRAI OS GH支援管理システム 運用保守設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料29 AI-2026-043-D11 MIRAI OS GH支援管理システム 運用保守設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-040"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第24章 参照資料",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18857,
+      "end": 18914,
+      "old_text": "資料30 AI-2026-043-D12 MIRAI OS GH支援管理システム 導入と実証計画書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】資料30 AI-2026-043-D12 MIRAI OS GH支援管理システム 導入と実証計画書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-041"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 18920,
+      "end": 19022,
+      "old_text": "Ver0.1：初稿、17名の登録候補、既存設計整合レビュー、D02〜D12構成案を作成。追加確認によりGHフラワー全体／コスモス・ダリア個別ホームの関係を確定として反映。正式採番・設計承認・実装は未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1：初稿、17名の登録候補、既存設計整合レビュー、D02〜D12構成案を作成。追加確認によりGHフラワー全体／コスモス・ダリア個別ホームの関係を確定として反映。正式採番・設計承認・実装は未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-042"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19054,
+      "end": 19156,
+      "old_text": "本Workスレを正式な設計・成果物作成スレとする。設計責任者・承認確認先は榊原純。既存D01 Ver0.1を継続し、今回の再確認を追記した。024・043原本、正式採番台帳、職員の実権限は変更していない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】本Workスレを正式な設計・成果物作成スレとする。設計責任者・承認確認先は榊原純。既存D01 Ver0.1を継続し、今回の再確認を追記した。024・043原本、正式採番台帳、職員の実権限は変更していない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-043"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19157,
+      "end": 19373,
+      "old_text": "確認範囲：024 D01〜D12およびD02・D05・D09・D10の20260924追補、043 D01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08 Ver0.2、D09・D10 Ver0.1、D11・D12 Ver0.2、整合レビューVer0.16、現行案件台帳。抽出本文による文書レビューであり実装試験ではない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】確認範囲：024 D01〜D12およびD02・D05・D09・D10の20260924追補、043 D01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08 Ver0.2、D09・D10 Ver0.1、D11・D12 Ver0.2、整合レビューVer0.16、現行案件台帳。抽出本文による文書レビューであり実装試験ではない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-044"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 22757,
+      "end": 22919,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-045"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "現行方針・設計案の参照整理 SYNC-21（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 23055,
+      "end": 23163,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12と全体レビューVer0.3。版表記の統一は編集上の修正で、設計案の採用・一括承認・試験合格を意味しない。過去の判断記録・旧案は履歴として保持する。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12と全体レビューVer0.3。版表記の統一は編集上の修正で、設計案の採用・一括承認・試験合格を意味しない。過去の判断記録・旧案は履歴として保持する。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-046"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 23921,
+      "end": 24020,
+      "old_text": "D01 Ver0.2：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D01 Ver0.2：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-047"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 24021,
+      "end": 24078,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-048"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 37,
+      "old_text": "職員基盤・職員マスターシステム  |  Ver0.1  |  承認確認待ち",
+      "new_text": "職員基盤 D01 | Ver0.2.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-049"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "第12章 システム権限",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6866,
+      "end": 7074,
+      "old_text": "【未決 U06〜U08】共通基盤・相談支援・B型等の自己承認、代理承認、権限付与者は未決。GHでは2026年10月10日現在、両GHの月次作成・提出・承認は榊原純、有効な対象拠点権限による自己承認可、初期代理なし、不在時pending維持、権限付与・変更・停止担当は榊原純と確定済み。本人初期登録は導入時一回で、通常の自己追加・拡大は禁止。導入実施者・認証方法は未決。これらはGHの条件であり他OSへ自動適用しない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】【未決 U06〜U08】共通基盤・相談支援・B型等の自己承認、代理承認、権限付与者は未決。GHでは2026年10月10日現在、両GHの月次作成・提出・承認は榊原純、有効な対象拠点権限による自己承認可、初期代理なし、不在時pending維持、権限付与・変更・停止担当は榊原純と確定済み。本人初期登録は導入時一回で、通常の自己追加・拡大は禁止。導入実施者・認証方法は未決。これらはGHの条件であり他OSへ自動適用しない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D01-FIX-050"
+    },
+    {
+      "document": "D01",
+      "change_id": "D01-CURRENT",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D01 Ver0.2.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D01",
+      "change_id": "D01-HISTORY",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.2 → Ver0.2.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D01。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D01 Ver0.2.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 67,
+      "old_text": "D04 業務・権限・状態遷移詳細設計書 Ver0.4",
+      "new_text": "D04 業務・権限・状態遷移詳細設計書 Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-001"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 127,
+      "end": 141,
+      "old_text": "文書状態：初稿・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-002"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第13章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9527,
+      "end": 9543,
+      "old_text": "024 D04 本文Ver1.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】024 D04 本文Ver1.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-003"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第13章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9600,
+      "end": 9614,
+      "old_text": "043 D04 Ver0.8",
+      "new_text": "【改訂履歴：当時の記述・参照版】043 D04 Ver0.8",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-004"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第13章 整合レビューと未決条件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9721,
+      "end": 9778,
+      "old_text": "024 D04はファイル名Ver1.0／本文Ver1.1。版優先はU13。認証時間・保持年数・製品は本件で未採用。",
+      "new_text": "【改訂履歴：当時の記述・参照版】024 D04はファイル名Ver1.0／本文Ver1.1。版優先はU13。認証時間・保持年数・製品は本件で未採用。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-005"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第14章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10339,
+      "end": 10360,
+      "old_text": "職員基盤 D01 基本設計書 Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D01 基本設計書 Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-006"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第14章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10363,
+      "end": 10388,
+      "old_text": "職員基盤 D02 データベース設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D02 データベース設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-007"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第14章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10391,
+      "end": 10415,
+      "old_text": "職員基盤 D03 画面・入力設計書 Ver0.2",
+      "new_text": "【改訂履歴：当時の記述・参照版】職員基盤 D03 画面・入力設計書 Ver0.2",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-008"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第14章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10418,
+      "end": 10460,
+      "old_text": "相談支援 AI-2026-024 D04（ファイル名Ver1.0／本文Ver1.1）",
+      "new_text": "【改訂履歴：当時の記述・参照版】相談支援 AI-2026-024 D04（ファイル名Ver1.0／本文Ver1.1）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-009"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第14章 参照資料と改訂記録",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10463,
+      "end": 10494,
+      "old_text": "GH AI-2026-043 D04 詳細設計書 Ver0.8",
+      "new_text": "【改訂履歴：当時の記述・参照版】GH AI-2026-043 D04 詳細設計書 Ver0.8",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-010"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "書式と改訂",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10611,
+      "end": 10617,
+      "old_text": "Ver0.1",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-011"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "書式と改訂",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10676,
+      "end": 10764,
+      "old_text": "設計責任者・承認確認先：榊原純。文書状態は初稿・承認確認待ち。次工程はD05で処理・API・保存条件を具体化する。設計保存は未決条件の確定、稼働開始、実装試験完了を意味しない。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】設計責任者・承認確認先：榊原純。文書状態は初稿・承認確認待ち。次工程はD05で処理・API・保存条件を具体化する。設計保存は未決条件の確定、稼働開始、実装試験完了を意味しない。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-012"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "書式と改訂",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10795,
+      "end": 10941,
+      "old_text": "参照版はD01 Ver0.1の10月10日追記、D02・D03 Ver0.2、043 D04 Ver0.8・D02 Ver0.9・D05 Ver0.9・D07 Ver0.10。以下で確定と明示するGH条件を除き、追加規則は設計案。設計責任者・承認確認先は榊原純。未決の担当者を自動任命しない。",
+      "new_text": "【改訂履歴：当時の記述・参照版】参照版はD01 Ver0.1の10月10日追記、D02・D03 Ver0.2、043 D04 Ver0.8・D02 Ver0.9・D05 Ver0.9・D07 Ver0.10。以下で確定と明示するGH条件を除き、追加規則は設計案。設計責任者・承認確認先は榊原純。未決の担当者を自動任命しない。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-013"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "書式と改訂",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13462,
+      "end": 13559,
+      "old_text": "改訂記録 Ver0.2 2026年10月10日：OS別条件、操作10群、停止優先、依存AND案、予約競合、残務条件、8確認ケースを追加。案件044は候補。設計承認・権限付与・実装・試験は未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂記録 Ver0.2 2026年10月10日：OS別条件、操作10群、停止優先、依存AND案、予約競合、残務条件、8確認ケースを追加。案件044は候補。設計承認・権限付与・実装・試験は未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-014"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 D02・D03 Ver0.3との統合案（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13561,
+      "end": 13598,
+      "old_text": "第16章 D02・D03 Ver0.3との統合案（2026年10月10日）",
+      "new_text": "【改訂履歴：当時の記述・参照版】第16章 D02・D03 Ver0.3との統合案（2026年10月10日）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-015"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "第16章 D02・D03 Ver0.3との統合案（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16174,
+      "end": 16268,
+      "old_text": "改訂Ver0.3：D02/D03 Ver0.3対応、停止対象のaccount単位統一、四状態、解除・依存・履歴の手順、API対応参照と追加4観点を追記。044は採番候補。実装・試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂Ver0.3：D02/D03 Ver0.3対応、停止対象のaccount単位統一、四状態、解除・依存・履歴の手順、API対応参照と追加4観点を追記。044は採番候補。実装・試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-016"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 19121,
+      "end": 19283,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-017"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "現行方針・設計案の参照整理 SYNC-21（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 20445,
+      "end": 20553,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12と全体レビューVer0.3。版表記の統一は編集上の修正で、設計案の採用・一括承認・試験合格を意味しない。過去の判断記録・旧案は履歴として保持する。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12と全体レビューVer0.3。版表記の統一は編集上の修正で、設計案の採用・一括承認・試験合格を意味しない。過去の判断記録・旧案は履歴として保持する。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-018"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 24336,
+      "end": 24435,
+      "old_text": "D04 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D04 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-019"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 24436,
+      "end": 24493,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-020"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 41,
+      "old_text": "職員共通基盤  D04  |  Ver0.3  |  承認確認待ち        ",
+      "new_text": "職員基盤 D04 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-021"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "本書の適用範囲",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 919,
+      "end": 1015,
+      "old_text": "案件番号AI-2026-044は採番候補のまま。工程を先へ進める了承は、未決条件一括承認や個人への権限付与を意味しない。本版は設計初稿であり、本番登録・アプリ実装・システム試験は行っていない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】案件番号AI-2026-044は採番候補のまま。工程を先へ進める了承は、未決条件一括承認や個人への権限付与を意味しない。本版は設計初稿であり、本番登録・アプリ実装・システム試験は行っていない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D04-FIX-022"
+    },
+    {
+      "document": "D04",
+      "change_id": "D04-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D04 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D04",
+      "change_id": "D04-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D04。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D04 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 57,
+      "old_text": "D09 技術選定書 Ver0.4",
+      "new_text": "D09 技術選定書 Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-001"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 107,
+      "end": 125,
+      "old_text": "文書状態：設計案／採用・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-002"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "01  選定の結論と判断区分",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 645,
+      "end": 676,
+      "old_text": "製品の組合せ、処理の配置、検証条件、代替案。全て採用確認待ち。",
+      "new_text": "製品構成等の未決部分は採用確認待ち。ただしWork-U04/06/08/09の方式は工程91で採用済み（条件付き実行条件は未充足）であり、一括未承認へ戻さない。",
+      "reason": "一括未採用表示を採用範囲と分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-003"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "02  既存標準との整合と選定要件",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 978,
+      "end": 1119,
+      "old_text": "024 D09 Ver1.0はNext.js、Supabase、OpenAI API、Vercel、GitHubをAI本部の共通採用技術として位置づける。043 D09は案件要件に照らす条件付き選定として整理している。本案件では標準を参照し、利用する機能だけを採用判断の対象とする。",
+      "new_text": "【改訂履歴：当時の記述・参照版】024 D09 Ver1.0はNext.js、Supabase、OpenAI API、Vercel、GitHubをAI本部の共通採用技術として位置づける。043 D09は案件要件に照らす条件付き選定として整理している。本案件では標準を参照し、利用する機能だけを採用判断の対象とする。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-004"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "D11・D12への引継ぎ",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6068,
+      "end": 6151,
+      "old_text": "改訂記録：Ver0.1 初版。既存資料と公式製品資料を照合し、候補比較・選定条件・採用前検証・未決事項を整理した。次版は判断根拠と検証結果が追加された時点で改訂する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】改訂記録：Ver0.1 初版。既存資料と公式製品資料を照合し、候補比較・選定条件・採用前検証・未決事項を整理した。次版は判断根拠と検証結果が追加された時点で改訂する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-005"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6612,
+      "end": 6635,
+      "old_text": "精査記録 Ver0.2（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】精査記録 Ver0.2（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-006"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 6757,
+      "end": 6966,
+      "old_text": "照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-007"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8171,
+      "end": 8315,
+      "old_text": "現行照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-008"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8896,
+      "end": 8958,
+      "old_text": "Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-009"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 11124,
+      "end": 11286,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-010"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16665,
+      "end": 16764,
+      "old_text": "D09 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D09 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-011"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 16765,
+      "end": 16822,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-012"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 51,
+      "old_text": "職員共通基盤 D09 | Ver0.3 | 承認確認待ち                       ",
+      "new_text": "職員基盤 D09 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-013"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8316,
+      "end": 8515,
+      "old_text": "共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D09-FIX-014"
+    },
+    {
+      "document": "D09",
+      "change_id": "D09-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D09 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D09",
+      "change_id": "D09-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D09。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D09 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 41,
+      "end": 66,
+      "old_text": "D11 運用保守・保存・コスト設計書 Ver0.4",
+      "new_text": "D11 運用保守・保存・コスト設計書 Ver0.4.1",
+      "reason": "表紙の是正版番号",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-001"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "表紙",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 116,
+      "end": 134,
+      "old_text": "文書状態：設計案／採用・承認確認待ち",
+      "new_text": "文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち",
+      "reason": "現行承認状態と再監査状態を分離",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-002"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "Ver0.1 初版",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8738,
+      "end": 8747,
+      "old_text": "Ver0.1 初版",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.1 初版",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-003"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "Ver0.1 初版",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8826,
+      "end": 8913,
+      "old_text": "設計責任者・承認確認先：榊原純。文書状態：初稿・承認確認待ち。案件番号AI-2026-044は採番候補。本書の保存は担当任命、予算承認、保存期間決定、実稼働開始を意味しない。",
+      "new_text": "【改訂履歴：当時の状態・作業記録】設計責任者・承認確認先：榊原純。文書状態：初稿・承認確認待ち。案件番号AI-2026-044は採番候補。本書の保存は担当任命、予算承認、保存期間決定、実稼働開始を意味しない。",
+      "reason": "過去状態を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-004"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 8914,
+      "end": 8937,
+      "old_text": "精査記録 Ver0.2（2026-10-10）",
+      "new_text": "【改訂履歴：当時の記述・参照版】精査記録 Ver0.2（2026-10-10）",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-005"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9059,
+      "end": 9268,
+      "old_text": "照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "new_text": "【改訂履歴：当時の記述・参照版】照合基準：職員D01 Ver0.1の精査記録、D02〜D06 Ver0.2。GHではD01 Ver0.6、D02 Ver0.9、D03 Ver0.13、D04 Ver0.8、D05 Ver0.9、D06 Ver0.2、D07 Ver0.10、D08・D11・D12 Ver0.2を今回の照合版とする。相談支援024・GH043原本は変更しない。旧章中の参照版は当時の記録として残し、今回の比較には本記録の版を使用する。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-006"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10404,
+      "end": 10548,
+      "old_text": "現行照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の照合版：D01 Ver0.1（精査追記）、D02 Ver0.4（第20章統合辞書案）、D03〜D05 Ver0.3、D06〜D12 Ver0.3、本レビューVer0.3。これは編集版一覧であり採用承認版ではない。旧章・改訂履歴の版は当時の記録として維持し、今回の確認には本追記を使う。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-007"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 11213,
+      "end": 11275,
+      "old_text": "Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "new_text": "【改訂履歴：当時の記述・参照版】Ver0.3改訂：D02 Ver0.4とD03〜D05 Ver0.3を照合前提へ反映。重要条件は設計案/未決、全試験未実施。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-008"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "実装準備の条件整理・運用簡素化（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 13431,
+      "end": 13593,
+      "old_text": "現行編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "new_text": "【改訂履歴：旧版当時の編集・照合一覧／現行一覧ではない】当時の編集版：D01 Ver0.1、D02 Ver0.4、D03〜D12 Ver0.3、全体レビューVer0.3。本追記は同版内の決定同期/作業記録。DI01〜05は具体案反映済み・技術採用/検証未完了。旧未決表記のうちDECで解消した範囲は上記を優先し、その他は未決のまま。設計全体の承認・実装着手可能の一括判定とはしない。",
+      "reason": "旧一覧を履歴へ分類",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-009"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14404,
+      "end": 14503,
+      "old_text": "D11 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "new_text": "【改訂履歴：当時の記述・参照版】D11 Ver0.4：承認済み方式の設計反映。判断者：主開発スレ／管理責任者 榊原純。承認日：2026-10-17。判断根拠：工程91正式指示、STAFF-AUD-090採用、工程90条件付き完了。",
+      "reason": "過去版を現行と区別",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-010"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "工程91 承認方式反映・実装開始条件（2026-10-17）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 14504,
+      "end": 14561,
+      "old_text": "旧記述：従来章/追記は方式未決または提案として記録。本節の明示対象だけを更新し、過去記録と他の未決条件は維持する。",
+      "new_text": "履歴と現行の区別：各過去版の記述は「改訂履歴」と明示する。現行方式・実行条件は冒頭の「工程91是正・現行状態」を参照し、その他の未決事項は維持する。",
+      "reason": "一般的追記説明を具体的境界へ是正",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式採用維持、文書是正・再監査指示",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-011"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "フッター",
+      "loc": {
+        "segment": "footers"
+      },
+      "start": 0,
+      "end": 51,
+      "old_text": "職員共通基盤 D11 | Ver0.3 | 承認確認待ち                       ",
+      "new_text": "職員基盤 D11 | Ver0.4.1 | 再監査待ち ",
+      "reason": "旧版/旧承認状態を更新、nativeページ番号保持",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "工程91方式維持・文書是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-012"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "精査記録 Ver0.2（2026-10-10）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 9688,
+      "end": 9785,
+      "old_text": "GHで榊原純が付与・変更・停止を担う確定条件は有効なGH管理範囲内に限る。共通基盤全体の付与・停止・解除担当、緊急時代行、監視担当、復旧判断者の任命は未決。AI文書作成者を実運用担当に数えない。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】GHで榊原純が付与・変更・停止を担う確定条件は有効なGH管理範囲内に限る。共通基盤全体の付与・停止・解除担当、緊急時代行、監視担当、復旧判断者の任命は未決。AI文書作成者を実運用担当に数えない。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-013"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "版整合・統合追記（2026年10月10日）",
+      "loc": {
+        "segment": "body"
+      },
+      "start": 10549,
+      "end": 10748,
+      "old_text": "共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "new_text": "【改訂履歴：当時の未決・作業段階／現行状態ではない】共通前提：停止はaccount_id単位。ACCOUNT_GLOBAL、account＋法人のORG_ACCESS、account＋法人＋OSのOS_ACCESSを区別し、専用control_scopeで管理する案。人物の全アカウント一括停止、共通自己承認・代理承認・付与/解除担当は未決。役割依存AND、四状態、二時点revision_setsは設計案。D05 MAP01〜23へ操作を追跡する。",
+      "reason": "採用済み条件と競合する旧未決表示を過去の記録に限定",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "採用方式維持・文書状態是正",
+      "approval_date": "2026-10-17",
+      "change_id": "D11-FIX-014"
+    },
+    {
+      "document": "D11",
+      "change_id": "D11-CURRENT",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "冒頭／工程91是正・現行状態",
+      "old_text": "（該当節なし）",
+      "new_text": "工程91是正・現行状態\n現行版：D11 Ver0.4.1。文書状態：方式承認反映済み・文書是正／STAFF-AUD-091再監査待ち。工程91未完了、工程92移行保留。\n現行版一覧：D01 Ver0.2.1、D02 Ver0.5.1、D03 Ver0.3、D04・D05 Ver0.4.1、D06 Ver0.3、D07 Ver0.4.1、D08 Ver0.3、D09〜D12 Ver0.4.1。全体レビューVer0.3は過去の基準資料。\n承認範囲（2026-10-17主開発工程91指示）：Work-U04＝R-A条件付き採用（初期設定実行者・独立照合者・人選・真正性確認・証拠保管は未確定、設定禁止）。Work-U06＝必須拒否先行・完全grant単位union採用、初期deny grantなし、各根拠grant独立保持・監査追跡。Work-U08＝global fence条件付き採用、P0〜P8維持、全writer棚卸し完了・未適用ゼロ・直接更新閉鎖・競合試験完了まで本番適用不可。Work-U09＝GitHub Actions隔離PostgreSQLを条件付き採用した採用予定方式、利用枠・費用・Actions権限・Secrets・PostgreSQLイメージ・停止条件を全て確認するまで構築/実行禁止。\n監査：AUD-090-01/02/03 OPEN継続。AUD-091-01/02/03は再監査待ちでWorkによるクローズなし。Work-U01/02/03/05/07は未承認。旧D-UとWork-Uを混同しない。\n禁止：実DB・実認証・正式権限付与・本番職員登録・本番移行。以下の採用範囲だけを本現行記録で更新し、履歴・他案件参照・その他未決は別扱いとする。\n\n",
+      "reason": "現行状態/全版一覧/採用範囲/保留条件を一元化",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    },
+    {
+      "document": "D11",
+      "change_id": "D11-HISTORY",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "section": "文末／改訂履歴：工程91文書是正",
+      "old_text": "（該当節なし）",
+      "new_text": "\n改訂履歴：工程91文書是正（STAFF-AUD-091再監査用）\nVer0.4 → Ver0.4.1。承認根拠：2026-10-17主開発の文書是正・再監査指示。採用方式は変更しない。是正対象：表紙/現行状態/旧版参照の履歴分類/フッター/旧新対応。過去版の版番号・状態は改訂履歴としてのみ保持。工程91は未完了、工程92保留。\n差分台帳参照：test/staff/document-corrections-91.json の D11。各行に旧版/新版/章節/旧記述/新記述/理由/関連Work-U/関連AUD/主開発承認/承認日を記録する。本文は全segmentを比較し、意図した変更以外がないことを読戻しで確認する。これはWork検査であり独立監査の合格ではない。\n現行末尾表示：D11 Ver0.4.1 | 方式承認反映済み | STAFF-AUD-091再監査待ち | AUD-090-01/02/03 OPEN | 工程92移行保留。\n",
+      "reason": "是正履歴と現行末尾表示",
+      "related_U": "Work-U04/06/08/09",
+      "related_AUD": [
+        "AUD-091-01",
+        "AUD-091-02",
+        "AUD-091-03"
+      ],
+      "main_approval": "方式維持・文書是正",
+      "approval_date": "2026-10-17"
+    }
+  ]
+}

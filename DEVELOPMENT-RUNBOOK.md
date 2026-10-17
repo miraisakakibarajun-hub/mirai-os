@@ -384,3 +384,8 @@ STAFF-AUD-089採用・89条件付き完了の指示に基づく。design/staff-f
 ## 工程91 承認方式反映（2026-10-17）
 
 主開発工程91指示を反映。U04 R-A条件付き採用、U06 完全grant単位union採用（必須拒否先行/初期denyなし/根拠独立保持）、U08 global fence条件付き採用、U09 Actions隔離PostgreSQL採用予定。U01/02/03/05/07未承認。U04の5条件/U08の4条件/U09の6条件は未充足で実行保留、AUD-090-01〜03 OPEN。D01 Ver0.2、D02 Ver0.5、D04/D05/D07/D09/D10/D11/D12 Ver0.4へ既存Drive正本を改訂し読戻し確認。D03/D06/D08 Ver0.3維持。Work-UとD旧Uを混同しない。design/staff-approved-methods-91.md、test/staff/approval-reflection-91.json参照。STATIC16/MODEL36成功、隔離統合/正式受入未実施。SQL/API/workflow/DB/Auth/正式付与/本番操作なし。独立監査提出用、受領未確認。
+
+
+## 工程91 文書是正・STAFF-AUD-091 再監査（2026-10-17）
+
+主開発がAUD-091を採用、要修正・再監査対象。工程91未完了、92移行保留。方式変更なし。既存Drive正本9文書をpatch版（D01 Ver0.2.1/D02 Ver0.5.1/他対象 Ver0.4.1）へ是正。旧版/旧承認状態は履歴に明示、現行状態/フッター統一。差分232件、全文9文書・27領域一致、否定系3拒否。詳細design/staff-document-corrections-91.md、test/staff/document-corrections-91.json、document-comparison-results-91.json。AUD-090-01〜03 OPEN。Work比較済み、独立再監査未了。DB/Auth/正式付与/本番なし。提出先はSTAFF-AUD-091 再監査、受領未確認。

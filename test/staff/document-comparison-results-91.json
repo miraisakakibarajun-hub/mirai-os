@@ -1,0 +1,544 @@
+{
+  "development": "STAFF-WORK-091-CORRECTION",
+  "audit_target": "STAFF-AUD-091 再監査",
+  "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+  "canonicalization": "UTF16 indexed text; structural gaps U+0000; SHA256 UTF8; all body/header/footer/footnote segments",
+  "independent_audit": "PENDING",
+  "stage91": "NOT_COMPLETE",
+  "stage92": "HOLD",
+  "audit090": [
+    "OPEN",
+    "OPEN",
+    "OPEN"
+  ],
+  "documents": [
+    {
+      "document": "D05",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "b03a069d025a2c548edf77aeae124bb1a533efcba357c77015a55f76cbf13367",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "07da8f12bca8cbd55b92e28aa8c3a6114cdb660a0337a929b79e93400f076a30",
+          "after_sha256": "c1c4726ebc418571717377f61f78cc1e2035a959300ede38d3e17ba0b9d39e61",
+          "expected_sha256": "c1c4726ebc418571717377f61f78cc1e2035a959300ede38d3e17ba0b9d39e61",
+          "before_utf16": 174842,
+          "after_utf16": 176515,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "d85c4daa524375a98234d32949d3ab3425902213dca5e7260c6e1ec16489fa3e",
+          "after_sha256": "d85c4daa524375a98234d32949d3ab3425902213dca5e7260c6e1ec16489fa3e",
+          "expected_sha256": "d85c4daa524375a98234d32949d3ab3425902213dca5e7260c6e1ec16489fa3e",
+          "before_utf16": 73,
+          "after_utf16": 73,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "bd8a20f015bac8e7a9d5362259d37f6fd651a1e43f6e1f0a110a75c4cc6d9ba1",
+          "after_sha256": "40ad12023157ab4b13443c2676a8bba29ee71b4a22aa040c62e14b052ce285cd",
+          "expected_sha256": "40ad12023157ab4b13443c2676a8bba29ee71b4a22aa040c62e14b052ce285cd",
+          "before_utf16": 47,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D12",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "1033c011824c44c9471cc462615b337243f708936b5ee72eabd15b5c72b9ba63",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "1cec77b57ee5ba79c136023b2feef29507767257aecaa3a3730b0dc52b042a32",
+          "after_sha256": "17949595deca78209bc986bcdbbce2b579e4283d11960f5a25803fc9bc637de7",
+          "expected_sha256": "17949595deca78209bc986bcdbbce2b579e4283d11960f5a25803fc9bc637de7",
+          "before_utf16": 42424,
+          "after_utf16": 43885,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "fdccd33402c73d4581702002990022174f5f3df02fde5088935fbb6c6f993789",
+          "after_sha256": "fdccd33402c73d4581702002990022174f5f3df02fde5088935fbb6c6f993789",
+          "expected_sha256": "fdccd33402c73d4581702002990022174f5f3df02fde5088935fbb6c6f993789",
+          "before_utf16": 33,
+          "after_utf16": 33,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "b9a4ccdc8899f67973070b6cdee4a4314d1a6c09520ce3cc0cbcfc82cad26c59",
+          "after_sha256": "f34d41f5eb8ed9fee4a23c13c46366005ab7d2bbe9f30242492bb966b1e2e156",
+          "expected_sha256": "f34d41f5eb8ed9fee4a23c13c46366005ab7d2bbe9f30242492bb966b1e2e156",
+          "before_utf16": 35,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D02",
+      "old_version": "Ver0.5",
+      "new_version": "Ver0.5.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "aab7062aeaac87b5def5f7ba67edb131324dcca36789ce9077f1b2635d749b6d",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "7b6d089aa68fdbff950c8e248bf2344721cda7a2123ed37c21e8800ed0287c9f",
+          "after_sha256": "0699ccfc87adc9ce313108052921bfc57d4f0d5362f94572abea265e3c27f244",
+          "expected_sha256": "0699ccfc87adc9ce313108052921bfc57d4f0d5362f94572abea265e3c27f244",
+          "before_utf16": 285644,
+          "after_utf16": 287286,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "649bf4c2603ba418a1a94d7066bbf287c092b5f2d0cad5dfcfa6b091a228640e",
+          "after_sha256": "649bf4c2603ba418a1a94d7066bbf287c092b5f2d0cad5dfcfa6b091a228640e",
+          "expected_sha256": "649bf4c2603ba418a1a94d7066bbf287c092b5f2d0cad5dfcfa6b091a228640e",
+          "before_utf16": 73,
+          "after_utf16": 73,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "f9b8127190ee093ef0eb5c273594ae06c2ecaedfaa65208b4116ba3aad728c9b",
+          "after_sha256": "06d0b3e69b3714db6a2553ef23e5098ec38329af044edc70a836a50280cd3235",
+          "expected_sha256": "06d0b3e69b3714db6a2553ef23e5098ec38329af044edc70a836a50280cd3235",
+          "before_utf16": 46,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D07",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "3aadaccc2ffd0f0e8ca0ea6ced149e902fec530edabb7c44f22789be23113b5e",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "59947443c6fddbea099e8782d5fcfa1aa0c60e00e926c72a8ee25b67c81c4d86",
+          "after_sha256": "95dcce01d011a64d324fb8006e6547f7dd6557154a34669d2822a49c9b027a7b",
+          "expected_sha256": "95dcce01d011a64d324fb8006e6547f7dd6557154a34669d2822a49c9b027a7b",
+          "before_utf16": 41368,
+          "after_utf16": 43051,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "069ff4a3f9411c5d4cda0d5c3c9f359c6ed258a5ffe0f72f53c17b62e018cfc8",
+          "after_sha256": "069ff4a3f9411c5d4cda0d5c3c9f359c6ed258a5ffe0f72f53c17b62e018cfc8",
+          "expected_sha256": "069ff4a3f9411c5d4cda0d5c3c9f359c6ed258a5ffe0f72f53c17b62e018cfc8",
+          "before_utf16": 73,
+          "after_utf16": 73,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "7c7b18f34d140f98682afadaadc93f70470931bc46c8ddf7818f58cb5da619f3",
+          "after_sha256": "0139a0806ff8896d835f10485ebf2fb52ea361119e73c8a03d9597e7e08d0065",
+          "expected_sha256": "0139a0806ff8896d835f10485ebf2fb52ea361119e73c8a03d9597e7e08d0065",
+          "before_utf16": 48,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D10",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "cf6b2f315f5cc144752ea81b54f95a8d9ee45f1dc2a5bd4c7adf911ed93e448b",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "cdf1dcefb5361fb0a6737efa52d67ce12c993337a3eb8d8ce015573ea6f082fb",
+          "after_sha256": "c9af8fb3ff6fd46770a8477780af144904ada23549afb823194604610486a736",
+          "expected_sha256": "c9af8fb3ff6fd46770a8477780af144904ada23549afb823194604610486a736",
+          "before_utf16": 22121,
+          "after_utf16": 23530,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "120fe6eca740b8fcdcdcb706aea41b6f6813f87a1e5ae2f2e4c9595fbf1aa7f2",
+          "after_sha256": "120fe6eca740b8fcdcdcb706aea41b6f6813f87a1e5ae2f2e4c9595fbf1aa7f2",
+          "expected_sha256": "120fe6eca740b8fcdcdcb706aea41b6f6813f87a1e5ae2f2e4c9595fbf1aa7f2",
+          "before_utf16": 70,
+          "after_utf16": 70,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "305c52d83a246ec5374ecfea8e8d02240ac337239dd6f3aa4d2716cbe32eaa65",
+          "after_sha256": "f0ae7c96819329c9d3cf4b273e446f62c7cd996d969110997b9d85e5643f421f",
+          "expected_sha256": "f0ae7c96819329c9d3cf4b273e446f62c7cd996d969110997b9d85e5643f421f",
+          "before_utf16": 57,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D01",
+      "old_version": "Ver0.2",
+      "new_version": "Ver0.2.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "6df93d3f591fe4dad701c6483a1c045c0577ca6a0d2a4e12e4ebef32f322534b",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "8eb68bf808377084da36f19b13cc311f7ddf0561e296c93cbeac6760ba5de8e7",
+          "after_sha256": "5bb190f17f7d6db29c23821b8839a82626ac1bd59576e07682e247d0eae2b199",
+          "expected_sha256": "5bb190f17f7d6db29c23821b8839a82626ac1bd59576e07682e247d0eae2b199",
+          "before_utf16": 24491,
+          "after_utf16": 26405,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "ff36d5b8b6a295b1db649e5fb23f4e1ee0acbff292e5bba06825a03f7a94fdf1",
+          "after_sha256": "ff36d5b8b6a295b1db649e5fb23f4e1ee0acbff292e5bba06825a03f7a94fdf1",
+          "expected_sha256": "ff36d5b8b6a295b1db649e5fb23f4e1ee0acbff292e5bba06825a03f7a94fdf1",
+          "before_utf16": 36,
+          "after_utf16": 36,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "c0adf5cce4dabdb3abdbb364699873fabf3b03f2979b801c4658b272e2a7e887",
+          "after_sha256": "fe22ace64409e61f00f7c81f56a1ba7abe76f4291b509cc45e99c239a67df525",
+          "expected_sha256": "fe22ace64409e61f00f7c81f56a1ba7abe76f4291b509cc45e99c239a67df525",
+          "before_utf16": 38,
+          "after_utf16": 29,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D04",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "59398cad00f968eeca8c35aa75018cbccd7a5a15d5e1d2fbbe6570146028c17c",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "1a89593f714c27515b95288d7d94b9af2e45d1429dcd845f022eedeab0d4bb3a",
+          "after_sha256": "d2a2be3561d57beef0a6ea892003c304dbe39d3cc428c6b0b5cd8e45930134fd",
+          "expected_sha256": "d2a2be3561d57beef0a6ea892003c304dbe39d3cc428c6b0b5cd8e45930134fd",
+          "before_utf16": 25017,
+          "after_utf16": 26548,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "90191059eeccada6585463ac4d4a32497af021a6f7846cc6887da343839414d8",
+          "after_sha256": "90191059eeccada6585463ac4d4a32497af021a6f7846cc6887da343839414d8",
+          "expected_sha256": "90191059eeccada6585463ac4d4a32497af021a6f7846cc6887da343839414d8",
+          "before_utf16": 73,
+          "after_utf16": 73,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "bc3010655469683b7ce2e35d86b46be04b8f694b3cec6c0ec53f9e20c21372b8",
+          "after_sha256": "87c9cff02402da9c5a4504d7e02ed3faa2a156ebf2be75657fbee851afdbb5b3",
+          "expected_sha256": "87c9cff02402da9c5a4504d7e02ed3faa2a156ebf2be75657fbee851afdbb5b3",
+          "before_utf16": 47,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D09",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "6d67be31086f1b89a74031127297e51a00e11508ce1d68fd2b121d9c7ef983fd",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "c7a3ac50d96ee9d4530c659dd9427dce943cc4ff1e5fb375da63d24687764cca",
+          "after_sha256": "912beb95bee588b50ce7062e74ea688ddeab2812f931e538a7dccc8342255e9b",
+          "expected_sha256": "912beb95bee588b50ce7062e74ea688ddeab2812f931e538a7dccc8342255e9b",
+          "before_utf16": 17313,
+          "after_utf16": 18744,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "4335aeb6fbe89393f48323b9eb17dd68c323f15a380e8fb24e7ec9842555f12f",
+          "after_sha256": "4335aeb6fbe89393f48323b9eb17dd68c323f15a380e8fb24e7ec9842555f12f",
+          "expected_sha256": "4335aeb6fbe89393f48323b9eb17dd68c323f15a380e8fb24e7ec9842555f12f",
+          "before_utf16": 70,
+          "after_utf16": 70,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "7810ccdb2908fa3ad7a9448d99cd53f0e056ad058eab5f53a2e0b00c5f1ca0be",
+          "after_sha256": "b1e44a09e13a66f30270a9bce9625c23122d698aecbda3b939d27778f471ab24",
+          "expected_sha256": "b1e44a09e13a66f30270a9bce9625c23122d698aecbda3b939d27778f471ab24",
+          "before_utf16": 57,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    },
+    {
+      "document": "D11",
+      "old_version": "Ver0.4",
+      "new_version": "Ver0.4.1",
+      "title_match": true,
+      "full_comparison_match": true,
+      "original_to_initial91_expected_match": true,
+      "segments_checked": 3,
+      "all_native_controls_preserved": true,
+      "chapter_number_sequence_preserved": true,
+      "unclassified_old_status_count": 0,
+      "unresolved": [],
+      "comparison_level": "WORK_DOCUMENT_FULL_COMPARISON",
+      "independent_audit": "PENDING",
+      "stage92": "HOLD",
+      "audit090": [
+        "OPEN",
+        "OPEN",
+        "OPEN"
+      ],
+      "original_body_sha256": "9a349c59d08ab0d96e1807ba9f019f367c1cd8c0eae150732f63d1653cdb4410",
+      "segments": [
+        {
+          "segment": "body",
+          "before_sha256": "a548e9cf1cb4cbcfb50b23d58e948935c72769212b094b5789b7030156c3d856",
+          "after_sha256": "18f51e4bbff41a8b737e5253a8b10abfd6ef4517d4f8a695cf7f7a4a885a5013",
+          "expected_sha256": "18f51e4bbff41a8b737e5253a8b10abfd6ef4517d4f8a695cf7f7a4a885a5013",
+          "before_utf16": 15092,
+          "after_utf16": 16501,
+          "match": true
+        },
+        {
+          "segment": "headers:1",
+          "before_sha256": "6eec6f47346a060778ef4e617b8c3bd171704da378c4ac7affc722b4b9c0babe",
+          "after_sha256": "6eec6f47346a060778ef4e617b8c3bd171704da378c4ac7affc722b4b9c0babe",
+          "expected_sha256": "6eec6f47346a060778ef4e617b8c3bd171704da378c4ac7affc722b4b9c0babe",
+          "before_utf16": 70,
+          "after_utf16": 70,
+          "match": true
+        },
+        {
+          "segment": "footers:1",
+          "before_sha256": "8ade1ebde4cd8b233fcc0d77537202b00946996e10660e2548c9bff7263bd874",
+          "after_sha256": "e3e771bcd119579682246de6d8f98225cf688b7f687646f9dc8c9a486b3fb8c4",
+          "expected_sha256": "e3e771bcd119579682246de6d8f98225cf688b7f687646f9dc8c9a486b3fb8c4",
+          "before_utf16": 57,
+          "after_utf16": 34,
+          "match": true
+        }
+      ],
+      "intended_changes_only": true,
+      "unplanned_deletions": 0,
+      "unplanned_modifications": 0,
+      "semantic_review": "Adopted methods unchanged; mandatory conditions retained; Work review only"
+    }
+  ],
+  "summary": {
+    "documents": 9,
+    "segments": 27,
+    "full_comparison_pass": 9,
+    "fail": 0,
+    "real_db_connections": 0,
+    "real_auth": false,
+    "isolated_integration": "NOT_EXECUTED",
+    "formal_acceptance": "NOT_EXECUTED"
+  },
+  "negative_checks": [
+    {
+      "case": "unplanned_change",
+      "level": "STATIC_DOCUMENT_COMPARISON",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "exit_code": 1
+    },
+    {
+      "case": "overlap",
+      "level": "STATIC_DOCUMENT_COMPARISON",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "exit_code": 1
+    },
+    {
+      "case": "old_status",
+      "level": "STATIC_DOCUMENT_COMPARISON",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "exit_code": 1
+    }
+  ]
+}

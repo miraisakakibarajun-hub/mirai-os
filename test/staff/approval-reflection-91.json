@@ -141,5 +141,9 @@
     "D06": "Ver0.3",
     "D08": "Ver0.3"
   },
-  "number_namespace": "Work-U != legacy D-U"
+  "number_namespace": "Work-U != legacy D-U",
+  "snapshot_state": "HISTORICAL_INITIAL_91_REJECTED_FOR_DOCUMENT_CORRECTION",
+  "current_evidence": "test/staff/document-comparison-results-91.json",
+  "stage91": "NOT_COMPLETE",
+  "stage92": "HOLD"
 }
